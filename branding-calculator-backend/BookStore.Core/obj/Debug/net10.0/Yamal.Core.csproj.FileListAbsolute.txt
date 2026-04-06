@@ -1,0 +1,11 @@
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\bin\Debug\net10.0\Yamal.Core.deps.json
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\bin\Debug\net10.0\Yamal.Core.dll
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\bin\Debug\net10.0\Yamal.Core.pdb
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\Yamal.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\Yamal.Core.AssemblyInfoInputs.cache
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\Yamal.Core.AssemblyInfo.cs
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\Yamal.Core.csproj.CoreCompileInputs.cache
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\Yamal.Core.dll
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\refint\Yamal.Core.dll
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\Yamal.Core.pdb
+C:\Users\kosty\source\repos\branding calculator\BookStore.Core\obj\Debug\net10.0\ref\Yamal.Core.dll
