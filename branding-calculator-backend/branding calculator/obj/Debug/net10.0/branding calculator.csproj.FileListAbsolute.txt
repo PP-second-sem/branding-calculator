@@ -1,0 +1,39 @@
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\appsettings.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\branding calculator.staticwebassets.endpoints.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\branding calculator.exe
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\branding calculator.deps.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\branding calculator.runtimeconfig.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\branding calculator.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\branding calculator.pdb
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.AssemblyInfoInputs.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.AssemblyInfo.cs
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.csproj.CoreCompileInputs.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\scopedcss\bundle\branding calculator.styles.css
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\staticwebassets.development.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\refint\branding calculator.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.pdb
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.genruntimeconfig.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\ref\branding calculator.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\jsconfig.json
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\Microsoft.Data.Sqlite.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\bin\Debug\net10.0\SQLitePCLRaw.core.dll
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding calculator.csproj.AssemblyReference.cache
+C:\Users\kosty\source\repos\branding calculator\branding calculator\obj\Debug\net10.0\branding.4DC7C6B8.Up2Date
