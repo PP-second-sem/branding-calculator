@@ -1,0 +1,137 @@
+<header class="header">
+    <img src="/logo.svg" class="header__logo">
+    <nav class="header__navbar">
+        <ul class="header__menu">
+            <li class="header__menu-item" routerLink="/" routerLinkActive="header__menu-item--active" [routerLinkActiveOptions]="{ exact: true }">Библиотека</li>
+            <li class="header__menu-item" routerLink="/branding" routerLinkActive="header__menu-item--active">Брендирование</li>
+            <li class="header__menu-item" routerLink="/about" routerLinkActive="header__menu-item--active">О платформе</li>
+        </ul>
+    </nav>
+    
+    <button class="header__button">
+        <img src="/signIn.svg">
+        <span>Войти</span>
+    </button>
+</header>
+
+<section class="hero-section">
+    <div class="hero-section__subtitle">
+        <img src="/addIcon.svg">
+        <p>ОФИЦИАЛЬНАЯ ПЛАТФОРМА БРЕНДА</p>
+    </div>
+
+    <h1 class="hero-section__title">Конструктор бренда <span class="hero-section__title--painted">ЯМАЛ</span></h1>
+
+    <p class="hero-section__text">Создание и управление фирменным стилем ЯНАО</p>
+    
+    <div class="hero-section__buttons">
+        <button type="button" class="hero-section__button hero-section__button--branding">
+            <span>Брендирование</span>
+            <img src="/moveIcon.svg">
+        </button>
+
+        <button type="button" class="hero-section__button hero-section__button--catalog">
+            <span>Каталог</span>
+        </button>
+    </div>
+</section>
+
+<section class="example-section">
+    <div class="example-section__text-with-line">
+        <p class="example-section__text">Примеры брендирования</p>
+    </div>
+
+    <div class="example-section__carousel">
+        <div class="example-section__button example-section__button--left">
+            <img src="/anotherButtonLast.svg">
+        </div>
+
+        <div class="example-section__images">
+            <div class="example-section__images-container">
+                <img src="/airportImage.svg">
+                <p class="example-section__image-caption">
+                    Авиакомпания Ямал
+                    <span class="example-section__image-caption-desc">
+                        входная группа
+                    </span>
+                </p>
+            </div>
+
+            <div class="example-section__images-container">
+                <img src="/ticketImage.svg">
+                <p class="example-section__image-caption">
+                    Авиакомпания Ямал
+                    <span class="example-section__image-caption-desc">
+                        авиабилеты
+                    </span>
+                </p>
+            </div>
+
+            <div class="example-section__images-container">
+                <img src="/planeImage.svg">
+                <p class="example-section__image-caption">
+                    Авиакомпания Ямал
+                    <span class="example-section__image-caption-desc">
+                        юбилейный самолет
+                    </span>
+                </p>
+            </div>
+
+            <div class="example-section__dots">
+                <span class="example-section__dot example-section__dot--active"></span>
+                <span class="example-section__dot"></span>
+                <span class="example-section__dot"></span>
+                <span class="example-section__dot"></span>
+            </div>
+        </div>
+
+        <div class="example-section__button example-section__button--right">
+            <img src="/anotherButtonLast.svg">
+        </div>
+    </div>
+
+    <div class="example-section__cards">
+        <div class="example-section__card">
+            <div class="example-section__icon-container example-section__icon-container--brand">
+                <img src="/brandIcon.svg" class="example-section__icon">
+            </div>
+            <p class="example-section__card-title">100+</p>
+            <p class="example-section__card-desc">носителей бренда</p>
+        </div>
+
+        <div class="example-section__card">
+            <div class="example-section__icon-container example-section__icon-container--star">
+                <img src="/starIcon.svg">
+            </div>
+            <p class="example-section__card-title">80+</p>
+            <p class="example-section__card-desc">успешных проектов</p>
+        </div>
+
+        <div class="example-section__card">
+            <div class="example-section__icon-container example-section__icon-container--watch">
+                <img src="/watchIcon.svg">
+            </div>
+            <p class="example-section__card-title">15 мин</p>
+            <p class="example-section__card-desc">среднее время создания</p>
+        </div>
+    </div>
+</section>
+
+<footer class="page-footer">
+    <div class="page-footer__content">
+        <a routerLink="/" class="page-footer__logo">
+            <img src="/brandLogo.svg">
+            <div class="page-footer__name">
+                <span class="page-footer__name--painted">БРЕНД</span>
+                <span class="page-footer__name--slogan">ЯМАЛ</span>
+            </div>            
+        </a>
+        <p class="page-footer__text">© 2024 ЯНАО. Все права защищены</p>
+        <div class="page-footer__meta">
+            <a href="#" class="page-footer__meta--confidentiality">Политика конфиденциальности</a>
+            <a href="#" class="page-footer__meta--agreement">Пользовательское соглашение</a>
+            <a href="mailto:brand@yanao.ru" class="page-footer__meta--email">brand@yanao.ru</a>
+        </div>
+        <span class="page-footer__support">Поддержка: <a href="tel:+78001009600" class="page-footer__support--phone">8-800-100-96-00</a></span>
+    </div>
+</footer>
