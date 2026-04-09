@@ -2,4 +2,69 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-*.vsidx
+# История сборки и кэш Visual Studio
+.vs/
+[Bb]in/
+[Oo]bj/
+
+# Конфигурации пользователя
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Файлы для отладки и сборки
+*.pdb
+*.ilk
+*.cache
+*.tmp_proj
+*.log
+*.tlog
+
+# Результаты тестов
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Пакеты NuGet (исключая build-папку)
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Артефакты .NET Core / Modern .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Core папка статики (раскомментируйте, если нужно игнорировать wwwroot)
+# wwwroot/
+
+# Node.js зависимости (если есть фронтенд)
+node_modules/
+
+# Публикация и деплой
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+PublishScripts/
+
+# SQL Server файлы
+*.mdf
+*.ldf
+*.ndf
+
+# Пользовательские настройки IDE (ReSharper, Rider и др.)
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+.idea/
+
+# OS служебные файлы
+Thumbs.db
+.DS_Store
+
+# Локальные конфиги с секретами (см. следующий блок)
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+*.secrets.json
