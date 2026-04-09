@@ -24,9 +24,5 @@ namespace Yamal.DataAccess
 
         public DbSet<SpheresEntity> Spheres { get; set; }
 
-
-
-
-
     }
 }

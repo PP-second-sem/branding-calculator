@@ -13,7 +13,7 @@ namespace BookStore.Core.Models
 
         public const int PREVIEW_URL_MAX_LENGTH = 255;
 
-        public Material(int id, int categoryId, int sphereId, string name,
+        public Material(int id, int categoryId, int? sphereId, string name,
             string description, string previesUrl, DateTime updateAt, bool isDownloadedble)
         {
             Id = id;
@@ -46,7 +46,7 @@ namespace BookStore.Core.Models
 
         public Sphere Sphere { get; }
 
-        public static (Material Materil, string Error) Create(int id, int categoryId, int sphereId, string name,
+        public static (Material Materil, string Error) Create(int id, int categoryId, int? sphereId, string name,
             string description, string previesUrl, DateTime updateAt, bool isDownloadedble)
         {
             var error = string.Empty;

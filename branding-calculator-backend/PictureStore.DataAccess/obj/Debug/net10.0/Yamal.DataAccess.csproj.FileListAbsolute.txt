@@ -13,3 +13,21 @@ C:\Users\kosty\source\repos\branding calculator\PictureStore.DataAccess\obj\Debu
 C:\Users\kosty\source\repos\branding calculator\PictureStore.DataAccess\obj\Debug\net10.0\refint\Yamal.DataAccess.dll
 C:\Users\kosty\source\repos\branding calculator\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.pdb
 C:\Users\kosty\source\repos\branding calculator\PictureStore.DataAccess\obj\Debug\net10.0\ref\Yamal.DataAccess.dll
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\bin\Debug\net10.0\Yamal.DataAccess.deps.json
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\bin\Debug\net10.0\Yamal.DataAccess.runtimeconfig.json
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\bin\Debug\net10.0\Yamal.DataAccess.dll
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\bin\Debug\net10.0\Yamal.DataAccess.pdb
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\bin\Debug\net10.0\Yamal.Core.dll
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\bin\Debug\net10.0\Yamal.Core.pdb
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.csproj.AssemblyReference.cache
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.AssemblyInfoInputs.cache
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.AssemblyInfo.cs
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.sourcelink.json
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.Da.50A91B3C.Up2Date
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.dll
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\refint\Yamal.DataAccess.dll
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.pdb
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\Yamal.DataAccess.genruntimeconfig.cache
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\PictureStore.DataAccess\obj\Debug\net10.0\ref\Yamal.DataAccess.dll

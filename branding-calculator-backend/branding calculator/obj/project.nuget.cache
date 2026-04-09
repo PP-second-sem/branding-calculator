@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kKx8c7HLi/0=",
+  "dgSpecHash": "7wTEA3k8KiU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosty\\source\\repos\\branding calculator\\branding calculator\\branding calculator.csproj",
+  "projectFilePath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosty\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.5\\microsoft.data.sqlite.core.10.0.5.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.5\\microsoft.entityframeworkcore.10.0.5.nupkg.sha512",

@@ -35,7 +35,7 @@ namespace Yamal.Core.Models
 
         public bool IsActive { get; }
 
-        public (Category Category, string Error) Create(int id, string name, string description, int sortOrder, bool isActice)
+        public static (Category Category, string Error) Create(int id, string name, string description, int sortOrder, bool isActice)
         {
             var error = string.Empty;
 
