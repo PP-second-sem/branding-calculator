@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Yamal.Core.Models;
 
-namespace BookStore.Core.Models
+namespace Yamal.Core.Models
 {
     public class Material
     {
@@ -13,41 +12,60 @@ namespace BookStore.Core.Models
 
         public const int PREVIEW_URL_MAX_LENGTH = 255;
 
-        public Material(int id, int categoryId, int? sphereId, string name,
-            string description, string previesUrl, DateTime updateAt, bool isDownloadedble)
+
+
+        public Material(int id, int category,
+                        string name, string description,
+                        string city, string color,
+                        bool isDownloadable, string previewUrl,
+                        string filePath, string fileType,
+                        int fileSize, DateTime createdAt)
         {
             Id = id;
-            CategoryId = categoryId;
-            SphereId = sphereId;
+            Category = category;
             Name = name;
             Description = description;
-            PreviesUrl = previesUrl;
-            UpdateAt = updateAt;
-            IsDownloadable = isDownloadedble;
+            City = city;
+            Color = color;
+            IsDownloadable = isDownloadable;
+            PreviewUrl = previewUrl;
+            FilePath = filePath;
+            FileType = fileType;
+            FileSize = fileSize;
+            CreatedAt = createdAt;
         }
 
         public int Id { get; }
 
-        public int CategoryId { get; }
-
-        public int? SphereId { get; }
+        public int Category { get; }
 
         public string Name { get; }
 
         public string Description { get; }
 
-        public string PreviesUrl { get; }
+        public string City { get; }
 
-        public DateTime UpdateAt { get; }
+        public string Color { get; }
 
         public bool IsDownloadable { get; }
 
-        public Category Category { get; }
+        public string PreviewUrl { get; }
 
-        public Sphere Sphere { get; }
+        public string FilePath { get; }
 
-        public static (Material Materil, string Error) Create(int id, int categoryId, int? sphereId, string name,
-            string description, string previesUrl, DateTime updateAt, bool isDownloadedble)
+        public string FileType { get; }
+
+        public int FileSize { get; }
+
+        public DateTime CreatedAt { get; }
+
+
+        public static (Material Materil, string Error) Create(int id, int category,
+                                                            string name, string description,
+                                                            string city, string color,
+                                                            bool isDownloadable, string previewUrl,
+                                                            string filePath, string fileType,
+                                                            int fileSize, DateTime creatAt)
         {
             var error = string.Empty;
 
@@ -56,7 +74,12 @@ namespace BookStore.Core.Models
                 error = "Name can't be null";
             }
 
-            var material = new Material(id, categoryId, sphereId, name, description, previesUrl, updateAt, isDownloadedble);
+            var material = new Material(id, category,
+                                        name, description,
+                                        city, color,
+                                        isDownloadable, previewUrl,
+                                        filePath, fileType,
+                                        fileSize, creatAt);
             
             
             return (material, error);

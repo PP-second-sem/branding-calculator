@@ -3,12 +3,100 @@
   "WorkspaceRootPath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\yamal.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\yamal.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|solutionrelative:branding calculator\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|solutionrelative:branding calculator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\bookstore.core\\abstractions\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|solutionrelative:bookstore.core\\abstractions\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\bookstore.core\\models\\file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|solutionrelative:bookstore.core\\models\\file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\bookstore.core\\models\\material.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|solutionrelative:bookstore.core\\models\\material.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\bookstore.core\\models\\sphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|solutionrelative:bookstore.core\\models\\sphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\bookstore.core\\models\\\u0441ategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|solutionrelative:bookstore.core\\models\\\u0441ategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\configurations\\categoriesconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\configurations\\categoriesconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\configurations\\filesconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\configurations\\filesconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\configurations\\materialsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\configurations\\materialsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\configurations\\spheresconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\configurations\\spheresconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\repositories\\sphererepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\repositories\\sphererepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\repositories\\materialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\repositories\\materialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\repositories\\filerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\repositories\\filerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\yamaldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\yamaldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\entites\\spheresentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\entites\\spheresentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\entites\\materialsentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\entites\\materialsentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\entites\\filesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\entites\\filesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\entites\\categoriesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\entites\\categoriesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|solutionrelative:branding calculator\\branding calculator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\picturestore.dataaccess\\yamal.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B6A947BB-C122-449F-887D-9E9E022421F8}|PictureStore.DataAccess\\Yamal.DataAccess.csproj|solutionrelative:picturestore.dataaccess\\yamal.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\bookstore.core\\yamal.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7B6620C2-E7B2-4C66-A075-B4CA14585785}|BookStore.Core\\Yamal.Core.csproj|solutionrelative:bookstore.core\\yamal.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|c:\\users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{496EBA2E-E362-28B5-3F6F-76AB4419C184}|branding calculator\\branding calculator.csproj|solutionrelative:branding calculator\\branding calculator.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +106,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 141,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,35 +117,320 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Yamal.DataAccess",
-              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Yamal.DataAccess.csproj",
-              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Yamal.DataAccess.csproj",
-              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Yamal.DataAccess.csproj",
-              "RelativeToolTip": "PictureStore.DataAccess\\Yamal.DataAccess.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-09T16:18:11.149Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SpheresConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\SpheresConfiguration.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Configurations\\SpheresConfiguration.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\SpheresConfiguration.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Configurations\\SpheresConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:44:10.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "\u0421ategory.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\\u0421ategory.cs",
+              "RelativeDocumentMoniker": "BookStore.Core\\Models\\\u0421ategory.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\\u0421ategory.cs",
+              "RelativeToolTip": "BookStore.Core\\Models\\\u0421ategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:43:16.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Sphere.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\Sphere.cs",
+              "RelativeDocumentMoniker": "BookStore.Core\\Models\\Sphere.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\Sphere.cs",
+              "RelativeToolTip": "BookStore.Core\\Models\\Sphere.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:43:14.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Material.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\Material.cs",
+              "RelativeDocumentMoniker": "BookStore.Core\\Models\\Material.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\Material.cs",
+              "RelativeToolTip": "BookStore.Core\\Models\\Material.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:43:13.072Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MaterialsConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\MaterialsConfiguration.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Configurations\\MaterialsConfiguration.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\MaterialsConfiguration.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Configurations\\MaterialsConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:43:00.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MaterialsEntity.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\MaterialsEntity.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Entites\\MaterialsEntity.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\MaterialsEntity.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Entites\\MaterialsEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:42:51.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SpheresEntity.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\SpheresEntity.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Entites\\SpheresEntity.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\SpheresEntity.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Entites\\SpheresEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:42:50.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "FilesEntity.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\FilesEntity.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Entites\\FilesEntity.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\FilesEntity.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Entites\\FilesEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:42:48.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CategoriesEntity.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\CategoriesEntity.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Entites\\CategoriesEntity.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Entites\\CategoriesEntity.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Entites\\CategoriesEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:42:46.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MaterialRepository.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\MaterialRepository.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Repositories\\MaterialRepository.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\MaterialRepository.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Repositories\\MaterialRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:42:27.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "branding calculator",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
+              "RelativeDocumentMoniker": "branding calculator\\branding calculator.csproj",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
+              "RelativeToolTip": "branding calculator\\branding calculator.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-11T15:26:58.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "branding calculator",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
+              "RelativeDocumentMoniker": "branding calculator\\branding calculator.csproj",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
+              "RelativeToolTip": "branding calculator\\branding calculator.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-11T15:25:27.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "YamalDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\YamalDbContext.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\YamalDbContext.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\YamalDbContext.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\YamalDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:22:38.628Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\Program.cs",
+              "RelativeDocumentMoniker": "branding calculator\\Program.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\Program.cs",
+              "RelativeToolTip": "branding calculator\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:20:47.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\appsettings.json",
+              "RelativeDocumentMoniker": "branding calculator\\appsettings.json",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\appsettings.json*",
+              "RelativeToolTip": "branding calculator\\appsettings.json*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-11T15:12:00.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "File.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\File.cs",
+              "RelativeDocumentMoniker": "BookStore.Core\\Models\\File.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Models\\File.cs",
+              "RelativeToolTip": "BookStore.Core\\Models\\File.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwA0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T03:15:10.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FilesConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\FilesConfiguration.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Configurations\\FilesConfiguration.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\FilesConfiguration.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Configurations\\FilesConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T03:15:04.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CategoriesConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\CategoriesConfiguration.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Configurations\\CategoriesConfiguration.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Configurations\\CategoriesConfiguration.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Configurations\\CategoriesConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T03:14:50.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FileRepository.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\FileRepository.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Repositories\\FileRepository.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\FileRepository.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Repositories\\FileRepository.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAA3wAEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T03:14:34.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Repositories\\CategoryRepository.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\CategoryRepository.cs",
+              "RelativeToolTip": "PictureStore.DataAccess\\Repositories\\CategoryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T03:12:19.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Abstractions\\IRepository.cs",
+              "RelativeDocumentMoniker": "BookStore.Core\\Abstractions\\IRepository.cs",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Abstractions\\IRepository.cs",
+              "RelativeToolTip": "BookStore.Core\\Abstractions\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T03:12:01.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Yamal.Core",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Yamal.Core.csproj",
+              "RelativeDocumentMoniker": "BookStore.Core\\Yamal.Core.csproj",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Yamal.Core.csproj",
+              "RelativeToolTip": "BookStore.Core\\Yamal.Core.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-10T03:11:24.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Yamal.DataAccess.csproj",
+              "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Yamal.DataAccess.csproj",
+              "RelativeDocumentMoniker": "PictureStore.DataAccess\\Yamal.DataAccess.csproj",
+              "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Yamal.DataAccess.csproj",
+              "RelativeToolTip": "PictureStore.DataAccess\\Yamal.DataAccess.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-09T16:18:11.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "SphereRepository.cs",
               "DocumentMoniker": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\SphereRepository.cs",
               "RelativeDocumentMoniker": "PictureStore.DataAccess\\Repositories\\SphereRepository.cs",
               "ToolTip": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\PictureStore.DataAccess\\Repositories\\SphereRepository.cs",
               "RelativeToolTip": "PictureStore.DataAccess\\Repositories\\SphereRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-09T16:12:29.462Z",
               "EditorCaption": ""

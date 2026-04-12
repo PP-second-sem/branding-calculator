@@ -1,6 +1,6 @@
 ﻿using Yamal.Core.Models;
 
-namespace Yamal.DataAccess.Repositories
+namespace Yamal.Core.Abstractions
 {
     public interface IRepository<T> where T : class
     {

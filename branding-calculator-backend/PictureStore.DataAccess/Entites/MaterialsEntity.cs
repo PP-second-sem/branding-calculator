@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.VisualBasic.FileIO;
+using System.Drawing;
+using System.Xml.Linq;
+using Yamal.Core.Models;
 
-namespace PictureStore.DataAccess.Entites
+namespace Yamal.DataAccess.Entites
 {
     public class MaterialsEntity
     {
@@ -11,31 +12,43 @@ namespace PictureStore.DataAccess.Entites
         public MaterialsEntity(MaterialsEntity material)
         {
             Id = material.Id;
-            CategoryId = material.CategoryId;
-            SphereId = material.SphereId;
+            Category = material.Category;
             Name = material.Name;
             Description = material.Description;
-            PreviesUrl = material.PreviesUrl;
-            UpdateAt = material.UpdateAt;
+            City = material.City;
+            Color = material.Color;
             IsDownloadable = material.IsDownloadable;
+            PreviewUrl = material.PreviewUrl;
+            FilePath = material.FilePath;
+            FileType = material.FileType;
+            FileSize = material.FileSize;
+            CreatedAt = material.CreatedAt;
         }
 
 
         public int Id { get; set; }
 
-        public int CategoryId {  get; set; }
+        public int Category { get; set; }
 
-        public int? SphereId { get; set; }
+        public string Name { get; set; }
 
-        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; }
 
-        public string Description { get; set; } = string.Empty;
+        public string City { get; set; }
 
-        public string PreviesUrl { get; set; } = string.Empty;
-
-        public DateTime UpdateAt { get; set; }
+        public string Color { get; set; }
 
         public bool IsDownloadable { get; set; }
+
+        public string PreviewUrl { get; set; }
+
+        public string FilePath { get; set; }
+
+        public string FileType { get; set; }
+
+        public int FileSize { get; set; }
+
+        public DateTime CreatedAt { get; set; }
 
     }
 }

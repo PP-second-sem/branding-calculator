@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PictureStore.DataAccess.Entites;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
+using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess
 {

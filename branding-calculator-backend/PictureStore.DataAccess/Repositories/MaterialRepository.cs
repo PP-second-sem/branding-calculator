@@ -1,6 +1,7 @@
-﻿using BookStore.Core.Models;
-using Microsoft.EntityFrameworkCore;
-using PictureStore.DataAccess.Entites;
+﻿using Microsoft.EntityFrameworkCore;
+using Yamal.DataAccess.Entites;
+using Yamal.Core.Abstractions;
+using Yamal.Core.Models;
 
 namespace Yamal.DataAccess.Repositories
 {
@@ -14,13 +15,17 @@ namespace Yamal.DataAccess.Repositories
         {
             var materialEntity = new MaterialsEntity()
             {
-                CategoryId = entity.CategoryId,
-                SphereId = entity.SphereId,
+                Category = entity.Category,
                 Name = entity.Name,
                 Description = entity.Description,
-                PreviesUrl = entity.PreviesUrl,
-                UpdateAt = entity.UpdateAt,
+                City = entity.City,
+                Color = entity.Color,
                 IsDownloadable = entity.IsDownloadable,
+                PreviewUrl = entity.PreviewUrl,
+                FilePath =entity.FilePath,
+                FileType = entity.FileType,
+                FileSize = entity.FileSize,
+                CreatedAt = entity.CreatedAt,
             };
 
             await _context.Materials.AddAsync(materialEntity);
@@ -43,8 +48,12 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Materials
                 .AsNoTracking()
-                .Select(c => Material.Create(c.Id, c.CategoryId, c.SphereId,
-                c.Name, c.Description, c.PreviesUrl, c.UpdateAt, c.IsDownloadable).Materil)
+                .Select(c => Material.Create(c.Id, c.Category,
+                c.Name, c.Description,
+                c.City, c.Color,
+                c.IsDownloadable, c.PreviewUrl,
+                c.FilePath, c.FileType,
+                c.FileSize, c.CreatedAt).Materil)
                 .ToListAsync();
         }
 
@@ -53,13 +62,18 @@ namespace Yamal.DataAccess.Repositories
             await _context.Materials
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
-                .SetProperty(p => p.CategoryId, entity.CategoryId)
-                .SetProperty(p => p.SphereId, entity.SphereId)
+                .SetProperty(p => p.Category, entity.Category)
                 .SetProperty(p => p.Name, entity.Name)
                 .SetProperty(p => p.Description, entity.Description)
-                .SetProperty(p => p.PreviesUrl, entity.PreviesUrl)
-                .SetProperty(p => p.UpdateAt, entity.UpdateAt)
-                .SetProperty(p => p.IsDownloadable, entity.IsDownloadable));
+                .SetProperty(p => p.City, entity.City)
+                .SetProperty(p => p.Color, entity.Color)
+                .SetProperty(p => p.IsDownloadable, entity.IsDownloadable)
+                .SetProperty(p => p.PreviewUrl, entity.PreviewUrl)
+                .SetProperty(p => p.FilePath, entity.FilePath)
+                .SetProperty(p => p.FileType, entity.FileType)
+                .SetProperty(p => p.FileSize, entity.FileSize)
+                .SetProperty(p => p.CreatedAt, entity.CreatedAt)
+);
 
             return entity.Id;
         }

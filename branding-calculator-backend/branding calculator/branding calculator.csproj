@@ -10,6 +10,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="10.0.5" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookStore.Core\Yamal.Core.csproj" />
+    <ProjectReference Include="..\PictureStore.DataAccess\Yamal.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
