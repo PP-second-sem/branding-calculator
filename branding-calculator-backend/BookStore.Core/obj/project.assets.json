@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kosty\\source\\repos\\branding calculator\\BookStore.Core\\Yamal.Core.csproj",
+      "projectUniqueName": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Yamal.Core.csproj",
       "projectName": "Yamal.Core",
-      "projectPath": "C:\\Users\\kosty\\source\\repos\\branding calculator\\BookStore.Core\\Yamal.Core.csproj",
+      "projectPath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\Yamal.Core.csproj",
       "packagesPath": "C:\\Users\\kosty\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kosty\\source\\repos\\branding calculator\\BookStore.Core\\obj\\",
+      "outputPath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\BookStore.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PictureStore.DataAccess.Entites;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
+using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess
 {
@@ -16,17 +12,7 @@ namespace Yamal.DataAccess
 
         }
 
-        public DbSet<CategoriesEntity> Category { get; set; }
-
-        public DbSet<FilesEntity> Files { get; set; }
-
         public DbSet<MaterialsEntity> Materials { get; set; }
-
-        public DbSet<SpheresEntity> Spheres { get; set; }
-
-
-
-
 
     }
 }
