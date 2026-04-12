@@ -16,13 +16,14 @@ namespace Yamal.DataAccess.Repositories
             var materialEntity = new MaterialsEntity()
             {
                 Category = entity.Category,
+                Sphere = entity.Sphere,
                 Name = entity.Name,
                 Description = entity.Description,
                 City = entity.City,
                 Color = entity.Color,
                 IsDownloadable = entity.IsDownloadable,
                 PreviewUrl = entity.PreviewUrl,
-                FilePath =entity.FilePath,
+                FilePath = entity.FilePath,
                 FileType = entity.FileType,
                 FileSize = entity.FileSize,
                 CreatedAt = entity.CreatedAt,
@@ -49,6 +50,7 @@ namespace Yamal.DataAccess.Repositories
             return await _context.Materials
                 .AsNoTracking()
                 .Select(c => Material.Create(c.Id, c.Category,
+                c.Sphere,
                 c.Name, c.Description,
                 c.City, c.Color,
                 c.IsDownloadable, c.PreviewUrl,
@@ -72,8 +74,7 @@ namespace Yamal.DataAccess.Repositories
                 .SetProperty(p => p.FilePath, entity.FilePath)
                 .SetProperty(p => p.FileType, entity.FileType)
                 .SetProperty(p => p.FileSize, entity.FileSize)
-                .SetProperty(p => p.CreatedAt, entity.CreatedAt)
-);
+                .SetProperty(p => p.CreatedAt, entity.CreatedAt));
 
             return entity.Id;
         }

@@ -14,7 +14,8 @@ namespace Yamal.Core.Models
 
 
 
-        public Material(int id, int category,
+        public Material(int id, string category,
+                        string sphere,
                         string name, string description,
                         string city, string color,
                         bool isDownloadable, string previewUrl,
@@ -23,6 +24,7 @@ namespace Yamal.Core.Models
         {
             Id = id;
             Category = category;
+            Sphere = sphere;
             Name = name;
             Description = description;
             City = city;
@@ -37,7 +39,9 @@ namespace Yamal.Core.Models
 
         public int Id { get; }
 
-        public int Category { get; }
+        public string Category { get; }
+
+        public string Sphere { get; }
 
         public string Name { get; }
 
@@ -60,7 +64,8 @@ namespace Yamal.Core.Models
         public DateTime CreatedAt { get; }
 
 
-        public static (Material Materil, string Error) Create(int id, int category,
+        public static (Material Materil, string Error) Create(int id, string category,
+                                                            string sphere,
                                                             string name, string description,
                                                             string city, string color,
                                                             bool isDownloadable, string previewUrl,
@@ -75,6 +80,7 @@ namespace Yamal.Core.Models
             }
 
             var material = new Material(id, category,
+                                        sphere,
                                         name, description,
                                         city, color,
                                         isDownloadable, previewUrl,

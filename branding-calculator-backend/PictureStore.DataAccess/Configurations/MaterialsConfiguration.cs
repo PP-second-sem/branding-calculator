@@ -15,6 +15,9 @@ namespace Yamal.DataAccess.Configurations
                 .HasMaxLength(50)
                 .IsRequired();
 
+            builder.Property(x => x.Category)
+                .HasMaxLength(50);
+
             builder.Property(x => x.Name)
                 .HasMaxLength(Material.NAME_MAX_LENGTH)
                 .IsRequired();
@@ -47,9 +50,6 @@ namespace Yamal.DataAccess.Configurations
 
             builder.Property(x => x.CreatedAt)
                 .IsRequired();
-
-
-
         }
     }
 }
