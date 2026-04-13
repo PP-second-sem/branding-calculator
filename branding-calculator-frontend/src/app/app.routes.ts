@@ -13,7 +13,7 @@ export const routes: Routes = [
         component: Catalog
     },
     {
-        path: 'drower',
+        path: 'drawer',
         component: FilterDrawer
     }
 ];

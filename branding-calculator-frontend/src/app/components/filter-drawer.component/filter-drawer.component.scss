@@ -1,13 +1,13 @@
 .drawer {
     background-color: #FFFFFF;
-}
 
-.drawer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 24px;
-    border-bottom: 1px solid #F0F0F0;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 24px;
+        border-bottom: 1px solid #F0F0F0;
+    }
 
     &__text {
         font-weight: 600;
@@ -16,16 +16,17 @@
         color: #1A1A2E;
     }
 
-    &__button {
+    &__close {
         border: none;
         background-color: transparent;
         cursor: pointer;
         padding: 9px;
     }
-}
 
-.drawer-section {
-    padding: 10px 24px;
+    &__section {
+        padding: 10px 24px;
+    }
+
     &__title {
         font-weight: 600;
         font-size: 16px;
@@ -64,35 +65,32 @@
     input {
         cursor: pointer;
     }
-}
 
-.drawer__buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 24px;
-    border-top: 1px solid #F0F0F0;
-}
-
-.drawer__button {
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-    &--reset {
-        padding: 10px 41px;
-        background-color: #FFFFFF;
-        border: 1px solid #E5E5E5;
-        color: #888888;
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border-top: 1px solid #F0F0F0;
     }
 
-    &--apply {
-        padding: 11px 35px;
-        background-color: #C40E3D;
-        color: #FFFFFF;
-        border: none;
+    &__button {
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        &--reset {
+            padding: 10px 41px;
+            background-color: #FFFFFF;
+            border: 1px solid #E5E5E5;
+            color: #888888;
+        }
+
+        &--apply {
+            padding: 11px 35px;
+            background-color: #C40E3D;
+            color: #FFFFFF;
+            border: none;
+        }
     }
 }
-    
-    
-
