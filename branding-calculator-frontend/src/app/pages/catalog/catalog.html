@@ -28,11 +28,13 @@
             <img src="/searchIcon.svg">
             <input placeholder="Поиск материалов..." class="hero-catalog__input-field">
         </div>
-        
-        <button class="hero-catalog__button">
+        <app-filter-drawer [isOpen]="isOpen" 
+            (closeDrawer)="closeDrawer()" 
+            (apply)="applyFilters($event)"
+            [categories]="categories"></app-filter-drawer>
+        <button class="hero-catalog__button" (click)="openDrawer()">
             Фильтры
             <img src="/filterIcon.svg">
-            
         </button>
 
         
@@ -74,11 +76,18 @@
         </ul>
     </div>
 
+    <app-card-modal 
+        *ngIf="selectedCard"
+        [card]="selectedCard"
+        (close)="closeCard()"
+    ></app-card-modal>
+
     <div class="hero-catalog__cards">
         <div 
             class="hero-catalog__card"
             [ngClass]="'hero-catalog__card--' + card.filter"
-            *ngFor="let card of cards"
+            *ngFor="let card of filteredCards"
+            (click)="openCard(card)"
         >
             <div class="hero-catalog__cover">
                 <img src="/cardIcon.svg" class="hero-catalog__pic">
@@ -110,3 +119,4 @@
         
     </div>
 </footer>
+

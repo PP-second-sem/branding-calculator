@@ -10,5 +10,5 @@
   "include": [
     "src/**/*.d.ts",
     "src/**/*.spec.ts"
-  ]
+, "src/app/components/filter-drawer.component/filter-drawer..componentspec.ts"  ]
 }

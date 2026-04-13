@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
 import { Catalog } from './pages/catalog/catalog';
 import { MainPage } from './pages/main-page/main-page';
-import { FilterDrawer } from './components/filter-drawer.component/filter-drawer.component';
-
+import { CardModalComponent } from './components/card-modal.component/card-modal.component';
 export const routes: Routes = [
     {
         path: '',
@@ -13,7 +12,7 @@ export const routes: Routes = [
         component: Catalog
     },
     {
-        path: 'drawer',
-        component: FilterDrawer
+        path: 'modal',
+        component: CardModalComponent
     }
 ];

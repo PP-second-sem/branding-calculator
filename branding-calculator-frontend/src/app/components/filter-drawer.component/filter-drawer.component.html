@@ -1,7 +1,7 @@
-<div class="drawer">
+<div class="drawer" [class.drawer--open]="isOpen">
     <div class="drawer__header">
         <p class="drawer__text">Фильтры</p>
-        <button class="drawer__close">
+        <button class="drawer__close" (click)="closeDrawer.emit()">
             <img src="/closeIcon.svg" class="drawer__icon">
         </button>
     </div>
@@ -12,7 +12,10 @@
         <ul class="drawer__list">
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.categories.includes('Айдентика')"
+                    (change)="toggleCategory('Айдентика')"
+                    >
                     <span class="drawer__dot drawer__dot--red"></span>
                     <span class="drawer__label">Айдентика</span>
                 </label>
@@ -20,7 +23,10 @@
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.categories.includes('Навигация')"
+                    (change)="toggleCategory('Навигация')"
+                    >
                     <span class="drawer__dot drawer__dot--blue"></span>
                     <span class="drawer__label">Навигация</span>
                 </label>
@@ -28,7 +34,10 @@
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.categories.includes('Документы')"
+                    (change)="toggleCategory('Документы')"
+                    >
                     <span class="drawer__dot drawer__dot--green"></span>
                     <span class="drawer__label">Документы</span>
                 </label>
@@ -36,7 +45,10 @@
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.categories.includes('Диджитал')"
+                    (change)="toggleCategory('Диджитал')"
+                    >
                     <span class="drawer__dot drawer__dot--swamp"></span>
                     <span class="drawer__label">Диджитал</span>
                 </label>
@@ -50,35 +62,46 @@
         <ul class="drawer__list">
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.formats.includes('PDF')"
+                    (change)="toggleFormat('PDF')"
+                    >
                     <span class="drawer__label">PDF</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.formats.includes('SVG')"
+                    (change)="toggleFormat('SVG')">
                     <span class="drawer__label">SVG</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.formats.includes('PNG')"
+                    (change)="toggleFormat('PNG')">
                     <span class="drawer__label">PNG</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.formats.includes('AI / EPS')"
+                    (change)="toggleFormat('AI / EPS')">
                     <span class="drawer__label">AI / EPS</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.formats.includes('DOCS / PPTX')"
+                    (change)="toggleFormat('DOCS / PPTX')">
                     <span class="drawer__label">DOCS / PPTX</span>
                 </label>
             </li>
@@ -91,21 +114,27 @@
         <ul class="drawer__list">
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.cities.includes('Салехард')"
+                    (change)="toggleCities('Салехард')">
                     <span class="drawer__label">Салехард</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.cities.includes('Новый Уренгой')"
+                    (change)="toggleCities('Новый Уренгой')">
                     <span class="drawer__label">Новый Уренгой</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.cities.includes('Ноябрьск')"
+                    (change)="toggleCities('Ноябрьск')">
                     <span class="drawer__label">Ноябрьск</span>
                 </label>
             </li>
@@ -118,35 +147,45 @@
         <ul class="drawer__list">
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.colors.includes('Белый')"
+                    (change)="toggleColors('Белый')">
                     <span class="drawer__label">Белый</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.colors.includes('Чёрный')"
+                    (change)="toggleColors('Чёрный')">
                     <span class="drawer__label">Чёрный</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.colors.includes('Красный')"
+                    (change)="toggleColors('Красный')">
                     <span class="drawer__label">Красный</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.colors.includes('Синий')"
+                    (change)="toggleColors('Синий')">
                     <span class="drawer__label">Синий</span>
                 </label>
             </li>
 
             <li>
                 <label class="drawer__item">
-                    <input type="checkbox">
+                    <input type="checkbox"
+                    [checked]="filtersDraft.colors.includes('Зеленый')"
+                    (change)="toggleColors('Зеленый')">
                     <span class="drawer__label">Зеленый</span>
                 </label>
             </li>
@@ -154,11 +193,11 @@
     </div>
 
     <div class="drawer__buttons">
-        <button class="drawer__button drawer__button--reset">
+        <button class="drawer__button drawer__button--reset" (click)="onReset()">
             Сбросить
         </button>
 
-        <button class="drawer__button drawer__button--apply">
+        <button class="drawer__button drawer__button--apply" (click)="onApply()">
             Применить
         </button>
     </div>

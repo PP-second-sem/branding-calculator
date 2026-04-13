@@ -1,0 +1,46 @@
+<div class="card-modal">
+    <div class="card-modal__content">
+        <div class="card-modal__header">
+            <p class="card-modal__title">Файл</p>
+            <button class="card-modal__close-button" (click)="close.emit()">
+                Закрыть
+            </button>
+        </div>
+
+        <div class="card-modal__pic"></div>
+
+        <div class="card-modal__section">
+            <div class="card-modal__info">
+                <p class="card-modal__type">Изображение SVG</p>
+                <h2 class="card-modal__name">Визитка.svg</h2>
+            </div>
+            <div class="card-modal__sidebar">
+                <div class="card-modal__tags">
+                    <p class="card-modal__system-info">Тэги</p>
+                    <span class="card-modal__tags--item">Айдентика</span>
+                </div>
+                <div class="card-modal__tags">
+                    <p class="card-modal__system-info">Полный путь</p>
+                    <p class="card-modal__system-info-path">Айдентика/Визитка/Визитка.svg</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-modal__footer">
+            <div class="card-modal__buttons">
+                <button>Открыть</button>
+                <button>Скопировать ссылку</button>
+                <button>Скачать</button>
+                <button>К каталогу</button>
+            </div>
+            
+            <div class="card-modal__meta">
+                <div class="card-modal__file-info">
+                    <span class="card-modal__file-size">48 КБ</span>
+                    <span class="card-modal__file-date">12 явнаря 2025 г.</span>
+                </div>
+                <div class="card-modal__avatar">А</div>
+            </div>
+        </div>
+    </div>
+</div>
