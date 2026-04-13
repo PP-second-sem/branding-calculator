@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Catalog } from './pages/catalog/catalog';
 import { MainPage } from './pages/main-page/main-page';
+import { FilterDrawer } from './components/filter-drawer.component/filter-drawer.component';
 
 export const routes: Routes = [
     {
@@ -10,5 +11,9 @@ export const routes: Routes = [
     {
         path: 'catalog',
         component: Catalog
+    },
+    {
+        path: 'drower',
+        component: FilterDrawer
     }
 ];

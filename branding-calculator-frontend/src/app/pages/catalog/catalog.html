@@ -1,1 +1,112 @@
-<p>catalog works!</p>
+<header class="header">
+    <img src="/logo.svg" class="header__logo">
+    <div class="header__nav">
+        <button class="header__button header__button--active">Просмотр</button>
+        <button class="header__button">Брендирование</button>
+    </div>
+
+    <button class="header__signIn">
+        <img src="/signIn.svg">
+        <span>Войти</span>
+    </button>
+</header>
+
+<section class="hero-section">
+    <a href="#" routerLink="/" class="hero-section__button">
+        ← На главную
+    </a>
+
+    <div class="hero-section__text">
+        <h1 class="hero-section__title">Библиотека материалов</h1>
+        <p class="hero-section__subtitle">Логотипы, шрифты, паттерны и кейсы бренда Ямал</p>
+    </div>
+</section>
+
+<section class="hero-catalog">
+    <div class="hero-catalog__filter-panel">
+        <div class="hero-catalog__input">
+            <img src="/searchIcon.svg">
+            <input placeholder="Поиск материалов..." class="hero-catalog__input-field">
+        </div>
+        
+        <button class="hero-catalog__button">
+            Фильтры
+            <img src="/filterIcon.svg">
+            
+        </button>
+
+        
+        <div class="hero-catalog__view-switch">
+            <button class="hero-catalog__viewButton hero-catalog__viewButton--active hero-catalog__viewButton--left">
+                <img class="" src="/wrapperIcon.svg">
+            </button>
+
+            <button class="hero-catalog__viewButton hero-catalog__viewButton--right">
+                <img class="" src="/emptyIcon.svg">
+            </button>
+        </div>
+    </div>
+
+    <ul class="hero-catalog__category-buttons">
+        <li class="hero-catalog__category-button hero-catalog__category-button--active">Все</li>
+        <li class="hero-catalog__category-button">Логотипы</li>
+        <li class="hero-catalog__category-button">Шрифты</li>
+        <li class="hero-catalog__category-button">Паттерны</li>
+        <li class="hero-catalog__category-button">Иллюстрации</li>
+        <li class="hero-catalog__category-button">Кейсы</li>
+    </ul>
+
+    <div class="hero-catalog__category-list">
+        <p class="hero-catalog__text">Категории:</p>
+        <ul>
+            <li class="hero-catalog__category-list--item hero-catalog__category-list--red">
+                <p>Айдентика</p>
+            </li>
+            <li class="hero-catalog__category-list--item hero-catalog__category-list--blue">
+                <p>Навигация</p>
+            </li>
+            <li class="hero-catalog__category-list--item hero-catalog__category-list--green">
+                <p>Документы</p>
+            </li>
+            <li class="hero-catalog__category-list--item hero-catalog__category-list--swamp">
+                <p>Диджитал</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="hero-catalog__cards">
+        <div 
+            class="hero-catalog__card"
+            [ngClass]="'hero-catalog__card--' + card.filter"
+            *ngFor="let card of cards"
+        >
+            <div class="hero-catalog__cover">
+                <img src="/cardIcon.svg" class="hero-catalog__pic">
+                <span class="hero-catalog__card-category">
+                    {{ card.category }}
+                </span>
+            </div>
+
+            <div class="hero-catalog__content">
+                <span class="hero-catalog__title">
+                    {{ card.title }}
+                </span>
+
+                <span class="hero-catalog__formats">
+                    {{ card.formats.join(', ') }}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="page-footer">
+    <div class="page-footer__container">
+        <p class="page-footer__name">© 2024 Бренд Ямал. Все права защищены</p>
+        <div class="page-footer__meta">
+            <span class="page-footer__meta">Политика конфиденциальности</span>
+            <a href="mailto:brand@yanao.ru">brand@yanao.ru</a>
+        </div>
+        
+    </div>
+</footer>
