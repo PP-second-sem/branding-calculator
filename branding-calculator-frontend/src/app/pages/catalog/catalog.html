@@ -26,15 +26,15 @@
     <div class="hero-catalog__filter-panel">
         <div class="hero-catalog__input">
             <img src="/searchIcon.svg">
-            <input placeholder="Поиск материалов..." class="hero-catalog__input-field", [(ngModel)]="search" (input)="filterCards()">
+            <input placeholder="Поиск материалов..." class="hero-catalog__input-field" [(ngModel)]="search" (input)="filterCards()">
         </div>
         <app-filter-drawer [isOpen]="isOpen" 
             (closeDrawer)="closeDrawer()" 
             (apply)="applyFilters($event)"
             [categories]="categories"></app-filter-drawer>
         <button class="hero-catalog__button" (click)="openDrawer()">
-            Фильтры
             <img src="/filterIcon.svg">
+            Фильтры
         </button>
 
         
@@ -50,16 +50,63 @@
     </div>
 
     <ul class="hero-catalog__category-buttons">
-        <li class="hero-catalog__category-button hero-catalog__category-button--active">Все</li>
-        <li class="hero-catalog__category-button">Логотипы</li>
-        <li class="hero-catalog__category-button">Шрифты</li>
-        <li class="hero-catalog__category-button">Паттерны</li>
-        <li class="hero-catalog__category-button">Иллюстрации</li>
-        <li class="hero-catalog__category-button">Кейсы</li>
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Все'"
+            (click)="setCategory('Все')"
+        >Все</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Логотип'"
+            (click)="setCategory('Логотип')"
+        >Логотип</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Шрифт'"
+            (click)="setCategory('Шрифт')"
+        >Шрифт</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Паттерн'"
+            (click)="setCategory('Паттерн')"
+        >Паттерн</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Иллюстрация'"
+            (click)="setCategory('Иллюстрация')"
+        >Иллюстрация</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Кейс'"
+            (click)="setCategory('Кейс')"
+        >Кейс</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Брендбук'"
+            (click)="setCategory('Брендбук')"
+        >Брендбук</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Фирменный знак'"
+            (click)="setCategory('Фирменный знак')"
+        >Фирменный знак</li>
+
+        <li 
+            class="hero-catalog__category-button"
+            [class.hero-catalog__category-button--active]="selectedCategory === 'Сувенирная продукция'"
+            (click)="setCategory('Сувенирная продукция')"
+        >Сувенирная продукция</li>
     </ul>
 
     <div class="hero-catalog__category-list">
-        <p class="hero-catalog__text">Категории:</p>
+        <p class="hero-catalog__text">Сферы:</p>
         <ul>
             <li class="hero-catalog__category-list--item hero-catalog__category-list--red">
                 <p>Айдентика</p>
@@ -92,7 +139,7 @@
             <div class="hero-catalog__cover">
                 <img src="/cardIcon.svg" class="hero-catalog__pic">
                 <span class="hero-catalog__card-category">
-                    {{ card.category }}
+                    {{ card.sphere }}
                 </span>
             </div>
 

@@ -1,3 +1,9 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -41,6 +47,7 @@
         font-weight: 600;
         font-size: 14px;
         line-height: 21px;
+        cursor: pointer;
     }
 }
 
@@ -122,6 +129,7 @@
 }
 
 .example-section {
+    flex: 1 0 auto;
     background-color: #F9F0E1;
     margin-left: 111px;
     display: flex;

@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .header {
     background-color: #FFFFFF;
     display: flex;
@@ -93,6 +99,7 @@
 
 
 .hero-catalog {
+    flex: 1 0 auto;
     margin-left: 64px;
     margin-right: 64px;
     margin-top: 32px;
@@ -179,6 +186,7 @@
         font-size: 14px;
         line-height: 21px;
         color: rgba(136, 136, 136, 1);
+        cursor: pointer;
         
         &--active {
             background-color: rgba(26, 26, 46, 1);
@@ -283,8 +291,7 @@
         position: relative;
         border-radius: 16px 16px 0 0;
         background-color: #FFFFFF;
-
-        
+        height: 113px;
     }
 
     &__card-category {
@@ -316,6 +323,30 @@
         line-height: 18px;
     }
 }
+
+.hero-catalog__card--id .hero-catalog__pic--placeholder {
+    background-color: #C40E3D;
+}
+
+.hero-catalog__card--nav .hero-catalog__pic--placeholder {
+    background-color: #1B3D6B;
+}
+
+.hero-catalog__card--docs .hero-catalog__pic--placeholder {
+    background-color: #2A5E44;
+}
+
+.hero-catalog__card--digital .hero-catalog__pic--placeholder {
+    background-color: #2A5E5E;
+}
+
+.hero-catalog__pic {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
 
 .hero-catalog__card--id {
   .hero-catalog__cover {
