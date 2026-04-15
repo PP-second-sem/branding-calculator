@@ -7,21 +7,26 @@
             </button>
         </div>
 
-        <div class="card-modal__pic"></div>
+        <div class="card-modal__pic">
+            <img [src]="card.img" *ngIf="card.img; else placeholder" />
+            <ng-template #placeholder>
+                <img src="/cardIcon.svg" />
+            </ng-template>
+        </div>
 
         <div class="card-modal__section">
             <div class="card-modal__info">
-                <p class="card-modal__type">Изображение SVG</p>
-                <h2 class="card-modal__name">Визитка.svg</h2>
+                <!-- <p class="card-modal__type">Изображение SVG</p> -->
+                <h2 class="card-modal__name">{{ card.title }}</h2>
             </div>
             <div class="card-modal__sidebar">
                 <div class="card-modal__tags">
                     <p class="card-modal__system-info">Тэги</p>
-                    <span class="card-modal__tags--item">Айдентика</span>
+                    <span class="card-modal__tags--item">{{ card.sphere }}</span>
                 </div>
                 <div class="card-modal__tags">
                     <p class="card-modal__system-info">Полный путь</p>
-                    <p class="card-modal__system-info-path">Айдентика/Визитка/Визитка.svg</p>
+                    <p class="card-modal__system-info-path">{{ card.filePath }}</p>
                 </div>
             </div>
         </div>
@@ -36,7 +41,7 @@
             
             <div class="card-modal__meta">
                 <div class="card-modal__file-info">
-                    <span class="card-modal__file-size">48 КБ</span>
+                    <span class="card-modal__file-size">{{ card.fileSize }}</span>
                     <span class="card-modal__file-date">12 явнаря 2025 г.</span>
                 </div>
                 <div class="card-modal__avatar">А</div>
