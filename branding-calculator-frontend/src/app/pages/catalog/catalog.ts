@@ -3,14 +3,16 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FilterDrawer } from '../../components/filter-drawer.component/filter-drawer.component';
 import { CardModalComponent } from '../../components/card-modal.component/card-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-catalog',
-  imports: [RouterModule, CommonModule, FilterDrawer, CardModalComponent],
+  imports: [RouterModule, CommonModule, FilterDrawer, CardModalComponent, FormsModule,],
   templateUrl: './catalog.html',
   styleUrl: './catalog.scss',
 })
 export class Catalog {
+  public search: string = '';
   public selectedCard: any = null;
 
   public openCard(card: any): void {
@@ -41,28 +43,6 @@ export class Catalog {
     cities: [],
     colors: [],
   };
-
-  private getFilteredCards(): void {
-    this.cards.filter(card => {
-      const categoryOk =
-        this.filters.categories.length === 0 ||
-        this.filters.categories.includes(card.category);
-
-      const formatOk =
-        this.filters.formats.length === 0 ||
-        card.formats.some(f => this.filters.formats.includes(f));
-
-      const cityOk =
-        this.filters.cities.length === 0 ||
-        this.filters.cities.includes(card.city);
-
-      const colorOk =
-        this.filters.colors.length === 0 ||
-        this.filters.colors.includes(card.color);
-
-      return categoryOk && formatOk && cityOk && colorOk;
-    })
-  }
 
   categories = [
     { label: 'Айдентика', value: 'id', color: 'red' },
@@ -189,8 +169,11 @@ export class Catalog {
 
   public filteredCards = [...this.cards];
 
-  private filterCards(): void {
+  public filterCards(): void {
     this.filteredCards = this.cards.filter(card => {
+      const searchOk = 
+        !this.search || 
+        card.title.toLowerCase().includes(this.search.toLowerCase())
 
       const categoryOk =
         this.filters.categories.length === 0 ||
@@ -208,7 +191,7 @@ export class Catalog {
         this.filters.colors.length === 0 ||
         this.filters.colors.includes(card.color);
 
-      return categoryOk && formatOk && cityOk && colorOk;
+      return searchOk && categoryOk && formatOk && cityOk && colorOk;
     });
   }
 

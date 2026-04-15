@@ -26,7 +26,7 @@
     <div class="hero-catalog__filter-panel">
         <div class="hero-catalog__input">
             <img src="/searchIcon.svg">
-            <input placeholder="Поиск материалов..." class="hero-catalog__input-field">
+            <input placeholder="Поиск материалов..." class="hero-catalog__input-field", [(ngModel)]="search" (input)="filterCards()">
         </div>
         <app-filter-drawer [isOpen]="isOpen" 
             (closeDrawer)="closeDrawer()" 
