@@ -1,6 +1,9 @@
 <Solution>
+  <Folder Name="/Data/">
+    <File Path="Data/yamal.db" />
+  </Folder>
   <Project Path="BookStore.Core/Yamal.Core.csproj" Id="7b6620c2-e7b2-4c66-a075-b4ca14585785" />
-  <Project Path="branding calculator/branding calculator.csproj" />
+  <Project Path="branding calculator/branding-calculator.csproj" />
   <Project Path="PictureStore.DataAccess/Yamal.DataAccess.csproj" Id="b6a947bb-c122-449f-887d-9e9e022421f8" />
   <Project Path="Yamal.Application/Yamal.Application.csproj" Id="164132b3-fba1-42c3-98b9-9bd371cdf623" />
 </Solution>

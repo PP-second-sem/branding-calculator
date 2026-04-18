@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("branding calculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+365d5ae423b7a73c209271b67937e05b544dcebe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5f68074d26bcaeeee9765c75d0257701247b825")]
 [assembly: System.Reflection.AssemblyProductAttribute("branding calculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("branding calculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

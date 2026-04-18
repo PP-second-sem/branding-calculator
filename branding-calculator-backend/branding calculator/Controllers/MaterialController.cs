@@ -1,6 +1,6 @@
 ﻿using branding_calculator.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Yamal.Application;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
 namespace branding_calculator.Controllers

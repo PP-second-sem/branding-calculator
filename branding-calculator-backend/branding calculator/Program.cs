@@ -23,6 +23,9 @@ namespace branding_calculator
             builder.Services.AddDbContext<YamalDbContext>(options =>
             {
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+                var absolutePath = Path.Combine(AppContext.BaseDirectory, connectionString);
+                var dbFolder = Path.GetDirectoryName(absolutePath);
+
                 options.UseSqlite(connectionString);
             });
 
@@ -32,13 +35,19 @@ namespace branding_calculator
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
+            // === АВТОМАТИЧЕСКОЕ СОЗДАНИЕ БД И ТАБЛИЦ ===
+            using (var scope = app.Services.CreateScope())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-
-                app.MapGet("/", () => Results.Redirect("swagger/index.html"));
+                var dbContext = scope.ServiceProvider.GetRequiredService<YamalDbContext>();
+                dbContext.Database.EnsureCreatedAsync();
             }
+            // === КОНЕЦ БЛОКА ===
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI();
+
+            app.MapGet("/", () => Results.Redirect("swagger"));
 
             app.UseHttpsRedirection();
 
@@ -50,3 +59,4 @@ namespace branding_calculator
         }
     }
 }
+//branding-calculator-git\branding-calculator-backend\Data
