@@ -1036,9 +1036,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
-      "projectName": "branding calculator",
-      "projectPath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding calculator.csproj",
+      "projectUniqueName": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding-calculator.csproj",
+      "projectName": "branding-calculator",
+      "projectPath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\branding-calculator.csproj",
       "packagesPath": "C:\\Users\\kosty\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\kosty\\source\\repos\\branding-calculator-git\\branding-calculator-backend\\branding calculator\\obj\\",
       "projectStyle": "PackageReference",

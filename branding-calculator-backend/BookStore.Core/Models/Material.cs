@@ -41,19 +41,19 @@ namespace Yamal.Core.Models
 
         public string Category { get; }
 
-        public string Sphere { get; }
+        public string? Sphere { get; }
 
         public string Name { get; }
 
-        public string Description { get; }
+        public string? Description { get; }
 
-        public string City { get; }
+        public string? City { get; }
 
-        public string Color { get; }
+        public string? Color { get; }
 
         public bool IsDownloadable { get; }
 
-        public string PreviewUrl { get; }
+        public string? PreviewUrl { get; }
 
         public string FilePath { get; }
 

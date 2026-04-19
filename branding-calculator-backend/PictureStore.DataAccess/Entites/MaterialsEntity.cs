@@ -32,15 +32,15 @@ namespace Yamal.DataAccess.Entites
 
         public string Category { get; set; }
 
-        public string Sphere { get; set; }
+        public string? Sphere { get; set; }
 
         public string Name { get; set; } = string.Empty;
 
-        public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; } = string.Empty;
 
-        public string City { get; set; } = string.Empty;
+        public string? City { get; set; } = string.Empty;
 
-        public string Color { get; set; } = string.Empty;
+        public string? Color { get; set; } = string.Empty;
 
         [Column("is_downloadable")]
         public bool IsDownloadable { get; set; }

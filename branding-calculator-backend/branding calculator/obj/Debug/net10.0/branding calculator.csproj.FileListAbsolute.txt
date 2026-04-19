@@ -77,7 +77,6 @@ C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\branding.4DC7C6B8.Up2Date
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\branding calculator.genruntimeconfig.cache
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\ref\branding calculator.dll
@@ -121,3 +120,5 @@ C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\branding calculator.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\bin\Debug\net10.0\Yamal.Application.dll
 C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\bin\Debug\net10.0\Yamal.Application.pdb
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\bin\Debug\net10.0\dotnet-tools.json
+C:\Users\kosty\source\repos\branding-calculator-git\branding-calculator-backend\branding calculator\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

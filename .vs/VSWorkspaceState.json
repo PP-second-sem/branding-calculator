@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\branding-calculator-backend"
+    "\\branding-calculator-backend",
+    "\\branding-calculator-backend\\branding calculator",
+    "\\branding-calculator-backend\\Data"
   ],
   "SelectedNode": "\\branding-calculator-backend\\branding calculator.slnx",
   "PreviewInSolutionExplorer": false

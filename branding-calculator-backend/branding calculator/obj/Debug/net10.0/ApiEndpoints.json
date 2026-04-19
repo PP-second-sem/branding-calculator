@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "branding_calculator.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__0_1",
+    "Method": "\u003CMain\u003Eb__0_3",
     "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": false,
@@ -18,14 +18,14 @@
   {
     "ContainingType": "branding_calculator.Controllers.MaterialController",
     "Method": "GetMaterials",
-    "RelativePath": "Material",
+    "RelativePath": "api/Material",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.MaterialResponse, branding calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.MaterialResponse, branding-calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -38,15 +38,50 @@
   {
     "ContainingType": "branding_calculator.Controllers.MaterialController",
     "Method": "CreateMaterial",
-    "RelativePath": "Material",
+    "RelativePath": "api/Material",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "branding_calculator.Contracts.MaterialRequest",
-        "IsRequired": true
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sphere",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Color",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PreviewUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -63,8 +98,34 @@
   },
   {
     "ContainingType": "branding_calculator.Controllers.MaterialController",
+    "Method": "GetMaterial",
+    "RelativePath": "api/Material/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "branding_calculator.Contracts.MaterialResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MaterialController",
     "Method": "UpdateMaterial",
-    "RelativePath": "Material/{id}",
+    "RelativePath": "api/Material/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -75,9 +136,44 @@
         "IsRequired": true
       },
       {
-        "Name": "request",
-        "Type": "branding_calculator.Contracts.MaterialRequest",
-        "IsRequired": true
+        "Name": "Category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sphere",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Color",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PreviewUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -95,7 +191,7 @@
   {
     "ContainingType": "branding_calculator.Controllers.MaterialController",
     "Method": "DeleteMaterial",
-    "RelativePath": "Material/{id}",
+    "RelativePath": "api/Material/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -117,5 +213,37 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MaterialController",
+    "Method": "DownloadMaterialFile",
+    "RelativePath": "api/Material/{id}/download",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MaterialController",
+    "Method": "DeleteMaterialFile",
+    "RelativePath": "api/Material/{id}/file",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
