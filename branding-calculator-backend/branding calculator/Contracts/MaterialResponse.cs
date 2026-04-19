@@ -12,20 +12,5 @@
                                    string FileType,
                                    int FileSize)
     {
-
-    }
-
-    public record MaterialRequest(string Category,
-                                   string Sphere,
-                                   string Name,
-                                   string Description,
-                                   string City,
-                                   string Color,
-                                   string PreviewUrl,
-                                   string FilePath,
-                                   string FileType,
-                                   int FileSize)
-    {
-
     }
 }

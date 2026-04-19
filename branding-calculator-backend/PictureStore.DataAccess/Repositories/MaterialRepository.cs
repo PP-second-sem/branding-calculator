@@ -29,6 +29,7 @@ namespace Yamal.DataAccess.Repositories
                 CreatedAt = entity.CreatedAt,
             };
 
+
             await _context.Materials.AddAsync(materialEntity);
             await _context.SaveChangesAsync();
 
