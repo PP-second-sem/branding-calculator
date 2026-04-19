@@ -29,6 +29,11 @@ namespace branding_calculator
                 options.UseSqlite(connectionString);
             });
 
+            // Регистрируем сервис для работы с файлами
+            var uploadFolder = builder.Configuration.GetValue<string>("UploadFolder") ?? "uploads";
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), uploadFolder);
+            builder.Services.AddSingleton<IFileService>(new FileService(uploadPath));
+
             builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
             builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
 

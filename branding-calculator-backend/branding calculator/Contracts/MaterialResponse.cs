@@ -21,10 +21,7 @@
                                    string Description,
                                    string City,
                                    string Color,
-                                   string PreviewUrl,
-                                   string FilePath,
-                                   string FileType,
-                                   int FileSize)
+                                   string? PreviewUrl)
     {
 
     }
