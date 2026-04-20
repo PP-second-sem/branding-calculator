@@ -22,7 +22,7 @@ namespace branding_calculator.Controllers
         [HttpGet]
         public async Task<ActionResult<List<MaterialResponse>>> GetMaterials()
         {
-            var materials = await _services.GetAllMaterials();
+            var materials = await _services.GetAllEntities();
 
             var response = materials.Select(m => new MaterialResponse(
                 m.Id,
@@ -45,7 +45,7 @@ namespace branding_calculator.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<MaterialResponse>> GetMaterial(int id)
         {
-            var materials = await _services.GetAllMaterials();
+            var materials = await _services.GetAllEntities();
             var material = materials.FirstOrDefault(m => m.Id == id);
 
             if (material == null)
@@ -68,11 +68,11 @@ namespace branding_calculator.Controllers
             return Ok(response);
         }
 
-        // GET: api/Material/5/download
+        // GET: api/Material/{id}/download
         [HttpGet("{id:int}/download")]
         public async Task<IActionResult> DownloadMaterialFile(int id)
         {
-            var materials = await _services.GetAllMaterials();
+            var materials = await _services.GetAllEntities();
             var material = materials.FirstOrDefault(m => m.Id == id);
 
             if (material == null)
@@ -112,8 +112,8 @@ namespace branding_calculator.Controllers
                 return BadRequest("File is required");
 
             // 2. Валидация файла
-            if (request.File.Length > 16 * 1024 * 1024) // 16 MB
-                return BadRequest("File too large (max 16 MB)");
+            if (request.File.Length > 50 * 1024 * 1024) // 16 MB
+                return BadRequest("File too large (max 50 MB)");
 
             // 3. Сохраняем файл на диск
             var uploadsFolder = Path.Combine(_environment.ContentRootPath, "Uploads", "Materials");
@@ -159,7 +159,7 @@ namespace branding_calculator.Controllers
             }
 
             // 5. Сохраняем в БД
-            var materialId = await _services.CreateMaterial(material);
+            var materialId = await _services.CreateEntity(material);
 
             return Ok(new { id = materialId, message = "Material created successfully" });
         }
@@ -170,7 +170,7 @@ namespace branding_calculator.Controllers
         public async Task<ActionResult<int>> UpdateMaterial(int id, [FromForm] MaterialWithFileRequest request)
         {
             // 1. Проверяем существование материала
-            var existingMaterials = await _services.GetAllMaterials();
+            var existingMaterials = await _services.GetAllEntities();
             var existingMaterial = existingMaterials.FirstOrDefault(m => m.Id == id);
 
             if (existingMaterial == null)
@@ -241,7 +241,7 @@ namespace branding_calculator.Controllers
                 return BadRequest(error);
 
             // 5. Обновляем в БД
-            var materialId = await _services.UpdateMaterial(material);
+            var materialId = await _services.UpdateEntity(material);
 
             return Ok(new { id = materialId, message = "Material updated successfully" });
         }
@@ -251,7 +251,7 @@ namespace branding_calculator.Controllers
         public async Task<ActionResult<int>> DeleteMaterial(int id)
         {
             // 1. Проверяем существование материала
-            var materials = await _services.GetAllMaterials();
+            var materials = await _services.GetAllEntities();
             var material = materials.FirstOrDefault(m => m.Id == id);
 
             if (material == null)
@@ -265,52 +265,9 @@ namespace branding_calculator.Controllers
             }
 
             // 3. Удаляем материал из БД
-            var result = await _services.DeleteMaterial(id);
+            var result = await _services.DeleteEntity(id);
 
             return Ok(new { id = result, message = "Material and associated file deleted successfully" });
-        }
-
-        // DELETE: api/Material/5/file (только удаление файла, без удаления материала)
-        [HttpDelete("{id:int}/file")]
-        public async Task<ActionResult> DeleteMaterialFile(int id)
-        {
-            // 1. Проверяем существование материала
-            var materials = await _services.GetAllMaterials();
-            var material = materials.FirstOrDefault(m => m.Id == id);
-
-            if (material == null)
-                return NotFound($"Material with ID {id} not found");
-
-            // 2. Удаляем файл с диска
-            var fullFilePath = Path.Combine(material.FilePath ?? "", material.Name ?? "");
-            if (System.IO.File.Exists(fullFilePath))
-            {
-                System.IO.File.Delete(fullFilePath);
-            }
-
-            // 3. Обновляем материал: убираем информацию о файле
-            var (updatedMaterial, error) = Material.Create(
-                material.Id,
-                material.Category,
-                material.Sphere,
-                material.Name,
-                material.Description,
-                material.City,
-                material.Color,
-                material.IsDownloadable,
-                material.PreviewUrl,
-                null,  // FilePath = null
-                null,  // FileType = null
-                0,     // FileSize = 0
-                material.CreatedAt
-            );
-
-            if (!string.IsNullOrEmpty(error))
-                return BadRequest(error);
-
-            await _services.UpdateMaterial(updatedMaterial);
-
-            return Ok(new { message = "File deleted successfully" });
         }
 
         // Вспомогательный метод для определения Content-Type

@@ -5,7 +5,7 @@ using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess.Configurations
 {
-    internal class MaterialsConfiguration : IEntityTypeConfiguration<MaterialsEntity>
+    public class MaterialsConfiguration : IEntityTypeConfiguration<MaterialsEntity>
     {
         public void Configure(EntityTypeBuilder<MaterialsEntity> builder)
         {
@@ -14,9 +14,6 @@ namespace Yamal.DataAccess.Configurations
             builder.Property(x => x.Category)
                 .HasMaxLength(50)
                 .IsRequired();
-
-            builder.Property(x => x.Category)
-                .HasMaxLength(50);
 
             builder.Property(x => x.Name)
                 .HasMaxLength(Material.NAME_MAX_LENGTH)

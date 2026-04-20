@@ -28,7 +28,6 @@ namespace branding_calculator
                 options.MemoryBufferThreshold = int.MaxValue;
             });
 
-            // Или через WebApplicationBuilder
             builder.WebHost.ConfigureKestrel(serverOptions =>
             {
                 serverOptions.Limits.MaxRequestBodySize = 50 * 1024 * 1024; // 50 MB
@@ -42,9 +41,6 @@ namespace branding_calculator
 
                 options.UseSqlite(connectionString);
             });
-
-
-
 
             builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
             builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
@@ -60,8 +56,6 @@ namespace branding_calculator
             //}
             //// === КОНЕЦ БЛОКА ===
             ///
-
-
 
             app.UseStaticFiles();
 
