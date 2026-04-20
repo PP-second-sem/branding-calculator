@@ -14,5 +14,6 @@ namespace Yamal.DataAccess
 
         public DbSet<MaterialsEntity> Materials { get; set; }
 
+        public DbSet<UserEntity> Users { get; set; }
     }
 }

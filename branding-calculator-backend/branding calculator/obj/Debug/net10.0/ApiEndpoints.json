@@ -231,19 +231,29 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "branding_calculator.Controllers.MaterialController",
-    "Method": "DeleteMaterialFile",
-    "RelativePath": "api/Material/{id}/file",
-    "HttpMethod": "DELETE",
+    "ContainingType": "branding_calculator.Controllers.UserController",
+    "Method": "GetByEmail",
+    "RelativePath": "api/User/{email}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "email",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "branding_calculator.Contracts.UserResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

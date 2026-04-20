@@ -15,10 +15,10 @@ namespace Yamal.Core.Models
 
 
         public Material(int id, string category,
-                        string sphere,
-                        string name, string description,
-                        string city, string color,
-                        bool isDownloadable, string previewUrl,
+                        string? sphere,
+                        string name, string? description,
+                        string? city, string? color,
+                        bool isDownloadable, string? previewUrl,
                         string filePath, string fileType,
                         int fileSize, DateTime createdAt)
         {
@@ -65,10 +65,10 @@ namespace Yamal.Core.Models
 
 
         public static (Material Materil, string Error) Create(int id, string category,
-                                                            string sphere,
-                                                            string name, string description,
-                                                            string city, string color,
-                                                            bool isDownloadable, string previewUrl,
+                                                            string? sphere,
+                                                            string name, string? description,
+                                                            string? city, string? color,
+                                                            bool isDownloadable, string? previewUrl,
                                                             string filePath, string fileType,
                                                             int fileSize, DateTime creatAt)
         {
