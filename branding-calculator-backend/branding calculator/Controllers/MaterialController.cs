@@ -1,4 +1,5 @@
-﻿using branding_calculator.Contracts;
+﻿using branding_calculator.Contracts.Materials;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
@@ -6,6 +7,7 @@ using Yamal.Core.Models;
 namespace branding_calculator.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class MaterialController : ControllerBase
     {

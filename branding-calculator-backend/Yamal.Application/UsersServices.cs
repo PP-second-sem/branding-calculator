@@ -1,4 +1,5 @@
-﻿using Yamal.Core.Abstractions;
+﻿using System.Security.Cryptography.X509Certificates;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess.Repositories;
 using YamalBrand.Infrastructure;
@@ -11,18 +12,22 @@ namespace Yamal.Application
 
         private readonly IPasswordHasher _passwordHasher;
 
-        public UsersServices(IUserRepository userRepository, IPasswordHasher passwordHasher)
+        private readonly IJwtProvider _jwtProvider;
+
+        public UsersServices(IUserRepository userRepository, 
+            IPasswordHasher passwordHasher,
+            IJwtProvider jwtProvider)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
+            _jwtProvider = jwtProvider;
         }
 
         public async Task<int> CreateUser(User user)
         {
-            var hashedPassword = _passwordHasher.Generate(user.Password);
+            var hashedPassword = _passwordHasher.Generate(user.PasswordHash);
 
-            var newUser = User.Create(
-                user.Id, user.Email, hashedPassword,
+            var newUser = User.Create(0, user.Email, hashedPassword,
                 user.FirstName, user.LastName, user.MiddleName,
                 user.PhoneNumber, user.Organization, user.Role,
                 user.IsActive
@@ -51,9 +56,17 @@ namespace Yamal.Application
             return await _userRepository.Update(user);
         }
 
-        //public async Task<string> Login()
-        //{
+        public async Task<string> Login(string email, string password)
+        {
+            var user = await _userRepository.GetByEmail(email);
 
-        //}
+            var result = _passwordHasher.Verify(password, user.PasswordHash);
+
+            if (result == false) { throw new Exception("Failed to login"); }
+
+            var token = _jwtProvider.GenerateToken(user);
+
+            return token;
+        }
     }
 }

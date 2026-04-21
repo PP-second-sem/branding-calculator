@@ -14,7 +14,7 @@ namespace Yamal.DataAccess.Entites
         {
             Id = user.Id;
             Email = user.Email;
-            Password = user.Password;
+            PasswordHash = user.PasswordHash;
             FirstName = user.FirstName;
             LastName = user.LastName;
             MiddleName = user.MiddleName;
@@ -25,7 +25,8 @@ namespace Yamal.DataAccess.Entites
         }
         public int Id { get; set; }
         public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        [Column("password_hash")]
+        public string PasswordHash { get; set; } = string.Empty;
         [Column("first_name")]
         public string FirstName { get; set; } = string.Empty;
         [Column("last_name")]

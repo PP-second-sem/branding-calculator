@@ -1,3 +1,4 @@
+using branding_calculator.Extintions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
@@ -6,6 +7,7 @@ using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess;
 using Yamal.DataAccess.Repositories;
+using YamalBrand.Infrastructure;
 
 namespace branding_calculator
 {
@@ -16,7 +18,11 @@ namespace branding_calculator
             var builder = WebApplication.CreateBuilder(args);
 
             Batteries.Init();
+            builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 
+            var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+
+            builder.Services.AddApiAuthentication(jwtOptions);
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -44,18 +50,14 @@ namespace branding_calculator
 
             builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
             builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
+            builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddScoped<IUsersServices, UsersServices>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 
             var app = builder.Build();
-
-            //// === АВТОМАТИЧЕСКОЕ СОЗДАНИЕ БД И ТАБЛИЦ ===
-            //using (var scope = app.Services.CreateScope())
-            //{
-            //    var dbContext = scope.ServiceProvider.GetRequiredService<YamalDbContext>();
-            //    dbContext.Database.EnsureCreatedAsync();
-            //}
-            //// === КОНЕЦ БЛОКА ===
-            ///
 
             app.UseStaticFiles();
 
@@ -67,6 +69,7 @@ namespace branding_calculator
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();

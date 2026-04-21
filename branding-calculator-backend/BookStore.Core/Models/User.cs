@@ -14,7 +14,7 @@ namespace Yamal.Core.Models
         {
             Id = id;
             Email = email;
-            Password = password;
+            PasswordHash = password;
             FirstName = firstName;
             LastName = lastName;
             MiddleName = middleNmae;
@@ -27,7 +27,7 @@ namespace Yamal.Core.Models
 
         public int Id { get; }
         public string Email { get; } 
-        public string Password { get; } 
+        public string PasswordHash { get; } 
         public string FirstName { get; } 
         public string LastName { get; } 
         public string? MiddleName { get; } 
@@ -37,18 +37,18 @@ namespace Yamal.Core.Models
         public bool IsActive { get; }
 
         //validation
-        public static (User user, string error) Create(int id, string email, string password, string firstName,
+        public static (User user, string error) Create(int id, string email, string passwordHash, string firstName,
             string lastName, string? middleNmae, string phoneNumber,
             string? organization, string role, bool isActive)
         {
             var error = string.Empty;
 
-            if (email is null || password is null)
+            if (email is null || passwordHash is null)
             {
                 error = "Email or password can't be null";
             }
 
-            var user = new User(id,email,password,
+            var user = new User(id,email,passwordHash,
                 firstName,lastName,middleNmae,
                 phoneNumber,organization,role,isActive);
             return (user, error);

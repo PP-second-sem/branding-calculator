@@ -1,8 +1,8 @@
-﻿namespace branding_calculator.Contracts
+﻿namespace branding_calculator.Contracts.Users
 {
-    public record UserRequest
+    public record UserResponse
     {
-        public UserRequest(int id, string email, string password,
+        public UserResponse(int id, string email, string password,
             string firstName, string lastName, string? middleName,
             string phoneNumber, string? organization,
             string role, bool isActive)

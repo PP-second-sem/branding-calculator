@@ -1,13 +1,12 @@
-﻿namespace branding_calculator.Contracts
+﻿namespace branding_calculator.Contracts.Users
 {
-    public record UserResponse
+    public record RegistrationUserRequest
     {
-        public UserResponse(int id, string email, string password,
+        public RegistrationUserRequest(string email, string password,
             string firstName, string lastName, string? middleName,
             string phoneNumber, string? organization,
             string role, bool isActive)
         {
-            Id = id;
             Email = email;
             Password = password;
             FirstName = firstName;
@@ -19,7 +18,6 @@
             IsActive = isActive;
         }
 
-        public int Id { get; }
         public string Email { get; } = string.Empty;
         public string Password { get; } = string.Empty;
         public string FirstName { get; } = string.Empty;
