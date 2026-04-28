@@ -14,7 +14,7 @@ namespace Yamal.Application
 
         private readonly IJwtProvider _jwtProvider;
 
-        public UsersServices(IUserRepository userRepository, 
+        public UsersServices(IUserRepository userRepository,
             IPasswordHasher passwordHasher,
             IJwtProvider jwtProvider)
         {
@@ -60,6 +60,8 @@ namespace Yamal.Application
         {
             var user = await _userRepository.GetByEmail(email);
 
+            if (user == null) return null;
+
             var result = _passwordHasher.Verify(password, user.PasswordHash);
 
             if (result == false) { throw new Exception("Failed to login"); }
@@ -68,5 +70,6 @@ namespace Yamal.Application
 
             return token;
         }
+
     }
 }

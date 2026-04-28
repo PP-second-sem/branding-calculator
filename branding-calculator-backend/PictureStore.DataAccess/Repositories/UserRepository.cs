@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess.Entites;
 
@@ -24,7 +25,7 @@ namespace Yamal.DataAccess.Repositories
                 MiddleName = entity.MiddleName,
                 PhoneNumber = entity.PhoneNumber,
                 Organization = entity.Organization,
-                Role = entity.Role,
+                Role = entity.Role.ToString(),
                 IsActive = entity.IsActive,
             };
 
@@ -48,7 +49,7 @@ namespace Yamal.DataAccess.Repositories
                 .AsNoTracking()
                 .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
                 u.FirstName, u.LastName, u.MiddleName,
-                u.PhoneNumber, u.Organization, u.Role, u.IsActive).user)
+                u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
                 .ToListAsync();
         }
 
@@ -59,7 +60,7 @@ namespace Yamal.DataAccess.Repositories
                 .Where(u => u.Email == email)
                 .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
                 u.FirstName, u.LastName, u.MiddleName,
-                u.PhoneNumber, u.Organization, u.Role, u.IsActive).user)
+                u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
                 .FirstOrDefaultAsync();
 
         }
@@ -77,10 +78,11 @@ namespace Yamal.DataAccess.Repositories
                 .SetProperty(u => u.MiddleName, entity.MiddleName)
                 .SetProperty(u => u.PhoneNumber, entity.PhoneNumber)
                 .SetProperty(u => u.Organization, entity.Organization)
-                .SetProperty(u => u.Role, entity.Role)
+                .SetProperty(u => u.Role, entity.Role.ToString())
                 .SetProperty(u => u.IsActive, entity.IsActive));
 
             return entity.Id;
         }
+
     }
 }

@@ -1,11 +1,12 @@
-﻿namespace branding_calculator.Contracts.Users
+﻿using Yamal.Core.Abstractions;
+
+namespace branding_calculator.Contracts.Users
 {
     public record RegistrationUserRequest
     {
         public RegistrationUserRequest(string email, string password,
             string firstName, string lastName, string? middleName,
-            string phoneNumber, string? organization,
-            string role, bool isActive)
+            string phoneNumber, string? organization, bool isActive)
         {
             Email = email;
             Password = password;
@@ -14,7 +15,6 @@
             MiddleName = middleName;
             PhoneNumber = phoneNumber;
             Organization = organization;
-            Role = role;
             IsActive = isActive;
         }
 
@@ -25,7 +25,6 @@
         public string? MiddleName { get; } = string.Empty;
         public string PhoneNumber { get; } = string.Empty;
         public string? Organization { get; } = string.Empty;
-        public string Role { get; } = string.Empty;
         public bool IsActive { get; }
     }
 }

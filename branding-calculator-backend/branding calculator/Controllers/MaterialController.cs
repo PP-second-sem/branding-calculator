@@ -196,8 +196,8 @@ namespace branding_calculator.Controllers
             if (request.File != null && request.File.Length > 0)
             {
                 // Валидация нового файла
-                if (request.File.Length > 16 * 1024 * 1024)
-                    return BadRequest("File too large (max 16 MB)");
+                if (request.File.Length > 50 * 1024 * 1024)
+                    return BadRequest("File too large (max 50 MB)");
 
                 // Удаляем старый файл
                 var oldFilePath = Path.Combine(existingMaterial.FilePath ?? "", existingMaterial.Name ?? "");
@@ -249,6 +249,7 @@ namespace branding_calculator.Controllers
         }
 
         // DELETE: api/Material/5 (удаление материала и файла)
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<int>> DeleteMaterial(int id)
         {

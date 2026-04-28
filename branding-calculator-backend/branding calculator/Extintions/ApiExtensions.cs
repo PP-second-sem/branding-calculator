@@ -8,12 +8,6 @@ namespace branding_calculator.Extintions
 {
     public static class ApiExtensions
     {
-        //public static void AddMappedEndpoints(this IEndpointRouteBuilder app)
-        //{
-        //     app.AddMappedEndpoints();
-            
-        //}
-
         public static void AddApiAuthentication(this IServiceCollection services,
             JwtOptions jwtOptions)
         {
@@ -41,7 +35,13 @@ namespace branding_calculator.Extintions
                     };
                 });
 
-            services.AddAuthorization();
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("AdminPolicy", policy =>
+                {
+                    policy.RequireClaim("Admin", "true");
+                });
+            });
         }
     }
 }

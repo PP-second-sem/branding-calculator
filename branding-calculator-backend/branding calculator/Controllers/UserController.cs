@@ -1,7 +1,9 @@
 ﻿using branding_calculator.Contracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Yamal.Application;
+using Yamal.Core.Abstractions;
 
 namespace branding_calculator.Controllers
 {
@@ -29,8 +31,7 @@ namespace branding_calculator.Controllers
             // ИСПРАВЛЕНО: PasswordHash заменен на null. Никогда не отдавайте хэш клиенту!
             var response = new UserResponse(
                 user.Id,
-                user.Email,
-                null, // <--- Было user.PasswordHash, стало null
+                user.Email, 
                 user.FirstName,
                 user.LastName,
                 user.MiddleName,
@@ -58,7 +59,7 @@ namespace branding_calculator.Controllers
                 request.MiddleName,
                 request.PhoneNumber,
                 request.Organization,
-                request.Role,
+                Role.User,
                 request.IsActive
             );
 
@@ -107,6 +108,29 @@ namespace branding_calculator.Controllers
                 message = "Login successful",
                 user = request.Email
 
+            });
+        }
+
+        [HttpPatch("change-role")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ChangeUserRole([FromBody] ChangeRoleRequest request)
+        {
+
+            var users = await _usersService.GetAllUser();
+            var user = users.FirstOrDefault(x => x.Email == request.Email);
+
+            if (user == null) 
+                return NotFound($"User with email {request.Email} not found");
+
+
+            user.ChangeRole(request.Role);
+
+            await _usersService.UpdateEntity(user);
+            
+            return Ok(new
+            {
+                message = "Change role successful",
+                user = request.Email
             });
         }
     }

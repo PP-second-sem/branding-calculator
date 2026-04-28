@@ -15,7 +15,12 @@ namespace YamalBrand.Infrastructure
 
         public string GenerateToken(User user)
         {
-            Claim[] claims = [new("userId", user.Id.ToString()), new("email", user.Email)];
+            Claim[] claims =
+                [
+                    new("userId", user.Id.ToString()),
+                    new("email", user.Email),
+                    new(ClaimTypes.Role, user.Role.ToString())
+                ];
 
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),

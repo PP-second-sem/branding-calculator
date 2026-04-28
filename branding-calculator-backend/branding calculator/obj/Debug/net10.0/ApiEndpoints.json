@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "branding_calculator.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__0_3",
+    "Method": "\u003CMain\u003Eb__0_5",
     "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": false,
@@ -255,6 +255,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.UserController",
+    "Method": "ChangeUserRole",
+    "RelativePath": "api/User/change-role",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.Users.ChangeRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "branding_calculator.Controllers.UserController",

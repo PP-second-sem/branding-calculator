@@ -23,9 +23,13 @@ namespace branding_calculator
             var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
 
             builder.Services.AddApiAuthentication(jwtOptions);
-            builder.Services.AddControllers();
+            builder.Services.AddAuthorization();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            });
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c => c.UseInlineDefinitionsForEnums());
 
             builder.Services.Configure<FormOptions>(options =>
             {
@@ -65,6 +69,8 @@ namespace branding_calculator
 
             app.UseSwaggerUI();
 
+
+
             app.MapGet("/", () => Results.Redirect("swagger"));
 
             app.UseHttpsRedirection();
@@ -73,6 +79,7 @@ namespace branding_calculator
             app.UseAuthorization();
 
             app.MapControllers();
+
 
             app.Run();
         }

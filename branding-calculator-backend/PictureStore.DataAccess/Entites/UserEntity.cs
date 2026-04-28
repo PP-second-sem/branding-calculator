@@ -20,7 +20,7 @@ namespace Yamal.DataAccess.Entites
             MiddleName = user.MiddleName;
             PhoneNumber = user.PhoneNumber;
             Organization = user.Organization;
-            Role = user.Role;
+            Role = user.Role.ToString();
             IsActive = user.IsActive;
         }
         public int Id { get; set; }
@@ -36,7 +36,7 @@ namespace Yamal.DataAccess.Entites
         [Column("phone_number")]
         public string PhoneNumber { get; set; } = string.Empty;
         public string? Organization { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
+        public string Role { get; set; } = "user";
         [Column("is_active")]
         public bool IsActive { get; set; }
     }
