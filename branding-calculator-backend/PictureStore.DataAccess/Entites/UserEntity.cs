@@ -14,18 +14,19 @@ namespace Yamal.DataAccess.Entites
         {
             Id = user.Id;
             Email = user.Email;
-            Password = user.Password;
+            PasswordHash = user.PasswordHash;
             FirstName = user.FirstName;
             LastName = user.LastName;
             MiddleName = user.MiddleName;
             PhoneNumber = user.PhoneNumber;
             Organization = user.Organization;
-            Role = user.Role;
+            Role = user.Role.ToString();
             IsActive = user.IsActive;
         }
         public int Id { get; set; }
         public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        [Column("password_hash")]
+        public string PasswordHash { get; set; } = string.Empty;
         [Column("first_name")]
         public string FirstName { get; set; } = string.Empty;
         [Column("last_name")]
@@ -35,7 +36,7 @@ namespace Yamal.DataAccess.Entites
         [Column("phone_number")]
         public string PhoneNumber { get; set; } = string.Empty;
         public string? Organization { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
+        public string Role { get; set; } = "user";
         [Column("is_active")]
         public bool IsActive { get; set; }
     }

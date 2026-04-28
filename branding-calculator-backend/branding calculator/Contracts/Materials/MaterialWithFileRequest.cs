@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace branding_calculator.Contracts
+namespace branding_calculator.Contracts.Materials
 {
     public class MaterialWithFileRequest
     {

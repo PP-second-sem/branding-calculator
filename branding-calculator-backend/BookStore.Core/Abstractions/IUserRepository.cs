@@ -1,4 +1,5 @@
-﻿using Yamal.Core.Models;
+﻿using System.Security.Cryptography.X509Certificates;
+using Yamal.Core.Models;
 
 namespace Yamal.DataAccess.Repositories
 {
@@ -9,5 +10,6 @@ namespace Yamal.DataAccess.Repositories
         Task<List<User>> GetAll();
         Task<User> GetByEmail(string email);
         Task<int> Update(User entity);
+
     }
 }

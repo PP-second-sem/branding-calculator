@@ -1,4 +1,4 @@
-﻿namespace branding_calculator.Contracts
+﻿namespace branding_calculator.Contracts.Materials
 {
     public record MaterialResponse(int Id,
                                    string Category,

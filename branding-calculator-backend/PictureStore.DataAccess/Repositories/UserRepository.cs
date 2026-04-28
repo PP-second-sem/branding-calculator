@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess.Entites;
 
@@ -15,7 +16,18 @@ namespace Yamal.DataAccess.Repositories
 
         public async Task<int> Create(User entity)
         {
-            var user = new UserEntity(entity);
+            var user = new UserEntity()
+            {
+                Email = entity.Email,
+                PasswordHash = entity.PasswordHash,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                MiddleName = entity.MiddleName,
+                PhoneNumber = entity.PhoneNumber,
+                Organization = entity.Organization,
+                Role = entity.Role.ToString(),
+                IsActive = entity.IsActive,
+            };
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -35,9 +47,9 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Users
                 .AsNoTracking()
-                .Select(u => User.Create(u.Id, u.Email, u.Password,
+                .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
                 u.FirstName, u.LastName, u.MiddleName,
-                u.PhoneNumber, u.Organization, u.Role, u.IsActive).user)
+                u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
                 .ToListAsync();
         }
 
@@ -46,9 +58,9 @@ namespace Yamal.DataAccess.Repositories
             return await _context.Users
                 .AsNoTracking()
                 .Where(u => u.Email == email)
-                .Select(u => User.Create(u.Id, u.Email, u.Password,
+                .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
                 u.FirstName, u.LastName, u.MiddleName,
-                u.PhoneNumber, u.Organization, u.Role, u.IsActive).user)
+                u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
                 .FirstOrDefaultAsync();
 
         }
@@ -60,16 +72,17 @@ namespace Yamal.DataAccess.Repositories
                 .ExecuteUpdateAsync(e => e
                 .SetProperty(u => u.Id, entity.Id)
                 .SetProperty(u => u.Email, entity.Email)
-                .SetProperty(u => u.Password, entity.Password)
-                .SetProperty(u => u.Password, entity.FirstName)
+                .SetProperty(u => u.PasswordHash, entity.PasswordHash)
+                .SetProperty(u => u.FirstName, entity.FirstName)
                 .SetProperty(u => u.LastName, entity.LastName)
                 .SetProperty(u => u.MiddleName, entity.MiddleName)
                 .SetProperty(u => u.PhoneNumber, entity.PhoneNumber)
                 .SetProperty(u => u.Organization, entity.Organization)
-                .SetProperty(u => u.Role, entity.Role)
+                .SetProperty(u => u.Role, entity.Role.ToString())
                 .SetProperty(u => u.IsActive, entity.IsActive));
 
             return entity.Id;
         }
+
     }
 }

@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "branding_calculator.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__0_3",
+    "Method": "\u003CMain\u003Eb__0_5",
     "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": false,
@@ -25,7 +25,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.MaterialResponse, branding-calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.Materials.MaterialResponse, branding-calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -112,7 +112,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "branding_calculator.Contracts.MaterialResponse",
+        "Type": "branding_calculator.Contracts.Materials.MaterialResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -246,7 +246,65 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "branding_calculator.Contracts.UserResponse",
+        "Type": "branding_calculator.Contracts.Users.UserResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.UserController",
+    "Method": "ChangeUserRole",
+    "RelativePath": "api/User/change-role",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.Users.ChangeRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.Users.LoginUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "api/User/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.Users.RegistrationUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
         "MediaTypes": [
           "text/plain",
           "application/json",
