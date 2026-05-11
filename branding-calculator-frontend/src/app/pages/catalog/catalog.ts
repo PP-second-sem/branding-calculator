@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FilterDrawer } from '../../components/filter-drawer.component/filter-drawer.component';
 import { CardModalComponent } from '../../components/card-modal.component/card-modal.component';
@@ -8,43 +8,39 @@ import { MainHeaderComponent } from '../../components/main-header.component/main
 import { IMaterial } from '../../models/material.model';
 import { IFilterState } from '../../models/filter-state.model';
 import { SPHERE_CLASS_MAP } from '../../utils/sphere-map';
+import { CardsService } from '../../services/cards-service.service';
 
 @Component({
   selector: 'app-catalog',
-  imports: [RouterModule, 
-    CommonModule, 
-    FilterDrawer, 
-    CardModalComponent, 
-    FormsModule, 
-    MainHeaderComponent],
+  imports: [
+    RouterModule,
+    CommonModule,
+    FilterDrawer,
+    CardModalComponent,
+    FormsModule,
+    MainHeaderComponent
+  ],
   templateUrl: './catalog.html',
   styleUrl: './catalog.scss',
 })
 export class Catalog {
-  public search: string = '';
+  public search = '';
   public selectedCard: IMaterial | null = null;
   public cards: IMaterial[] = [];
-  public selectedCategory = 'Все';
-
-  public openCard(card: IMaterial) {
-    this.selectedCard = card;
-  }
-
-  public closeCard() {
-    this.selectedCard = null;
-  }
   public isOpen = false;
+  private materialsService = inject(CardsService);
+  public getImageUrl = this.materialsService.getMaterialImageUrl.bind(this.materialsService);
 
-  public openDrawer(): void {
-    this.isOpen = true;
-  }
-
-  public closeDrawer(): void {
-    this.isOpen = false;
-  }
-
+  // 🔥 ЕДИНСТВЕННЫЙ источник фильтров
   public filters: IFilterState = {
-    categories: [],
+    sphere: [],
+    formats: [],
+    cities: [],
+    colors: [],
+  };
+
+  public drawerFilters: IFilterState = {
+    sphere: [],
     formats: [],
     cities: [],
     colors: [],
@@ -57,26 +53,63 @@ export class Catalog {
     { label: 'Диджитал', value: 'digital', color: 'swamp' }
   ];
 
-
-  public getCardImage(card: IMaterial): string {
-    return card.previewUrl || '/cardIcon.svg';
+  public openCard(card: IMaterial) {
+    this.selectedCard = card;
   }
 
-  public getCardClass(card: IMaterial): string {
-    return 'hero-catalog__card--' +
-      (SPHERE_CLASS_MAP[card.sphere] || 'id');
+  public closeCard() {
+    this.selectedCard = null;
+  }
+
+  public openDrawer() {
+    this.drawerFilters = structuredClone(this.filters);
+    this.isOpen = true;
+  }
+
+  public closeDrawer() {
+    this.isOpen = false;
+  }
+
+  ngOnInit(): void {
+    this.materialsService.getMaterials().subscribe({
+      next: (data) => {
+        this.cards = data;
+      },
+      error: (err) => {
+        console.error('Ошибка загрузки материалов:', err);
+      }
+    });
+  }
+
+  // 📌 категории теперь управляются только через filters
+  public setCategory(category: string) {
+    this.filters.sphere =
+      category === 'Все' ? [] : [category];
+  }
+
+  public applyFilters(event: IFilterState) {
+    console.log('APPLIED FILTERS:', event);
+    this.filters = structuredClone(event);
+  }
+
+  public isActiveCategory(category: string): boolean {
+    return (
+      (category === 'Все' && this.filters.sphere.length === 0) ||
+      this.filters.sphere.includes(category)
+    );
   }
 
   public get filteredCards(): IMaterial[] {
+    const search = this.search.toLowerCase();
+
     return this.cards.filter(card => {
 
       const matchSearch =
-        !this.search ||
-        card.name.toLowerCase().includes(this.search.toLowerCase());
+        !search || card.name.toLowerCase().includes(search);
 
-      const matchDrawerCategory =
-        this.filters.categories.length === 0 ||
-        this.filters.categories.includes(card.sphere);
+      const matchSphere =
+        this.filters.sphere.length === 0 ||
+        this.filters.sphere.includes(card.sphere);
 
       const matchFormat =
         this.filters.formats.length === 0 ||
@@ -92,7 +125,7 @@ export class Catalog {
 
       return (
         matchSearch &&
-        matchDrawerCategory &&
+        matchSphere &&
         matchFormat &&
         matchCity &&
         matchColor
@@ -100,23 +133,24 @@ export class Catalog {
     });
   }
 
-  public setCategory(category: string) {
-    this.selectedCategory = category;
-
-    this.filters.categories =
-      category === 'Все'
-        ? []
-        : [category];
+  public getCardImage(card: IMaterial): string {
+    return card.previewUrl || '/cardIcon.svg';
   }
 
-  public filterCards() {}
-
-
-  public applyFilters(event: IFilterState) {
-    this.filters = event;
+  public getCardClass(card: IMaterial): string {
+    return (
+      'hero-catalog__card--' +
+      (SPHERE_CLASS_MAP[card.sphere] || 'id')
+    );
   }
 
   trackById(_: number, card: IMaterial) {
     return card.id;
+  }
+
+  public isImage(card: IMaterial): boolean {
+    return ['jpg', 'jpeg', 'png', 'webp'].includes(
+      card.fileType.toLowerCase()
+    );
   }
 }

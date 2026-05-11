@@ -1,5 +1,5 @@
 export interface IFilterState {
-  categories: string[];
+  sphere: string[];
   formats: string[];
   cities: string[];
   colors: string[];

@@ -8,9 +8,13 @@
         </div>
 
         <div class="card-modal__pic">
-            <img [src]="card.previewUrl" *ngIf="card.previewUrl; else placeholder" />
-            <ng-template #placeholder>
-                <img src="/cardIcon.svg" />
+            <img 
+                [src]="materialService.getMaterialImageUrl(card.id)" 
+                *ngIf="card.fileType !== 'pdf'; else pdf"
+            />
+
+            <ng-template #pdf>
+                <img src="/pdfIcon.svg" />
             </ng-template>
         </div>
 

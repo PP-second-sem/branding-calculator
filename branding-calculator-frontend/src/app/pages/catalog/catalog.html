@@ -14,12 +14,11 @@
     <div class="hero-catalog__filter-panel">
         <div class="hero-catalog__input">
             <img src="/searchIcon.svg">
-            <input placeholder="Поиск материалов..." class="hero-catalog__input-field" [(ngModel)]="search" (input)="filterCards()">
+            <input placeholder="Поиск материалов..." class="hero-catalog__input-field" [(ngModel)]="search">
         </div>
         <app-filter-drawer [isOpen]="isOpen" 
             (closeDrawer)="closeDrawer()" 
-            (apply)="applyFilters($event)"
-            [categories]="categories"></app-filter-drawer>
+            (apply)="applyFilters($event)"></app-filter-drawer>
         <button class="hero-catalog__button" (click)="openDrawer()">
             <img src="/filterIcon.svg">
             Фильтры
@@ -40,55 +39,55 @@
     <ul class="hero-catalog__category-buttons">
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Все'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Все')"
             (click)="setCategory('Все')"
         >Все</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Логотип'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Логотип')"
             (click)="setCategory('Логотип')"
         >Логотип</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Шрифт'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Шрифт')"
             (click)="setCategory('Шрифт')"
         >Шрифт</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Паттерн'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Паттерн')"
             (click)="setCategory('Паттерн')"
         >Паттерн</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Иллюстрация'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Иллюстрация')"
             (click)="setCategory('Иллюстрация')"
         >Иллюстрация</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Кейс'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Кейс')"
             (click)="setCategory('Кейс')"
         >Кейс</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Брендбук'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Брендбук')"
             (click)="setCategory('Брендбук')"
         >Брендбук</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Фирменный знак'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Фирменный знак')"
             (click)="setCategory('Фирменный знак')"
         >Фирменный знак</li>
 
         <li 
             class="hero-catalog__category-button"
-            [class.hero-catalog__category-button--active]="selectedCategory === 'Сувенирная продукция'"
+            [class.hero-catalog__category-button--active]="isActiveCategory('Сувенирная продукция')"
             (click)="setCategory('Сувенирная продукция')"
         >Сувенирная продукция</li>
     </ul>
@@ -125,7 +124,18 @@
             (click)="openCard(card)"
         >
             <div class="hero-catalog__cover">
-                <img src="/cardIcon.svg" class="hero-catalog__pic">
+                <img 
+                    *ngIf="isImage(card); else pdfTemplate"
+                    [src]="getImageUrl(card.id)" 
+                    class="hero-catalog__pic"
+                    alt="{{ card.name }}"
+                />
+                <ng-template #pdfTemplate>
+                    <img 
+                        src="/cardIcon.svg"
+                        class="hero-catalog__pic hero-catalog__pic--pdf"
+                    />
+                </ng-template>
                 <span class="hero-catalog__card-category">
                     {{ card.sphere }}
                 </span>
