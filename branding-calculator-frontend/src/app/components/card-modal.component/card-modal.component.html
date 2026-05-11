@@ -8,7 +8,7 @@
         </div>
 
         <div class="card-modal__pic">
-            <img [src]="card.img" *ngIf="card.img; else placeholder" />
+            <img [src]="card.previewUrl" *ngIf="card.previewUrl; else placeholder" />
             <ng-template #placeholder>
                 <img src="/cardIcon.svg" />
             </ng-template>
@@ -17,7 +17,7 @@
         <div class="card-modal__section">
             <div class="card-modal__info">
                 <!-- <p class="card-modal__type">Изображение SVG</p> -->
-                <h2 class="card-modal__name">{{ card.title }}</h2>
+                <h2 class="card-modal__name">{{ card.name }}</h2>
             </div>
             <div class="card-modal__sidebar">
                 <div class="card-modal__tags">

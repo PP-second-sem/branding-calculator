@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Card } from '../../pages/catalog/catalog';
+import { IMaterial } from '../../models/material.model';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-card-modal',
@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './card-modal.component.scss',
 })
 export class CardModalComponent {
-  @Input() card!: Card;
+  @Input() card!: IMaterial;
   @Output() close = new EventEmitter<void>();
 }

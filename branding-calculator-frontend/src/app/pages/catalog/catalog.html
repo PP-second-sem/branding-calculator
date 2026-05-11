@@ -1,5 +1,4 @@
 <app-main-header></app-main-header>
-
 <section class="hero-section">
     <a href="#" routerLink="/" class="hero-section__button">
         ← На главную
@@ -121,7 +120,7 @@
     <div class="hero-catalog__cards">
         <div 
             class="hero-catalog__card"
-            [ngClass]="'hero-catalog__card--' + card.filter"
+            [ngClass]="getCardClass(card)"
             *ngFor="let card of filteredCards"
             (click)="openCard(card)"
         >
@@ -134,11 +133,11 @@
 
             <div class="hero-catalog__content">
                 <span class="hero-catalog__title">
-                    {{ card.title }}
+                    {{ card.name }}
                 </span>
 
                 <span class="hero-catalog__formats">
-                    {{ card.formats.join(', ') }}
+                    {{ card.fileType }}
                 </span>
             </div>
         </div>
