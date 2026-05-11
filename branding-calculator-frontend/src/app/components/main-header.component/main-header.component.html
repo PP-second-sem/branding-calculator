@@ -1,0 +1,15 @@
+<header class="header">
+    <img src="/logo.svg" class="header__logo">
+    <nav class="header__navbar">
+        <ul class="header__menu">
+            <li class="header__menu-item" routerLink="/" routerLinkActive="header__menu-item--active" [routerLinkActiveOptions]="{ exact: true }">Библиотека</li>
+            <li class="header__menu-item" routerLink="/catalog" routerLinkActive="header__menu-item--active">Брендирование</li>
+            <li class="header__menu-item" routerLink="/about" routerLinkActive="header__menu-item--active">О платформе</li>
+        </ul>
+    </nav>
+    
+    <button class="header__button">
+        <img src="/signIn.svg">
+        <span>Войти</span>
+    </button>
+</header>

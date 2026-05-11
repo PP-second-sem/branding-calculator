@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FilterDrawer } from '../../components/filter-drawer.component/filter-drawer.component';
 import { CardModalComponent } from '../../components/card-modal.component/card-modal.component';
 import { FormsModule } from '@angular/forms';
+import { MainHeaderComponent } from '../../components/main-header.component/main-header.component';
 
 export interface Card {
   title: string;
@@ -21,7 +22,12 @@ export interface Card {
 
 @Component({
   selector: 'app-catalog',
-  imports: [RouterModule, CommonModule, FilterDrawer, CardModalComponent, FormsModule,],
+  imports: [RouterModule, 
+    CommonModule, 
+    FilterDrawer, 
+    CardModalComponent, 
+    FormsModule, 
+    MainHeaderComponent],
   templateUrl: './catalog.html',
   styleUrl: './catalog.scss',
 })
