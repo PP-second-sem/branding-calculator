@@ -12,12 +12,10 @@ namespace branding_calculator.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUsersServices _usersService;
-        private readonly IWebHostEnvironment _environment;
 
-        public UserController(IUsersServices usersService, IWebHostEnvironment environment)
+        public UserController(IUsersServices usersService)
         {
             _usersService = usersService;
-            _environment = environment;
         }
 
         [HttpGet("{email}")]

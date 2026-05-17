@@ -7,7 +7,6 @@ using Yamal.Core.Models;
 namespace branding_calculator.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
     public class MaterialController : ControllerBase
     {
@@ -28,7 +27,7 @@ namespace branding_calculator.Controllers
 
             var response = materials.Select(m => new MaterialResponse(
                 m.Id,
-                m.Category,
+                m.Category, 
                 m.Sphere,
                 m.Name,
                 m.Description,
@@ -114,7 +113,7 @@ namespace branding_calculator.Controllers
                 return BadRequest("File is required");
 
             // 2. Валидация файла
-            if (request.File.Length > 50 * 1024 * 1024) // 16 MB
+            if (request.File.Length > 50 * 1024 * 1024) // 50 MB
                 return BadRequest("File too large (max 50 MB)");
 
             // 3. Сохраняем файл на диск

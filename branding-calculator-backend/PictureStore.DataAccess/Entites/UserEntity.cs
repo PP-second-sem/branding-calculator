@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Yamal.Core.Models;
 
 namespace Yamal.DataAccess.Entites
@@ -39,5 +36,8 @@ namespace Yamal.DataAccess.Entites
         public string Role { get; set; } = "user";
         [Column("is_active")]
         public bool IsActive { get; set; }
+
+        public ICollection<QuestionsEntity> Questions { get; set; }
+
     }
 }

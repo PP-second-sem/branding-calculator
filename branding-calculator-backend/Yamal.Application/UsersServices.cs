@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Yamal.Core.Abstractions;
-using Yamal.Core.Models;
+﻿using Yamal.Core.Models;
 using Yamal.DataAccess.Repositories;
 using YamalBrand.Infrastructure;
 
@@ -71,5 +69,10 @@ namespace Yamal.Application
             return token;
         }
 
+
+        public async Task<User> GetUserById(int id)
+        {
+            return await _userRepository.GetById(id);
+        }
     }
 }

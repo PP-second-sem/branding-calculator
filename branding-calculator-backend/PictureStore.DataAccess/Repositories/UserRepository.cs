@@ -62,7 +62,17 @@ namespace Yamal.DataAccess.Repositories
                 u.FirstName, u.LastName, u.MiddleName,
                 u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
                 .FirstOrDefaultAsync();
+        }
 
+        public async Task<User> GetById(int id)
+        {
+            return await _context.Users
+               .AsNoTracking()
+               .Where(u => u.Id == id)
+               .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
+               u.FirstName, u.LastName, u.MiddleName,
+               u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
+               .FirstOrDefaultAsync();
         }
 
         public async Task<int> Update(User entity)

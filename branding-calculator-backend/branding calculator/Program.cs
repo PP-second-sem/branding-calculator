@@ -58,7 +58,8 @@ namespace branding_calculator
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IUsersServices, UsersServices>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-
+            builder.Services.AddScoped<IQuestionServices, QuestionServices>();
+            builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
 
             var app = builder.Build();

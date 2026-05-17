@@ -10,6 +10,7 @@ namespace Yamal.DataAccess.Repositories
         Task<List<User>> GetAll();
         Task<User> GetByEmail(string email);
         Task<int> Update(User entity);
+        Task<User> GetById(int id);
 
     }
 }

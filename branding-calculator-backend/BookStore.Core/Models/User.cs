@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using Yamal.Core.Abstractions;
+﻿using Yamal.Core.Abstractions;
 
 namespace Yamal.Core.Models
 {
@@ -35,7 +31,7 @@ namespace Yamal.Core.Models
         public string PhoneNumber { get; }
         public string? Organization { get; }
 
-        // Для внутреней работы с сервиром
+        // Для внутреней работы с сервисом
         public Role Role { get; private set; }
         public bool IsActive { get; }
 

@@ -10,5 +10,6 @@ namespace Yamal.Application
         Task<User> GetUserByEmail(string email);
         Task<int> UpdateEntity(User user);
         Task<string> Login(string email, string password);
+        Task<User> GetUserById(int id);
     }
 }
