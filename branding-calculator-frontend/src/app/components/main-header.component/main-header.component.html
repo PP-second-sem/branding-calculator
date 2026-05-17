@@ -8,8 +8,13 @@
         </ul>
     </nav>
     
-    <button class="header__button">
+    <button class="header__button" (click)="openLoginModal()">
         <img src="/signIn.svg">
         <span>Войти</span>
     </button>
 </header>
+
+<app-login-modal
+  *ngIf="isLoginModalOpen"
+  (close)="closeLoginModal()"
+></app-login-modal>

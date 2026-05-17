@@ -250,11 +250,25 @@
     }
 
     &__pic {
-        margin-top: 32px;
-        margin-bottom: 32px;
-        padding: 14px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-        border-radius: 16px;
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            margin: auto;
+            box-sizing: border-box;
+
+            &--image {
+                padding: 0;
+                box-shadow: none;
+                border-radius: 0;
+                background: transparent;
+            }
+
+            &--placeholder {
+                padding: 14px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+                border-radius: 16px;
+                background-color: #fff;
+            }
     }
 
     &__formats {

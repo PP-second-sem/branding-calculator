@@ -1,0 +1,54 @@
+<div class="login-modal">
+    <header class="login-modal__topbar">
+        <img src="/logo.svg" class="login-modal__logo" />
+
+        <a routerLink="/" class="login-modal__button" (click)="onClose()">
+            ← На главную
+        </a>
+    </header>
+    <div class="login-modal__overlay" (click)="onClose()"></div>
+
+    <div class="login-modal__content">
+
+        <div class="login-modal__header">
+            <p class="login-modal__text">Вход в систему</p>
+
+            <h2 class="login-modal__title">
+            Конструктор бренда Ямал
+            </h2>
+        </div>
+
+        <div class="login-modal__main-section">
+            <div class="login-modal__inputs">
+                <div class="login-modal__field">
+                    <span class="login-modal__input-title">Email</span>
+                    <input
+                        type="email"
+                        placeholder="user@yanao.ru"
+                        [(ngModel)]="email"
+                    />
+                </div>
+
+                <div class="login-modal__field">
+                    <span class="login-modal__input-title">Пароль</span>
+                    <input
+                        type="password"
+                        placeholder="••••••••"
+                        [(ngModel)]="password"
+                    />
+                </div>
+            </div>
+
+            <button
+                class="login-modal__submit"
+                (click)="onSubmit()"
+                >
+                Войти
+            </button>
+        </div>
+
+        <div class="login-modal__rules">
+            <p class="login-modal__rules-text">Вы должны войти, чтобы пользоваться конструктором.</p>
+        </div>
+    </div>
+</div>

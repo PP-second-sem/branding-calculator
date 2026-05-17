@@ -125,15 +125,15 @@
         >
             <div class="hero-catalog__cover">
                 <img 
-                    *ngIf="isImage(card); else pdfTemplate"
-                    [src]="getImageUrl(card.id)" 
-                    class="hero-catalog__pic"
-                    alt="{{ card.name }}"
+                    *ngIf="isImage(card); else placeholder"
+                    [src]="getImageUrl(card.id)"
+                    class="hero-catalog__pic hero-catalog__pic--image"
                 />
-                <ng-template #pdfTemplate>
+
+                <ng-template #placeholder>
                     <img 
                         src="/cardIcon.svg"
-                        class="hero-catalog__pic hero-catalog__pic--pdf"
+                        class="hero-catalog__pic hero-catalog__pic--placeholder"
                     />
                 </ng-template>
                 <span class="hero-catalog__card-category">
