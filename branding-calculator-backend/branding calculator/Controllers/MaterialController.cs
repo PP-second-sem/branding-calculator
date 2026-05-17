@@ -248,7 +248,6 @@ namespace branding_calculator.Controllers
         }
 
         // DELETE: api/Material/5 (удаление материала и файла)
-        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<int>> DeleteMaterial(int id)
         {

@@ -26,7 +26,6 @@ namespace branding_calculator.Controllers
             if (user == null)
                 return NotFound();
 
-            // ИСПРАВЛЕНО: PasswordHash заменен на null. Никогда не отдавайте хэш клиенту!
             var response = new UserResponse(
                 user.Id,
                 user.Email, 

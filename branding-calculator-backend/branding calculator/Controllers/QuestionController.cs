@@ -21,7 +21,7 @@ namespace branding_calculator.Controllers
             _services = services;
         }
 
-        [HttpGet("/GetAll")]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<List<QuestionResponse>>> GetQuestions()
         {
             var questions = await _services.GetAllEntities();
@@ -85,7 +85,7 @@ namespace branding_calculator.Controllers
 
 
 
-        [HttpPost("/CreateQuestion")]
+        [HttpPost("CreateQuestion")]
         public async Task<ActionResult<int>> CreateQuestion([FromBody] QuestionCreateRequest request)
         {
 
@@ -98,7 +98,7 @@ namespace branding_calculator.Controllers
             return await _services.CreateEntity(question);
         }
 
-        [HttpPatch("/AnwserQuestion")]
+        [HttpPatch("AnwserQuestion")]
         public async Task <ActionResult<int>> CreateAnswer(int id, string answer)
         {
             var question = await _services.GetByIdQuestion(id);

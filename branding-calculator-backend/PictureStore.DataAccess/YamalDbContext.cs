@@ -19,6 +19,8 @@ namespace Yamal.DataAccess
 
         public DbSet<QuestionsEntity> Questions { get; set; }
 
+        public DbSet<LogoLibraryEntity> LogoLibrary { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
