@@ -365,6 +365,104 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "branding_calculator.Controllers.MediaCategoryController",
+    "Method": "GetAll",
+    "RelativePath": "api/MediaCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Yamal.Core.Models.MediaCategory, Yamal.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MediaCategoryController",
+    "Method": "CreateCategory",
+    "RelativePath": "api/MediaCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.MediaCategories.CategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MediaCategoryController",
+    "Method": "DeleteCategory",
+    "RelativePath": "api/MediaCategory",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MediaCategoryController",
+    "Method": "PatchCategory",
+    "RelativePath": "api/MediaCategory",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.MediaCategories.CategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "branding_calculator.Controllers.QuestionController",
     "Method": "DeleteQuestion",
     "RelativePath": "api/Question/{id}",

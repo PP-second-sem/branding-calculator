@@ -21,6 +21,8 @@ namespace Yamal.DataAccess
 
         public DbSet<LogoLibraryEntity> LogoLibrary { get; set; }
 
+        public DbSet<MediaCategoriesEntity> MediaCategories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
