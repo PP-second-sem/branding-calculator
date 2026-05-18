@@ -463,6 +463,104 @@
     ]
   },
   {
+    "ContainingType": "branding_calculator.Controllers.MediaTypeControler",
+    "Method": "Delete",
+    "RelativePath": "api/MediaTypeControler",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MediaTypeControler",
+    "Method": "CreateType",
+    "RelativePath": "api/MediaTypeControler",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "branding_calculator.Contracts.Types.TypeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MediaTypeControler",
+    "Method": "UpdateType",
+    "RelativePath": "api/MediaTypeControler",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Yamal.Core.Models.MediaType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.MediaTypeControler",
+    "Method": "GetAll",
+    "RelativePath": "api/MediaTypeControler/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Yamal.Core.Models.MediaType",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "branding_calculator.Controllers.QuestionController",
     "Method": "DeleteQuestion",
     "RelativePath": "api/Question/{id}",

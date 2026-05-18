@@ -19,6 +19,7 @@ namespace Yamal.DataAccess.Entites
             BgColor = bgColor;
             SortOrder = sortOrder;
             IsActive = isActive;
+            
         }
 
         public int Id { get; set; }
@@ -27,6 +28,8 @@ namespace Yamal.DataAccess.Entites
         public string BgColor { get; set; }
         public int SortOrder { get; set; }
         public bool IsActive { get; set; }
+
+        public ICollection<MediaTypesEntity> Types { get; set; }
 
     }
 }

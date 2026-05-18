@@ -23,6 +23,8 @@ namespace Yamal.DataAccess
 
         public DbSet<MediaCategoriesEntity> MediaCategories { get; set; }
 
+        public DbSet<MediaTypesEntity> MediaTypes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -30,6 +30,11 @@ namespace Yamal.DataAccess.Configurations
             builder.Property(x => x.IsActive)
                 .IsRequired();
 
+            builder.HasMany(c => c.Types)
+                .WithOne(t => t.Category)
+                .HasForeignKey(t => t.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

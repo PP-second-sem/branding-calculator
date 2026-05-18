@@ -64,6 +64,8 @@ namespace branding_calculator
             builder.Services.AddScoped<IRepository<LogoLibrary>, LogoLibraryRepository>();
             builder.Services.AddScoped<IRepository<MediaCategory>, MediaCategoryRepository>();
             builder.Services.AddScoped<IServices<MediaCategory>, MediaCategoryService>();
+            builder.Services.AddScoped<IRepository<MediaType>, MediaTypeRepository>();
+            builder.Services.AddScoped<IServices<MediaType>, MediaTypeService>();
 
 
             var app = builder.Build();
