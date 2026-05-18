@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess
@@ -15,5 +16,20 @@ namespace Yamal.DataAccess
         public DbSet<MaterialsEntity> Materials { get; set; }
 
         public DbSet<UserEntity> Users { get; set; }
+
+        public DbSet<QuestionsEntity> Questions { get; set; }
+
+        public DbSet<LogoLibraryEntity> LogoLibrary { get; set; }
+
+        public DbSet<MediaCategoriesEntity> MediaCategories { get; set; }
+
+        public DbSet<MediaTypesEntity> MediaTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -86,8 +86,8 @@ namespace Yamal.Core.Models
                                         isDownloadable, previewUrl,
                                         filePath, fileType,
                                         fileSize, creatAt);
-            
-            
+
+
             return (material, error);
         }
     }

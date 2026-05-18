@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Yamal.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+958e2c51fb732fc87baefd02cc3bd6d73db10257")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c925d7553ae961428696efc2c4f6a9cb6eb860f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Yamal.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Yamal.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

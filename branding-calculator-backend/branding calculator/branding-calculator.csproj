@@ -22,6 +22,7 @@
     <ProjectReference Include="..\BookStore.Core\Yamal.Core.csproj" />
     <ProjectReference Include="..\PictureStore.DataAccess\Yamal.DataAccess.csproj" />
     <ProjectReference Include="..\Yamal.Application\Yamal.Application.csproj" />
+    <ProjectReference Include="..\YamalBrand.Infrastructure\YamalBrand.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

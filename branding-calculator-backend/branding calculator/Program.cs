@@ -1,3 +1,4 @@
+using branding_calculator.Extintions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
@@ -6,6 +7,7 @@ using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess;
 using Yamal.DataAccess.Repositories;
+using YamalBrand.Infrastructure;
 
 namespace branding_calculator
 {
@@ -16,10 +18,18 @@ namespace branding_calculator
             var builder = WebApplication.CreateBuilder(args);
 
             Batteries.Init();
+            builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 
-            builder.Services.AddControllers();
+            var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
+
+            builder.Services.AddApiAuthentication(jwtOptions);
+            builder.Services.AddAuthorization();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            });
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c => c.UseInlineDefinitionsForEnums());
 
             builder.Services.Configure<FormOptions>(options =>
             {
@@ -44,18 +54,21 @@ namespace branding_calculator
 
             builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
             builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
+            builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddScoped<IUsersServices, UsersServices>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IQuestionServices, QuestionServices>();
+            builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+            builder.Services.AddScoped<IServices<LogoLibrary>, LogoLibraryService>();
+            builder.Services.AddScoped<IRepository<LogoLibrary>, LogoLibraryRepository>();
+            builder.Services.AddScoped<IRepository<MediaCategory>, MediaCategoryRepository>();
+            builder.Services.AddScoped<IServices<MediaCategory>, MediaCategoryService>();
+            builder.Services.AddScoped<IRepository<MediaType>, MediaTypeRepository>();
+            builder.Services.AddScoped<IServices<MediaType>, MediaTypeService>();
 
 
             var app = builder.Build();
-
-            //// === АВТОМАТИЧЕСКОЕ СОЗДАНИЕ БД И ТАБЛИЦ ===
-            //using (var scope = app.Services.CreateScope())
-            //{
-            //    var dbContext = scope.ServiceProvider.GetRequiredService<YamalDbContext>();
-            //    dbContext.Database.EnsureCreatedAsync();
-            //}
-            //// === КОНЕЦ БЛОКА ===
-            ///
 
             app.UseStaticFiles();
 
@@ -63,13 +76,17 @@ namespace branding_calculator
 
             app.UseSwaggerUI();
 
+
+
             app.MapGet("/", () => Results.Redirect("swagger"));
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
+
 
             app.Run();
         }

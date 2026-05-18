@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-namespace branding_calculator.Contracts
+namespace branding_calculator.Contracts.Materials
 {
     public record MaterialRequest
     {

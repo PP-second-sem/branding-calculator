@@ -19,6 +19,8 @@ namespace Yamal.Application
 
         public async Task<int> CreateEntity(Material material)
         {
+
+
             return await _materialsRepository.Create(material);
         }
 
