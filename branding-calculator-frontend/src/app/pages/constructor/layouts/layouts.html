@@ -1,0 +1,56 @@
+<header class="header">
+    <div class="header__text-block">
+        <p class="header__personal-account">Личный кабинет</p>
+        <h1 class="header__title">Добро пожаловать, Иван Петров!</h1>
+    </div>
+    <div class="header__buttons">
+        <button class="header__buttons-main">На главную</button>
+        <button class="header__buttons-exit">Выйти</button>
+    </div>
+</header>
+
+
+<section class="constructor-section">
+    <div class="pages-switcher">
+        <a class="pages-switcher__button pages-switcher__button--active" routerLink="/constructor/layouts">
+            <img src="/layoutIcon.svg">
+            Мои макеты
+        </a>
+        <a class="pages-switcher__button" routerLink="/constructor/requests">
+            <img src="/chatIcon.svg">
+            Запросы к администратору
+            <span class="pages-switcher__button-count">1</span>
+        </a>
+    </div>
+    
+    <div class="history-catalog">
+        <h2 class="history-catalog__title">История созданных макетов</h2>
+        <button class="history-catalog__button">
+            <img src="/plusIcon.svg">
+            Создать макет</button>
+    </div>
+    <div class="layout-card">
+        <div class="layout-card__img">
+            <div class="layout-card__logo">
+                <img src="/cardIcon.svg">
+            </div>
+        </div>
+
+        <div class="layout-card__content">
+            <h3 class="layout-card__title">Фирменный бланк ЯНАО</h3>
+            <div class="layout-card__info">
+                <p class="layout-card__type">Документы · 18 апреля 2024</p>
+            </div>
+            <div class="layout-card__buttons">
+                <button class="layout-card__button-view">
+                    <img src="/eyeIcon.svg">
+                    Просмотр
+                </button>
+                <button class="layout-card__button-download">
+                    <img src="/downloadIcon.svg">
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</section>

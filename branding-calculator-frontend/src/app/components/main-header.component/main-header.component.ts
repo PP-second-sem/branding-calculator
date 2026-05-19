@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LoginModalComponent } from '../login-modal/login-modal';
+import { LoginModalComponent } from '../login-modal.component/login-modal.component';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-main-header',

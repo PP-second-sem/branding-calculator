@@ -1,0 +1,299 @@
+.header {
+    background-color: rgba(196, 14, 61, 1);
+    padding-top: 32px;
+    padding-bottom: 39px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 158px;
+    padding-right: 158px;
+
+    &__personal-account {
+        font-size: 13px;
+        line-height: 20px;
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    &__title {
+        font-weight: 800;
+        line-height: 36px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 24px;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        
+
+        &-main {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 1);
+            cursor: pointer;
+        }
+
+        &-exit {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(196, 14, 61, 1);
+            cursor: pointer;
+        }
+    }
+}
+
+.header-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+    
+
+    &__item {
+        background-color: rgba(255, 255, 255, 0.15);
+        padding: 12px 16px;
+        width: 300px;
+        border-radius: 14px;
+    }
+
+    &__count {
+        font-weight: 800;
+        font-size: 22px;
+        line-height: 33px;
+        color: rgba(255, 255, 255, 1);
+    }
+
+    &__text {
+        font-size: 12px;
+        line-height: 18px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+.requests-section {
+    padding-left: 151px;
+    padding-right: 151px;
+    padding-bottom: 32px;
+    padding-top: 32px;
+}
+
+.pages-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(240, 240, 240, 1);
+    box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    border-radius: 16px;
+    padding: 6px;
+    margin-bottom: 28px;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 12px 20px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: rgba(136, 136, 136, 1);
+        cursor: pointer;
+
+        &--active {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(196, 14, 61, 1);
+            color: rgba(255, 255, 255, 1);
+            border-radius: 12px;
+            box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__button-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 11px;
+        color: rgba(196, 14, 61, 1);
+        z-index: 1000;
+    }
+
+    &__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #FFFFFF;
+    }
+}
+
+.requests-content {
+    margin-bottom: 29px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        padding: 7px 14px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 600;
+        gap: 6px;
+        background-color: rgba(196, 14, 61, 1);
+        border-radius: 12px;
+    }
+}
+
+.requests-card {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    border: 1px solid rgba(240, 240, 240, 1);
+    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.05);
+    padding: 21px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 22px;
+    }
+
+    &__button {
+        background-color: rgba(225, 236, 231, 1);
+        padding: 4px 12px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        color: rgba(42, 94, 68, 1);
+        border-radius: 33554400px;
+    }
+
+    &__date {
+        font-size: 12px;
+        color: rgba(136, 136, 136, 1);
+        line-height: 18px;
+        margin-bottom: 12px;
+    }
+
+    &__user-question {
+        border-radius: 12px;
+        background-color: rgba(249, 240, 225, 1);
+        padding: 12px 16px;
+        margin-bottom: 12px;
+    }
+
+    &__user-response {
+        border-radius: 12px;
+        background-color: rgba(240, 247, 244, 1);
+        padding: 12px 20px;
+        border-left: 4px solid rgba(42, 94, 68, 1);
+    }
+}
+
+.user-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+
+    &__text {
+        font-size: 12px;
+        line-height: 18px;
+        color: rgba(136, 136, 136, 1);
+        font-weight: 500;
+
+        &--green {
+            color: rgba(42, 94, 68, 1);
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+}
+
+.question-text {
+    font-size: 12px;
+    line-height: 21px;
+
+}
+
+
+
+.red-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:  20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(196, 14, 61, 1);
+
+    &__msg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 1);
+        z-index: 1000;
+    }
+}
+
+.green-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:  20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(42, 94, 68, 1);
+
+    &__msg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 9px;
+        color: rgba(255, 255, 255, 1);
+        z-index: 1000;
+    }
+}
+
+.user-response {
+
+}

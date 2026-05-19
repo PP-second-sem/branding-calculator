@@ -10,4 +10,16 @@ export const routes: Routes = [
         path: 'catalog',
         component: Catalog
     },
+    {
+        path: 'constructor/layouts',
+        loadComponent: () =>
+            import('./pages/constructor/layouts/layouts')
+            .then(m => m.Layouts)
+    },
+    {
+        path: 'constructor/requests',
+        loadComponent: () =>
+            import('./pages/constructor/requests/requests')
+            .then(m => m.Requests)
+    }
 ];

@@ -1,0 +1,89 @@
+<header class="header">
+    <div class="header-info">
+        <div class="header__text-block">
+            <p class="header__personal-account">Личный кабинет</p>
+            <h1 class="header__title">Добро пожаловать, Иван Петров!</h1>
+        </div>
+        <div class="header__buttons">
+            <button class="header__buttons-main">На главную</button>
+            <button class="header__buttons-exit">Выйти</button>
+        </div>
+    </div>
+
+    <div class="cards-info">
+        <div class="cards-info__item">
+            <span class="cards-info__count">4</span>
+            <p class="cards-info__text">Всего макетов</p>
+        </div>
+        <div class="cards-info__item">
+            <span class="cards-info__count">2</span>
+            <p class="cards-info__text">Одобрено</p>
+        </div>
+        <div class="cards-info__item">
+            <span class="cards-info__count">1</span>
+            <p class="cards-info__text">На проверке</p>
+        </div>
+        <div class="cards-info__item">
+            <span class="cards-info__count">3</span>
+            <p class="cards-info__text">Запроса</p>
+        </div>
+    </div>
+</header>
+
+<section class="requests-section">
+    <div class="pages-switcher">
+        <a class="pages-switcher__button" routerLink="/constructor/layouts">
+            <img src="/unactiveLayoutIcon.svg">
+            Мои макеты
+        </a>
+        <a class="pages-switcher__button pages-switcher__button--active" routerLink="/constructor/requests">
+            <img src="/activeChatIcon.svg">
+            Запросы к администратору
+            <div class="pages-switcher__badge">
+                <span class="pages-switcher__button-count">1</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="requests-content">
+        <div class="requests-content__header">
+            <h4 class="requests-content__title">Запросы к администратору</h4>
+            <button class="requests-content__button">
+                <img src="/plusIcon.svg">
+                <span>Новый запрос</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="requests-cards">
+        <div class="requests-card">
+            <div class="requests-card__header">
+                <h3 class="requests-card__title">Согласование макета визитной карточки</h3>
+                <button class="requests-card__button">
+                    <span>Ответ получен</span>
+                </button>
+            </div>
+            <p class="requests-card__date">Отправлено: 16 апреля 2024</p>
+
+            <div class="requests-card__user-question">
+                <div class="user-info">
+                    <div class="user-info__badge">
+                        <p class="user-info__avatar">Вы</p>
+                    </div>
+                    <p class="user-info__text">Ваш запрос</p>
+                </div>
+                <p class="question-text">Добрый день! Прошу согласовать макет визитной карточки для отдела экологии ЯНАО.</p>
+            </div>
+
+            <div class="requests-card__user-response">
+                <div class="user-info">
+                    <div class="user-info__green-badge">
+                        <p class="user-info__green-text">А</p>
+                    </div>
+                    <p class="user-info__text--green">Ответ администратора · 17 апреля 2024</p>
+                </div>
+                <p class="question-text">Здравствуйте! Макет согласован. Можно передавать в печать. Рекомендуем использовать бумагу плотностью не менее 350г/м².</p>
+            </div>
+        </div>
+    </div>
+</section>
