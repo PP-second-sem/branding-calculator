@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-layouts',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './layouts.html',
   styleUrl: './layouts.scss',
 })
