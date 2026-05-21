@@ -3,6 +3,7 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginModalComponent {
   @Output() close = new EventEmitter<void>;
+  public authService: AuthService = inject(AuthService);
   public router: Router = inject(Router);
   public email: string = '';
   public password: string = '';
@@ -21,13 +23,11 @@ export class LoginModalComponent {
   }
 
   public onSubmit(): void {
-    this.onClose();
+    this.authService.login(
+      this.email,
+      this.password
+    );
 
-    this.router.navigate(['/constructor/layouts']);
-
-    console.log({
-      email: this.email,
-      password: this.password,
-    })
+    this.router.navigate(['/constructor/layouts'])
   }
 }
