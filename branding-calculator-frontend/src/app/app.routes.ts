@@ -15,14 +15,14 @@ export const routes: Routes = [
         path: 'constructor/layouts',
         canActivate: [authGuard],
         loadComponent: () =>
-            import('./pages/constructor/layouts/layouts')
+            import('./pages/authorization/layouts/layouts')
             .then(m => m.Layouts)
     },
     {
         path: 'constructor/requests',
         canActivate: [authGuard],
         loadComponent: () =>
-            import('./pages/constructor/requests/requests')
+            import('./pages/authorization/requests/requests')
             .then(m => m.Requests)
     },
     {
@@ -30,5 +30,12 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./components/login-modal.component/login-modal.component')
             .then(m => m.LoginModalComponent)
-    }
+    },
+        {
+        path: 'branding-catalog',
+        canActivate: [authGuard],
+        loadComponent: () =>
+            import('./pages/branding-catalog/branding-catalog')
+            .then(m => m.BrandingCatalog)
+    },
 ];
