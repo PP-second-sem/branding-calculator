@@ -38,7 +38,7 @@
             <p class="main-content__text">Или воспользуйтесь ботом Бренда Ямал в MAX: <a class="main-content__text--link" href="https://max.ru/yamalbrend_bot"> https://max.ru/yamalbrend_bot</a></p>
             <div class="main-content__button-block">
                 <p class="main-content__text">Также можете задать возникшие вопросы администратору:  </p>
-                <button class="main-content__button">Задать вопрос администратору</button>
+                <button class="main-content__button" (click)="isModalOpen = true">Задать вопрос администратору</button>
             </div>
         </div>
 
@@ -74,3 +74,8 @@
         </div>
     </div>
 </section>
+
+<app-request-modal
+  *ngIf="isModalOpen"
+  (close)="isModalOpen = false"
+></app-request-modal>

@@ -63,7 +63,7 @@
     &__header {
         padding: 7px 151px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         border-bottom: 1px solid rgba(240, 240, 240, 1);
         background-color: rgba(255, 255, 255, 1);
     }
@@ -180,12 +180,8 @@
     background-color: rgba(250, 250, 250, 1);
 
     input {
+        background-color: rgba(250, 250, 250, 1);
         border: none;
         outline: none;
     }
 }
-
-
-
-
-
