@@ -39,5 +39,7 @@ namespace Yamal.DataAccess.Entites
 
         public ICollection<QuestionsEntity> Questions { get; set; }
 
+        public ICollection<GeneratedLayoutsEntity> GeneratedLayouts { get; set; }
+
     }
 }

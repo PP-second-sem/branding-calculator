@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Yamal.DataAccess.Entites;
+using Yamal.DataAccess.Repositories;
 
 namespace Yamal.DataAccess
 {
@@ -24,6 +25,8 @@ namespace Yamal.DataAccess
         public DbSet<MediaCategoriesEntity> MediaCategories { get; set; }
 
         public DbSet<MediaTypesEntity> MediaTypes { get; set; }
+
+        public DbSet<GeneratedLayoutsEntity> GeneratedLayouts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

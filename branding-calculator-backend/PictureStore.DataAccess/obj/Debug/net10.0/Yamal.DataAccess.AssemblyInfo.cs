@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Yamal.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c925d7553ae961428696efc2c4f6a9cb6eb860f4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78b063aea9642dc225cf885f9453dd97349b0b2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Yamal.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Yamal.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

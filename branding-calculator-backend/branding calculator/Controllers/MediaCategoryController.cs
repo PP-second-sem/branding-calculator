@@ -11,17 +11,17 @@ namespace branding_calculator.Controllers
     public class MediaCategoryController : ControllerBase
     {
         private readonly IServices<MediaCategory> _service;
-        
+
         public MediaCategoryController(IServices<MediaCategory> service) => _service = service;
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<List<MediaCategory>>> GetAll()
         {
-            var response =  await _service.GetAllEntities();
+            var response = await _service.GetAllEntities();
             return Ok(response);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<ActionResult<int>> CreateCategory(CategoryRequest request)
         {
             var category = new MediaCategory(0,
@@ -33,13 +33,13 @@ namespace branding_calculator.Controllers
             return await _service.CreateEntity(category);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult<int>> DeleteCategory(int id)
         {
             return await _service.DeleteEntity(id);
         }
 
-        [HttpPatch]
+        [HttpPatch("Update")]
         public async Task<ActionResult<int>> PatchCategory(CategoryRequest request)
         {
             var category = new MediaCategory(0,

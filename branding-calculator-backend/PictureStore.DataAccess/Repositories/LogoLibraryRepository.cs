@@ -20,7 +20,7 @@ namespace Yamal.DataAccess.Repositories
                 IsActive = entity.IsActive
             };
 
-            await _context.AddAsync(logo);
+            await _context.LogoLibrary.AddAsync(logo);
             await _context.SaveChangesAsync();
 
             return logo.Id;

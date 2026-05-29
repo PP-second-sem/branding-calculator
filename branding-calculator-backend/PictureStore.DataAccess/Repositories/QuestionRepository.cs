@@ -63,7 +63,6 @@ namespace Yamal.DataAccess.Repositories
                 .SetProperty(p => p.AdminResponse, entity.AdminResponse)
                 .SetProperty(p => p.IsActive, entity.IsActive)
                 .SetProperty(p => p.AnsweredAt, entity.AnsweredAt));
-            await _context.SaveChangesAsync();
             return entity.Id;
         }
 

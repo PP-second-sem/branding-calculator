@@ -17,19 +17,19 @@ namespace branding_calculator.Controllers
             _service = service;
         }
 
-        [HttpGet("all")]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<MediaType>> GetAll()
         {
             return Ok(await _service.GetAllEntities());
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}/Delete")]
         public async Task<ActionResult<int>> Delete(int id)
         {
             return Ok(await _service.DeleteEntity(id));
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<ActionResult<int>> CreateType(TypeRequest request)
         {
             var type = new MediaType(0,
@@ -44,7 +44,7 @@ namespace branding_calculator.Controllers
             return Ok(type.Id);
         }
 
-        [HttpPatch]
+        [HttpPatch("Update")]
         public async Task<ActionResult<int>> UpdateType(MediaType request)
         {
             return Ok(await _service.UpdateEntity(request));

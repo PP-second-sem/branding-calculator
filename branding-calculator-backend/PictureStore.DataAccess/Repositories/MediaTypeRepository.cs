@@ -15,11 +15,14 @@ namespace Yamal.DataAccess.Repositories
         public MediaTypeRepository(YamalDbContext context) => _context = context;
         public async Task<int> Create(MediaType entity)
         {
-            var type = new MediaType(entity.Id, entity.CategoryId,
-                entity.Name, entity.ParametersSchema,
-                entity.SortOrder, entity.IsActive);
+            var type = new MediaTypesEntity() {
+                CategoryId = entity.CategoryId,
+                Name = entity.Name,
+                ParametersSchema = entity.ParametersSchema,
+                SortOrder = entity.SortOrder,
+                IsActive = entity.IsActive };
 
-            await _context.AddAsync(type);
+            await _context.MediaTypes.AddAsync(type);
             await _context.SaveChangesAsync();
 
             return type.Id;
