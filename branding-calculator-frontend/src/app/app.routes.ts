@@ -31,11 +31,17 @@ export const routes: Routes = [
             import('./components/login-modal.component/login-modal.component')
             .then(m => m.LoginModalComponent)
     },
-        {
+    {
         path: 'branding-catalog',
         canActivate: [authGuard],
         loadComponent: () =>
             import('./pages/branding-catalog/branding-catalog')
             .then(m => m.BrandingCatalog)
     },
+    {
+        path: 'editor/:id',
+        loadComponent: () =>
+            import('./pages/editor/editor')
+            .then(m => m.Editor)
+    }
 ];

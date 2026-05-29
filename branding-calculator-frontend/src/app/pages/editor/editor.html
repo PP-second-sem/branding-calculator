@@ -1,0 +1,265 @@
+<app-main-header></app-main-header>
+
+<div class="section-header">
+  <div class="section-header__path">
+    <p class="section-header__text">Главная</p>
+    <img src="pagePathIcon.svg">
+    <p class="section-header__text">Брендирование</p>
+    <img src="pagePathIcon.svg">
+    <p class="section-header__text">Визитная карточка</p>
+  </div>
+
+  <div class="section-header__title">
+    <button class="icon-circle">
+      <img src="backIconWhite.svg">
+    </button>
+    <p class="section-header__title--text">Визитная карточка</p>
+  </div>
+</div>
+
+<div class="editor">
+
+  <!-- LEFT -->
+  <div class="editor-left">
+
+    <!-- BLOCK 1 -->
+    <div class="editor-card">
+
+      <p class="editor-card__title">
+        Параметры носителя
+      </p>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Организация
+        </p>
+
+        <input [(ngModel)]="formData.organization">
+
+      </div>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          ФИО
+        </p>
+
+        <input [(ngModel)]="formData.fullName">
+
+      </div>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Должность
+        </p>
+
+        <input [(ngModel)]="formData.position">
+
+      </div>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Телефон
+        </p>
+
+        <input [(ngModel)]="formData.phone">
+
+      </div>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Email
+        </p>
+
+        <input [(ngModel)]="formData.email">
+
+      </div>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Адрес
+        </p>
+
+        <input [(ngModel)]="formData.address">
+
+      </div>
+
+    </div>
+
+    <!-- BLOCK 2 -->
+    <div class="editor-card">
+
+      <p class="editor-card__title">
+        Населенные пункты и параметры
+      </p>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Населенный пункт
+        </p>
+
+        <input [(ngModel)]="formData.city">
+
+      </div>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Дата
+        </p>
+
+        <input [(ngModel)]="formData.date">
+
+      </div>
+
+    </div>
+
+    <!-- BLOCK 3 -->
+    <div class="editor-card">
+
+      <p class="editor-card__title">
+        Логотип
+      </p>
+
+      <div class="editor-field">
+
+        <p class="editor-field__label">
+          Логотип
+        </p>
+
+        <select [(ngModel)]="formData.cover">
+
+          <option value="photo1">
+            Газпром
+          </option>
+
+          <option value="photo2">
+            Ямал
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="design-buttons">
+
+        <button class="design-button design-button--red">
+          Фирменная красная
+        </button>
+
+        <button class="design-button design-button--bone">
+          Мамонтова кость
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="editor-right">
+
+    <!-- BLOCK 4 -->
+    <div class="editor-card">
+
+      <p class="editor-card__title">
+        Предпросмотр
+      </p>
+
+      <div class="editor-preview">
+
+        <div class="editor-export">
+
+          <img
+            [src]="template.image"
+            class="editor-preview__image"
+          >
+
+          <img
+            *ngIf="formData['cover'] === 'photo1'"
+            src="/gazprom-logo-eng 2.svg"
+            class="editor-preview__cover"
+          />
+
+          <img
+            *ngIf="formData['cover'] === 'photo2'"
+            src="/Logotip_Color 2.svg"
+            class="editor-preview__cover"
+          />
+
+          <div
+            *ngFor="let field of template.fields"
+            class="dynamic-text"
+
+            [style.left.px]="field.x"
+            [style.top.px]="field.y"
+
+            [style.fontSize.px]="field.fontSize"
+            [style.fontWeight]="field.fontWeight"
+            [style.color]="field.color"
+          >
+            <span
+              [innerHTML]="
+                field.key === 'fullName'
+                ? formData[field.key]?.replace(' ', '<br>')
+                : formData[field.key]
+              "
+            ></span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BLOCK 5 -->
+    <div class="editor-card">
+
+      <p class="editor-card__title">
+        Формат файла
+      </p>
+
+      <div class="checkbox-group">
+
+        <label class="checkbox-item">
+          <input type="checkbox">
+          PNG
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox">
+          PDF
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox">
+          SVG
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox">
+          JPEG
+        </label>
+
+      </div>
+
+      <button
+        class="download-button"
+        (click)="downloadTemplate()"
+      >
+        Скачать
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
