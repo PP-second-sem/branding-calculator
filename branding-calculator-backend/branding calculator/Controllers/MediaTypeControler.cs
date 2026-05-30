@@ -32,16 +32,20 @@ namespace branding_calculator.Controllers
         [HttpPost("Create")]
         public async Task<ActionResult<int>> CreateType(TypeRequest request)
         {
-            var type = new MediaType(0,
-                                     request.CategoryId,
-                                     request.Name,
-                                     request.ParameterSchema,
-                                     request.SortOrder,
-                                     true);
+            if (request == null)
+                return BadRequest(new { error = "Request body is required" });
 
-            await _service.CreateEntity(type);
+            var type = new MediaType(
+                0,
+                request.CategoryId,
+                request.Name,
+                string.IsNullOrWhiteSpace(request.ParameterSchema) ? "{}" : request.ParameterSchema,
+                request.SortOrder,
+                true
+            );
 
-            return Ok(type.Id);
+            var createdId = await _service.CreateEntity(type);
+            return Ok(createdId);
         }
 
         [HttpPatch("Update")]

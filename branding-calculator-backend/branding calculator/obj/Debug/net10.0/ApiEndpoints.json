@@ -96,6 +96,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "CarrierTypeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "JsonContent",
         "Type": "System.String",
         "IsRequired": false

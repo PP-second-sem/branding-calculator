@@ -15,7 +15,7 @@ namespace Yamal.DataAccess.Repositories
         {
             var layout = new GeneratedLayoutsEntity()
             {
-                UserId = model.Id,
+                UserId = model.UserId,
                 CarrierTypeId = model.CarrierTypeId,
                 ParametersJson = model.ParametersJson,
                 PackageUrl = model.PackageUrl,

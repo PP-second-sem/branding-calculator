@@ -25,13 +25,13 @@ namespace Yamal.DataAccess.Entites
         public int Id { get; set; }
         [Column("user_id")]
         public int UserId { get; set; }
-        [Column("carrier_type_json")]
+        [Column("carrier_type_id")]
         public int CarrierTypeId {  get; set; }
-        [Column("Parameters_json")]
+        [Column("parameters_json")]
         public string ParametersJson { get; set; }
-        [Column("packages_url")]
+        [Column("package_url")]
         public string PackageUrl { get; set; }
-        [Column("output_form")]
+        [Column("output_formats")]
         public string OutputFormats {  get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }

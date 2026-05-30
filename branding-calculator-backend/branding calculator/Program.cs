@@ -54,18 +54,25 @@ namespace branding_calculator
 
             builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
             builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
+
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
             builder.Services.AddScoped<IUsersServices, UsersServices>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+
             builder.Services.AddScoped<IQuestionServices, QuestionServices>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+
             builder.Services.AddScoped<IServices<LogoLibrary>, LogoLibraryService>();
             builder.Services.AddScoped<IRepository<LogoLibrary>, LogoLibraryRepository>();
+
             builder.Services.AddScoped<IRepository<MediaCategory>, MediaCategoryRepository>();
             builder.Services.AddScoped<IServices<MediaCategory>, MediaCategoryService>();
+
             builder.Services.AddScoped<IRepository<MediaType>, MediaTypeRepository>();
             builder.Services.AddScoped<IServices<MediaType>, MediaTypeService>();
+
             builder.Services.AddScoped<IGeneratedLayoutRepository, GeneratedLayoutRepository>();
             builder.Services.AddScoped<IGeneratedLayoutService, GeneratedLayoutService>();
 
@@ -77,7 +84,10 @@ namespace branding_calculator
 
             app.UseSwaggerUI();
 
-
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage(); 
+            }
 
             app.MapGet("/", () => Results.Redirect("swagger"));
 

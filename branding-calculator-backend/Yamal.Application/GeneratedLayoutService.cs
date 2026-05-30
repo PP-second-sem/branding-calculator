@@ -33,5 +33,10 @@ namespace Yamal.Application
             return await _repository.Update(layout);
         }
 
+        public async Task<int> Create(GeneratedLayout entity)
+        {
+            return await _repository.Create(entity);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using System.Security.Claims;
@@ -7,6 +8,8 @@ using System.Text;
 using Yamal.Application;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
+using Yamal.DataAccess;
+using Yamal.DataAccess.Entites;
 
 namespace branding_calculator.Controllers
 {
@@ -24,6 +27,10 @@ namespace branding_calculator.Controllers
             _service = service;
             _env = env;
         }
+
+ 
+
+
 
         // ==================== 🗄️ МЕТОДЫ РАБОТЫ С БД (оставляем без изменений) ====================
 
@@ -47,36 +54,45 @@ namespace branding_calculator.Controllers
             return await _service.Delete(id);
         }
 
-   
 
-        // ==================== СОХРАНЕНИЕ МАКЕТА (ZIP + JSON) ====================
 
         [HttpPost("saveUserLayout")]
-        [RequestSizeLimit(50_000_000)]
+        [Authorize]
+        [RequestSizeLimit(57671680)] // 55 МБ
         [DisableRequestSizeLimit]
         public async Task<IActionResult> SaveUserLayout([FromForm] LayoutSaveRequest request)
         {
             if (request?.Files == null || request.Files.Count == 0)
-                return BadRequest(new { error = "Файлы не предоставлены" });
+                return BadRequest(new { error = "Файлы не предоставлены." });
 
             int userId;
-            try
-            {
-                userId = GetUserIdFromToken();
-            }
+            try { userId = GetUserIdFromToken(); }
             catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(new { error = ex.Message });
             }
 
+            // 🔍 АВТО-ПАРСИНГ ФОРМАТОВ ИЗ ЗАГРУЖЕННЫХ ФАЙЛОВ
+            var formats = request.Files
+                .Select(f => Path.GetExtension(f.FileName)?.TrimStart('.').ToLowerInvariant())
+                .Where(ext => !string.IsNullOrWhiteSpace(ext))
+                .Distinct()
+                .ToList();
+
+            if (formats.Count == 0)
+                return BadRequest(new { error = "Не удалось определить форматы загруженных файлов." });
+
+            var outputFormatsString = string.Join(",", formats);
+
             var guid = Guid.NewGuid().ToString();
             var baseFileName = $"{userId}_{guid}";
             var zipFilePath = GetLayoutFilePath(baseFileName, ".zip");
             var jsonFilePath = GetLayoutFilePath(baseFileName, "Json.json");
+            var packageUrl = Path.Combine("Data", "UserLayouts", $"{baseFileName}.zip");
 
             try
             {
-                // === Создаём ZIP-архив ===
+                // 1. Создаём ZIP
                 using var zipStream = new FileStream(zipFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, FileOptions.Asynchronous);
                 using var archive = new ZipArchive(zipStream, ZipArchiveMode.Create);
 
@@ -84,37 +100,46 @@ namespace branding_calculator.Controllers
                 {
                     if (file.Length > 0)
                     {
-                        var safeFileName = Path.GetFileName(file.FileName);
-                        var entry = archive.CreateEntry(safeFileName, CompressionLevel.Optimal);
+                        var safeName = Path.GetFileName(file.FileName);
+                        var entry = archive.CreateEntry(safeName, CompressionLevel.Optimal);
                         using var entryStream = entry.Open();
                         await file.CopyToAsync(entryStream);
                     }
                 }
 
-                // === Сохраняем JSON ===
+                // 2. Сохраняем JSON
                 var jsonContent = request.JsonContent?.Trim() ?? "{}";
                 await System.IO.File.WriteAllTextAsync(jsonFilePath, jsonContent, Encoding.UTF8);
+
+                // 3. Сохраняем запись в БД
+                var layoutEntity = new GeneratedLayout
+                ( 0,
+                    userId,
+                    request.CarrierTypeId,
+                    jsonContent,
+                    packageUrl,
+                    outputFormatsString, 
+                    DateTime.UtcNow
+                );
+
+                var savedLayout = await _service.Create(layoutEntity);
 
 
                 return Ok(new
                 {
                     success = true,
+                    layoutId = savedLayout,
                     userId,
                     guid,
-                    zipFile = $"{baseFileName}.zip",
-                    jsonFile = $"{baseFileName}Json.json",
-                    savedAt = DateTime.UtcNow
+                    packageUrl,
+                    outputFormats = outputFormatsString,
+                    jsonFile = $"{baseFileName}Json.json"
                 });
-            }
-            catch (IOException ex)
-            {
-                CleanupFiles(zipFilePath, jsonFilePath);
-                return StatusCode(500, new { error = "Ошибка записи файлов на диск" });
             }
             catch (Exception ex)
             {
                 CleanupFiles(zipFilePath, jsonFilePath);
-                return StatusCode(500, new { error = "Внутренняя ошибка сервера" });
+                return StatusCode(500, new { error = "Не удалось сохранить макет. Данные откатаны.", ex.Message, ex.InnerException });
             }
         }
 
@@ -292,9 +317,19 @@ namespace branding_calculator.Controllers
 
     public class LayoutSaveRequest
     {
+        /// <summary>
+        /// ID типа носителя (FK → CarrierTypes.id)
+        /// </summary>
+        public int CarrierTypeId { get; set; }
 
+        /// <summary>
+        /// JSON с параметрами генерации (сохраняется как есть, без валидации)
+        /// </summary>
         public string? JsonContent { get; set; }
 
+        /// <summary>
+        /// Файлы для упаковки в ZIP
+        /// </summary>
         public List<IFormFile> Files { get; set; } = new();
     }
 

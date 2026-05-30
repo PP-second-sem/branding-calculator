@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Yamal.DataAccess.Entites;
-using Yamal.DataAccess.Repositories;
+using Microsoft.Data.Sqlite;
 
 namespace Yamal.DataAccess
 {
@@ -34,5 +34,7 @@ namespace Yamal.DataAccess
 
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 }

@@ -8,5 +8,6 @@ namespace Yamal.Application
         Task<List<GeneratedLayout>> GetAll();
         Task<GeneratedLayout> GetById(int id);
         Task<int> Update(GeneratedLayout layout);
+        Task<int> Create(GeneratedLayout entity);
     }
 }

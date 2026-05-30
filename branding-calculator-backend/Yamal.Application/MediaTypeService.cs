@@ -6,6 +6,8 @@ namespace Yamal.Application
     public class MediaTypeService : IServices<MediaType>
     {
         private readonly IRepository<MediaType> _repository;
+
+        public MediaTypeService(IRepository<MediaType> repository) => _repository = repository;
         public async Task<int> CreateEntity(MediaType entity)
         {
             return await _repository.Create(entity);

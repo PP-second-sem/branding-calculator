@@ -32,7 +32,7 @@ namespace Yamal.DataAccess.Entites
         public bool IsActive { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
-        [Column("Answered_at")]
+        [Column("answered_at")]
         public DateTime? AnsweredAt { get; set; }
 
         public UserEntity User { get; set; }

@@ -8,6 +8,7 @@ namespace Yamal.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<MediaTypesEntity> builder)
         {
+
             builder.HasKey(m => m.Id);
 
             builder.Property(t => t.CategoryId)
