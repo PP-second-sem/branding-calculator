@@ -14,6 +14,12 @@ import { MainHeaderComponent } from '../../components/main-header.component/main
 })
 export class Editor implements OnInit {
   private route = inject(ActivatedRoute);
+  public avatarPreview: string = '';
+  public isCarrierOpen = true;
+  public isCityOpen = true;
+  public isLogoOpen = true;
+  public isPreviewOpen = true;
+  public isFormatOpen = true;
   public template: any;
   public formData: any = {};
   public scale = 324 / 640;
@@ -25,6 +31,22 @@ export class Editor implements OnInit {
     this.template = templates.find(
       item => item.id === id
     );
+  }
+
+  public onFileSelected(event: any): void {
+    const file = event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.avatarPreview = reader.result as string;
+    };
+
+    reader.readAsDataURL(file);
   }
 
   public downloadTemplate(): void {

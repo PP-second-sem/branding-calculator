@@ -18,74 +18,67 @@
 </div>
 
 <div class="editor">
-
-  <!-- LEFT -->
+    <!-- LEFT -->
   <div class="editor-left">
 
     <!-- BLOCK 1 -->
     <div class="editor-card">
 
-      <p class="editor-card__title">
-        Параметры носителя
-      </p>
+      <div class="editor-card__header">
+        <div class="editor-card__title-wrapper">
 
-      <div class="editor-field">
+          <div class="editor-card__icon editor-card__icon--red">
+            <img src="/layerIcon.svg">
+          </div>
 
-        <p class="editor-field__label">
-          Организация
-        </p>
-
-        <input [(ngModel)]="formData.organization">
-
-      </div>
-
-      <div class="editor-field">
-
-        <p class="editor-field__label">
-          ФИО
-        </p>
-
-        <input [(ngModel)]="formData.fullName">
+          <p class="editor-card__title">
+            Параметры носителя
+          </p>
 
       </div>
 
-      <div class="editor-field">
-
-        <p class="editor-field__label">
-          Должность
-        </p>
-
-        <input [(ngModel)]="formData.position">
-
-      </div>
-
-      <div class="editor-field">
-
-        <p class="editor-field__label">
-          Телефон
-        </p>
-
-        <input [(ngModel)]="formData.phone">
+        <button
+          class="editor-card__toggle"
+          (click)="isCarrierOpen = !isCarrierOpen"
+        >
+          <img
+            [src]="isCarrierOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'"
+            alt=""
+          >
+        </button>
 
       </div>
 
-      <div class="editor-field">
+      <div *ngIf="isCarrierOpen" class="editor-card__content editor-form-grid">
 
-        <p class="editor-field__label">
-          Email
-        </p>
+        <div
+          *ngFor="let field of template.fields"
+          class="editor-field"
+        >
 
-        <input [(ngModel)]="formData.email">
+          <ng-container
+            *ngIf="
+              field.key === 'organization' ||
+              field.key === 'fullName' ||
+              field.key === 'position' ||
+              field.key === 'phone' ||
+              field.key === 'email' ||
+              field.key === 'address'
+            "
+          >
 
-      </div>
+            <p class="editor-field__label">
+              {{ field.label }}
+            </p>
 
-      <div class="editor-field">
+            <input
+              [(ngModel)]="formData[field.key]"
+              [placeholder]="field.placeholder"
+            >
 
-        <p class="editor-field__label">
-          Адрес
-        </p>
+          </ng-container>
 
-        <input [(ngModel)]="formData.address">
+        </div>
 
       </div>
 
@@ -94,27 +87,51 @@
     <!-- BLOCK 2 -->
     <div class="editor-card">
 
-      <p class="editor-card__title">
-        Населенные пункты и параметры
-      </p>
+      <div class="editor-card__header">
 
-      <div class="editor-field">
+        <div class="editor-card__title-wrapper">
 
-        <p class="editor-field__label">
-          Населенный пункт
-        </p>
+          <div class="editor-card__icon editor-card__icon--green">
+            <img src="/locationIcon.svg">
+          </div>
 
-        <input [(ngModel)]="formData.city">
+          <p class="editor-card__title">
+            Населенный пункт и параметры
+          </p>
+
+        </div>
+
+        <button
+          class="editor-card__toggle"
+          (click)="isCityOpen = !isCityOpen"
+        >
+          <img
+            [src]="isCityOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'"
+            alt=""
+          >
+        </button>
 
       </div>
 
-      <div class="editor-field">
+      <div *ngIf="isCityOpen" class="editor-card__content editor-form-grid">
 
-        <p class="editor-field__label">
-          Дата
-        </p>
+        <ng-container *ngFor="let field of template.fields">
 
-        <input [(ngModel)]="formData.date">
+          <div
+            class="editor-field"
+            *ngIf="field.key === 'city' || field.key === 'date'"
+          >
+            <p class="editor-field__label">
+              {{ field.label }}
+            </p>
+
+            <input
+              [(ngModel)]="formData[field.key]"
+              [placeholder]="field.placeholder"
+            >
+          </div>
+
+        </ng-container>
 
       </div>
 
@@ -123,39 +140,70 @@
     <!-- BLOCK 3 -->
     <div class="editor-card">
 
-      <p class="editor-card__title">
-        Логотип
-      </p>
+      <div class="editor-card__header">
 
-      <div class="editor-field">
+        <div class="editor-card__title-wrapper">
 
-        <p class="editor-field__label">
-          Логотип
-        </p>
+          <div class="editor-card__icon editor-card__icon--purple">
+            <img src="/photoIcon.svg">
+          </div>
 
-        <select [(ngModel)]="formData.cover">
+          <p class="editor-card__title">
+            Логотип
+          </p>
+        </div>
 
-          <option value="photo1">
-            Газпром
-          </option>
-
-          <option value="photo2">
-            Ямал
-          </option>
-
-        </select>
+        <button
+          class="editor-card__toggle"
+          (click)="isLogoOpen = !isLogoOpen"
+        >
+          <img
+            [src]="isLogoOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'"
+            alt=""
+          >
+        </button>
 
       </div>
 
-      <div class="design-buttons">
+      <div *ngIf="isLogoOpen" class="editor-card__content editor-form-grid">
 
-        <button class="design-button design-button--red">
-          Фирменная красная
-        </button>
+        <!-- SELECT --->
+         <ng-container *ngFor="let field of template.fields">
 
-        <button class="design-button design-button--bone">
-          Мамонтова кость
-        </button>
+            <div
+              class="editor-field"
+              *ngIf="field.key === 'cover1' || field.key === 'cover2'"
+            >
+              <p class="editor-field__label">
+                {{ field.label }}
+              </p>
+
+              <select
+                [(ngModel)]="formData[field.key]"
+              >
+                <option
+                  *ngFor="let option of field.options"
+                  [value]="option.value"
+                >
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+
+        </ng-container>
+
+        <!-- DESIGN BUTTONS -->
+        <div class="design-buttons">
+          <button class="design-button">
+            <span class="design-button__color design-button__color--red"></span>
+            Фирменный красный
+          </button>
+
+          <button class="design-button">
+            <span class="design-button__color design-button__color--bone"></span>
+            Мамонтовая кость
+          </button>
+        </div>
 
       </div>
 
@@ -168,11 +216,13 @@
 
     <!-- BLOCK 4 -->
     <div class="editor-card">
-
-      <p class="editor-card__title">
-        Предпросмотр
-      </p>
-
+      <div class="editor__header">
+        <p class="editor-card__title">
+          Предпросмотр
+        </p>
+        <p class="editor-card__subtitle">Обновляется в реальном времени</p>
+      </div>
+      
       <div class="editor-preview">
 
         <div class="editor-export">
@@ -183,14 +233,14 @@
           >
 
           <img
-            *ngIf="formData['cover'] === 'photo1'"
-            src="/gazprom-logo-eng 2.svg"
+            *ngIf="formData['cover1'] === 'photo1'"
+            src="/Logotip_Color 2.svg"
             class="editor-preview__cover"
           />
 
           <img
-            *ngIf="formData['cover'] === 'photo2'"
-            src="/Logotip_Color 2.svg"
+            *ngIf="formData['cover2'] === 'photo2'"
+            src="/gazprom-logo-eng 2.svg"
             class="editor-preview__cover"
           />
 
@@ -217,11 +267,27 @@
         </div>
 
       </div>
+      <div class="editor-preview-info">
 
+        <p class="editor-preview-info__label">
+          Носитель
+        </p>
+
+        <p class="editor-preview-info__name">
+          {{ template.name }}
+        </p>
+      </div>
+
+      <div class="editor-preview-info__footer">
+        <button class="editor-preview-info__button">
+          <img src="/greyLayoutIcon.svg">
+          Выбрать другой носитель
+        </button>
+      </div>
     </div>
 
     <!-- BLOCK 5 -->
-    <div class="editor-card">
+    <div class="editor-card editor-card--files">
 
       <p class="editor-card__title">
         Формат файла
