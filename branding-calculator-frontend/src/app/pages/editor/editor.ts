@@ -43,13 +43,7 @@ export class Editor implements OnInit {
 
     if (!file) return;
 
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      this.photoPreview = reader.result as string;
-    };
-
-    reader.readAsDataURL(file);
+    this.photoPreview = URL.createObjectURL(file);
   }
 
   public onFileSelected(event: any): void {
@@ -69,15 +63,26 @@ export class Editor implements OnInit {
   }
 
   public downloadTemplate(): void {
+    const wrapper = document.querySelector(
+      '.editor-export-wrapper'
+    ) as HTMLElement;
+
+    wrapper.style.transform = 'none';
+
     const element = document.querySelector(
       '.editor-export'
     ) as HTMLElement;
+
     html2canvas(element, {
-      scale: 2
-    }).then((canvas) => {
+      scale: 4,
+      useCORS: true,
+      backgroundColor: null
+    }).then(canvas => {
+      wrapper.style.transform = 'scale(0.50625)';
+
       const link = document.createElement('a');
       link.download = 'template.png';
-      link.href = canvas.toDataURL();
+      link.href = canvas.toDataURL('image/png');
       link.click();
     });
   }
@@ -88,14 +93,27 @@ export class Editor implements OnInit {
     this.formData = {};
 
     template.fields.forEach((field: any) => {
-      this.formData[field.key] = '';
+      if (field.type === 'select') {
+        this.formData[field.key] = 'none';
+      } else if (field.type === 'text') {
+        this.formData[field.key] = '';
+      } else {
+        this.formData[field.key] = null;
+      }
     });
-
-    this.previewFields = template.fields;
   }
 
   get carrierFields() {
     return this.template?.fields?.filter((f: any) => f.group === 'carrier') || [];
+  }
+
+  get logoCount(): number {
+    let count = 0;
+
+    if (this.formData.cover1 && this.formData.cover1 !== 'none') count++;
+    if (this.formData.cover2 && this.formData.cover2 !== 'none') count++;
+
+    return count;
   }
 
   get locationFields() {
@@ -106,7 +124,44 @@ export class Editor implements OnInit {
     return this.template?.fields?.filter((f: any) => f.group === 'logo') || [];
   }
 
-  // get previewFields() {
-  //   return this.template?.fields?.filter((f: any) => f.x !== undefined) || [];
-  // }
+  get previewScale(): number {
+    if (!this.template) return 1;
+
+    const maxWidth = 324;
+    const maxHeight = 180;
+
+    return Math.min(
+      maxWidth / this.template.width,
+      maxHeight / this.template.height
+    );
+  }
+
+  get hasTwoLogos(): boolean {
+    return this.formData?.cover1 && this.formData?.cover1 !== 'none'
+        && this.formData?.cover2 && this.formData?.cover2 !== 'none';
+  }
+
+  get activeLogos(): string[] {
+    const logos = [];
+
+    if (this.formData.cover1 && this.formData.cover1 !== 'none') {
+      logos.push(this.formData.cover1);
+    }
+
+    if (this.formData.cover2 && this.formData.cover2 !== 'none') {
+      logos.push(this.formData.cover2);
+    }
+
+    return logos;
+  }
+
+  getLogoPosition(index: number) {
+    if (this.activeLogos.length === 1) {
+      return this.template.logoPositions.single;
+    }
+
+    return index === 0
+      ? this.template.logoPositions.first
+      : this.template.logoPositions.second;
+  }
 }

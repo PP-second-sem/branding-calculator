@@ -13,51 +13,37 @@
     <button class="icon-circle">
       <img src="backIconWhite.svg">
     </button>
-    <p class="section-header__title--text">Визитная карточка</p>
+    <p class="section-header__title--text">{{ template.name }}</p>
   </div>
 </div>
 
 <div class="editor">
-    <!-- LEFT -->
+
+  <!-- LEFT -->
   <div class="editor-left">
 
     <!-- BLOCK 1 -->
     <div class="editor-card">
-
       <div class="editor-card__header">
         <div class="editor-card__title-wrapper">
-
           <div class="editor-card__icon editor-card__icon--red">
             <img src="/layerIcon.svg">
           </div>
 
-          <p class="editor-card__title">
-            Параметры носителя
-          </p>
+          <p class="editor-card__title">Параметры носителя</p>
+        </div>
 
-      </div>
-
-        <button
-          class="editor-card__toggle"
-          (click)="isCarrierOpen = !isCarrierOpen"
-        >
-          <img
-            [src]="isCarrierOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'"
-            alt=""
-          >
+        <button class="editor-card__toggle" (click)="isCarrierOpen = !isCarrierOpen">
+          <img [src]="isCarrierOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'">
         </button>
-
       </div>
 
       <div *ngIf="isCarrierOpen" class="editor-card__content editor-form-grid">
 
         <ng-container *ngFor="let field of carrierFields">
-
           <div *ngIf="field.group === 'carrier'" class="editor-field">
 
-            <p class="editor-field__label">
-              {{ field.label }}
-            </p>
+            <p class="editor-field__label">{{ field.label }}</p>
 
             <input
               *ngIf="field.type === 'text'"
@@ -66,122 +52,84 @@
             >
 
           </div>
-
         </ng-container>
 
       </div>
-
     </div>
 
     <!-- BLOCK 2 -->
     <div class="editor-card">
-
       <div class="editor-card__header">
-
         <div class="editor-card__title-wrapper">
-
           <div class="editor-card__icon editor-card__icon--green">
             <img src="/locationIcon.svg">
           </div>
 
-          <p class="editor-card__title">
-            Населенный пункт и параметры
-          </p>
-
+          <p class="editor-card__title">Населенный пункт и параметры</p>
         </div>
 
-        <button
-          class="editor-card__toggle"
-          (click)="isCityOpen = !isCityOpen"
-        >
-          <img
-            [src]="isCityOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'"
-            alt=""
-          >
+        <button class="editor-card__toggle" (click)="isCityOpen = !isCityOpen">
+          <img [src]="isCityOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'">
         </button>
-
       </div>
 
       <div *ngIf="isCityOpen" class="editor-card__content editor-form-grid">
 
         <ng-container *ngFor="let field of locationFields">
-
           <div *ngIf="field.group === 'location'" class="editor-field">
 
-            <p class="editor-field__label">
-              {{ field.label }}
-            </p>
+            <p class="editor-field__label">{{ field.label }}</p>
 
             <input
-              [(ngModel)]="formData[field.key]" 
+              [(ngModel)]="formData[field.key]"
               [placeholder]="field.placeholder"
             >
 
           </div>
-
         </ng-container>
 
       </div>
-
     </div>
 
     <!-- BLOCK 3 -->
     <div class="editor-card">
-
       <div class="editor-card__header">
 
         <div class="editor-card__title-wrapper">
-
           <div class="editor-card__icon editor-card__icon--purple">
             <img src="/photoIcon.svg">
           </div>
 
-          <p class="editor-card__title">
-            Логотип
-          </p>
+          <p class="editor-card__title">Логотип</p>
         </div>
 
-        <button
-          class="editor-card__toggle"
-          (click)="isLogoOpen = !isLogoOpen"
-        >
-          <img
-            [src]="isLogoOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'"
-            alt=""
-          >
+        <button class="editor-card__toggle" (click)="isLogoOpen = !isLogoOpen">
+          <img [src]="isLogoOpen ? '/arrowUpIcon.svg' : '/arrowDownIcon.svg'">
         </button>
 
       </div>
 
       <div *ngIf="isLogoOpen" class="editor-card__content editor-form-grid">
 
-        <!-- SELECT --->
-         <ng-container *ngFor="let field of logoFields">
+        <ng-container *ngFor="let field of logoFields">
+          <div
+            class="editor-field"
+            *ngIf="field.key === 'cover1' || field.key === 'cover2'"
+          >
+            <p class="editor-field__label">{{ field.label }}</p>
 
-            <div
-              class="editor-field"
-              *ngIf="field.key === 'cover1' || field.key === 'cover2'"
-            >
-              <p class="editor-field__label">
-                {{ field.label }}
-              </p>
-
-              <select
-                [(ngModel)]="formData[field.key]"
+            <select [(ngModel)]="formData[field.key]">
+              <option
+                *ngFor="let option of field.options"
+                [value]="option.value"
               >
-                <option
-                  *ngFor="let option of field.options"
-                  [value]="option.value"
-                >
-                  {{ option.label }}
-                </option>
-              </select>
-            </div>
-
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
         </ng-container>
 
-        <!-- DESIGN BUTTONS -->
-        <div class="design-buttons">
+        <div *ngIf="template.hasDesignButtons" class="design-buttons">
           <button class="design-button">
             <span class="design-button__color design-button__color--red"></span>
             Фирменный красный
@@ -194,8 +142,10 @@
         </div>
 
       </div>
-      <div class="editor-file-upload">
+
+      <div *ngIf="template.hasPhotoUpload" class="editor-file-upload">
         <p class="editor-file-upload__title">Фото</p>
+
         <input
           type="file"
           id="photoUpload"
@@ -204,10 +154,11 @@
         >
 
         <label for="photoUpload" class="editor-file-upload__icon">
-          <img src="/upLoadIcon.svg" alt="upload">
+          <img src="/upLoadIcon.svg">
         </label>
       </div>
     </div>
+
   </div>
 
   <!-- RIGHT -->
@@ -215,65 +166,81 @@
 
     <!-- BLOCK 4 -->
     <div class="editor-card">
+
       <div class="editor__header">
-        <p class="editor-card__title">
-          Предпросмотр
-        </p>
+        <p class="editor-card__title">Предпросмотр</p>
         <p class="editor-card__subtitle">Обновляется в реальном времени</p>
       </div>
-      
       <div class="editor-preview">
+        <div class="editor-export-wrapper">
+          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height" [style.transform]="'scale(' + previewScale + ')'">
 
-        <div class="editor-export">
-          <img
-            *ngIf="photoPreview"
-            [src]="photoPreview"
-            class="editor-preview__photo"
-          />
-          <img
-            [src]="template.image"
-            class="editor-preview__image"
-          >
+            <!-- ФОН -->
+            <img
+              [src]="template.image"
+              class="editor-preview__image"
+            >
 
-          <img
-            *ngIf="formData['cover1'] === 'photo1'"
-            src="/Logotip_Color 2.svg"
-            class="editor-preview__cover"
-          />
+            <!-- ФОТО (ТОЛЬКО ДЛЯ ЭТОГО ШАБЛОНА) -->
+            <img
+              *ngIf="photoPreview"
+              [src]="photoPreview"
+              class="editor-preview__photo"
+            >
 
-          <img
-            *ngIf="formData['cover2'] === 'photo2'"
-            src="/gazprom-logo-eng 2.svg"
-            class="editor-preview__cover"
-          />
+            <div class="logo-stack">
+              <!-- ПЕРВЫЙ ЛОГОТИП -->
 
-          <div
-            *ngFor="let field of template.fields"
-            class="dynamic-text"
+              <ng-container *ngFor="let logo of activeLogos; let i = index">
 
-            [style.left.px]="field.x"
-            [style.top.px]="field.y"
+                <img
+                  [src]="logo === 'photo1'
+                    ? '/Logotip_Color 2.svg'
+                    : '/gazprom-logo-eng 2.svg'"
+                  class="editor-preview__cover"
 
-            [style.fontSize.px]="field.fontSize"
-            [style.fontWeight]="field.fontWeight"
-            [style.color]="field.color"
-          >
-            <span>
-              {{ formData[field.key] }}
-            </span>
+                  [style.left.px]="getLogoPosition(i).x"
+                  [style.top.px]="getLogoPosition(i).y"
+                >
+
+              </ng-container>
+              <!-- <img
+                *ngIf="formData['cover1'] === 'photo1'"
+                src="/Logotip_Color 2.svg"
+                class="editor-preview__cover editor-preview__cover--top"
+              >
+
+              <img
+                *ngIf="formData['cover2'] === 'photo2'"
+                src="/gazprom-logo-eng 2.svg"
+                class="editor-preview__cover editor-preview__cover--bottom"
+              > -->
+
+            </div>
+
+            <!-- ТЕКСТ -->
+            <ng-container *ngFor="let field of template.fields">
+              <div
+                *ngIf="field.type === 'text'"
+                class="dynamic-text"
+                [style.left.px]="field.x"
+                [style.top.px]="field.y"
+                [style.fontSize.px]="field.fontSize"
+                [style.fontWeight]="field.fontWeight"
+                [style.color]="field.color"
+                
+              >
+                <span>{{ formData[field.key] }}</span>
+              </div>
+            </ng-container>
+
           </div>
-
         </div>
       </div>
+
       <div class="editor-preview-info">
-
-        <p class="editor-preview-info__label">
-          Носитель
-        </p>
-
-        <p class="editor-preview-info__name">
-          {{ template.name }}
-        </p>
+        <p class="editor-preview-info__label">Носитель</p>
+        <p class="editor-preview-info__name">{{ template.name }}</p>
       </div>
 
       <div class="editor-preview-info__footer">
@@ -282,43 +249,35 @@
           Выбрать другой носитель
         </button>
       </div>
+
     </div>
 
     <!-- BLOCK 5 -->
     <div class="editor-card editor-card--files">
 
-      <p class="editor-card__title">
-        Формат файла
-      </p>
+      <p class="editor-card__title">Формат файла</p>
 
       <div class="checkbox-group">
 
         <label class="checkbox-item">
-          <input type="checkbox">
-          PNG
+          <input type="checkbox"> PNG
         </label>
 
         <label class="checkbox-item">
-          <input type="checkbox">
-          PDF
+          <input type="checkbox"> PDF
         </label>
 
         <label class="checkbox-item">
-          <input type="checkbox">
-          SVG
+          <input type="checkbox"> SVG
         </label>
 
         <label class="checkbox-item">
-          <input type="checkbox">
-          JPEG
+          <input type="checkbox"> JPEG
         </label>
 
       </div>
 
-      <button
-        class="download-button"
-        (click)="downloadTemplate()"
-      >
+      <button class="download-button" (click)="downloadTemplate()">
         Скачать
       </button>
 
