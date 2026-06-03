@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RequestModalComponent } from './request-modal.component';
+
+describe('RequestModalComponent', () => {
+  let component: RequestModalComponent;
+  let fixture: ComponentFixture<RequestModalComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [RequestModalComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(RequestModalComponent);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,66 +1,8 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.header {
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: space-between;
-    &__nav {
-        display: flex;
-        padding: 4px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border-radius: 12px;
-        background-color: #F5F5F5;
-        gap: 4px;
-    }
-
-    &__button {
-        padding: 7px 15px 8px 16px;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 21px;
-        border: none;
-        border-radius: 12px;
-        background-color: #F5F5F5;
-        color: #888888;
-        cursor: pointer;
-
-
-        &--active {
-            background-color: #C40E3D;
-            border-radius: 10px;
-            color: #FFFFFF;
-        }
-    }
-
-    &__logo {
-        margin-left: 64px;
-        margin-top: 18px;
-        margin-bottom: 18px;
-    }
-
-    &__signIn {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-right: 64px;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        background-color: #C40E3D;
-        border-style: none;
-        padding: 10px 20px;
-        border-radius: 14px;
-        color: #FFFFFF;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 21px;
-    }
-}
+// :host {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1;
+// }
 
 .hero-section {
     background-color: #C40E3D;
@@ -308,11 +250,25 @@
     }
 
     &__pic {
-        margin-top: 32px;
-        margin-bottom: 32px;
-        padding: 14px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-        border-radius: 16px;
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            margin: auto;
+            box-sizing: border-box;
+
+            &--image {
+                padding: 0;
+                box-shadow: none;
+                border-radius: 0;
+                background: transparent;
+            }
+
+            &--placeholder {
+                padding: 14px;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+                border-radius: 16px;
+                background-color: #fff;
+            }
     }
 
     &__formats {
@@ -341,9 +297,10 @@
 }
 
 .hero-catalog__pic {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
+    margin: auto;
     box-sizing: border-box;
 }
 

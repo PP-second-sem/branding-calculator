@@ -1,0 +1,193 @@
+.header {
+    background-color: rgba(196, 14, 61, 1);
+    padding-top: 32px;
+    padding-bottom: 39px;
+    display: flex;
+    padding-left: 158px;
+    padding-right: 158px;
+    justify-content: space-between;
+
+    &__personal-account {
+        font-size: 13px;
+        line-height: 20px;
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    &__title {
+        font-weight: 800;
+        line-height: 36px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 24px;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        
+
+        &-main {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 1);
+            cursor: pointer;
+        }
+
+        &-exit {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(196, 14, 61, 1);
+            cursor: pointer;
+        }
+    }
+}
+
+.constructor-section {
+    margin-top: 32px;
+    padding-left: 111px;
+    padding-right: 158px;
+}
+
+.pages-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(240, 240, 240, 1);
+    box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    max-width: 430px;
+    border-radius: 16px;
+    padding: 6px;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 10px 20px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: rgba(136, 136, 136, 1);
+        cursor: pointer;
+
+        &--active {
+            background-color: rgba(196, 14, 61, 1);
+            color: rgba(255, 255, 255, 1);
+            border-radius: 12px;
+            box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__button-count {
+        font-weight: 700;
+        line-height: 17px;
+        font-size: 11px;
+        color: rgba(196, 14, 61, 1);
+        margin-left: 10px;
+    }
+}
+
+.history-catalog {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    margin-bottom: 20px;
+    &__title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        background-color: rgba(196, 14, 61, 1);
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 1);
+        padding: 7px 11px 9px 16px;
+        cursor: pointer;
+    }
+}
+
+.layout-card {
+    border: 1px solid rgba(240, 240, 240, 1);
+    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 1);
+
+    &__img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 32px;
+        padding-bottom: 32px;
+        background-color: rgba(26, 26, 46, 0.06);
+    }
+
+    &__logo {
+        background-color: rgba(26, 26, 46, 1);
+        border-radius: 14px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
+        padding: 14px;
+    }
+
+    &__content {
+        padding: 16px;
+    }
+
+    &__title {
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 600;
+    }
+
+    &__info {
+        margin-top: 4px;
+        font-size: 12px;
+        color: rgba(136, 136, 136, 1);
+    }
+
+    &__buttons {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+    }
+
+    &__button-view {
+        display: flex;
+        align-items: center;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        gap: 5px;
+        border-radius: 8px;
+        border: 1px solid rgba(240, 240, 240, 1);
+        padding-left: 70px;
+        padding-right: 67px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        color: rgba(136, 136, 136, 1);
+        cursor: pointer;
+    }
+
+    &__button-download {
+        display: flex;
+        align-items: center;
+        background-color: rgba(249, 240, 225, 1);
+        border-radius: 8px;
+        padding: 10px 12px;
+        cursor: pointer;
+    }
+}
