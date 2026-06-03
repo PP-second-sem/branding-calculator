@@ -1,0 +1,44 @@
+<div class="modal-overlay" (click)="onClose()"></div>
+
+<div class="modal">
+    <header class="modal-header">
+        <div>
+            <p class="modal-header__title">Новый запрос</p>
+            <p class="modal-header__text">Задайте вопрос или оставьте обращение администратору</p>
+        </div>
+        
+        <button (click)="onClose()" class="modal-header__button">
+            <img src="/whiteCloseIcon.svg">
+        </button>
+    </header>
+
+
+    <section class="request-section">
+        <div class="request-category">
+            <p class="request-section__text">Категория обращения</p>
+            <input class="request-category__input">
+        </div>
+
+        <div class="request-theme">
+            <p class="request-section__text">Тема обращения <span class="input-label__required">*</span></p>
+            <input placeholder="Кратко опишите суть вопроса">
+        </div>
+
+        <div class="request-message">
+            <p class="request-section__text">Сообщение <span class="input-label__required">*</span></p>
+            <textarea
+                placeholder="Подробно опишите ваш вопрос или обращение..."
+            ></textarea>
+        </div>
+
+        <div class="request-section__buttons">
+            <button class="request-send__button">
+                <img src="/msgIcon.svg">
+                Отправить запрос
+            </button>
+            <button class="request-cancel__button" (click)="onClose()">
+                Отмена
+            </button>
+        </div>
+    </section>
+</div>

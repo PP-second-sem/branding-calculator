@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, HostListener, ElementRef, inject } from '@angular/core';
+import { IFilterState } from '../../models/filter-state.model';
 
 @Component({
   selector: 'app-filter-drawer',
@@ -8,20 +9,15 @@ import { Component, Input, Output, EventEmitter, HostListener, ElementRef, injec
   styleUrl: './filter-drawer.component.scss',
 })
 export class FilterDrawer {
-  public filtersDraft: {
-    categories: string[];
-    formats: string[];
-    cities: string[];
-    colors: string[];
-  } = {
-    categories: [],
+  public filtersDraft: IFilterState = {
+    sphere: [],
     formats: [],
     cities: [],
     colors: []
   };
 
   @Input() isOpen = false;
-  @Input() categories: any[] = [];
+  @Input() categories: { label: string; value: string }[] = [];
   
   @Output() apply = new EventEmitter<any>();
   @Output() closeDrawer = new EventEmitter<void>();
@@ -52,7 +48,7 @@ export class FilterDrawer {
   }
 
   public toggleCategory(value: string): void {
-    const arr = this.filtersDraft.categories;
+    const arr = this.filtersDraft.sphere;
 
     const index = arr.indexOf(value);
 
@@ -101,10 +97,10 @@ export class FilterDrawer {
 
   public onReset(): void {
     this.filtersDraft = {
-      categories: [],
       formats: [],
       cities: [],
       colors: [],
+      sphere: []
     }
   }
 }

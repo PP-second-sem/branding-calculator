@@ -1,0 +1,81 @@
+<app-main-header></app-main-header>
+
+<section class="auth-info">
+    <div class="page-path">
+        <p class="page-path__text">Главная</p>
+        <img src="/pagePathIcon.svg">
+        <p class="page-path__text--active">Каталог брендирования</p>
+    </div>
+
+    <div class="page-aside">
+        <img src="/whiteStarIcon.svg">
+        <p class="page-aside__text">ОФИЦИАЛЬНАЯ ПЛАТФОРМА БРЕНДА</p>
+    </div>
+
+    <h1 class="page-aside__title">Каталог брендирования</h1>
+    <p class="page-aside__meta">Выберите носитель — создайте макет в фирменном стиле ЯНАО</p>
+</section>
+
+<section class="main-content">
+    <header class="main-content__header">
+        <ul class="header-list">
+            <li class="header-list__item--active">Все носители</li>
+            <li class="header-list__item">Одежда и мерч</li>
+            <li class="header-list__item">Городская среда</li>
+            <li class="header-list__item">Мероприятия</li>
+            <li class="header-list__item">Полиграфия и сувениры</li>
+        </ul>
+
+        <div class="header__input">
+            <img src="/searchIcon.svg">
+            <input placeholder="Поиск носителя..." class="header__input-field">
+        </div>
+    </header>
+
+    <div class="main-content__block">
+        <div class="main-content__aside">
+            <p class="main-content__text">Перед созданием брендового материала ознакомьтесь с руководством по использованию Мастер-бренда <a class="main-content__text--link" href="https://брендямал.рф/"> https://брендямал.рф/</a></p>
+            <p class="main-content__text">Или воспользуйтесь ботом Бренда Ямал в MAX: <a class="main-content__text--link" href="https://max.ru/yamalbrend_bot"> https://max.ru/yamalbrend_bot</a></p>
+            <div class="main-content__button-block">
+                <p class="main-content__text">Также можете задать возникшие вопросы администратору:  </p>
+                <button class="main-content__button" (click)="isModalOpen = true">Задать вопрос администратору</button>
+            </div>
+        </div>
+
+        <div class="main-content__cards">
+            <div class="main-content__card" [routerLink]="['/editor', 1]">
+                <p class="main-content__item-name">Визитка</p>
+                <div class="main-content__card--item">
+                    <p>Создать макет</p>
+                    <img src="/constructorIcon.svg">
+                </div>
+            </div>
+            <div class="main-content__card" [routerLink]="['/editor', 3]">
+                <p class="main-content__item-name">Грамота</p>
+                <div class="main-content__card--item">
+                    <p>Создать макет</p>
+                    <img src="/constructorIcon.svg">
+                </div>
+            </div>
+            <div class="main-content__card" [routerLink]="['/editor', 4]">
+                <p class="main-content__item-name">Бейдж с фото</p>
+                <div class="main-content__card--item">
+                    <p>Создать макет</p>
+                    <img src="/constructorIcon.svg">
+                </div>
+            </div>
+            <div class="main-content__card" [routerLink]="['/editor', 2]">
+                <p class="main-content__item-name">Бейдж</p>
+                <div class="main-content__card--item">
+                    <p>Создать макет</p>
+                    <img src="/constructorIcon.svg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-request-modal
+  *ngIf="isModalOpen"
+  (close)="isModalOpen = false"
+></app-request-modal>
