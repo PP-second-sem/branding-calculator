@@ -1,4 +1,5 @@
-﻿using branding_calculator.Contracts;
+﻿using branding_calculator.Contracts.Materials;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
@@ -26,7 +27,7 @@ namespace branding_calculator.Controllers
 
             var response = materials.Select(m => new MaterialResponse(
                 m.Id,
-                m.Category,
+                m.Category, 
                 m.Sphere,
                 m.Name,
                 m.Description,
@@ -112,7 +113,7 @@ namespace branding_calculator.Controllers
                 return BadRequest("File is required");
 
             // 2. Валидация файла
-            if (request.File.Length > 50 * 1024 * 1024) // 16 MB
+            if (request.File.Length > 50 * 1024 * 1024) // 50 MB
                 return BadRequest("File too large (max 50 MB)");
 
             // 3. Сохраняем файл на диск
@@ -194,8 +195,8 @@ namespace branding_calculator.Controllers
             if (request.File != null && request.File.Length > 0)
             {
                 // Валидация нового файла
-                if (request.File.Length > 16 * 1024 * 1024)
-                    return BadRequest("File too large (max 16 MB)");
+                if (request.File.Length > 50 * 1024 * 1024)
+                    return BadRequest("File too large (max 50 MB)");
 
                 // Удаляем старый файл
                 var oldFilePath = Path.Combine(existingMaterial.FilePath ?? "", existingMaterial.Name ?? "");
