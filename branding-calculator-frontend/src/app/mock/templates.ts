@@ -463,7 +463,7 @@ export const templates = [
         label: 'Фото',
         type: 'file',
         group: 'photo',
-        x: 150,
+        x: 280,
         y: 210
       }
     ]

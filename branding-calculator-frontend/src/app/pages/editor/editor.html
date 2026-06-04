@@ -204,18 +204,6 @@
                 >
 
               </ng-container>
-              <!-- <img
-                *ngIf="formData['cover1'] === 'photo1'"
-                src="/Logotip_Color 2.svg"
-                class="editor-preview__cover editor-preview__cover--top"
-              >
-
-              <img
-                *ngIf="formData['cover2'] === 'photo2'"
-                src="/gazprom-logo-eng 2.svg"
-                class="editor-preview__cover editor-preview__cover--bottom"
-              > -->
-
             </div>
 
             <!-- ТЕКСТ -->
@@ -230,7 +218,7 @@
                 [style.color]="field.color"
                 
               >
-                <span>{{ formData[field.key] }}</span>
+                <span>{{ formatFio(formData[field.key]) }}</span>
               </div>
             </ng-container>
 

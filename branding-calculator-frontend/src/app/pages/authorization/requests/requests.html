@@ -71,12 +71,12 @@
 
         <button class="requests-card__button">
 
-            <span *ngIf="question.adminRequest">
+            <span *ngIf="question.adminRequest" class="requests-card__pending--green requests-card__pending">
             Ответ получен
             </span>
 
-            <span *ngIf="!question.adminRequest">
-            Ожидает ответа
+            <span *ngIf="!question.adminRequest" class="requests-card__pending--red requests-card__pending">
+            Ожидание ответа
             </span>
 
         </button>
@@ -114,7 +114,7 @@
         <div class="user-info">
 
             <div class="user-info__green-badge">
-            <p class="user-info__green-text">А</p>
+                <p class="user-info__green-text">А</p>
             </div>
 
             <p class="user-info__text--green">

@@ -20,8 +20,11 @@ export class QuestionService {
     return this.http.get(`/api/Question/${userId}/GetUserQuestions`);
   }
 
-  answerQuestion(data: any) {
-    return this.http.patch('/api/Question/AnwserQuestion', data);
+  answerQuestion(id: number, answer: string) {
+    return this.http.patch(
+      `/api/Question/AnwserQuestion?id=${id}&answer=${answer}`,
+      {}
+    );
   }
 
   deleteQuestion(id: number) {

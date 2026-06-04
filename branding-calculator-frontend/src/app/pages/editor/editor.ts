@@ -164,4 +164,15 @@ export class Editor implements OnInit {
       ? this.template.logoPositions.first
       : this.template.logoPositions.second;
   }
+
+  formatFio(value: string): string {
+    if (!value) return '';
+
+    const parts = value.trim().split(' ').filter(Boolean);
+
+    const firstName = parts[0] || '';
+    const lastName = parts[1] || '';
+
+    return `${firstName}\n${lastName}`;
+  }
 }

@@ -1,95 +1,218 @@
 <div class="admin">
-
-  <header class="admin__header">
-    <div class="admin__header--text">
-        <div class="admin__header--subtitle">
-            <p>Панель администратора</p>
-        </div>
-
-        <h1 class="admin__header--title">Управление платформой</h1>
-    </div>
-
-    <div class="admin__header--buttons">
-        <button class="admin__header--button admin__header--button-main">
-            На главную
-        </button>
-        <button class="admin__header--button admin__header--button-exit">
-            Выйти
-        </button>
-    </div>
-  </header>
-
-  <div class="admin__menu">
-    <button (click)="activeTab='layouts'" class="admin__menu--button">
-        <img src="/greyLayoutIcon.svg"> 
-        Мои макеты
-    </button>
-    <button (click)="activeTab='questions'" class="admin__menu--button admin__header--button-active">
-        <img src="/chatIcon.svg">
-        Входящие вопросы
-    </button>
-    <button (click)="activeTab='banners'" class="admin__menu--button">
-        <img src="/greyPlusIcon.svg">
-        Добавить в каталог
-    </button>
-    <button (click)="activeTab='folder'" class="admin__menu--button">
-        <img src="/greyPlusIcon.svg">
-        Добавить логотип
-    </button>
-  </div>
-
-  <div class="admin__content">
-
-    <ng-container [ngSwitch]="activeTab">
-
-      <div *ngSwitchCase="'layouts'">
-        Мои макеты
-      </div>
-
-      <div *ngSwitchCase="'questions'">
-        Входящие вопросы
-        <h2>Входящие вопросы</h2>
-
-        <div *ngFor="let q of questions" class="question-card">
-
-
-            <h3>{{ q.title }}</h3>
-
-            <!-- вопрос пользователя -->
-            <p>{{ q.userResponse }}</p>
-
-            <small>User ID: {{ q.userid }}</small>
-
-            <!-- ответ админа -->
-            <div *ngIf="q.adminRequest">
-                <hr />
-                <b>Ответ:</b>
-                <p>{{ q.adminRequest }}</p>
+    <header class="admin__header">
+        <div class="admin__header--text">
+            <div class="admin__header--subtitle">
+                <p>Панель администратора</p>
             </div>
 
-            <!-- кнопка ответа -->
-            <div *ngIf="!q.adminRequest">
+            <h1 class="admin__header--title">Управление платформой</h1>
+        </div>
 
-                <textarea [(ngModel)]="q.tempAnswer"></textarea>
+        <div class="admin__header--buttons">
+            <button class="admin__header--button admin__header--button-main">
+                На главную
+            </button>
+            <button class="admin__header--button admin__header--button-exit">
+                Выйти
+            </button>
+        </div>
+    </header>
+    <div class="admin__menu">
+        <button (click)="activeTab='layouts'" class="admin__menu--button" [ngClass]="{'admin__menu--button-active': activeTab === 'layouts'}">
+            <img src="/greyLayoutIcon.svg"> 
+            Мои макеты
+        </button>
+        <button (click)="activeTab='questions'" class="admin__menu--button" [ngClass]="{'admin__menu--button-active': activeTab === 'questions'}">
+            <img src="/chatIcon.svg">
+            Входящие вопросы
+        </button>
+        <button (click)="activeTab='addingCatalog'" class="admin__menu--button" [ngClass]="{'admin__menu--button-active': activeTab === 'addingCatalog'}">
+            <img src="/greyPlusIcon.svg">
+            Добавить в каталог
+        </button>
+        <button (click)="activeTab='addingLogotype'" class="admin__menu--button" [ngClass]="{'admin__menu--button-active': activeTab === 'addingLogotype'}">
+            <img src="/greyPlusIcon.svg">
+            Добавить логотип
+        </button>
+    </div>
+    <div class="admin__content">
 
-                <button (click)="answerQuestion(q, q.tempAnswer)">
-                Ответить
+        <ng-container [ngSwitch]="activeTab">
+            <div *ngSwitchCase="'layouts'">
+                Мои макеты
+            </div>
+
+            <div *ngSwitchCase="'questions'">
+                Входящие вопросы
+                <h2>Входящие вопросы</h2>
+
+                <div class="question-card" *ngFor="let q of questions">
+
+                <!-- статус -->
+                    <div class="question-card__status"
+                        [ngClass]="q.adminRequest ? 'answered' : 'pending'">
+
+                        <span *ngIf="!q.adminRequest">
+                            <img src="pendingIcon.svg">
+                            Ожидает ответа
+                        </span>
+
+                        <span *ngIf="q.adminRequest">
+                        <img src="replayIcon.svg">
+                         Отвечено
+                        </span>
+
+                    </div>
+
+                <!-- тема -->
+                    <h3 class="question-card__title">
+                        {{ q.title }}
+                    </h3>
+
+                <!-- автор -->
+                    <div class="question-card__meta">
+                        От: {{ q.name }} {{ q.email }} • {{ q.createdAt | date:'short' }}
+                    </div>
+
+                    <!-- описание -->
+                    <div class="question-card__message">
+                        {{ q.userResponse }}
+                    </div>
+
+                <!-- ответ админа -->
+                    <div class="question-card__answer" *ngIf="q.adminRequest">
+                        <b>Ваш ответ:</b>
+                        <p>{{ q.adminRequest }}</p>
+                    </div>
+
+                <!-- кнопка ответить -->
+                    <button
+                        class="question-card__btn"
+                        *ngIf="!q.showAnswerInput && !q.adminRequest"
+                        (click)="q.showAnswerInput = true">
+
+                        <img src="activeChatIcon.svg">
+                        Ответить
+                    </button>
+
+                <!-- инпут ответа -->
+                    <div class="question-card__reply" *ngIf="q.showAnswerInput">
+
+                        <textarea
+                        [(ngModel)]="q.tempAnswer"
+                        placeholder="Введите ответ на вопрос пользователя...">
+                        </textarea>
+
+                        <div class="question-card__actions">
+                            <button (click)="answerQuestion(q, q.tempAnswer)" class="question-card__actions--send">
+                                <img src="/msgIcon.svg">
+                                Отправить ответ
+                            </button>
+
+                            <button (click)="q.showAnswerInput = false" class="question-card__actions--close">
+                                <img src="/closeIcon.svg">
+                                Отмена
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="catalog-form" *ngIf="activeTab === 'addingCatalog'">
+        <h2>Добавить элемент в каталог</h2>
+        <div class="form-section">
+            <div class="form-block">
+                <label>Название элемента</label>
+
+                <input
+                    type="text"
+                    placeholder="Например: Логотип горизонтальный"
+                    [(ngModel)]="catalogForm.name"
+                />
+            </div>
+
+            <div class="form-row">
+    
+    <!-- Категория -->
+                <div class="form-block">
+                    <label>Категория</label>
+
+                    <select [(ngModel)]="catalogForm.category">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    </select>
+                </div>
+
+                <!-- Тэги -->
+                <div class="form-block">
+                    <label>Тэги</label>
+
+                    <select [(ngModel)]="catalogForm.tags">
+                    <option value="id">Айдентика</option>
+                    <option value="nav">Навигация</option>
+                    <option value="docs">Документы</option>
+                    <option value="digital">Диджитал</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-block">
+                <label>Описание</label>
+
+                <textarea
+                    placeholder="Краткое описание элемента"
+                    [(ngModel)]="catalogForm.description"
+                ></textarea>
+            </div>
+
+            <div class="file-uploader">
+
+                <input
+                    type="file"
+                    id="fileUpload"
+                    (change)="onTemplateSelected($event)"
+                    hidden
+                >
+
+                <label for="fileUpload" class="file-uploader__box">
+
+                    <!-- ИКОНКА -->
+                    <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
+
+                    <!-- ТЕКСТ -->
+                    <div class="file-uploader__text">
+
+                    <p class="file-uploader__title">
+                        Перетащите файл или нажмите для выбора
+                    </p>
+
+                    <p class="file-uploader__subtitle">
+                        PDF, AI, SVG, PNG, JPG, ZIP, EPS
+                    </p>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-primary" (click)="addTemplate()">
+                    <img src="/plusIcon.svg">
+                    Добавить в каталог
+                </button>
+
+                <button class="btn-secondary" (click)="clearCatalogForm()">
+                    Очистить форму
                 </button>
             </div>
-
         </div>
-      </div>
-
-      <div *ngSwitchCase="'banners'">
-        Баннеры
-      </div>
-
-      <div *ngSwitchCase="'folder'">
-        Корпоративная папка
-      </div>
-
-    </ng-container>
-
-  </div>
-
+    </div>
 </div>
