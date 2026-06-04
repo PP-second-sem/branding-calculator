@@ -1,0 +1,81 @@
+.admin {
+
+    &__header {
+        background-color: rgba(26, 26, 26, 1);
+        padding: 32px 158px 56px 158px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &--subtitle {
+            background-color: rgba(196, 14, 61, 1);
+            border-radius: 6px;
+            padding-left: 13px;
+            padding-right: 13px;
+            font-size: 13px;
+            line-height: 20px;
+            color: rgba(255, 255, 255, 1);
+            max-width: 183px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &--title {
+            font-size: 24px;
+            line-height: 36px;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        &--buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        &--button {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 1);
+            border-radius: 12px;
+            padding: 8px 16px;
+
+            &-exit {
+                background-color: rgba(196, 14, 61, 1);
+            }
+
+            &-main {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+
+    &__menu {
+        display: flex;
+        margin: 32px 151px;
+        padding: 7px;
+        gap: 8px;
+        align-items: center;
+        max-width: 850px;
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(240, 240, 240, 1);
+        box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+
+        &--button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 12px;
+            color: rgba(136, 136, 136, 1);
+            font-size: 14px;
+            line-height: 21px;
+            padding: 13px 20px;
+
+            &-active {
+                background-color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+}

@@ -1,0 +1,95 @@
+<div class="admin">
+
+  <header class="admin__header">
+    <div class="admin__header--text">
+        <div class="admin__header--subtitle">
+            <p>Панель администратора</p>
+        </div>
+
+        <h1 class="admin__header--title">Управление платформой</h1>
+    </div>
+
+    <div class="admin__header--buttons">
+        <button class="admin__header--button admin__header--button-main">
+            На главную
+        </button>
+        <button class="admin__header--button admin__header--button-exit">
+            Выйти
+        </button>
+    </div>
+  </header>
+
+  <div class="admin__menu">
+    <button (click)="activeTab='layouts'" class="admin__menu--button">
+        <img src="/greyLayoutIcon.svg"> 
+        Мои макеты
+    </button>
+    <button (click)="activeTab='questions'" class="admin__menu--button admin__header--button-active">
+        <img src="/chatIcon.svg">
+        Входящие вопросы
+    </button>
+    <button (click)="activeTab='banners'" class="admin__menu--button">
+        <img src="/greyPlusIcon.svg">
+        Добавить в каталог
+    </button>
+    <button (click)="activeTab='folder'" class="admin__menu--button">
+        <img src="/greyPlusIcon.svg">
+        Добавить логотип
+    </button>
+  </div>
+
+  <div class="admin__content">
+
+    <ng-container [ngSwitch]="activeTab">
+
+      <div *ngSwitchCase="'layouts'">
+        Мои макеты
+      </div>
+
+      <div *ngSwitchCase="'questions'">
+        Входящие вопросы
+        <h2>Входящие вопросы</h2>
+
+        <div *ngFor="let q of questions" class="question-card">
+
+
+            <h3>{{ q.title }}</h3>
+
+            <!-- вопрос пользователя -->
+            <p>{{ q.userResponse }}</p>
+
+            <small>User ID: {{ q.userid }}</small>
+
+            <!-- ответ админа -->
+            <div *ngIf="q.adminRequest">
+                <hr />
+                <b>Ответ:</b>
+                <p>{{ q.adminRequest }}</p>
+            </div>
+
+            <!-- кнопка ответа -->
+            <div *ngIf="!q.adminRequest">
+
+                <textarea [(ngModel)]="q.tempAnswer"></textarea>
+
+                <button (click)="answerQuestion(q, q.tempAnswer)">
+                Ответить
+                </button>
+            </div>
+
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'banners'">
+        Баннеры
+      </div>
+
+      <div *ngSwitchCase="'folder'">
+        Корпоративная папка
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</div>

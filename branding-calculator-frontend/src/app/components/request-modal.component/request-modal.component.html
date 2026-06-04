@@ -21,18 +21,19 @@
 
         <div class="request-theme">
             <p class="request-section__text">Тема обращения <span class="input-label__required">*</span></p>
-            <input placeholder="Кратко опишите суть вопроса">
+            <input placeholder="Кратко опишите суть вопроса" [(ngModel)]="title">
         </div>
 
         <div class="request-message">
-            <p class="request-section__text">Сообщение <span class="input-label__required">*</span></p>
+            <p class="request-section__text" >Сообщение <span class="input-label__required">*</span></p>
             <textarea
                 placeholder="Подробно опишите ваш вопрос или обращение..."
+                [(ngModel)]="message"
             ></textarea>
         </div>
 
         <div class="request-section__buttons">
-            <button class="request-send__button">
+            <button class="request-send__button" (click)="send()">
                 <img src="/msgIcon.svg">
                 Отправить запрос
             </button>

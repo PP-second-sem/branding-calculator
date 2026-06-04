@@ -1,54 +1,102 @@
 <div class="login-modal">
-    <header class="login-modal__topbar">
-        <img src="/logo.svg" class="login-modal__logo" />
+  <header class="login-modal__topbar">
+    <img src="/logo.svg" class="login-modal__logo" />
 
-        <a routerLink="/" class="login-modal__button" (click)="onClose()">
-            ← На главную
-        </a>
-    </header>
-    <div class="login-modal__overlay" (click)="onClose()"></div>
+    <a routerLink="/" class="login-modal__button" (click)="onClose()">
+      ← На главную
+    </a>
+  </header>
 
-    <div class="login-modal__content">
+  <div class="login-modal__overlay" (click)="onClose()"></div>
 
-        <div class="login-modal__header">
-            <p class="login-modal__text">Вход в систему</p>
+  <div class="login-modal__content">
 
-            <h2 class="login-modal__title">
-            Конструктор бренда Ямал
-            </h2>
-        </div>
+    <div class="login-modal__header">
+      <p class="login-modal__text">
+        {{ mode === 'login' ? 'Вход в систему' : 'Регистрация' }}
+      </p>
 
-        <div class="login-modal__main-section">
-            <div class="login-modal__inputs">
-                <div class="login-modal__field">
-                    <span class="login-modal__input-title">Email</span>
-                    <input
-                        type="email"
-                        placeholder="user@yanao.ru"
-                        [(ngModel)]="email"
-                    />
-                </div>
-
-                <div class="login-modal__field">
-                    <span class="login-modal__input-title">Пароль</span>
-                    <input
-                        type="password"
-                        placeholder="••••••••"
-                        [(ngModel)]="password"
-                    />
-                </div>
-            </div>
-
-            <button
-                class="login-modal__submit"
-                (click)="onSubmit()"
-                >
-                Войти
-            </button>
-        </div>
-
-        <div class="login-modal__rules">
-            <p class="login-modal__rules-text">Вы должны войти, чтобы пользоваться конструктором.</p>
-        </div>
+      <h2 class="login-modal__title">
+        Конструктор бренда Ямал
+      </h2>
     </div>
+
+    <div class="login-modal__main-section">
+
+      <!-- LOGIN -->
+      <div class="login-modal__inputs" *ngIf="mode === 'login'">
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Email</span>
+          <input type="email" placeholder="user@yanao.ru" [(ngModel)]="email" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Пароль</span>
+          <input type="password" placeholder="••••••••" [(ngModel)]="password" />
+        </div>
+
+      </div>
+
+      <!-- REGISTER -->
+      <div class="login-modal__inputs" *ngIf="mode === 'register'">
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Фамилия</span>
+          <input type="text" [(ngModel)]="registerData.lastName" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Имя</span>
+          <input type="text" [(ngModel)]="registerData.firstName" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Отчество</span>
+          <input type="text" [(ngModel)]="registerData.middleName" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Телефон</span>
+          <input type="text" [(ngModel)]="registerData.phoneNumber" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Организация</span>
+          <input type="text" [(ngModel)]="registerData.organization" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Email</span>
+          <input type="email" [(ngModel)]="registerData.email" />
+        </div>
+
+        <div class="login-modal__field">
+          <span class="login-modal__input-title">Пароль</span>
+          <input type="password" [(ngModel)]="registerData.password" />
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+      <button class="login-modal__submit" (click)="onSubmit()">
+        {{ mode === 'login' ? 'Войти' : 'Зарегистрироваться' }}
+      </button>
+
+      <!-- SWITCH -->
+      <button class="login-modal__switch login-modal__submit" (click)="switchMode()">
+        {{ mode === 'login'
+          ? 'Зарегистрироваться'
+          : 'Войти'
+        }}
+      </button>
+
+    </div>
+
+    <div class="login-modal__rules">
+      <p class="login-modal__rules-text">
+        Вы должны войти, чтобы пользоваться конструктором.
+      </p>
+    </div>
+
+  </div>
 </div>

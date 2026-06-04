@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Catalog } from './pages/catalog/catalog';
 import { MainPage } from './pages/main-page/main-page';
 import { authGuard } from './guards/auth.guards';
+import { AdminPage } from './pages/admin/admin-page/admin-page';
 export const routes: Routes = [
     {
         path: '',
@@ -25,12 +26,12 @@ export const routes: Routes = [
             import('./pages/authorization/requests/requests')
             .then(m => m.Requests)
     },
-    {
-        path: 'login',
-        loadComponent: () =>
-            import('./components/login-modal.component/login-modal.component')
-            .then(m => m.LoginModalComponent)
-    },
+    // {
+    //     path: 'login',
+    //     loadComponent: () =>
+    //         import('./components/login-modal.component/login-modal.component')
+    //         .then(m => m.LoginModalComponent)
+    // },
     {
         path: 'branding-catalog',
         canActivate: [authGuard],
@@ -43,5 +44,9 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./pages/editor/editor')
             .then(m => m.Editor)
+    },
+    {
+        path: 'admin',
+        component: AdminPage
     }
 ];

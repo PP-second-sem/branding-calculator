@@ -1,8 +1,11 @@
 .login-modal {
   position: fixed;
   inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
-
+  padding-top: 90px;
   &__header {
     display: flex;
     flex-direction: column;
@@ -29,20 +32,26 @@
   }
 
   &__overlay {
-    position: absolute;
+    position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.5);
     background-color: rgba(249, 240, 225, 1);
   }
 
   &__content {
-    position: relative;
-    z-index: 2;
-    width: 400px;
-    margin: 120px auto;
-    background: white;
-    border-radius: 24px;
-    padding-bottom: 37px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  width: 400px;
+  margin: 120px auto;
+  background: white;
+  border-radius: 24px;
+  padding-bottom: 37px;
+  max-height: 90vh;   /* важно */
+  overflow-y: auto;   /* вот это ключ */
+  }
+  &__content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari и Opera */
   }
 
   &__main-section {
