@@ -52,3 +52,12 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
+Так же в папке проекта помимо файлов .Net должны находится 2 директории со следующим содержимым:
+yamalBrand
+    ├── Data
+    │   └── UserLayouts
+    └── Uploads
+        ├── Logos
+        └── Materials
+Для каждой папке и файлов  должен быть назначен владелец www-data с правами 755(rwxr-xr-x)
+
