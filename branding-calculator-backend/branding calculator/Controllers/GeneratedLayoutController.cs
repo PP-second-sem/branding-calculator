@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using System.Security.Claims;
 using System.Text;
 using Yamal.Application;
-using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-using Yamal.DataAccess;
-using Yamal.DataAccess.Entites;
+
 
 namespace branding_calculator.Controllers
 {
@@ -27,10 +23,6 @@ namespace branding_calculator.Controllers
             _service = service;
             _env = env;
         }
-
- 
-
-
 
         // ==================== 🗄️ МЕТОДЫ РАБОТЫ С БД (оставляем без изменений) ====================
 

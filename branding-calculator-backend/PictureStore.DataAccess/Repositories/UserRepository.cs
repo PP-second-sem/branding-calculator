@@ -16,9 +16,25 @@ namespace Yamal.DataAccess.Repositories
 
         public async Task<int> Create(User entity)
         {
+
+            var normalEmail = entity.Email.Trim().ToLower();
+
+            var exist = await _context.Users
+                .AnyAsync(u => u.Email == normalEmail);
+
+            if (exist)
+            {
+                throw new ArgumentException("Пользователь с таким email уже есть");
+            }
+            //89129989827
+            if (!(entity.PhoneNumber.Length == 11 || entity.PhoneNumber.Length == 12) && (!"87".Contains(entity.PhoneNumber[0])))
+            {
+                throw new ArgumentException("Укажите верный номер телефона");
+            }
+
             var user = new UserEntity()
             {
-                Email = entity.Email,
+                Email = normalEmail,
                 PasswordHash = entity.PasswordHash,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
@@ -28,13 +44,22 @@ namespace Yamal.DataAccess.Repositories
                 Role = entity.Role.ToString(),
                 IsActive = entity.IsActive,
             };
+            
 
             await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new InvalidOperationException("Не удалось создать пользователя");
+            }
 
             return user.Id;
         }
 
+        //89129989827
         public async Task<int> Delete(int id)
         {
             await _context.Users
@@ -53,7 +78,7 @@ namespace Yamal.DataAccess.Repositories
                 .ToListAsync();
         }
 
-        public async Task<User> GetByEmail(string email)
+        public async Task<User?> GetByEmail(string email)
         {
             return await _context.Users
                 .AsNoTracking()
@@ -64,7 +89,7 @@ namespace Yamal.DataAccess.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<User?> GetById(int id)
         {
             return await _context.Users
                .AsNoTracking()

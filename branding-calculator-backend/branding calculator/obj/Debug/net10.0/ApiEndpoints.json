@@ -780,32 +780,6 @@
   },
   {
     "ContainingType": "branding_calculator.Controllers.QuestionController",
-    "Method": "GetUserQuestions",
-    "RelativePath": "api/Question/{userId}/GetUserQuestions",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.Questions.QuestionResponse, branding-calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "branding_calculator.Controllers.QuestionController",
     "Method": "CreateAnswer",
     "RelativePath": "api/Question/AnwserQuestion",
     "HttpMethod": "PATCH",
@@ -872,6 +846,26 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.Questions.QuestionResponse, branding-calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "branding_calculator.Controllers.QuestionController",
+    "Method": "GetUserQuestions",
+    "RelativePath": "api/Question/GetUserQuestions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[branding_calculator.Contracts.Questions.UserQuestionResponse, branding-calculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

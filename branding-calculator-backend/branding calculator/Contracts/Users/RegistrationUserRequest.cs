@@ -1,4 +1,5 @@
-﻿using Yamal.Core.Abstractions;
+﻿using System.ComponentModel.DataAnnotations;
+using Yamal.Core.Abstractions;
 
 namespace branding_calculator.Contracts.Users
 {
@@ -18,11 +19,14 @@ namespace branding_calculator.Contracts.Users
             IsActive = isActive;
         }
 
+
+        [EmailAddress(ErrorMessage ="Некоректный формат email")]
         public string Email { get; } = string.Empty;
         public string Password { get; } = string.Empty;
         public string FirstName { get; } = string.Empty;
         public string LastName { get; } = string.Empty;
         public string? MiddleName { get; } = string.Empty;
+        [Phone(ErrorMessage = "Некоретные данные о телефоне")] 
         public string PhoneNumber { get; } = string.Empty;
         public string? Organization { get; } = string.Empty;
         public bool IsActive { get; }

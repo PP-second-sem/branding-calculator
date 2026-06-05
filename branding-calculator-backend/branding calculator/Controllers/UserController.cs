@@ -1,7 +1,6 @@
 ﻿using branding_calculator.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Yamal.Application;
 using Yamal.Core.Abstractions;
 
@@ -68,6 +67,8 @@ namespace branding_calculator.Controllers
             var userId = await _usersService.CreateUser(user);
             return Ok(new { id = userId, message = "User registered successfully" });
         }
+
+        //нужно доавить ответ если пороль или логин не правильный
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserRequest request)

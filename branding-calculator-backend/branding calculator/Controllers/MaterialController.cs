@@ -1,5 +1,4 @@
 ﻿using branding_calculator.Contracts.Materials;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;

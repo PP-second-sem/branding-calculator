@@ -14,11 +14,12 @@ namespace branding_calculator.Controllers
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionServices _services;
-        private readonly IUsersServices _userService;
+        private readonly IUsersServices _users;
 
-        public QuestionController(IQuestionServices services, IUsersServices userService) {
-            _userService = userService;
+        public QuestionController(IQuestionServices services, IUsersServices users)
+        {
             _services = services;
+            _users = users;
         }
 
         [HttpGet("GetAll")]
@@ -55,15 +56,19 @@ namespace branding_calculator.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{userId:int}/GetUserQuestions")]
-        public async Task<ActionResult<List<QuestionResponse>>> GetUserQuestions(int userId)
+        [HttpGet("GetUserQuestions")]
+        public async Task<ActionResult<List<UserQuestionResponse>>> GetUserQuestions()
         {
 
+            var userId = GetUserIdFromToken();
+            var userInfo = await _users.GetUserById(userId);
             var userQuestions = await _services.GetUserQuestions(userId);
             if (userQuestions == null) return NotFound("The user has no questions");
-            var response = userQuestions.Select(q => new QuestionResponse(
+            var response = userQuestions.Select(q => new UserQuestionResponse(
                 q.Id,
                 q.UserId,
+                userInfo.Email,
+                userInfo.FirstName,
                 q.Title,
                 q.UserQuestion,
                 q.AdminResponse,
@@ -73,6 +78,7 @@ namespace branding_calculator.Controllers
             return response.ToList();
 
         }
+
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<int>> DeleteQuestion(int id)
@@ -119,9 +125,9 @@ namespace branding_calculator.Controllers
 
         private int GetUserIdFromToken()
         {
-            var userIdClaim = User.FindFirst("userId") ??      // Ваш кастомный claim
-                              User.FindFirst(ClaimTypes.NameIdentifier) ??  // Стандартный
-                              User.FindFirst("sub");           // Стандартный OpenID Connect
+            var userIdClaim = User.FindFirst("userId") ??      
+                              User.FindFirst(ClaimTypes.NameIdentifier) ??  
+                              User.FindFirst("sub");           
 
             if (userIdClaim == null)
                 throw new UnauthorizedAccessException("Токен не содержит userId");

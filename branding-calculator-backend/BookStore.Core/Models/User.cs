@@ -42,10 +42,21 @@ namespace Yamal.Core.Models
         {
             var error = string.Empty;
 
-            if (email is null || passwordHash is null)
+            if (string.IsNullOrWhiteSpace(email))
             {
-                error = "Email or password can't be null";
+                return (null, "Email не может быть пустым");
             }
+
+            try
+            {
+                var mailAddress = new System.Net.Mail.MailAddress(email);
+            }
+            catch (FormatException)
+            {
+                return (null, "Некорректный формат email адреса");
+            }
+
+            var normalizedEmail = email.Trim().ToLower();
 
             var user = new User(id, email, passwordHash,
                 firstName, lastName, middleNmae,

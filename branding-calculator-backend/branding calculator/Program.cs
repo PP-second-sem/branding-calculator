@@ -31,12 +31,16 @@ namespace branding_calculator
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c => c.UseInlineDefinitionsForEnums());
 
+            // ограничение на формы 50 мб
+
             builder.Services.Configure<FormOptions>(options =>
             {
                 options.ValueLengthLimit = int.MaxValue;
                 options.MultipartBodyLengthLimit = 50 * 1024 * 1024; // 50 MB
                 options.MemoryBufferThreshold = int.MaxValue;
             });
+            
+            // ограничение не сервер 50мб
 
             builder.WebHost.ConfigureKestrel(serverOptions =>
             {
@@ -46,11 +50,26 @@ namespace branding_calculator
             builder.Services.AddDbContext<YamalDbContext>(options =>
             {
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                var absolutePath = Path.Combine(AppContext.BaseDirectory, connectionString);
-                var dbFolder = Path.GetDirectoryName(absolutePath);
 
-                options.UseSqlite(connectionString);
+                // 🔥 Если путь относительный — делаем его абсолютным
+                if (!Path.IsPathRooted(connectionString) && !connectionString.StartsWith("Data Source="))
+                {
+                    // Парсим путь из строки подключения
+                    var dbPath = connectionString.Replace("Data Source=", "").Trim();
+                    var absoluteDbPath = Path.Combine(AppContext.BaseDirectory, dbPath);
+                    var finalConnectionString = $"Data Source={absoluteDbPath};Foreign Keys=True;";
+                    options.UseSqlite(finalConnectionString);
+                }
+                else
+                {
+                    // Если путь уже абсолютный — просто добавляем Foreign Keys
+                    if (!connectionString.Contains("Foreign Keys"))
+                        connectionString += ";Foreign Keys=True;";
+                    options.UseSqlite(connectionString);
+                }
             });
+
+            // регистрация сервисов и репозиториев
 
             builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
             builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
@@ -91,7 +110,7 @@ namespace branding_calculator
 
             app.MapGet("/", () => Results.Redirect("swagger"));
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
