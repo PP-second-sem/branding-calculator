@@ -36,7 +36,7 @@ server {
 ```
 
 Так же существует сервис для запуска проекта. в нашем случае папка проекта называется "yamalBrand", а сервис лежит по пути /etc/systemd/system/yamal.service :
-
+```
 [Unit]
 Description=Yamal Brand constructor ex. calculator
 
@@ -50,4 +50,5 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 
 [Install]
 WantedBy=multi-user.target
+```
 
