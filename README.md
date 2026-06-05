@@ -14,7 +14,9 @@
 ### Deploy
 Для деплоя нам понадобиться опубликовать файлы приложения. 
 после чего на сервер(VPS/VDS) в созданную папку проекта необходимо загрузить все файлы
-настройки nginx 
+
+настройки nginx:
+```
 server {
     server_name yamal.snaaas.ru;
 
@@ -31,6 +33,7 @@ server {
         proxy_set_header   X-Forwarded-Proto $scheme;
     }
 }
+```
 
 Так же существует сервис для запуска проекта. в нашем случае папка проекта называется "yamalBrand", а сервис лежит по пути /etc/systemd/system/yamal.service :
 
