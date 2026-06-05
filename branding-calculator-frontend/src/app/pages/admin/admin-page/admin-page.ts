@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { QuestionService } from '../../../services/question-service/question-service';
 import { FormsModule } from '@angular/forms';
 import { MaterialService } from '../../../services/material-service/material.service';
+import { LogoService } from '../../../services/logo-service/logo-service';
 
 @Component({
   selector: 'app-admin-page',
@@ -16,7 +17,14 @@ export class AdminPage implements OnInit {
 
   private questionService: QuestionService = inject(QuestionService);
   private materialService: MaterialService = inject(MaterialService);
+  private logoService: LogoService = inject(LogoService);
+  logoForm = {
+    name: '',
+    isActive: true,
+    sortOrder: 0
+  };
 
+  selectedLogoFile: File | null = null;
   questions: any[] = [];
 
   ngOnInit() {
@@ -86,5 +94,40 @@ export class AdminPage implements OnInit {
           this.clearCatalogForm();
         }
       });
+  }
+
+  onLogoSelected(event: any) {
+    this.selectedLogoFile = event.target.files[0];
+  }
+
+  clearLogoForm() {
+    this.logoForm = {
+      name: '',
+      isActive: true,
+      sortOrder: 0
+    };
+
+    this.selectedLogoFile = null;
+  }
+
+  addLogo() {
+    if (!this.selectedLogoFile) return;
+
+    const formData = new FormData();
+
+    formData.append('Name', this.logoForm.name);
+    formData.append('IsActive', String(this.logoForm.isActive));
+    formData.append('SortOrder', String(this.logoForm.sortOrder));
+    formData.append('File', this.selectedLogoFile);
+
+    this.logoService.add(formData).subscribe({
+      next: () => {
+        this.clearLogoForm();
+        console.log('Логотип добавлен');
+      },
+      error: (err) => {
+        console.error('Ошибка загрузки логотипа', err);
+      }
+    });
   }
 }

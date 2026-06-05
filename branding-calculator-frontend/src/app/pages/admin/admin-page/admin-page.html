@@ -215,4 +215,72 @@
             </div>
         </div>
     </div>
+    <div class="catalog-form" *ngIf="activeTab === 'addingLogotype'">
+
+    <h2>Добавить элемент в каталог</h2>
+
+    <div class="form-section">
+
+        <!-- НАЗВАНИЕ -->
+        <div class="form-block">
+        <label>Название элемента</label>
+
+        <input
+            type="text"
+            placeholder="Например: Логотип горизонтальный"
+            [(ngModel)]="logoForm.name"
+        />
+        </div>
+
+        <!-- ФАЙЛ -->
+        <div class="form-block">
+        <label>Файл элемента</label>
+
+        <div class="file-uploader">
+
+            <input
+            type="file"
+            id="logoFile"
+            (change)="onLogoSelected($event)"
+            hidden
+            >
+
+            <label for="logoFile" class="file-uploader__box">
+
+            <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
+
+            <div class="file-uploader__text">
+
+                <p class="file-uploader__title">
+                Перетащите файл или нажмите для выбора
+                </p>
+
+                <p class="file-uploader__subtitle">
+                SVG, PNG, JPG
+                </p>
+
+            </div>
+
+            </label>
+
+        </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="form-actions">
+
+        <button class="btn-primary" (click)="addLogo()">
+            <img src="/plusIcon.svg">
+            Добавить в каталог
+        </button>
+
+        <button class="btn-secondary" (click)="clearLogoForm()">
+            Сбросить форму
+        </button>
+
+        </div>
+
+    </div>
+
+    </div>
 </div>
