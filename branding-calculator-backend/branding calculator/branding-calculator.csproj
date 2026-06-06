@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yamal.Core\Yamal.Core.csproj" />
-    <ProjectReference Include="..\Yamal.DataAccess\Yamal.DataAccess.csproj" />
+    <ProjectReference Include="..\BookStore.Core\Yamal.Core.csproj" />
+    <ProjectReference Include="..\PictureStore.DataAccess\Yamal.DataAccess.csproj" />
     <ProjectReference Include="..\Yamal.Application\Yamal.Application.csproj" />
     <ProjectReference Include="..\YamalBrand.Infrastructure\YamalBrand.Infrastructure.csproj" />
   </ItemGroup>

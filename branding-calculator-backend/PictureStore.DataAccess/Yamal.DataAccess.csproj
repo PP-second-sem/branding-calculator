@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Yamal.Core\Yamal.Core.csproj" />
+    <ProjectReference Include="..\BookStore.Core\Yamal.Core.csproj" />
   </ItemGroup>
 
 </Project>
