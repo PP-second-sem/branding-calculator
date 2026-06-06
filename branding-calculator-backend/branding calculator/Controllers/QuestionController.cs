@@ -1,8 +1,9 @@
 ﻿using branding_calculator.Contracts.Questions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 using System.Security.Claims;
-using Yamal.Application;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
 
@@ -55,9 +56,20 @@ namespace branding_calculator.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{userId:int}/GetUserQuestions")]
-        public async Task<ActionResult<List<QuestionResponse>>> GetUserQuestions(int userId)
+        
+        [HttpGet("GetUserQuestions")]
+        public async Task<ActionResult<List<QuestionResponse>>> GetUserQuestions()
         {
+            int userId;
+            try
+            {
+                userId = GetUserIdFromToken();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
 
             var userQuestions = await _services.GetUserQuestions(userId);
             if (userQuestions == null) return NotFound("The user has no questions");

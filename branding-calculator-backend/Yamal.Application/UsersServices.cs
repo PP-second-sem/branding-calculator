@@ -1,6 +1,5 @@
-﻿using Yamal.Core.Models;
-using Yamal.DataAccess.Repositories;
-using YamalBrand.Infrastructure;
+﻿using Yamal.Core.Abstractions;
+using Yamal.Core.Models;
 
 namespace Yamal.Application
 {

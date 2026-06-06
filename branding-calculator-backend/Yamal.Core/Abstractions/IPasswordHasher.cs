@@ -1,4 +1,4 @@
-﻿namespace YamalBrand.Infrastructure
+﻿namespace Yamal.Core.Abstractions
 {
     public interface IPasswordHasher
     {

@@ -1,7 +1,7 @@
 ﻿using Yamal.Core.Models;
 
 
-namespace YamalBrand.Infrastructure
+namespace Yamal.Core.Abstractions
 {
     public interface IJwtProvider
     {
