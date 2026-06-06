@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Yamal.Application\Yamal.Application.csproj" />
     <ProjectReference Include="..\Yamal.Core\Yamal.Core.csproj" />
     <ProjectReference Include="..\Yamal.DataAccess\Yamal.DataAccess.csproj" />
     <ProjectReference Include="..\Yamal.Infrastructure\YamalBrand.Infrastructure.csproj" />

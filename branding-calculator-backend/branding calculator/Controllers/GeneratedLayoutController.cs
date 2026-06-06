@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using System.Security.Claims;
 using System.Text;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-using Yamal.DataAccess;
-using Yamal.DataAccess.Entites;
+using branding_calculator.Contracts.Layouts;
 
 namespace branding_calculator.Controllers
 {
@@ -26,10 +23,6 @@ namespace branding_calculator.Controllers
             _service = service;
             _env = env;
         }
-
- 
-
-
 
         // ==================== 🗄️ МЕТОДЫ РАБОТЫ С БД (оставляем без изменений) ====================
 
@@ -310,35 +303,5 @@ namespace branding_calculator.Controllers
             }
         }
 
-
-    }
-
-
-    public class LayoutSaveRequest
-    {
-        /// <summary>
-        /// ID типа носителя (FK → CarrierTypes.id)
-        /// </summary>
-        public int CarrierTypeId { get; set; }
-
-        /// <summary>
-        /// JSON с параметрами генерации (сохраняется как есть, без валидации)
-        /// </summary>
-        public string? JsonContent { get; set; }
-
-        /// <summary>
-        /// Файлы для упаковки в ZIP
-        /// </summary>
-        public List<IFormFile> Files { get; set; } = new();
-    }
-
-    public class UserLayoutInfoDto
-    {
-        public string Guid { get; set; } = string.Empty;
-        public string ZipFileName { get; set; } = string.Empty;
-        public string JsonFileName { get; set; } = string.Empty;
-        public bool JsonExists { get; set; }
-        public long FileSizeBytes { get; set; }
-        public DateTime CreatedAtUtc { get; set; }
     }
 }

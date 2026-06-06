@@ -58,7 +58,7 @@ namespace branding_calculator.Controllers
 
         
         [HttpGet("GetUserQuestions")]
-        public async Task<ActionResult<List<QuestionResponse>>> GetUserQuestions()
+        public async Task<ActionResult<List<UserQuestionResponse>>> GetUserQuestions()
         {
             int userId;
             try
@@ -70,12 +70,14 @@ namespace branding_calculator.Controllers
                 return BadRequest(ex.Message);
             }
 
-
+            var userInfo = await _userService.GetUserById(userId);
             var userQuestions = await _services.GetUserQuestions(userId);
             if (userQuestions == null) return NotFound("The user has no questions");
-            var response = userQuestions.Select(q => new QuestionResponse(
+            var response = userQuestions.Select(q => new UserQuestionResponse(
                 q.Id,
-                q.UserId,
+                userId,
+                userInfo.Email,
+                userInfo.FirstName,
                 q.Title,
                 q.UserQuestion,
                 q.AdminResponse,
