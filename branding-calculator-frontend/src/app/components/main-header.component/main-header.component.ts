@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoginModalComponent } from '../login-modal.component/login-modal.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -11,7 +11,12 @@ import { AuthService } from '../../services/auth-service/auth.service';
 })
 export class MainHeaderComponent {
   public authService: AuthService = inject(AuthService);
+  private router = inject(Router);
   public isLoginModalOpen = false;
+
+  ngOnInit() {
+    this.authService.loadUserFromStorage();
+  }
 
   public openLoginModal(): void {
     this.isLoginModalOpen = true;
@@ -19,5 +24,9 @@ export class MainHeaderComponent {
 
   public closeLoginModal(): void {
     this.isLoginModalOpen = false;
+  }
+
+  goToProfile() {
+    this.router.navigate(['/constructor/layouts']);
   }
 }

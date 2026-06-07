@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FilterDrawer } from '../../components/filter-drawer.component/filter-drawer.component';
 import { CardModalComponent } from '../../components/card-modal.component/card-modal.component';
@@ -9,6 +9,7 @@ import { IMaterial } from '../../models/material.model';
 import { IFilterState } from '../../models/filter-state.model';
 import { SPHERE_CLASS_MAP } from '../../utils/sphere-map';
 import { CardsService } from '../../services/cards-service.service';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-catalog',
@@ -28,7 +29,9 @@ export class Catalog {
   public selectedCard: IMaterial | null = null;
   public cards: IMaterial[] = [];
   public isOpen = false;
+  public authService: AuthService = inject(AuthService);
   private materialsService = inject(CardsService);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   public getImageUrl = this.materialsService.getMaterialImageUrl.bind(this.materialsService);
 
   // 🔥 ЕДИНСТВЕННЫЙ источник фильтров
@@ -53,6 +56,24 @@ export class Catalog {
     { label: 'Диджитал', value: 'digital', color: 'swamp' }
   ];
 
+  deleteCard(id: number, event: MouseEvent) {
+
+    event.stopPropagation();
+
+    if (!confirm('Удалить макет?')) {
+      return;
+    }
+
+    this.materialsService.deleteMaterial(id)
+      .subscribe({
+        next: () => {
+          this.cards =
+            this.cards.filter(x => x.id !== id);
+        },
+        error: err => console.error(err)
+      });
+  }
+
   public openCard(card: IMaterial) {
     this.selectedCard = card;
   }
@@ -73,7 +94,10 @@ export class Catalog {
   ngOnInit(): void {
     this.materialsService.getMaterials().subscribe({
       next: (data) => {
+        // console.log('DATA:', data)
         this.cards = data;
+        // console.log('AFTER SET', this.cards.length)
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Ошибка загрузки материалов:', err);

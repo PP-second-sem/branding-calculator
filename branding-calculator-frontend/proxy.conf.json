@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://91.201.54.116",
+    "target": "https://yamal.snaaas.ru",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

@@ -209,7 +209,7 @@
             <!-- ТЕКСТ -->
             <ng-container *ngFor="let field of template.fields">
               <div
-                *ngIf="field.type === 'text'"
+                *ngIf="field.type === 'text' && field.visibleInPreview"
                 class="dynamic-text"
                 [style.left.px]="field.x"
                 [style.top.px]="field.y"
@@ -218,7 +218,10 @@
                 [style.color]="field.color"
                 
               >
-                <span>{{ formatFio(formData[field.key]) }}</span>
+                <span>{{ field.formatAsFio
+                  ? formatFio(formData[field.key])
+                  : formData[field.key] }}
+                </span>
               </div>
             </ng-container>
 
@@ -248,24 +251,44 @@
       <div class="checkbox-group">
 
         <label class="checkbox-item">
-          <input type="checkbox"> PNG
+          <input
+            type="radio"
+            name="format"
+            value="png"
+            [(ngModel)]="selectedFormat">
+          PNG
         </label>
 
         <label class="checkbox-item">
-          <input type="checkbox"> PDF
+          <input
+            type="radio"
+            name="format"
+            value="pdf"
+            [(ngModel)]="selectedFormat">
+          PDF
         </label>
 
         <label class="checkbox-item">
-          <input type="checkbox"> SVG
+          <input
+            type="radio"
+            name="format"
+            value="svg"
+            [(ngModel)]="selectedFormat">
+          SVG
         </label>
 
         <label class="checkbox-item">
-          <input type="checkbox"> JPEG
+          <input
+            type="radio"
+            name="format"
+            value="jpeg"
+            [(ngModel)]="selectedFormat">
+          JPEG
         </label>
 
       </div>
 
-      <button class="download-button" (click)="downloadTemplate()">
+      <button class="download-button" (click)="handleDownload()">
         Скачать
       </button>
 

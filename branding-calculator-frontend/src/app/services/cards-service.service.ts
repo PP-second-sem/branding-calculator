@@ -16,4 +16,8 @@ export class CardsService {
   getMaterialImageUrl(id: number): string {
     return `/api/Material/${id}/download`;
   }
+
+  deleteMaterial(id: number) {
+    return this.http.delete(`/api/Material/${id}`);
+  }
 }

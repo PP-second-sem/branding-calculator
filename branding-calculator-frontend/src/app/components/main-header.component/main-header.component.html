@@ -1,26 +1,54 @@
 <header class="header">
     <img src="/logo.svg" class="header__logo">
+
     <nav class="header__navbar">
         <ul class="header__menu">
-            <li class="header__menu-item" routerLink="/" routerLinkActive="header__menu-item--active" [routerLinkActiveOptions]="{ exact: true }">Библиотека</li>
-            <li class="header__menu-item" routerLink="/branding-catalog" routerLinkActive="header__menu-item--active">Брендирование</li>
+            <li class="header__menu-item"
+                routerLink="/"
+                routerLinkActive="header__menu-item--active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                Библиотека
+            </li>
+
+            <li class="header__menu-item"
+                routerLink="/branding-catalog"
+                routerLinkActive="header__menu-item--active">
+                Брендирование
+            </li>
         </ul>
     </nav>
-    
-    @if (authService.currentUser()) {
 
-    <div class="header__user">
-        {{ authService.currentUser()?.name }}
-    </div>
+    <div class="header__right">
 
-    } @else {
+        <!-- 👤 ПЛАШКА ПРОФИЛЯ (ТОЛЬКО ЕСЛИ АВТОРИЗОВАН) -->
+        @if (authService.currentUser()) {
+            <div class="header__profile" (click)="goToProfile()">
 
-        <button class="header__button" (click)="openLoginModal()">
+                <div class="header__avatar">
+                    <img src="userIcon.svg">
+                </div>
+
+                <div class="header__profile-name">
+                    {{ authService.currentUser().firstName }}
+                    {{ authService.currentUser().lastName }}
+                </div>
+
+            </div>
+        }
+
+        <!-- 🔴 КНОПКА ВХОДА (ВСЕГДА ЕСТЬ) -->
+        <button
+            class="header__button"
+            [class.header__button--auth]="authService.currentUser()"
+            (click)="authService.currentUser() ? goToProfile() : openLoginModal()"
+        >
             <img src="/signIn.svg">
-            <span>Войти</span>
+            <span>
+                Войти
+            </span>
         </button>
 
-    }
+    </div>
 </header>
 
 <app-login-modal

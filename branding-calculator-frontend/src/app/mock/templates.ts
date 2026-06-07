@@ -29,7 +29,8 @@ export const templates = [
         label: 'Организация',
         type: 'text',
         group: 'carrier',
-        placeholder: 'ЯНАО, Правительство ЯНАО...'
+        placeholder: 'ЯНАО, Правительство ЯНАО...',
+        visibleInPreview: false
       },
       {
         key: 'fullName',
@@ -42,6 +43,8 @@ export const templates = [
         y: 150,
         fontSize: 19,
         fontWeight: 800,
+        visibleInPreview: true,
+        formatAsFio: true
       },
       {
         key: 'position',
@@ -52,7 +55,9 @@ export const templates = [
 
         x: 345,
         y: 195,
-        fontSize: 8
+        fontSize: 8,
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'phone',
@@ -64,7 +69,9 @@ export const templates = [
         x: 345,
         y: 250,
         fontSize: 7,
-        fontWeight: 500
+        fontWeight: 500,
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'email',
@@ -76,28 +83,33 @@ export const templates = [
         x: 345,
         y: 290,
         fontSize: 7,
-        color: '#C40E3D'
+        color: '#C40E3D',
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'address',
         label: 'Адрес',
         type: 'text',
         group: 'carrier',
-        placeholder: 'Салехард, ул. Матросова, 1'
+        placeholder: 'Салехард, ул. Матросова, 1',
+        visibleInPreview: false,
       },
       {
         key: 'city',
         label: 'Населённый пункт',
         type: 'text',
         group: 'location',
-        placeholder: 'г. Салехард'
+        placeholder: 'г. Салехард',
+        visibleInPreview: false
       },
       {
         key: 'date',
         label: 'Дата',
         type: 'text',
         group: 'location',
-        placeholder: '24 апреля 2025'
+        placeholder: '24 апреля 2025',
+        visibleInPreview: false
       },
       {
         key: 'cover1',
@@ -108,7 +120,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover2',
@@ -119,7 +133,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       }
     ]
   },
@@ -156,6 +172,7 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Форум молодёжи Ямала',
+        visibleInPreview: false
       },
       {
         key: 'field1',
@@ -167,7 +184,9 @@ export const templates = [
         x: 200,
         y: 200,
         fontSize: 16,
-        fontWeight: 600
+        fontWeight: 600,
+        visibleInPreview: true,
+        formatAsFio: true
       },
       {
         key: 'field2',
@@ -175,7 +194,8 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Должность',
-
+        visibleInPreview: true,
+        formatAsFio: false,
         x: 140,
         y: 360,
         fontSize: 14,
@@ -188,11 +208,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: 'г. Салехард',
+        formatAsFio: false,
 
         x: 65,
         y: 385,
         fontSize: 10,
-        color: 'rgba(255, 255, 255, 1)'
+        color: 'rgba(255, 255, 255, 1)',
+        visibleInPreview: true
       },
       {
         key: 'date',
@@ -204,7 +226,9 @@ export const templates = [
         x: 205,
         y: 385,
         fontSize: 10,
-        color: 'rgba(255, 255, 255, 1)'
+        color: 'rgba(255, 255, 255, 1)',
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover1',
@@ -215,7 +239,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover2',
@@ -226,7 +252,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       }
     ]
   },
@@ -265,7 +293,9 @@ export const templates = [
         y: 100,
         fontSize: 14,
         fontWeight: 500,
-        color: 'rgba(29, 29, 27, 1)'
+        color: 'rgba(29, 29, 27, 1)',
+        visibleInPreview: true,
+        formatAsFio: true
       },
 
       {
@@ -279,7 +309,9 @@ export const templates = [
         y: 255,
         fontSize: 8,
         fontWeight: 600,
-        color: 'rgba(208, 16, 57, 1)'
+        color: 'rgba(208, 16, 57, 1)',
+        visibleInPreview: true,
+        formatAsFio: false
       },
 
       {
@@ -288,11 +320,13 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Директор департамента',
+        formatAsFio: false,
 
         x: 110,
         y: 265,
         fontSize: 8,
-        fontWeight: 400
+        fontWeight: 400,
+        visibleInPreview: true
       },
 
       {
@@ -300,12 +334,14 @@ export const templates = [
         label: 'Наименование учреждения',
         type: 'text',
         group: 'carrier',
+        formatAsFio: false,
         placeholder: 'Министерство развития...',
 
         x: 110,
         y: 275,
         fontSize: 8,
-        fontWeight: 400
+        fontWeight: 400,
+        visibleInPreview: true
       },
       {
         key: 'city',
@@ -313,11 +349,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: 'г. Салехард',
+        formatAsFio: false,
 
         x: 140,
         y: 345,
         fontSize: 8,
-        color: 'rgba(208, 16, 57, 1)'
+        color: 'rgba(208, 16, 57, 1)',
+        visibleInPreview: true
       },
 
       {
@@ -326,11 +364,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: '24 апреля 2025',
+        formatAsFio: false,
 
         x: 130,
         y: 330,
         fontSize: 8,
-        color: 'rgba(208, 16, 57, 1)'
+        color: 'rgba(208, 16, 57, 1)',
+        visibleInPreview: true
       },
       {
         key: 'cover1',
@@ -341,7 +381,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover2',
@@ -351,8 +393,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
-        ]
+          { label: 'Газпром', value: 'photo2' },
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       }
     ]
   },
@@ -386,6 +430,7 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Форум молодёжи',
+        visibleInPreview: false
       },
       {
         key: 'fullName',
@@ -393,6 +438,8 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Иванов Иван',
+        visibleInPreview: true,
+        formatAsFio: true,
 
         x: 140,
         y: 80,
@@ -406,6 +453,8 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Менеджер',
+        visibleInPreview: true,
+        formatAsFio: false,
 
         x: 55,
         y: 350,
@@ -418,6 +467,8 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: 'г. Салехард',
+        visibleInPreview: true,
+        formatAsFio: false,
 
         x: 55,
         y: 380,
@@ -430,11 +481,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: '24 апреля 2025',
+        formatAsFio: false,
 
         x: 55,
         y: 390,
         fontSize: 10,
-        color: 'rgba(0, 0, 0, 1)'
+        color: 'rgba(0, 0, 0, 1)',
+        visibleInPreview: true
       },
       {
         key: 'cover1',
@@ -445,7 +498,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false,
       },
       {
         key: 'cover2',
@@ -456,14 +511,16 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false,
       },
       {
         key: 'photo',
         label: 'Фото',
         type: 'file',
         group: 'photo',
-        x: 280,
+        x: 20,
         y: 210
       }
     ]

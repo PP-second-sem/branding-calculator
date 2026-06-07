@@ -1,52 +1,97 @@
-:host {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+
+  &__logo {
+    margin-left: 64px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+
+    &-item {
+      cursor: pointer;
+      color: #888;
+
+      &--active {
+        color: #1A1A1A;
+      }
+    }
+  }
+
+  /* 🔥 ВОТ ЭТО ДОБАВЬ */
+  &__right {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background-color: #FFFFFF;
+    gap: 12px;
 
-    &__logo {
-        margin-left: 64px;
-        margin-top: 18px;
-        margin-bottom: 18px;
-    }
-    &__menu {
-        display: flex;
-        gap: 32px;
-        margin: 0;
-        padding: 0;
-        &-item {
-            cursor: pointer;
-            color: #888888;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 21px;
-            &--active {
-                color: #1A1A1A;
-            }
-        } 
-    }
+    margin-right: 64px;
+  }
 
-    &__button {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-right: 64px;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        background-color: #C40E3D;
-        border-style: none;
-        padding: 10px 20px;
-        border-radius: 14px;
-        color: #FFFFFF;
-        font-weight: 600;
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 20px;
+    border-radius: 14px;
+
+    background: #C40E3D;
+    color: #fff;
+
+    border: none;
+    cursor: pointer;
+
+    font-weight: 600;
+  }
+
+  &__button--auth {
+    background: rgba(249, 240, 225, 1);
+    color: #000;
+  }
+
+  /* ПЛАШКА ПРОФИЛЯ */
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #eee;
+    border-radius: 999px;
+
+    cursor: pointer;
+    white-space: nowrap; /* 🔥 чтобы имя не ломалось */
+
+    &-name {
+        font-weight: 500;
         font-size: 14px;
         line-height: 21px;
-        cursor: pointer;
+
     }
+  }
+
+  /* КРАСНЫЙ КРУГ */
+  &__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(252, 234, 238, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
 }

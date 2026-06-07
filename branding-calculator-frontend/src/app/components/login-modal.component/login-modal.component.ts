@@ -47,17 +47,23 @@ export class LoginModalComponent {
       }
 
       this.authService.login(this.email, this.password).subscribe({
-        next: () => {
+        next: (res: any) => {
+
+          // если backend возвращает token — сохраняем
+          if (res?.token) {
+            localStorage.setItem('token', res.token);
+          }
 
           this.authService.getUserByEmail(this.email)
             .subscribe((user: any) => {
 
-              this.authService.setSession(user);
+              this.authService.setSession({
+                ...user,
+                token: res?.token
+              });
 
-              // ❗ ВАЖНО: закрыть модалку
               this.onClose();
 
-              // redirect по роли
               if (user.role === 'Admin') {
                 this.router.navigate(['/admin']);
               } else {
@@ -68,9 +74,6 @@ export class LoginModalComponent {
         },
         error: (err) => console.error(err)
       });
-
-    } else {
-      this.onRegister();
     }
   }
 
@@ -80,37 +83,34 @@ export class LoginModalComponent {
       ...this.registerData,
       isActive: true
     }).subscribe({
-
       next: () => {
 
         this.authService.login(
           this.registerData.email,
           this.registerData.password
         ).subscribe({
+          next: (res: any) => {
 
-          next: () => {
+            if (res?.token) {
+              localStorage.setItem('token', res.token);
+            }
 
             this.authService.getUserByEmail(
               this.registerData.email
             ).subscribe((user: any) => {
 
-              console.log('REGISTER USER:', user);
-
-              this.authService.setSession(user);
+              this.authService.setSession({
+                ...user,
+                token: res?.token
+              });
 
               this.router.navigate(['/branding-catalog']);
             });
-          },
-
-          error: (err) => {
-            console.error('AUTO LOGIN ERROR:', err);
           }
         });
-      },
 
-      error: (err) => {
-        console.error('REGISTER ERROR:', err);
-      }
+      },
+      error: (err) => console.error('REGISTER ERROR:', err)
     });
   }
 }

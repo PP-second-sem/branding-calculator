@@ -16,6 +16,7 @@ export class Requests {
   public authService: AuthService = inject(AuthService);
   public questionService: QuestionService = inject(QuestionService);
   public questions: any[] = [];
+  public layouts: any[] = [];
   ngOnInit() {
     console.log('USER', this.authService.currentUser());
 
@@ -32,5 +33,21 @@ export class Requests {
 
   public closeModal() {
     this.isModalOpen = false;
+  }
+
+  get totalLayouts(): number {
+    return this.layouts.length;
+  }
+
+  get approvedLayouts(): number {
+    return this.layouts.filter(l => l.status === 'Approved').length;
+  }
+
+  get pendingLayouts(): number {
+    return this.layouts.filter(l => l.status === 'Pending').length;
+  }
+
+  get totalRequests(): number {
+    return this.questions.length;
   }
 }

@@ -112,6 +112,13 @@
             *ngFor="let card of filteredCards"
             (click)="openCard(card)"
         >
+            <button
+                *ngIf="authService.currentUser()?.role === 'Admin'"
+                class="hero-catalog__delete"
+                (click)="deleteCard(card.id, $event)"
+            >
+                <img src="/closeIcon.svg">
+            </button>
             <div class="hero-catalog__cover">
                 <img 
                     *ngIf="isImage(card); else placeholder"
