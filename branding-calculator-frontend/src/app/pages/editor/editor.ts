@@ -31,7 +31,6 @@ export class Editor implements OnInit {
   public isFormatOpen = true;
   public template: any;
   public formData: any = {};
-  public scale = 324 / 640;
   public http: HttpClient = inject(HttpClient);
   public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
 
@@ -64,10 +63,6 @@ export class Editor implements OnInit {
       : '/placeholder.svg';
   }
 
-  // get activeLogos() {
-  //   return this.logos.filter(l => l.isActive);
-  // }
-
   onPhotoSelected(event: any): void {
     const file = event.target.files[0];
 
@@ -92,205 +87,55 @@ export class Editor implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  // public downloadTemplate(): void {
-  //   const wrapper = document.querySelector(
-  //     '.editor-export-wrapper'
-  //   ) as HTMLElement;
+  getLogoSize(logo: string) {
 
-  //   wrapper.style.transform = 'none';
+    return this.template.logoSizes?.[logo];
+  }
 
-  //   const element = document.querySelector(
-  //     '.editor-export'
-  //   ) as HTMLElement;
-
-  //   html2canvas(element, {
-  //     scale: 4,
-  //     useCORS: true,
-  //     backgroundColor: null
-  //   }).then(canvas => {
-  //     wrapper.style.transform = 'scale(0.50625)';
-
-  //     const link = document.createElement('a');
-  //     link.download = 'template.png';
-  //     link.href = canvas.toDataURL('image/png');
-  //     link.click();
-  //   });
-  // }
   public handleDownload(): void {
 
     const wrapper = document.querySelector(
       '.editor-export-wrapper'
     ) as HTMLElement;
 
-    wrapper.style.transform = 'none';
-
     const element = document.querySelector(
       '.editor-export'
     ) as HTMLElement;
 
+    const exportScale = this.getExportScale();
+
     html2canvas(element, {
-      scale: 4,
+      scale: exportScale,
       useCORS: true,
       backgroundColor: null
     }).then(canvas => {
 
-      wrapper.style.transform = 'scale(0.50625)';
+      const link = document.createElement('a');
+      link.download = `template.${this.selectedFormat}`;
 
-      switch (this.selectedFormat) {
-
-        case 'png':
-
-          canvas.toBlob((blob) => {
-
-            if (!blob) return;
-
-            const file = new File(
-              [blob],
-              'template.png',
-              { type: 'image/png' }
-            );
-
-            this.saveLayout(file);
-
-            const link = document.createElement('a');
-            link.download = 'template.png';
-            link.href = URL.createObjectURL(blob);
-            link.click();
-
-          }, 'image/png');
-
-          break;
-
-        case 'jpeg':
-
-          canvas.toBlob((blob) => {
-
-            if (!blob) return;
-
-            const file = new File(
-              [blob],
-              'template.jpg',
-              { type: 'image/jpeg' }
-            );
-
-            this.saveLayout(file);
-
-            const link = document.createElement('a');
-            link.download = 'template.jpg';
-            link.href = URL.createObjectURL(blob);
-            link.click();
-
-          }, 'image/jpeg', 0.95);
-
-          break;
-
-        case 'pdf':
-
-          const pdf = new jsPDF({
-            orientation: canvas.width > canvas.height
-              ? 'landscape'
-              : 'portrait',
-            unit: 'px',
-            format: [canvas.width, canvas.height]
-          });
-
-          pdf.addImage(
-            canvas.toDataURL('image/png'),
-            'PNG',
-            0,
-            0,
-            canvas.width,
-            canvas.height
-          );
-
-          const pdfBlob = pdf.output('blob');
-
-          const pdfFile = new File(
-            [pdfBlob],
-            'template.pdf',
-            { type: 'application/pdf' }
-          );
-
-          this.saveLayout(pdfFile);
-
-          pdf.save('template.pdf');
-
-          break;
-
-        // case 'svg': {
-        //   try {
-        //     const width = this.template?.width || 640;
-        //     const height = this.template?.height || 480;
-
-        //     // Функция защиты от XSS инъекций в XML
-        //     const escapeXml = (unsafe: string): string => {
-        //       return unsafe.replace(/[<>&'"]/g, (c) => {
-        //         switch (c) {
-        //           case '<': return '&lt;';
-        //           case '>': return '&gt;';
-        //           case '&': return '&amp;';
-        //           case '\'': return '&apos;';
-        //           case '"': return '&quot;';
-        //           default: return c;
-        //         }
-        //       });
-        //     };
-
-        //     const fields = this.template?.fields || [];
-        //     const texts = fields
-        //       .filter((f: any) => 
-        //         f.type === 'text' && 
-        //         f.x !== undefined && 
-        //         f.y !== undefined
-        //       )
-        //       .map((f: any) => {
-        //         const rawValue = this.formData[f.key] ?? '';
-        //         const lines = String(rawValue).split('\n');
-                
-        //         // Корректный перенос строк для ФИО
-        //         const tspans = lines
-        //           .map((line, index) => {
-        //             const escapedLine = escapeXml(line);
-        //             return `<tspan x="${f.x}" ${index > 0 ? `dy="1.2em"` : ''}>${escapedLine}</tspan>`;
-        //           })
-        //           .join('');
-
-        //         // Строка без лишних пробелов форматирования JS
-        //         return `<text x="${f.x}" y="${f.y}" font-size="${f.fontSize || 12}" font-weight="${f.fontWeight || 400}" fill="${f.color || '#000'}" font-family="Arial, sans-serif">${tspans}</text>`;
-        //       })
-        //       .join('');
-
-        //     // Сборка финального SVG в одну строку (критично для XML парсеров) + белая подложка rect
-        //     const svgContent = `<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="100%" height="100%" fill="#ffffff"/>${texts}</svg>`.trim();
-
-        //     const blob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' });
-
-        //     // 1. Сразу отдаем файл пользователю на скачивание
-        //     const url = URL.createObjectURL(blob);
-        //     const link = document.createElement('a');
-        //     link.href = url;
-        //     link.download = 'template.svg';
-        //     link.click();
-            
-        //     setTimeout(() => URL.revokeObjectURL(url), 150);
-
-        //     // 2. Изолированно отправляем на бэкенд (если упадет — скачивание не сломается)
-        //     try {
-        //       const svgFile = new File([blob], 'template.svg', { type: 'image/svg+xml' });
-        //       this.saveLayout(svgFile);
-        //     } catch (saveError) {
-        //       console.error('Ошибка сохранения SVG на сервере:', saveError);
-        //     }
-
-        //   } catch (err) {
-        //     console.error('Критическая ошибка генерации SVG:', err);
-        //   }
-          
-        //   break;
-        // }
+      if (this.selectedFormat === 'png') {
+        canvas.toBlob(blob => {
+          if (!blob) return;
+          link.href = URL.createObjectURL(blob);
+          link.click();
+        }, 'image/png');
       }
-    });
 
+      if (this.selectedFormat === 'jpeg') {
+        canvas.toBlob(blob => {
+          if (!blob) return;
+          link.href = URL.createObjectURL(blob);
+          link.click();
+        }, 'image/jpeg', 0.95);
+      }
+
+    });
+  }
+
+  getExportScale(): number {
+    if (!this.template?.exportSize) return 1;
+
+    return this.template.exportSize.width / this.template.width;
   }
 
   setTemplate(template: any) {
@@ -330,18 +175,6 @@ export class Editor implements OnInit {
     return this.template?.fields?.filter((f: any) => f.group === 'logo') || [];
   }
 
-  get previewScale(): number {
-    if (!this.template) return 1;
-
-    const maxWidth = 324;
-    const maxHeight = 180;
-
-    return Math.min(
-      maxWidth / this.template.width,
-      maxHeight / this.template.height
-    );
-  }
-
   get hasTwoLogos(): boolean {
     return this.formData?.cover1 && this.formData?.cover1 !== 'none'
         && this.formData?.cover2 && this.formData?.cover2 !== 'none';
@@ -361,26 +194,78 @@ export class Editor implements OnInit {
     return logos;
   }
 
-  getLogoPosition(index: number) {
-    if (this.activeLogos.length === 1) {
-      return this.template.logoPositions.single;
-    }
+  getExportSize() {
+    switch (this.template.id) {
+      case 1:
+        return { w: 1150, h: 591 };
 
-    return index === 0
-      ? this.template.logoPositions.first
-      : this.template.logoPositions.second;
+      case 2:
+        return { w: 709, h: 1063 };
+
+      case 3:
+        return { w: 2480, h: 3508 };
+
+      default:
+        return { w: this.template.width, h: this.template.height };
+    }
   }
 
-  formatFio(value: string): string {
-    if (!value) return '';
+  getLogoSrc(logo: string): string {
+    return this.template?.logos?.[logo] ?? '';
+  }
+
+  getLogoPosition(index: number, logo: string) {
+    let position;
+
+    if (this.activeLogos.length === 1) {
+      position = this.template.logoPositions.single;
+    } else {
+      position = index === 0 
+        ? this.template.logoPositions.first 
+        : this.template.logoPositions.second;
+    }
+
+    // Получаем размеры конкретного логотипа из мока
+    const size = this.getLogoSize(logo);
+
+    return {
+      x: position.x,
+      // Сдвигаем Y вверх на половину высоты логотипа.
+      // Теперь y: 280 будет центром логотипа, а не его верхом.
+      y: position.y - (size.height / 2)
+    };
+  }
+
+  formatFio(value: string, templateId?: number) {
+    if (!value) return { line1: '', line2: '' };
 
     const parts = value.trim().split(' ').filter(Boolean);
 
-    const firstName = parts[0] || '';
-    const lastName = parts[1] || '';
+    const lastName = parts[0] || '';
+    const firstName = parts[1] || '';
+    const middleName = parts[2] || '';
 
-    return `${firstName}\n${lastName}`;
+    if (templateId === 1) {
+      return {
+        line1: `${lastName}`,
+        line2: `${firstName}`
+      };
+    }
+
+    if (templateId === 3) {
+      return {
+        line1: `${lastName} ${firstName}`,
+        line2: `${middleName}`
+      };
+    }
+
+    return {
+      line1: value,
+      line2: ''
+    };
   }
+
+
 
   saveLayout(file: File) {
 
@@ -408,9 +293,4 @@ export class Editor implements OnInit {
         error: err => console.error('SAVE ERROR:', err)
       });
   }
-
-  // handleDownload() {
-  //   this.saveLayout();
-  //   this.downloadTemplate();
-  // }
 }

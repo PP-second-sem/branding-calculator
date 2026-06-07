@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { RequestModalComponent } from '../../../components/request-modal.component/request-modal.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth-service/auth.service';
@@ -14,9 +14,11 @@ import { QuestionService } from '../../../services/question-service/question-ser
 export class Requests {
   isModalOpen = false;
   public authService: AuthService = inject(AuthService);
+  public router: Router = inject(Router)
   public questionService: QuestionService = inject(QuestionService);
   public questions: any[] = [];
   public layouts: any[] = [];
+  public cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   ngOnInit() {
     console.log('USER', this.authService.currentUser());
 
@@ -24,7 +26,16 @@ export class Requests {
 
     this.questionService.getUserQuestions(userId).subscribe((res: any) => {
       this.questions = res;
+      this.cdr.detectChanges();
     });
+  }
+
+  public logout() {
+    this.authService.logout();
+  }
+
+  get currentUser() {
+    return this.authService.currentUser()
   }
   
   public openRequestModal() {
@@ -49,5 +60,9 @@ export class Requests {
 
   get totalRequests(): number {
     return this.questions.length;
+  }
+
+  public goHome() {
+    this.router.navigateByUrl('/')
   }
 }

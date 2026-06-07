@@ -19,10 +19,8 @@
 
 <div class="editor">
 
-  <!-- LEFT -->
   <div class="editor-left">
 
-    <!-- BLOCK 1 -->
     <div class="editor-card">
       <div class="editor-card__header">
         <div class="editor-card__title-wrapper">
@@ -57,7 +55,6 @@
       </div>
     </div>
 
-    <!-- BLOCK 2 -->
     <div class="editor-card">
       <div class="editor-card__header">
         <div class="editor-card__title-wrapper">
@@ -91,7 +88,6 @@
       </div>
     </div>
 
-    <!-- BLOCK 3 -->
     <div class="editor-card">
       <div class="editor-card__header">
 
@@ -161,10 +157,8 @@
 
   </div>
 
-  <!-- RIGHT -->
   <div class="editor-right">
 
-    <!-- BLOCK 4 -->
     <div class="editor-card">
 
       <div class="editor__header">
@@ -173,15 +167,13 @@
       </div>
       <div class="editor-preview">
         <div class="editor-export-wrapper">
-          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height" [style.transform]="'scale(' + previewScale + ')'">
+          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height">
 
-            <!-- ФОН -->
             <img
               [src]="template.image"
               class="editor-preview__image"
             >
 
-            <!-- ФОТО (ТОЛЬКО ДЛЯ ЭТОГО ШАБЛОНА) -->
             <img
               *ngIf="photoPreview"
               [src]="photoPreview"
@@ -189,24 +181,20 @@
             >
 
             <div class="logo-stack">
-              <!-- ПЕРВЫЙ ЛОГОТИП -->
-
               <ng-container *ngFor="let logo of activeLogos; let i = index">
 
                 <img
-                  [src]="logo === 'photo1'
-                    ? '/Logotip_Color 2.svg'
-                    : '/gazprom-logo-eng 2.svg'"
+                  [src]="getLogoSrc(logo)"
                   class="editor-preview__cover"
-
-                  [style.left.px]="getLogoPosition(i).x"
-                  [style.top.px]="getLogoPosition(i).y"
+                  [style.left.px]="getLogoPosition(i, logo).x"
+                  [style.top.px]="getLogoPosition(i, logo).y"
+                  [style.width.px]="getLogoSize(logo).width"
+                  [style.height.px]="getLogoSize(logo).height"
                 >
 
               </ng-container>
             </div>
 
-            <!-- ТЕКСТ -->
             <ng-container *ngFor="let field of template.fields">
               <div
                 *ngIf="field.type === 'text' && field.visibleInPreview"
@@ -216,15 +204,27 @@
                 [style.fontSize.px]="field.fontSize"
                 [style.fontWeight]="field.fontWeight"
                 [style.color]="field.color"
-                
               >
-                <span>{{ field.formatAsFio
-                  ? formatFio(formData[field.key])
-                  : formData[field.key] }}
-                </span>
+                
+                <ng-container *ngIf="field.formatAsFio; else normalText">
+                  <div class="fio-text" [class.fio-text--gramota]="template.id === 3">
+                    <div class="fio-line fio-line--top">
+                      {{ formatFio(formData[field.key], template.id).line1 }}
+                    </div>
+
+                    <div class="fio-line fio-line--bottom">
+                      {{ formatFio(formData[field.key], template.id).line2 }}
+                    </div>
+                  </div>
+
+                </ng-container>
+
+                <ng-template #normalText>
+                  {{ formData[field.key] }}
+                </ng-template>
+
               </div>
             </ng-container>
-
           </div>
         </div>
       </div>
@@ -243,7 +243,6 @@
 
     </div>
 
-    <!-- BLOCK 5 -->
     <div class="editor-card editor-card--files">
 
       <p class="editor-card__title">Формат файла</p>

@@ -47,11 +47,11 @@
   background: white;
   border-radius: 24px;
   padding-bottom: 37px;
-  max-height: 90vh;   /* важно */
-  overflow-y: auto;   /* вот это ключ */
+  max-height: 90vh;
+  overflow-y: auto;
   }
   &__content::-webkit-scrollbar {
-    display: none; /* Chrome, Safari и Opera */
+    display: none;
   }
 
   &__main-section {

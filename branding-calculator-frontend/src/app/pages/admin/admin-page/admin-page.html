@@ -47,8 +47,6 @@
                 <h2>Входящие вопросы</h2>
 
                 <div class="question-card" *ngFor="let q of questions">
-
-                <!-- статус -->
                     <div class="question-card__status"
                         [ngClass]="q.adminRequest ? 'answered' : 'pending'">
 
@@ -63,29 +61,22 @@
                         </span>
 
                     </div>
-
-                <!-- тема -->
                     <h3 class="question-card__title">
                         {{ q.title }}
                     </h3>
-
-                <!-- автор -->
                     <div class="question-card__meta">
                         От: {{ q.name }} {{ q.email }} • {{ q.createdAt | date:'short' }}
                     </div>
 
-                    <!-- описание -->
                     <div class="question-card__message">
                         {{ q.userResponse }}
                     </div>
 
-                <!-- ответ админа -->
                     <div class="question-card__answer" *ngIf="q.adminRequest">
                         <b>Ваш ответ:</b>
                         <p>{{ q.adminRequest }}</p>
                     </div>
 
-                <!-- кнопка ответить -->
                     <button
                         class="question-card__btn"
                         *ngIf="!q.showAnswerInput && !q.adminRequest"
@@ -95,7 +86,6 @@
                         Ответить
                     </button>
 
-                <!-- инпут ответа -->
                     <div class="question-card__reply" *ngIf="q.showAnswerInput">
 
                         <textarea
@@ -136,8 +126,6 @@
             </div>
 
             <div class="form-row">
-    
-    <!-- Категория -->
                 <div class="form-block">
                     <label>Категория</label>
 
@@ -149,7 +137,6 @@
                     </select>
                 </div>
 
-                <!-- Тэги -->
                 <div class="form-block">
                     <label>Тэги</label>
 
@@ -183,10 +170,8 @@
 
                 <label for="fileUpload" class="file-uploader__box">
 
-                    <!-- ИКОНКА -->
                     <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
 
-                    <!-- ТЕКСТ -->
                     <div class="file-uploader__text">
 
                     <p class="file-uploader__title">
@@ -220,8 +205,6 @@
     <h2>Добавить элемент в каталог</h2>
 
     <div class="form-section">
-
-        <!-- НАЗВАНИЕ -->
         <div class="form-block">
         <label>Название элемента</label>
 
@@ -265,8 +248,6 @@
 
         </div>
         </div>
-
-        <!-- ACTIONS -->
         <div class="form-actions">
 
         <button class="btn-primary" (click)="addLogo()">

@@ -4,8 +4,8 @@
         <h1 class="header__title">Добро пожаловать, {{ currentUser.firstName }} {{ currentUser.lastName }}</h1>
     </div>
     <div class="header__buttons">
-        <button class="header__buttons-main">На главную</button>
-        <button class="header__buttons-exit">Выйти</button>
+        <button class="header__buttons-main" (click)="goHome()">На главную</button>
+        <button class="header__buttons-exit" (click)="logout()">Выйти</button>
     </div>
 </header>
 
@@ -19,7 +19,6 @@
         <button class="pages-switcher__button" routerLink="/constructor/requests">
             <img src="/chatIcon.svg">
             Запросы к администратору
-            <span class="pages-switcher__button-count">1</span>
         </button>
     </div>
     

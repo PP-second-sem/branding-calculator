@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { tap } from 'rxjs';
 export class AuthService {
 
   public currentUser = signal<any | null>(null);
-
+  public router: Router = inject(Router);
   private baseUrl = '/api/User';
 
   private http: HttpClient = inject(HttpClient);
@@ -42,11 +43,13 @@ export class AuthService {
     return this.currentUser()?.role === 'Admin';
   }
 
-  logout(): void {
-    this.currentUser.set(null);
-
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+  logout() {
+    return this.http.post('/api/User/logout', {}, {
+      withCredentials: true
+    }).subscribe(() => {
+      this.currentUser.set(null);
+      this.router.navigate(['/']);
+    });
   }
 
   isLoggedIn(): boolean {

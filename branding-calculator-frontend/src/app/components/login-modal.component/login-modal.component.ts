@@ -48,8 +48,6 @@ export class LoginModalComponent {
 
       this.authService.login(this.email, this.password).subscribe({
         next: (res: any) => {
-
-          // если backend возвращает token — сохраняем
           if (res?.token) {
             localStorage.setItem('token', res.token);
           }

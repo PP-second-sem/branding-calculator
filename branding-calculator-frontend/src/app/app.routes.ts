@@ -26,12 +26,6 @@ export const routes: Routes = [
             import('./pages/authorization/requests/requests')
             .then(m => m.Requests)
     },
-    // {
-    //     path: 'login',
-    //     loadComponent: () =>
-    //         import('./components/login-modal.component/login-modal.component')
-    //         .then(m => m.LoginModalComponent)
-    // },
     {
         path: 'branding-catalog',
         canActivate: [authGuard],
@@ -47,6 +41,7 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
+        canActivate: [authGuard],
         component: AdminPage
     }
 ];

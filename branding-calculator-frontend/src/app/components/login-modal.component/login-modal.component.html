@@ -23,7 +23,6 @@
 
     <div class="login-modal__main-section">
 
-      <!-- LOGIN -->
       <div class="login-modal__inputs" *ngIf="mode === 'login'">
 
         <div class="login-modal__field">
@@ -37,8 +36,6 @@
         </div>
 
       </div>
-
-      <!-- REGISTER -->
       <div class="login-modal__inputs" *ngIf="mode === 'register'">
         <div class="login-modal__field">
           <span class="login-modal__input-title">Фамилия</span>
@@ -77,12 +74,10 @@
 
       </div>
 
-      <!-- BUTTON -->
       <button class="login-modal__submit" (click)="onSubmit()">
         {{ mode === 'login' ? 'Войти' : 'Зарегистрироваться' }}
       </button>
 
-      <!-- SWITCH -->
       <button class="login-modal__switch login-modal__submit" (click)="switchMode()">
         {{ mode === 'login'
           ? 'Зарегистрироваться'

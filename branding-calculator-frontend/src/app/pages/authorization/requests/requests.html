@@ -2,11 +2,11 @@
     <div class="header-info">
         <div class="header__text-block">
             <p class="header__personal-account">Личный кабинет</p>
-            <h1 class="header__title">Добро пожаловать, Иван Петров!</h1>
+            <h1 class="header__title">Добро пожаловать, {{currentUser.firstName }} {{ currentUser.lastName }}</h1>
         </div>
         <div class="header__buttons">
-            <button class="header__buttons-main">На главную</button>
-            <button class="header__buttons-exit">Выйти</button>
+            <button class="header__buttons-main" (click)="goHome()">На главную</button>
+            <button class="header__buttons-exit" (click)="logout()">Выйти</button>
         </div>
     </div>
 </header>
@@ -20,9 +20,6 @@
         <button class="pages-switcher__button pages-switcher__button--active" routerLink="/constructor/requests">
             <img src="/activeChatIcon.svg">
             Запросы к администратору
-            <div class="pages-switcher__badge">
-                <span class="pages-switcher__button-count"></span>
-            </div>
         </button>
     </div>
 

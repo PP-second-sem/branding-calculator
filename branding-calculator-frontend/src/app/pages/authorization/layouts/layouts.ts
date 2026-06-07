@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { forkJoin, map, switchMap } from 'rxjs';
 import { GeneratedService } from '../../../services/generated-service/generated.service';
@@ -17,13 +17,22 @@ export class Layouts {
   private http: HttpClient = inject(HttpClient)
   layouts: any[] = [];
   private authService = inject(AuthService);
+  public router: Router = inject(Router);
+  public cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public logout() {
+    this.authService.logout();
+  }
 
+  public goHome() {
+    this.router.navigateByUrl('/')
+  }
   get currentUser() {
     return this.authService.currentUser();
   }
 
   ngOnInit() {
     this.loadLayouts();
+    this.cdr.detectChanges();
   }
 
   loadLayouts() {

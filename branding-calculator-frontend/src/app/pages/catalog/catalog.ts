@@ -33,8 +33,7 @@ export class Catalog {
   private materialsService = inject(CardsService);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   public getImageUrl = this.materialsService.getMaterialImageUrl.bind(this.materialsService);
-
-  // 🔥 ЕДИНСТВЕННЫЙ источник фильтров
+  
   public filters: IFilterState = {
     sphere: [],
     formats: [],
@@ -94,9 +93,7 @@ export class Catalog {
   ngOnInit(): void {
     this.materialsService.getMaterials().subscribe({
       next: (data) => {
-        // console.log('DATA:', data)
         this.cards = data;
-        // console.log('AFTER SET', this.cards.length)
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -105,7 +102,6 @@ export class Catalog {
     });
   }
 
-  // 📌 категории теперь управляются только через filters
   public setCategory(category: string) {
     this.filters.sphere =
       category === 'Все' ? [] : [category];

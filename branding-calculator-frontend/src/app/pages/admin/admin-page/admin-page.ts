@@ -34,7 +34,7 @@ export class AdminPage implements OnInit {
   load() {
     this.questionService.getAllQuestions()
       .subscribe((res: any) => {
-        this.questions = res; // 👈 БЕЗ МАПЫ
+        this.questions = res;
       });
   }
 
