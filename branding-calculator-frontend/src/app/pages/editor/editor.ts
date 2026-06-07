@@ -232,7 +232,7 @@ export class Editor implements OnInit {
       x: position.x,
       // Сдвигаем Y вверх на половину высоты логотипа.
       // Теперь y: 280 будет центром логотипа, а не его верхом.
-      y: position.y - (size.height / 2)
+      y: position.y - size.height
     };
   }
 
