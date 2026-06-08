@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using branding_calculator.Contracts.Layouts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IO.Compression;
 using System.Security.Claims;
 using System.Text;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-using branding_calculator.Contracts.Layouts;
 
 namespace branding_calculator.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class GeneratedLayoutController : ControllerBase
     {
@@ -41,6 +42,7 @@ namespace branding_calculator.Controllers
         }
 
         [HttpDelete("{id:int}/Delete")]
+        [Authorize(Roles ="Admin")]
         public async Task<ActionResult<int>> Delete(int id)
         {
             return await _service.Delete(id);
@@ -49,7 +51,6 @@ namespace branding_calculator.Controllers
 
 
         [HttpPost("saveUserLayout")]
-        [Authorize]
         [RequestSizeLimit(57671680)] // 55 МБ
         [DisableRequestSizeLimit]
         public async Task<IActionResult> SaveUserLayout([FromForm] LayoutSaveRequest request)
@@ -105,12 +106,12 @@ namespace branding_calculator.Controllers
 
                 // 3. Сохраняем запись в БД
                 var layoutEntity = new GeneratedLayout
-                ( 0,
+                (0,
                     userId,
                     request.CarrierTypeId,
                     jsonContent,
                     packageUrl,
-                    outputFormatsString, 
+                    outputFormatsString,
                     DateTime.UtcNow
                 );
 
@@ -139,7 +140,6 @@ namespace branding_calculator.Controllers
 
 
         [HttpGet("userLayout/{guid}")]
-        [Authorize]
         [Produces("application/zip", "application/json")]
         public async Task<IActionResult> DownloadUserLayout(string guid)
         {
@@ -163,7 +163,6 @@ namespace branding_calculator.Controllers
         /// Скачать только JSON-метаданные макета
         /// </summary>
         [HttpGet("userLayout/{guid}/metadata")]
-        [Authorize]
         [Produces("application/json")]
         public async Task<IActionResult> DownloadLayoutMetadata(string guid)
         {
@@ -182,7 +181,6 @@ namespace branding_calculator.Controllers
 
 
         [HttpDelete("userLayout/{guid}")]
-        [Authorize]
         public IActionResult DeleteUserLayout(string guid)
         {
             var userId = GetUserIdFromToken();
@@ -238,7 +236,7 @@ namespace branding_calculator.Controllers
                 var guidStr = fileName.Substring(guidStartIndex, guidEndIndex - guidStartIndex);
                 if (!Guid.TryParse(guidStr, out var guid))
                 {
-                  
+
                     continue;
                 }
 
@@ -289,7 +287,7 @@ namespace branding_calculator.Controllers
         {
             var relativePath = Path.Combine("Data", "UserLayouts");
             var targetDirectory = Path.Combine(_env.ContentRootPath, relativePath);
-            Directory.CreateDirectory(targetDirectory); 
+            Directory.CreateDirectory(targetDirectory);
             return Path.Combine(targetDirectory, $"{baseFileName}{extension}");
         }
 

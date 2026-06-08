@@ -1,5 +1,4 @@
 ﻿using branding_calculator.Contracts.Types;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
@@ -7,6 +6,7 @@ using Yamal.Core.Models;
 namespace branding_calculator.Controllers
 {
     [Route("api/[controller]")]
+
     [ApiController]
     public class MediaTypeControler : ControllerBase
     {
@@ -39,7 +39,6 @@ namespace branding_calculator.Controllers
                 0,
                 request.CategoryId,
                 request.Name,
-                string.IsNullOrWhiteSpace(request.ParameterSchema) ? "{}" : request.ParameterSchema,
                 request.SortOrder,
                 true
             );

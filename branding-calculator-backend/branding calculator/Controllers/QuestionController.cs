@@ -1,7 +1,6 @@
 ﻿using branding_calculator.Contracts.Questions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 using System.Security.Claims;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
@@ -17,7 +16,8 @@ namespace branding_calculator.Controllers
         private readonly IQuestionServices _services;
         private readonly IUsersServices _userService;
 
-        public QuestionController(IQuestionServices services, IUsersServices userService) {
+        public QuestionController(IQuestionServices services, IUsersServices userService)
+        {
             _userService = userService;
             _services = services;
         }
@@ -56,7 +56,7 @@ namespace branding_calculator.Controllers
             return Ok(response);
         }
 
-        
+
         [HttpGet("GetUserQuestions")]
         public async Task<ActionResult<List<UserQuestionResponse>>> GetUserQuestions()
         {
@@ -89,6 +89,7 @@ namespace branding_calculator.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles="Admin")]
         public async Task<ActionResult<int>> DeleteQuestion(int id)
         {
             var question = await _services.GetByIdQuestion(id);
@@ -113,7 +114,8 @@ namespace branding_calculator.Controllers
         }
 
         [HttpPatch("AnwserQuestion")]
-        public async Task <ActionResult<int>> CreateAnswer(int id, string answer)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<int>> CreateAnswer(int id, string answer)
         {
             var question = await _services.GetByIdQuestion(id);
             if (question == null) return BadRequest("Question not found");

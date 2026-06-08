@@ -1,7 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yamal.DataAccess.Entites
 {
@@ -10,7 +7,7 @@ namespace Yamal.DataAccess.Entites
 
         public GeneratedLayoutsEntity() { }
 
-        public GeneratedLayoutsEntity (int id, int userId, int carrierTypeId, string parametersJson, string packageUrl, string outputFormats, DateTime createdAt)
+        public GeneratedLayoutsEntity(int id, int userId, int carrierTypeId, string parametersJson, string packageUrl, string outputFormats, DateTime createdAt)
         {
             Id = id;
             UserId = userId;
@@ -26,13 +23,13 @@ namespace Yamal.DataAccess.Entites
         [Column("user_id")]
         public int UserId { get; set; }
         [Column("carrier_type_id")]
-        public int CarrierTypeId {  get; set; }
+        public int CarrierTypeId { get; set; }
         [Column("parameters_json")]
         public string ParametersJson { get; set; }
         [Column("package_url")]
         public string PackageUrl { get; set; }
         [Column("output_formats")]
-        public string OutputFormats {  get; set; }
+        public string OutputFormats { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
 

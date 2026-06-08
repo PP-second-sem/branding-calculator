@@ -9,7 +9,7 @@ namespace Yamal.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<MaterialsEntity> builder)
         {
-            
+
 
             builder.HasKey(x => x.Id);
 

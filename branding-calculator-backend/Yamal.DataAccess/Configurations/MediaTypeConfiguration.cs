@@ -18,8 +18,6 @@ namespace Yamal.DataAccess.Configurations
                    .IsRequired()
                    .HasMaxLength(100);
 
-            builder.Property(t => t.ParametersSchema)
-                   .IsRequired();
 
             builder.Property(t => t.SortOrder)
                    .IsRequired();

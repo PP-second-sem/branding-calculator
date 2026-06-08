@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess.Entites;
@@ -15,12 +12,13 @@ namespace Yamal.DataAccess.Repositories
         public MediaTypeRepository(YamalDbContext context) => _context = context;
         public async Task<int> Create(MediaType entity)
         {
-            var type = new MediaTypesEntity() {
+            var type = new MediaTypesEntity()
+            {
                 CategoryId = entity.CategoryId,
                 Name = entity.Name,
-                ParametersSchema = entity.ParametersSchema,
                 SortOrder = entity.SortOrder,
-                IsActive = entity.IsActive };
+                IsActive = entity.IsActive
+            };
 
             await _context.MediaTypes.AddAsync(type);
             await _context.SaveChangesAsync();
@@ -39,15 +37,14 @@ namespace Yamal.DataAccess.Repositories
 
         public async Task<List<MediaType>> Get()
         {
-           return await _context.MediaTypes
-                .AsNoTracking()
-                .Select(m => new MediaType(m.Id,
-                                           m.CategoryId,
-                                           m.Name,
-                                           m.ParametersSchema,
-                                           m.SortOrder,
-                                           m.IsActive))
-                .ToListAsync();
+            return await _context.MediaTypes
+                 .AsNoTracking()
+                 .Select(m => new MediaType(m.Id,
+                                            m.CategoryId,
+                                            m.Name,
+                                            m.SortOrder,
+                                            m.IsActive))
+                 .ToListAsync();
 
         }
 
@@ -56,11 +53,10 @@ namespace Yamal.DataAccess.Repositories
             await _context.MediaTypes
                 .ExecuteUpdateAsync(e => e
                 .SetProperty(p => p.Name, entity.Name)
-                .SetProperty(p => p.ParametersSchema, entity.ParametersSchema)
                 .SetProperty(p => p.SortOrder, entity.SortOrder)
                 .SetProperty(p => p.CategoryId, entity.CategoryId));
             return entity.Id;
-            
+
         }
     }
 }

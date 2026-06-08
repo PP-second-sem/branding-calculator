@@ -86,7 +86,7 @@ namespace branding_calculator
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); 
+                app.UseDeveloperExceptionPage();
             }
 
             app.MapGet("/", () => Results.Redirect("swagger"));

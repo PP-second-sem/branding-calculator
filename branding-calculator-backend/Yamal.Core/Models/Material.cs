@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Yamal.Core.Models
+﻿namespace Yamal.Core.Models
 {
     public class Material
     {

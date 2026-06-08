@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Yamal.Core.Abstractions;
 
 namespace branding_calculator.Contracts.Users
 {
@@ -25,7 +24,7 @@ namespace branding_calculator.Contracts.Users
         public string FirstName { get; } = string.Empty;
         public string LastName { get; } = string.Empty;
         public string? MiddleName { get; } = string.Empty;
-        [Phone(ErrorMessage ="Неверно введен номер телефона")]
+        [Phone(ErrorMessage = "Неверно введен номер телефона")]
         public string PhoneNumber { get; } = string.Empty;
         public string? Organization { get; } = string.Empty;
         public bool IsActive { get; } = true;

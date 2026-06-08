@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Yamal.DataAccess.Entites;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
+using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess.Repositories
 {

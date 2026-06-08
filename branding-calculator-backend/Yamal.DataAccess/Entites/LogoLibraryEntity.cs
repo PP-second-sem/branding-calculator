@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yamal.DataAccess.Entites
 {
@@ -14,7 +11,7 @@ namespace Yamal.DataAccess.Entites
                                     string filePath,
                                     string fileType,
                                     bool isActive,
-                                    int sortOrder) 
+                                    int sortOrder)
         {
             Id = id;
             Name = name;
@@ -31,7 +28,7 @@ namespace Yamal.DataAccess.Entites
         [Column("file_type")]
         public string FileType { get; set; }
         [Column("is_active")]
-        public bool IsActive {  get; set; }
+        public bool IsActive { get; set; }
         [Column("sort_order")]
         public int SortOrder { get; set; }
     }

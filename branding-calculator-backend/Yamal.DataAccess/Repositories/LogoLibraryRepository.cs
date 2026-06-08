@@ -1,7 +1,7 @@
-﻿using Yamal.Core.Abstractions;
-using Yamal.DataAccess.Entites;
+﻿using Microsoft.EntityFrameworkCore;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-using Microsoft.EntityFrameworkCore;
+using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess.Repositories
 {
@@ -28,9 +28,9 @@ namespace Yamal.DataAccess.Repositories
 
         public async Task<int> Delete(int id)
         {
-           await _context.LogoLibrary
-                .Where(l => l.Id == id)
-                .ExecuteDeleteAsync();
+            await _context.LogoLibrary
+                 .Where(l => l.Id == id)
+                 .ExecuteDeleteAsync();
             return id;
 
         }

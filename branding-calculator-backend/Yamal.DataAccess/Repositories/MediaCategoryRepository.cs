@@ -27,7 +27,7 @@ namespace Yamal.DataAccess.Repositories
             await _context.SaveChangesAsync();
             return category.Id;
         }
-        
+
         public async Task<int> Delete(int id)
         {
             await _context.MediaCategories

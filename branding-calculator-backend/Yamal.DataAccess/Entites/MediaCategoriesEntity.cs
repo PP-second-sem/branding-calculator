@@ -1,16 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yamal.DataAccess.Entites
 {
     public class MediaCategoriesEntity
     {
-        public MediaCategoriesEntity(){}
+        public MediaCategoriesEntity() { }
 
-        public MediaCategoriesEntity(int id, string name, 
+        public MediaCategoriesEntity(int id, string name,
             string? description, string bgColor,
             int sortOrder, bool isActive)
         {
@@ -20,7 +16,7 @@ namespace Yamal.DataAccess.Entites
             BgColor = bgColor;
             SortOrder = sortOrder;
             IsActive = isActive;
-            
+
         }
 
         public int Id { get; set; }

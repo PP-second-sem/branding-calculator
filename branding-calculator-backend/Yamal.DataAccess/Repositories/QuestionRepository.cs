@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 using Yamal.DataAccess.Entites;

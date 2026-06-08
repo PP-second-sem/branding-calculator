@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
-namespace Yamal.Core.Models
+﻿namespace Yamal.Core.Models
 {
     public class GeneratedLayout
     {
@@ -32,7 +27,7 @@ namespace Yamal.Core.Models
         public int CarrierTypeId { get; }
 
         public string ParametersJson { get; }
-  
+
         public string PackageUrl { get; }
 
         public string OutputFormats { get; }

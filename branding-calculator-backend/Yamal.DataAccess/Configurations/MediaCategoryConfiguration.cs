@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess.Configurations
@@ -11,7 +8,7 @@ namespace Yamal.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<MediaCategoriesEntity> builder)
         {
-            builder.HasKey(x =>  x.Id);
+            builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Name)
                 .HasMaxLength(100)

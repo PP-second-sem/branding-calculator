@@ -1,9 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
-using System.Xml.Linq;
-using Yamal.Core.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yamal.DataAccess.Entites
 {
@@ -39,15 +34,15 @@ namespace Yamal.DataAccess.Entites
 
         public string? Description { get; set; }
 
-        public string? City { get; set; } 
+        public string? City { get; set; }
 
-        public string? Color { get; set; } 
+        public string? Color { get; set; }
 
         [Column("is_downloadable")]
         public bool IsDownloadable { get; set; }
 
         [Column("preview_url")]
-        public string? PreviewUrl { get; set; } 
+        public string? PreviewUrl { get; set; }
 
         [Column("file_path")]
         public string FilePath { get; set; }

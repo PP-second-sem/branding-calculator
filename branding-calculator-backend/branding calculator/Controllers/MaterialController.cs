@@ -8,6 +8,7 @@ namespace branding_calculator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class MaterialController : ControllerBase
     {
         private readonly IServices<Material> _services;
@@ -21,13 +22,14 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<List<MaterialResponse>>> GetMaterials()
         {
             var materials = await _services.GetAllEntities();
 
             var response = materials.Select(m => new MaterialResponse(
                 m.Id,
-                m.Category, 
+                m.Category,
                 m.Sphere,
                 m.Name,
                 m.Description,
@@ -142,7 +144,7 @@ namespace branding_calculator.Controllers
                 request.Description,
                 request.City,
                 request.Color,
-                true,  
+                true,
                 request.PreviewUrl,
                 filePath,  // Путь к папке с файлами
                 fileType,

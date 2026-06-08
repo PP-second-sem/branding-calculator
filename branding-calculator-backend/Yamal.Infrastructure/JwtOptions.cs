@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-
-namespace YamalBrand.Infrastructure
+﻿namespace YamalBrand.Infrastructure
 {
     public class JwtOptions
     {

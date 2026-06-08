@@ -8,5 +8,5 @@
         public IFormFile? File { get; set; }
     }
 
-   
+
 }

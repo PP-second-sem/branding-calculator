@@ -19,9 +19,9 @@ namespace Yamal.Core.Models
 
         public int Id { get; }
         public string Name { get; }
-        public string? Description { get;  }
-        public string BgColor { get;  }
-        public int SortOrder { get;  }
-        public bool IsActive { get;  }
+        public string? Description { get; }
+        public string BgColor { get; }
+        public int SortOrder { get; }
+        public bool IsActive { get; }
     }
 }

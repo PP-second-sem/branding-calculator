@@ -4,24 +4,22 @@
     {
 
         public MediaType(int id, int categoryId,
-            string name, string parametersSchema,
+            string name,
             int sortOrder, bool isActive)
         {
             Id = id;
             CategoryId = categoryId;
             Name = name;
-            ParametersSchema = parametersSchema;
             SortOrder = sortOrder;
             IsActive = isActive;
         }
 
-        public int Id { get;  }
+        public int Id { get; }
 
         public int CategoryId { get; }
 
         public string Name { get; }
 
-        public string ParametersSchema { get; }
 
         public int SortOrder { get; }
 

@@ -18,9 +18,9 @@
             SortOrder = sortOrder;
         }
 
-        public int Id { get;  }
-        public string Name { get;  }
-        public string FilePath { get;  }
+        public int Id { get; }
+        public string Name { get; }
+        public string FilePath { get; }
         public string FileType { get; }
         public bool IsActive { get; }
         public int SortOrder { get; }

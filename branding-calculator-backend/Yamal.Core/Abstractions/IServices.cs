@@ -1,6 +1,4 @@
-﻿using Yamal.Core.Models;
-
-namespace Yamal.Core.Abstractions
+﻿namespace Yamal.Core.Abstractions
 {
     public interface IServices<T> where T : class
     {

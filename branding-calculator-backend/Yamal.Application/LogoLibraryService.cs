@@ -6,7 +6,7 @@ namespace Yamal.Application
     public class LogoLibraryService : IServices<LogoLibrary>
     {
         private readonly IRepository<LogoLibrary> _repository;
-        
+
         public LogoLibraryService(IRepository<LogoLibrary> repository) => _repository = repository;
 
         public async Task<int> CreateEntity(LogoLibrary entity)

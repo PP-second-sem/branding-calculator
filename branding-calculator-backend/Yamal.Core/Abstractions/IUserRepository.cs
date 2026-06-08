@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Yamal.Core.Models;
+﻿using Yamal.Core.Models;
 
 namespace Yamal.Core.Abstractions
 {

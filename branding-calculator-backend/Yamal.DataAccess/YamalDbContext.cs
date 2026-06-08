@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Yamal.DataAccess.Entites;
-using Microsoft.Data.Sqlite;
 
 namespace Yamal.DataAccess
 {

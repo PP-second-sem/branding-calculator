@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Yamal.Core.Abstractions;
 
 namespace Yamal.DataAccess.Entites
 {
@@ -19,9 +18,9 @@ namespace Yamal.DataAccess.Entites
             AnsweredAt = question.AnsweredAt;
         }
 
-        public  int Id { get; set; }
+        public int Id { get; set; }
         [Column("user_id")]
-        public int UserId {  get; set; }
+        public int UserId { get; set; }
 
         public string Title { get; set; }
         [Column("user_question")]
