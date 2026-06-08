@@ -7,6 +7,7 @@ export const templates = [
     height: 355,
     hasPhotoUpload: false,
     hasDesignButtons: true,
+    showLocationSettings: false,
     logos: {
       photo1: '/Logotip_Color 9.svg',
       photo2: '/gazprom.svg'
@@ -42,14 +43,14 @@ export const templates = [
       }
     },
     fields: [
-      { 
-        key: 'organization',
-        label: 'Организация',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'ЯНАО, Правительство ЯНАО...',
-        visibleInPreview: false
-      },
+        // { 
+        //   key: 'organization',
+        //   label: 'Организация',
+        //   type: 'text',
+        //   group: 'carrier',
+        //   placeholder: 'ЯНАО, Правительство ЯНАО...',
+        //   visibleInPreview: false
+        // },
       {
         key: 'fullName',
         label: 'ФИО',
@@ -105,30 +106,30 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: false
       },
-      {
-        key: 'address',
-        label: 'Адрес',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'Салехард, ул. Матросова, 1',
-        visibleInPreview: false,
-      },
-      {
-        key: 'city',
-        label: 'Населённый пункт',
-        type: 'text',
-        group: 'location',
-        placeholder: 'г. Салехард',
-        visibleInPreview: false
-      },
-      {
-        key: 'date',
-        label: 'Дата',
-        type: 'text',
-        group: 'location',
-        placeholder: '24 апреля 2025',
-        visibleInPreview: false
-      },
+      // {
+      //   key: 'address',
+      //   label: 'Адрес',
+      //   type: 'text',
+      //   group: 'carrier',
+      //   placeholder: 'Салехард, ул. Матросова, 1',
+      //   visibleInPreview: false,
+      // },
+      // {
+      //   key: 'city',
+      //   label: 'Населённый пункт',
+      //   type: 'text',
+      //   group: 'location',
+      //   placeholder: 'г. Салехард',
+      //   visibleInPreview: false
+      // },
+      // {
+      //   key: 'date',
+      //   label: 'Дата',
+      //   type: 'text',
+      //   group: 'location',
+      //   placeholder: '24 апреля 2025',
+      //   visibleInPreview: false
+      // },
       {
         key: 'cover1',
         label: 'Логотип 1',
@@ -162,7 +163,7 @@ export const templates = [
     id: 2,
     name: 'Бейдж',
     image: '/badge.svg',
-
+    showLocationSettings: true,
     width: 329,
     height: 464,
     logos: {
@@ -202,14 +203,14 @@ export const templates = [
       }
     },
     fields: [
-      {
-        key: 'event',
-        label: 'Название мероприятия',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'Форум молодёжи Ямала',
-        visibleInPreview: false
-      },
+      // {
+      //   key: 'event',
+      //   label: 'Название мероприятия',
+      //   type: 'text',
+      //   group: 'carrier',
+      //   placeholder: 'Форум молодёжи Ямала',
+      //   visibleInPreview: false
+      // },
       {
         key: 'field1',
         label: 'Поле 1',
@@ -302,6 +303,7 @@ export const templates = [
     height: 393,
     hasPhotoUpload: false,
     hasDesignButtons: false,
+    showLocationSettings: true,
     exportSize: {
       width: 2480,
       height: 3508
@@ -465,6 +467,7 @@ export const templates = [
     height: 455,
     hasPhotoUpload: true,
     hasDesignButtons: false,
+    showLocationSettings: true,
     exportSize: {
       width: 709,
       height: 1063
@@ -497,14 +500,14 @@ export const templates = [
       }
     },
     fields: [
-      {
-        key: 'event',
-        label: 'Название мероприятия',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'Форум молодёжи',
-        visibleInPreview: false
-      },
+      // {
+      //   key: 'event',
+      //   label: 'Название мероприятия',
+      //   type: 'text',
+      //   group: 'carrier',
+      //   placeholder: 'Форум молодёжи',
+      //   visibleInPreview: false
+      // },
       {
         key: 'fullName',
         label: 'ФИО',

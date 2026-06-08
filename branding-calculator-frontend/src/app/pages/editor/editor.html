@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="editor-card">
+    <div class="editor-card" *ngIf="template.showLocationSettings">
       <div class="editor-card__header">
         <div class="editor-card__title-wrapper">
           <div class="editor-card__icon editor-card__icon--green">
@@ -125,7 +125,7 @@
           </div>
         </ng-container>
 
-        <div *ngIf="template.hasDesignButtons" class="design-buttons">
+        <!-- <div *ngIf="template.hasDesignButtons" class="design-buttons">
           <button class="design-button">
             <span class="design-button__color design-button__color--red"></span>
             Фирменный красный
@@ -135,7 +135,7 @@
             <span class="design-button__color design-button__color--bone"></span>
             Мамонтовая кость
           </button>
-        </div>
+        </div> -->
 
       </div>
 
