@@ -80,8 +80,13 @@ namespace branding_calculator
 
             var app = builder.Build();
 
-            app.UseStaticFiles();
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<YamalDbContext>();
+                context.Database.EnsureCreated();
+            }
 
+            app.UseStaticFiles();
 
             if (app.Environment.IsDevelopment())
             {
