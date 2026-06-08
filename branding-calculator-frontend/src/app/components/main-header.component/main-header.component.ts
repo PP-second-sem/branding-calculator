@@ -27,6 +27,12 @@ export class MainHeaderComponent {
   }
 
   goToProfile() {
-    this.router.navigate(['/constructor/layouts']);
+    const user = this.authService.currentUser();
+
+    if (user?.role === 'Admin') {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/constructor/layouts']);
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { IMaterial } from '../../models/material.model';
 import { CommonModule } from '@angular/common';
-import { CardsService } from '../../services/cards-service.service';
+import { CardsService } from '../../services/cards-service/cards.service';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({

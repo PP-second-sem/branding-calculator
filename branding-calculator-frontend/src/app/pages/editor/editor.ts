@@ -225,13 +225,10 @@ export class Editor implements OnInit {
         : this.template.logoPositions.second;
     }
 
-    // Получаем размеры конкретного логотипа из мока
     const size = this.getLogoSize(logo);
 
     return {
       x: position.x,
-      // Сдвигаем Y вверх на половину высоты логотипа.
-      // Теперь y: 280 будет центром логотипа, а не его верхом.
       y: position.y - size.height
     };
   }
@@ -273,7 +270,8 @@ export class Editor implements OnInit {
       templateId: this.template.id,
       formData: this.formData,
       activeLogos: this.activeLogos,
-      photo: this.photoPreview
+      photo: this.photoPreview,
+      fields: this.template.fields
     };
 
     const formData = new FormData();

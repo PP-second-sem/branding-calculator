@@ -4,17 +4,20 @@ import { QuestionService } from '../../../services/question-service/question-ser
 import { FormsModule } from '@angular/forms';
 import { MaterialService } from '../../../services/material-service/material.service';
 import { LogoService } from '../../../services/logo-service/logo-service';
+import { AuthService } from '../../../services/auth-service/auth.service';
+import { Router } from '@angular/router';
+import { LayoutPreviewModal } from '../../../components/layout-preview-modal/layout-preview-modal';
 
 @Component({
   selector: 'app-admin-page',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, LayoutPreviewModal],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
 })
 export class AdminPage implements OnInit {
-
+  private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
   activeTab: 'layouts' | 'questions' | 'addingCatalog' | 'addingLogotype' = 'layouts';
-
   private questionService: QuestionService = inject(QuestionService);
   private materialService: MaterialService = inject(MaterialService);
   private logoService: LogoService = inject(LogoService);
@@ -23,6 +26,12 @@ export class AdminPage implements OnInit {
     isActive: true,
     sortOrder: 0
   };
+
+  selectedLayout: any = null;
+  layouts: any = [];
+  openLayoutCard(layout: any) {
+    this.selectedLayout = layout;
+  }
 
   selectedLogoFile: File | null = null;
   questions: any[] = [];
@@ -52,6 +61,14 @@ export class AdminPage implements OnInit {
     tags: '',
     description: ''
   };
+
+  public logout() {
+    this.authService.logout();
+  }
+
+  public goHome() {
+    this.router.navigateByUrl('/')
+  }
 
   selectedFile: File | null = null;
   onTemplateSelected(event: any) {

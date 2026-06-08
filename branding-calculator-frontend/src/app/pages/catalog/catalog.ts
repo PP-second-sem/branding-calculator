@@ -8,7 +8,7 @@ import { MainHeaderComponent } from '../../components/main-header.component/main
 import { IMaterial } from '../../models/material.model';
 import { IFilterState } from '../../models/filter-state.model';
 import { SPHERE_CLASS_MAP } from '../../utils/sphere-map';
-import { CardsService } from '../../services/cards-service.service';
+import { CardsService } from '../../services/cards-service/cards.service';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { ActivatedRoute } from '@angular/router';
 

@@ -9,10 +9,10 @@
         </div>
 
         <div class="admin__header--buttons">
-            <button class="admin__header--button admin__header--button-main">
+            <button class="admin__header--button admin__header--button-main" (click)="goHome()">
                 На главную
             </button>
-            <button class="admin__header--button admin__header--button-exit">
+            <button class="admin__header--button admin__header--button-exit" (click)="logout()">
                 Выйти
             </button>
         </div>
@@ -39,7 +39,26 @@
 
         <ng-container [ngSwitch]="activeTab">
             <div *ngSwitchCase="'layouts'" class="my-layouts">
-                Мои макеты
+                <h2>Мои макеты</h2>
+                <div class="layouts-list">
+
+                    <div
+                    class="layout-card"
+                    *ngFor="let layout of layouts"
+                    >
+                    <img [src]="layout.previewUrl || '/cardIcon.svg'">
+
+                    <div class="layout-card__info">
+                        <p>{{ layout.name }}</p>
+                    </div>
+
+                    <button (click)="openLayoutCard(layout)">
+                        Просмотр
+                    </button>
+
+                    </div>
+
+                </div>
             </div>
 
             <div *ngSwitchCase="'questions'" class="sect-quest">
@@ -279,3 +298,12 @@
 
     </div>
 </div>
+
+
+
+<app-layout-preview-modal
+  *ngIf="selectedLayout"
+  [layout]="selectedLayout"
+  [formData]="selectedLayout.formData"
+  (close)="selectedLayout = null"
+></app-layout-preview-modal>

@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 
 @Injectable({
@@ -18,7 +19,18 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`, {
       email,
       password
-    });
+    }).pipe(
+      tap((user: any) => {
+
+        this.setSession(user);
+
+        if (user.role === 'Admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/']);
+        }
+      })
+    );
   }
 
   register(data: any) {
@@ -26,7 +38,6 @@ export class AuthService {
   }
 
   setSession(user: any) {
-    localStorage.setItem('token', 'auth-ok');
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUser.set(user);
   }
@@ -44,16 +55,11 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post('/api/User/logout', {}, {
-      withCredentials: true
-    }).subscribe(() => {
-      this.currentUser.set(null);
-      this.router.navigate(['/']);
-    });
+    return this.http.post('/api/User/exit', {}, { withCredentials: true });
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return !!this.currentUser();
   }
 
   getUserByEmail(email: string) {

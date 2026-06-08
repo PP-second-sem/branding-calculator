@@ -1,0 +1,53 @@
+<div class="modal-overlay" (click)="closeModal()">
+
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <h2>Предпросмотр макета</h2>
+
+      <button (click)="closeModal()">✕</button>
+    </div>
+
+    <!-- PREVIEW -->
+    <div
+      class="preview"
+      [style.width.px]="layout.width"
+      [style.height.px]="layout.height"
+    >
+
+      <!-- фон -->
+      <img [src]="layout.image" class="bg" />
+
+      <!-- текст -->
+      <ng-container *ngFor="let field of layout.fields">
+
+        <div
+          *ngIf="field.type === 'text'"
+          class="text"
+          [style.left.px]="field.x"
+          [style.top.px]="field.y"
+          [style.fontSize.px]="field.fontSize"
+          [style.color]="field.color"
+        >
+
+          <ng-container *ngIf="field.formatAsFio; else normal">
+            <div class="fio">
+              <div>{{ formatFio(formData[field.key], layout.id).line1 }}</div>
+              <div>{{ formatFio(formData[field.key], layout.id).line2 }}</div>
+            </div>
+          </ng-container>
+
+          <ng-template #normal>
+            {{ formData[field.key] }}
+          </ng-template>
+
+        </div>
+
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</div>

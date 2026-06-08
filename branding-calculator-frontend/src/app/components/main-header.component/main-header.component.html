@@ -19,8 +19,6 @@
     </nav>
 
     <div class="header__right">
-
-        <!-- 👤 ПЛАШКА ПРОФИЛЯ (ТОЛЬКО ЕСЛИ АВТОРИЗОВАН) -->
         @if (authService.currentUser()) {
             <div class="header__profile" (click)="goToProfile()">
 
@@ -36,7 +34,6 @@
             </div>
         }
 
-        <!-- 🔴 КНОПКА ВХОДА (ВСЕГДА ЕСТЬ) -->
         <button
             class="header__button"
             [class.header__button--auth]="authService.currentUser()"

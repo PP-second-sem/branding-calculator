@@ -5,10 +5,11 @@ import { forkJoin, map, switchMap } from 'rxjs';
 import { GeneratedService } from '../../../services/generated-service/generated.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../services/auth-service/auth.service';
+import { LayoutPreviewModal } from '../../../components/layout-preview-modal/layout-preview-modal';
 
 @Component({
   selector: 'app-layouts',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, LayoutPreviewModal],
   templateUrl: './layouts.html',
   styleUrl: './layouts.scss',
 })
@@ -62,5 +63,14 @@ export class Layouts {
           console.error(err);
         }
       });
+  }
+  selectedLayout: any = null;
+
+  openLayout(layout: any) {
+    this.selectedLayout = layout;
+  }
+
+  closeModal() {
+    this.selectedLayout = null;
   }
 }

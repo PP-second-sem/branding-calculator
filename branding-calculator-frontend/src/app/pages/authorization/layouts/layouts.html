@@ -57,9 +57,16 @@
                 <button
                     class="layout-card__button-view"
                 >
-                    <img src="/eyeIcon.svg">
+                    <img src="/eyeIcon.svg" (click)="openLayout(layout)">
                     Просмотр
                 </button>
+
+                <app-layout-preview-modal
+                    *ngIf="selectedLayout"
+                    [layout]="selectedLayout"
+                    [formData]="selectedLayout.formData"
+                    (close)="closeModal()"
+                ></app-layout-preview-modal>
 
                 <button
                     class="layout-card__button-download"
