@@ -476,7 +476,7 @@ export const templates = [
     logoPositions: {
       single: {
         x: 0,
-        y: 25
+        y: 65
       },
 
       first: {
