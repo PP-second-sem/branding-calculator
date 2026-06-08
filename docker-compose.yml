@@ -8,13 +8,13 @@ services:
     container_name: branding-backend
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_URLS=http://0.0.0.0:5001
       - ConnectionStrings__DefaultConnection=Data Source=/app/Data/yamal.db;Foreign Keys=True;Mode=ReadWrite
     volumes:
       - backend_data:/app/Data
       - backend_uploads:/app/uploads
     ports:
-      - "5001:8080" 
+      - "5001:5001" 
     networks:
       - app-network
     restart: unless-stopped
