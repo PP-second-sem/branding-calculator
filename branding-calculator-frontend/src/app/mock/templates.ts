@@ -329,7 +329,7 @@ export const templates = [
       },
 
       first: {
-        x: 40,
+        x: 20,
         y: 280
       },
       second: {
@@ -340,10 +340,10 @@ export const templates = [
     fields: [
       {
         key: 'recipientFullName',
-        label: 'ФИО получателя',
+        label: 'ФИО получателя (в родительном падеже)',
         type: 'text',
         group: 'carrier',
-        placeholder: 'Иванов Иван Иванович',
+        placeholder: 'Иванову Ивану Ивановичу',
 
         x: 80,
         y: 120,

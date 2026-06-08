@@ -234,32 +234,34 @@ export class Editor implements OnInit {
   }
 
   formatFio(value: string, templateId?: number) {
-    if (!value) return { line1: '', line2: '' };
+    if (!value) {
+      return { line1: '', line2: '' };
+    }
 
-    const parts = value.trim().split(' ').filter(Boolean);
-
+    const parts = value.trim().split(/\s+/);
     const lastName = parts[0] || '';
     const firstName = parts[1] || '';
-    const middleName = parts[2] || '';
+    const middleName = parts.slice(2).join(' '); 
 
     if (templateId === 1 || templateId === 2 || templateId === 4) {
-      return {
-        line1: `${lastName}`,
-        line2: `${firstName}`
-      };
+      return { line1: lastName, line2: firstName };
     }
 
     if (templateId === 3) {
-      return {
-        line1: `${lastName} ${firstName}`,
-        line2: `${middleName}`
-      };
+      const fullFirstLine = `${lastName} ${firstName}`.trim();
+      
+      let line1 = fullFirstLine;
+      let line2 = middleName;
+
+      if (fullFirstLine.length > 18) {
+        line1 = lastName;
+        line2 = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + `${firstName} ${middleName}`.trim();
+      }
+
+      return { line1: line1, line2: line2 };
     }
 
-    return {
-      line1: value,
-      line2: ''
-    };
+    return { line1: value, line2: '' };
   }
 
 
