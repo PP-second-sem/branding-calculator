@@ -48,8 +48,14 @@ namespace branding_calculator
             builder.Services.AddDbContext<YamalDbContext>(options =>
             {
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                var absolutePath = Path.Combine(AppContext.BaseDirectory, connectionString);
-                var dbFolder = Path.GetDirectoryName(absolutePath);
+
+                // Если строка подключения — это просто имя файла (без "Data Source="), добавляем префикс
+                if (!string.IsNullOrEmpty(connectionString) &&
+                    !connectionString.Contains("Data Source=", StringComparison.OrdinalIgnoreCase) &&
+                    !connectionString.Contains("DataSource=", StringComparison.OrdinalIgnoreCase))
+                {
+                    connectionString = $"Data Source={connectionString}";
+                }
 
                 options.UseSqlite(connectionString);
             });
