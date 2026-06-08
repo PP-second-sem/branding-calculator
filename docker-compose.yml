@@ -6,15 +6,16 @@ services:
       context: ./branding-calculator-backend
       dockerfile: Dockerfile
     container_name: branding-backend
+    user: root
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__DefaultConnection=Data Source=/app/Data/yamal.db;Foreign Keys=True;Mode=ReadWrite
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ConnectionStrings__DefaultConnection=Data Source=/app/yamal.db;Foreign Keys=True;Mode=ReadWrite
     volumes:
-      - backend_data:/app/Data
-      - backend_uploads:/app/uploads
+      - ./yamal.db:/app/yamal.db  # Монтируем ФАЙЛ
+      - ./uploads:/app/uploads
     ports:
-      - "5001:8080" 
+      - "5001:8080"
     networks:
       - app-network
     restart: unless-stopped
@@ -25,16 +26,12 @@ services:
       dockerfile: Dockerfile
     container_name: branding-frontend
     ports:
-      - "8080:80" 
+      - "8080:80"
     depends_on:
       - backend
     networks:
       - app-network
     restart: unless-stopped
-
-volumes:
-  backend_data:
-  backend_uploads:
 
 networks:
   app-network:
