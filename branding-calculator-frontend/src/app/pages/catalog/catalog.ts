@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FilterDrawer } from '../../components/filter-drawer.component/filter-drawer.component';
 import { CardModalComponent } from '../../components/card-modal.component/card-modal.component';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +10,7 @@ import { IFilterState } from '../../models/filter-state.model';
 import { SPHERE_CLASS_MAP } from '../../utils/sphere-map';
 import { CardsService } from '../../services/cards-service.service';
 import { AuthService } from '../../services/auth-service/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -28,10 +29,12 @@ export class Catalog {
   public search = '';
   public selectedCard: IMaterial | null = null;
   public cards: IMaterial[] = [];
+  private route = inject(ActivatedRoute);
   public isOpen = false;
   public authService: AuthService = inject(AuthService);
   private materialsService = inject(CardsService);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public router: Router = inject(Router);
   public getImageUrl = this.materialsService.getMaterialImageUrl.bind(this.materialsService);
   
   public filters: IFilterState = {
@@ -74,11 +77,27 @@ export class Catalog {
   }
 
   public openCard(card: IMaterial) {
+
     this.selectedCard = card;
+
+    this.router.navigate([], {
+      queryParams: {
+        material: card.id
+      },
+      queryParamsHandling: 'merge'
+    });
   }
 
   public closeCard() {
+
     this.selectedCard = null;
+
+    this.router.navigate([], {
+      queryParams: {
+        material: null
+      },
+      queryParamsHandling: 'merge'
+    });
   }
 
   public openDrawer() {
@@ -93,7 +112,24 @@ export class Catalog {
   ngOnInit(): void {
     this.materialsService.getMaterials().subscribe({
       next: (data) => {
+
         this.cards = data;
+
+        this.route.queryParams.subscribe(params => {
+
+          const materialId = params['material'];
+
+          if (!materialId) return;
+
+          const card = this.cards.find(
+            x => x.id === Number(materialId)
+          );
+
+          if (card) {
+            this.selectedCard = card;
+          }
+        });
+
         this.cdr.detectChanges();
       },
       error: (err) => {
