@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import { templates } from '../../mock/templates';
 import { MainHeaderComponent } from '../../components/main-header.component/main-header.component';
+import { LogoService } from '../../services/logo-service/logo-service';
+import { GeneratedService } from '../../services/generated-service/generated.service';
+import { HttpClient } from '@angular/common/http';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-editor',
@@ -13,7 +17,10 @@ import { MainHeaderComponent } from '../../components/main-header.component/main
   styleUrl: './editor.scss',
 })
 export class Editor implements OnInit {
+  private logoService: LogoService = inject(LogoService);
+  public logos: any[] = [];
   private route = inject(ActivatedRoute);
+  private generatedService: GeneratedService = inject(GeneratedService);
   public previewFields: any[] = [];
   public photoPreview: string = '';
   public avatarPreview: string = '';
@@ -24,7 +31,9 @@ export class Editor implements OnInit {
   public isFormatOpen = true;
   public template: any;
   public formData: any = {};
-  public scale = 324 / 640;
+  public http: HttpClient = inject(HttpClient);
+  public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -36,6 +45,22 @@ export class Editor implements OnInit {
     if (!found) return;
 
     this.setTemplate(found);
+    this.loadLogos();
+  }
+
+  loadLogos() {
+    this.logoService.getAll().subscribe({
+      next: (res) => {
+        this.logos = res;
+        console.log('LOGOS:', res);
+      }
+    });
+  }
+
+  getLogoUrl(logo: any): string {
+    return logo.filePath
+      ? `/api/LogoLibrary/${logo.id}/download`
+      : '/placeholder.svg';
   }
 
   onPhotoSelected(event: any): void {
@@ -62,29 +87,55 @@ export class Editor implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  public downloadTemplate(): void {
+  getLogoSize(logo: string) {
+
+    return this.template.logoSizes?.[logo];
+  }
+
+  public handleDownload(): void {
+
     const wrapper = document.querySelector(
       '.editor-export-wrapper'
     ) as HTMLElement;
-
-    wrapper.style.transform = 'none';
 
     const element = document.querySelector(
       '.editor-export'
     ) as HTMLElement;
 
+    const exportScale = this.getExportScale();
+
     html2canvas(element, {
-      scale: 4,
+      scale: exportScale,
       useCORS: true,
       backgroundColor: null
     }).then(canvas => {
-      wrapper.style.transform = 'scale(0.50625)';
 
       const link = document.createElement('a');
-      link.download = 'template.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      link.download = `template.${this.selectedFormat}`;
+
+      if (this.selectedFormat === 'png') {
+        canvas.toBlob(blob => {
+          if (!blob) return;
+          link.href = URL.createObjectURL(blob);
+          link.click();
+        }, 'image/png');
+      }
+
+      if (this.selectedFormat === 'jpeg') {
+        canvas.toBlob(blob => {
+          if (!blob) return;
+          link.href = URL.createObjectURL(blob);
+          link.click();
+        }, 'image/jpeg', 0.95);
+      }
+
     });
+  }
+
+  getExportScale(): number {
+    if (!this.template?.exportSize) return 1;
+
+    return this.template.exportSize.width / this.template.width;
   }
 
   setTemplate(template: any) {
@@ -124,18 +175,6 @@ export class Editor implements OnInit {
     return this.template?.fields?.filter((f: any) => f.group === 'logo') || [];
   }
 
-  get previewScale(): number {
-    if (!this.template) return 1;
-
-    const maxWidth = 324;
-    const maxHeight = 180;
-
-    return Math.min(
-      maxWidth / this.template.width,
-      maxHeight / this.template.height
-    );
-  }
-
   get hasTwoLogos(): boolean {
     return this.formData?.cover1 && this.formData?.cover1 !== 'none'
         && this.formData?.cover2 && this.formData?.cover2 !== 'none';
@@ -155,13 +194,101 @@ export class Editor implements OnInit {
     return logos;
   }
 
-  getLogoPosition(index: number) {
+  getExportSize() {
+    switch (this.template.id) {
+      case 1:
+        return { w: 1150, h: 591 };
+
+      case 2:
+        return { w: 709, h: 1063 };
+
+      case 3:
+        return { w: 2480, h: 3508 };
+
+      default:
+        return { w: this.template.width, h: this.template.height };
+    }
+  }
+
+  getLogoSrc(logo: string): string {
+    return this.template?.logos?.[logo] ?? '';
+  }
+
+  getLogoPosition(index: number, logo: string) {
+    let position;
+
     if (this.activeLogos.length === 1) {
-      return this.template.logoPositions.single;
+      position = this.template.logoPositions.single;
+    } else {
+      position = index === 0 
+        ? this.template.logoPositions.first 
+        : this.template.logoPositions.second;
     }
 
-    return index === 0
-      ? this.template.logoPositions.first
-      : this.template.logoPositions.second;
+    const size = this.getLogoSize(logo);
+
+    return {
+      x: position.x,
+      y: position.y - size.height
+    };
+  }
+
+  formatFio(value: string, templateId?: number) {
+    if (!value) return { line1: '', line2: '' };
+
+    const parts = value.trim().split(' ').filter(Boolean);
+
+    const lastName = parts[0] || '';
+    const firstName = parts[1] || '';
+    const middleName = parts[2] || '';
+
+    if (templateId === 1) {
+      return {
+        line1: `${lastName}`,
+        line2: `${firstName}`
+      };
+    }
+
+    if (templateId === 3) {
+      return {
+        line1: `${lastName} ${firstName}`,
+        line2: `${middleName}`
+      };
+    }
+
+    return {
+      line1: value,
+      line2: ''
+    };
+  }
+
+
+
+  saveLayout(file: File) {
+
+    const json = {
+      templateId: this.template.id,
+      formData: this.formData,
+      activeLogos: this.activeLogos,
+      photo: this.photoPreview,
+      fields: this.template.fields
+    };
+
+    const formData = new FormData();
+
+    formData.append('CarrierTypeId', String(this.template.id));
+    formData.append('JsonContent', JSON.stringify(json));
+
+    formData.append('Files', file);
+    console.log('TEMPLATE ID:', this.template.id);
+    console.log('JSON:', json);
+    console.log('FILE:', file);
+    console.log(JSON.stringify(json));
+
+    this.generatedService.saveUserLayout(formData)
+      .subscribe({
+        next: () => console.log('OK'),
+        error: err => console.error('SAVE ERROR:', err)
+      });
   }
 }

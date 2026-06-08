@@ -174,7 +174,6 @@
     }
 
     &__dots {
-        position: absolute;
         bottom: -24px;
         left: 50%;
         transform: translateX(-50%);
@@ -251,4 +250,29 @@
             border: 1px solid #AECECE;
         }
     }
+}
+
+
+.example-section__images-container {
+    width: 384px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.example-section__images-container img {
+    width: 384px;
+    height: 220px;
+
+    object-fit: cover;
+    border-radius: 16px;
+
+    display: block;
+}
+
+.example-section__gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }

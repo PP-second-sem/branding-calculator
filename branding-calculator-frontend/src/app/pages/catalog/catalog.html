@@ -23,17 +23,6 @@
             <img src="/filterIcon.svg">
             Фильтры
         </button>
-
-        
-        <div class="hero-catalog__view-switch">
-            <button class="hero-catalog__viewButton hero-catalog__viewButton--active hero-catalog__viewButton--left">
-                <img class="" src="/wrapperIcon.svg">
-            </button>
-
-            <button class="hero-catalog__viewButton hero-catalog__viewButton--right">
-                <img class="" src="/emptyIcon.svg">
-            </button>
-        </div>
     </div>
 
     <ul class="hero-catalog__category-buttons">
@@ -123,6 +112,13 @@
             *ngFor="let card of filteredCards"
             (click)="openCard(card)"
         >
+            <button
+                *ngIf="authService.currentUser()?.role === 'Admin'"
+                class="hero-catalog__delete"
+                (click)="deleteCard(card.id, $event)"
+            >
+                <img src="/closeIcon.svg">
+            </button>
             <div class="hero-catalog__cover">
                 <img 
                     *ngIf="isImage(card); else placeholder"

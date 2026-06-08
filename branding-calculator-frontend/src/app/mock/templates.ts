@@ -7,29 +7,48 @@ export const templates = [
     height: 355,
     hasPhotoUpload: false,
     hasDesignButtons: true,
+    logos: {
+      photo1: '/Logotip_Color 9.svg',
+      photo2: '/gazprom.svg'
+    },
+    logoSizes: {
+      photo1: {
+        width: 148,
+        height: 24
+      },
+      photo2: {
+        width: 150,
+        height: 77
+      }
+    },
+    exportSize: {
+      width: 1150,
+      height: 591
+    },
     logoPositions: {
       single: {
-        x: 120,
-        y: 150
+        x: 50,
+        y: 105,
       },
 
       first: {
-        x: 120,
-        y: 130
+        x: 50,
+        y: 60
       },
 
       second: {
-        x: 120,
-        y: 170
+        x: 50,
+        y: 125
       }
     },
     fields: [
-      {
+      { 
         key: 'organization',
         label: 'Организация',
         type: 'text',
         group: 'carrier',
-        placeholder: 'ЯНАО, Правительство ЯНАО...'
+        placeholder: 'ЯНАО, Правительство ЯНАО...',
+        visibleInPreview: false
       },
       {
         key: 'fullName',
@@ -38,10 +57,12 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Иванов Иван Иванович',
 
-        x: 345,
-        y: 150,
-        fontSize: 19,
+        x: 275,
+        y: 90,
+        fontSize: 24,
         fontWeight: 800,
+        visibleInPreview: true,
+        formatAsFio: true
       },
       {
         key: 'position',
@@ -50,9 +71,11 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Директор, начальник отдела...',
 
-        x: 345,
-        y: 195,
-        fontSize: 8
+        x: 275,
+        y: 155,
+        fontSize: 14,
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'phone',
@@ -61,10 +84,12 @@ export const templates = [
         group: 'carrier',
         placeholder: '+7 (___) ___-__-__',
 
-        x: 345,
-        y: 250,
-        fontSize: 7,
-        fontWeight: 500
+        x: 275,
+        y: 200,
+        fontSize: 14,
+        fontWeight: 500,
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'email',
@@ -73,31 +98,36 @@ export const templates = [
         group: 'carrier',
         placeholder: 'name@yanao.ru',
 
-        x: 345,
-        y: 290,
-        fontSize: 7,
-        color: '#C40E3D'
+        x: 275,
+        y: 215,
+        fontSize: 14,
+        color: '#C40E3D',
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'address',
         label: 'Адрес',
         type: 'text',
         group: 'carrier',
-        placeholder: 'Салехард, ул. Матросова, 1'
+        placeholder: 'Салехард, ул. Матросова, 1',
+        visibleInPreview: false,
       },
       {
         key: 'city',
         label: 'Населённый пункт',
         type: 'text',
         group: 'location',
-        placeholder: 'г. Салехард'
+        placeholder: 'г. Салехард',
+        visibleInPreview: false
       },
       {
         key: 'date',
         label: 'Дата',
         type: 'text',
         group: 'location',
-        placeholder: '24 апреля 2025'
+        placeholder: '24 апреля 2025',
+        visibleInPreview: false
       },
       {
         key: 'cover1',
@@ -108,7 +138,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover2',
@@ -119,7 +151,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       }
     ]
   },
@@ -131,22 +165,40 @@ export const templates = [
 
     width: 329,
     height: 464,
+    logos: {
+      photo1: '/badge_with_photo_1.svg',
+      photo2: '/badge_with_photo_2.svg'
+    },
+    logoSizes: {
+      photo1: {
+        width: 85,
+        height: 55
+      },
+      photo2: {
+        width: 57,
+        height: 96
+      }
+    },
     hasPhotoUpload: false,
     hasDesignButtons: false,
+    exportSize: {
+      width: 709,
+      height: 1063
+    },
     logoPositions: {
       single: {
-        x: 50,
-        y: 200
+        x: 40,
+        y: 170
       },
 
       first: {
-        x: 50,
-        y: 150
+        x: 40,
+        y: 120
       },
 
       second: {
-        x: 50,
-        y: 230
+        x: 40,
+        y: 200
       }
     },
     fields: [
@@ -156,6 +208,7 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Форум молодёжи Ямала',
+        visibleInPreview: false
       },
       {
         key: 'field1',
@@ -164,10 +217,12 @@ export const templates = [
         group: 'carrier',
         placeholder: 'ФИО',
         color: 'rgba(207, 17, 53, 1)',
-        x: 200,
-        y: 200,
+        x: 170,
+        y: 240,
         fontSize: 16,
-        fontWeight: 600
+        fontWeight: 600,
+        visibleInPreview: true,
+        formatAsFio: true
       },
       {
         key: 'field2',
@@ -175,8 +230,9 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Должность',
-
-        x: 140,
+        visibleInPreview: true,
+        formatAsFio: false,
+        x: 100,
         y: 360,
         fontSize: 14,
         fontWeight: 800,
@@ -188,11 +244,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: 'г. Салехард',
+        formatAsFio: false,
 
-        x: 65,
+        x: 40,
         y: 385,
         fontSize: 10,
-        color: 'rgba(255, 255, 255, 1)'
+        color: 'rgba(255, 255, 255, 1)',
+        visibleInPreview: true
       },
       {
         key: 'date',
@@ -201,10 +259,12 @@ export const templates = [
         group: 'location',
         placeholder: '24 апреля 2025',
 
-        x: 205,
+        x: 170,
         y: 385,
         fontSize: 10,
-        color: 'rgba(255, 255, 255, 1)'
+        color: 'rgba(255, 255, 255, 1)',
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover1',
@@ -215,7 +275,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover2',
@@ -226,7 +288,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       }
     ]
   },
@@ -238,14 +302,32 @@ export const templates = [
     height: 393,
     hasPhotoUpload: false,
     hasDesignButtons: false,
+    exportSize: {
+      width: 2480,
+      height: 3508
+    },
+    logos: {
+      photo1: '/Logotip_Color 9.svg',
+      photo2: '/gazprom.svg'
+    },
+    logoSizes: {
+      photo1: {
+        width: 69,
+        height: 11
+      },
+      photo2: {
+        width: 65,
+        height: 31
+      }
+    },
     logoPositions: {
       single: {
-        x: 100,
+        x: 70,
         y: 280
       },
 
       first: {
-        x: 50,
+        x: 40,
         y: 280
       },
       second: {
@@ -261,11 +343,13 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Иванов Иван Иванович',
 
-        x: 105,
-        y: 100,
+        x: 80,
+        y: 120,
         fontSize: 14,
         fontWeight: 500,
-        color: 'rgba(29, 29, 27, 1)'
+        color: 'rgba(29, 29, 27, 1)',
+        visibleInPreview: true,
+        formatAsFio: true
       },
 
       {
@@ -275,11 +359,13 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Петров Пётр Петрович',
 
-        x: 110,
-        y: 255,
+        x: 85,
+        y: 260,
         fontSize: 8,
         fontWeight: 600,
-        color: 'rgba(208, 16, 57, 1)'
+        color: 'rgba(208, 16, 57, 1)',
+        visibleInPreview: true,
+        formatAsFio: false
       },
 
       {
@@ -288,11 +374,13 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Директор департамента',
+        formatAsFio: false,
 
-        x: 110,
-        y: 265,
+        x: 85,
+        y: 270,
         fontSize: 8,
-        fontWeight: 400
+        fontWeight: 400,
+        visibleInPreview: true
       },
 
       {
@@ -300,12 +388,14 @@ export const templates = [
         label: 'Наименование учреждения',
         type: 'text',
         group: 'carrier',
+        formatAsFio: false,
         placeholder: 'Министерство развития...',
 
-        x: 110,
-        y: 275,
+        x: 85,
+        y: 280,
         fontSize: 8,
-        fontWeight: 400
+        fontWeight: 400,
+        visibleInPreview: true
       },
       {
         key: 'city',
@@ -313,11 +403,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: 'г. Салехард',
+        formatAsFio: false,
 
-        x: 140,
-        y: 345,
+        x: 115,
+        y: 355,
         fontSize: 8,
-        color: 'rgba(208, 16, 57, 1)'
+        color: 'rgba(208, 16, 57, 1)',
+        visibleInPreview: true
       },
 
       {
@@ -326,11 +418,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: '24 апреля 2025',
+        formatAsFio: false,
 
-        x: 130,
-        y: 330,
+        x: 105,
+        y: 345,
         fontSize: 8,
-        color: 'rgba(208, 16, 57, 1)'
+        color: 'rgba(208, 16, 57, 1)',
+        visibleInPreview: true
       },
       {
         key: 'cover1',
@@ -341,7 +435,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       },
       {
         key: 'cover2',
@@ -351,8 +447,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
-        ]
+          { label: 'Газпром', value: 'photo2' },
+        ],
+        visibleInPreview: true,
+        formatAsFio: false
       }
     ]
   },
@@ -360,23 +458,42 @@ export const templates = [
     id: 4,
     name: 'Бейдж с фото',
     image: '/badgeWithPhoto.svg',
+    logos: {
+      photo1: '/badge_with_photo_1.svg',
+    },
     width: 294,
     height: 455,
     hasPhotoUpload: true,
     hasDesignButtons: false,
+    exportSize: {
+      width: 709,
+      height: 1063
+    },
+    
     logoPositions: {
       single: {
-        x: 30,
-        y: 30
+        x: 0,
+        y: 25
       },
 
       first: {
-        x: 30,
-        y: 10
+        x: -5,
+        y: 40
       },
       second: {
-        x: 30,
-        y: 50
+        x: 45,
+        y: 35
+      }
+    },
+
+    logoSizes: {
+      photo1: {
+        width: 50,
+        height: 40
+      },
+      photo2: {
+        width: 36,
+        height: 60
       }
     },
     fields: [
@@ -386,6 +503,7 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Форум молодёжи',
+        visibleInPreview: false
       },
       {
         key: 'fullName',
@@ -393,8 +511,10 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Иванов Иван',
+        visibleInPreview: true,
+        formatAsFio: true,
 
-        x: 140,
+        x: 110,
         y: 80,
         fontSize: 14,
         fontWeight: 600,
@@ -406,8 +526,10 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Менеджер',
+        visibleInPreview: true,
+        formatAsFio: false,
 
-        x: 55,
+        x: 25,
         y: 350,
         fontSize: 14,
         color: 'rgba(207, 17, 53, 1)'
@@ -418,8 +540,10 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: 'г. Салехард',
+        visibleInPreview: true,
+        formatAsFio: false,
 
-        x: 55,
+        x: 25,
         y: 380,
         fontSize: 10,
         color: 'rgba(0, 0, 0, 1)'
@@ -430,11 +554,13 @@ export const templates = [
         type: 'text',
         group: 'location',
         placeholder: '24 апреля 2025',
+        formatAsFio: false,
 
-        x: 55,
+        x: 25,
         y: 390,
         fontSize: 10,
-        color: 'rgba(0, 0, 0, 1)'
+        color: 'rgba(0, 0, 0, 1)',
+        visibleInPreview: true
       },
       {
         key: 'cover1',
@@ -444,26 +570,16 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
-        ]
-      },
-      {
-        key: 'cover2',
-        label: 'Логотип 2',
-        type: 'select',
-        group: 'logo',
-        options: [
-          { label: 'Без логотипа', value: 'none' },
-          { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
-        ]
+        ],
+        visibleInPreview: true,
+        formatAsFio: false,
       },
       {
         key: 'photo',
         label: 'Фото',
         type: 'file',
         group: 'photo',
-        x: 150,
+        x: 20,
         y: 210
       }
     ]

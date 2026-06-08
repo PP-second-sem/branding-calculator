@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service/auth.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-login-modal',
@@ -17,22 +18,97 @@ export class LoginModalComponent {
   public router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
   public email: string = '';
+  public mode: 'login' | 'register' = 'login';
   public password: string = '';
+  public registerData = {
+    lastName: '',
+    firstName: '',
+    middleName: '',
+    phoneNumber: '',
+    organization: '',
+    email: '',
+    password: '',
+  };
+  public switchMode(): void {
+    this.mode = this.mode === 'login' ? 'register' : 'login';
+  }
 
   public onClose(): void {
     this.close.emit();
   }
 
   public onSubmit(): void {
-    this.authService.login(
-      this.email,
-      this.password
-    );
 
-    const returnUrl =
-      this.route.snapshot.queryParams['returnUrl']
-      || '/branding-catalog';
+    if (this.mode === 'login') {
 
-    this.router.navigate([returnUrl]);
+      if (!this.email || !this.password) {
+        console.error('EMPTY LOGIN FIELDS');
+        return;
+      }
+
+      this.authService.login(this.email, this.password).subscribe({
+        next: (res: any) => {
+          if (res?.token) {
+            localStorage.setItem('token', res.token);
+          }
+
+          this.authService.getUserByEmail(this.email)
+            .subscribe((user: any) => {
+
+              this.authService.setSession({
+                ...user,
+                token: res?.token
+              });
+
+              this.onClose();
+
+              if (user.role === 'Admin') {
+                this.router.navigate(['/admin']);
+              } else {
+                this.router.navigate(['/branding-catalog']);
+              }
+
+            });
+        },
+        error: (err) => console.error(err)
+      });
+    }
+  }
+
+  public onRegister(): void {
+
+    this.authService.register({
+      ...this.registerData,
+      isActive: true
+    }).subscribe({
+      next: () => {
+
+        this.authService.login(
+          this.registerData.email,
+          this.registerData.password
+        ).subscribe({
+          next: (res: any) => {
+
+            if (res?.token) {
+              localStorage.setItem('token', res.token);
+            }
+
+            this.authService.getUserByEmail(
+              this.registerData.email
+            ).subscribe((user: any) => {
+
+              this.authService.setSession({
+                ...user,
+                token: res?.token
+              });
+
+              this.router.navigate(['/branding-catalog']);
+            });
+          }
+        });
+
+      },
+      error: (err) => console.error('REGISTER ERROR:', err)
+    });
   }
 }

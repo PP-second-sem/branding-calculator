@@ -194,15 +194,6 @@
         line-height: 22px;
     }
 
-    &__button {
-        background-color: rgba(225, 236, 231, 1);
-        padding: 4px 12px;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 18px;
-        color: rgba(42, 94, 68, 1);
-        border-radius: 33554400px;
-    }
 
     &__date {
         font-size: 12px;
@@ -223,6 +214,24 @@
         background-color: rgba(240, 247, 244, 1);
         padding: 12px 20px;
         border-left: 4px solid rgba(42, 94, 68, 1);
+    }
+
+    &__pending {
+        padding: 4px 12px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+        border-radius: 33554400px;
+    }
+
+    &__pending--green {
+        background-color: rgba(225, 236, 231, 1);
+        color: rgba(42, 94, 68, 1);
+    }
+
+    &__pending--red {
+        background-color: rgba(252, 234, 238, 1);
+        color: rgba(196, 14, 61, 1);
     }
 }
 
@@ -292,8 +301,4 @@
         color: rgba(255, 255, 255, 1);
         z-index: 1000;
     }
-}
-
-.user-response {
-
 }

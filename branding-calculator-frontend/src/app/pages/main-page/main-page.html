@@ -11,7 +11,7 @@
     <p class="hero-section__text">Создание и управление фирменным стилем ЯНАО</p>
     
     <div class="hero-section__buttons">
-        <button type="button" class="hero-section__button hero-section__button--branding" routerLink="/constructor/layouts">
+        <button type="button" class="hero-section__button hero-section__button--branding" routerLink="/branding-catalog">
             <span>Брендирование</span>
             <img src="/moveIcon.svg">
         </button>
@@ -27,79 +27,93 @@
         <p class="example-section__text">Примеры брендирования</p>
     </div>
 
-    <div class="example-section__carousel">
-        <div class="example-section__button example-section__button--left">
-            <img src="/anotherButtonLast.svg">
+    <div class="example-section__gallery">
+
+        <div class="example-section__carousel">
+
+            <div
+                class="example-section__button example-section__button--left"
+                (click)="prevSlide()"
+            >
+                <img src="/anotherButtonLast.svg">
+            </div>
+
+            <div class="example-section__images">
+
+                <div
+                    class="example-section__images-container"
+                    *ngFor="let slide of visibleSlides"
+                >
+                    <img [src]="slide.image">
+
+                    <p class="example-section__image-caption">
+                        {{ slide.title }}
+
+                        <span class="example-section__image-caption-desc">
+                            {{ slide.desc }}
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                class="example-section__button example-section__button--right"
+                (click)="nextSlide()"
+            >
+                <img src="/anotherButtonLast.svg">
+            </div>
+
         </div>
 
-        <div class="example-section__images">
-            <div class="example-section__images-container">
-                <img src="/airportImage.svg">
-                <p class="example-section__image-caption">
-                    Авиакомпания Ямал
-                    <span class="example-section__image-caption-desc">
-                        входная группа
-                    </span>
-                </p>
-            </div>
+        <div class="example-section__dots">
 
-            <div class="example-section__images-container">
-                <img src="/ticketImage.svg">
-                <p class="example-section__image-caption">
-                    Авиакомпания Ямал
-                    <span class="example-section__image-caption-desc">
-                        авиабилеты
-                    </span>
-                </p>
-            </div>
+            <span
+                *ngFor="let _ of [].constructor(dotsCount); let i = index"
+                class="example-section__dot"
+                [class.example-section__dot--active]="i === currentIndex"
+                (click)="setSlideByDot(i)"
+            ></span>
 
-            <div class="example-section__images-container">
-                <img src="/planeImage.svg">
-                <p class="example-section__image-caption">
-                    Авиакомпания Ямал
-                    <span class="example-section__image-caption-desc">
-                        юбилейный самолет
-                    </span>
-                </p>
-            </div>
-
-            <div class="example-section__dots">
-                <span class="example-section__dot example-section__dot--active"></span>
-                <span class="example-section__dot"></span>
-                <span class="example-section__dot"></span>
-                <span class="example-section__dot"></span>
-            </div>
         </div>
 
-        <div class="example-section__button example-section__button--right">
-            <img src="/anotherButtonLast.svg">
-        </div>
     </div>
 
     <div class="example-section__cards">
+
         <div class="example-section__card">
             <div class="example-section__icon-container example-section__icon-container--brand">
                 <img src="/brandIcon.svg" class="example-section__icon">
             </div>
+
             <p class="example-section__card-title">100+</p>
-            <p class="example-section__card-desc">носителей бренда</p>
+            <p class="example-section__card-desc">
+                носителей бренда
+            </p>
         </div>
 
         <div class="example-section__card">
             <div class="example-section__icon-container example-section__icon-container--star">
                 <img src="/starIcon.svg">
             </div>
+
             <p class="example-section__card-title">80+</p>
-            <p class="example-section__card-desc">успешных проектов</p>
+            <p class="example-section__card-desc">
+                успешных проектов
+            </p>
         </div>
 
         <div class="example-section__card">
             <div class="example-section__icon-container example-section__icon-container--watch">
                 <img src="/watchIcon.svg">
             </div>
+
             <p class="example-section__card-title">15 мин</p>
-            <p class="example-section__card-desc">среднее время создания</p>
+            <p class="example-section__card-desc">
+                среднее время создания
+            </p>
         </div>
+
     </div>
 </section>
 

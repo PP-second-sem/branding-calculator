@@ -14,13 +14,12 @@
             />
 
             <ng-template #pdf>
-                <img src="/pdfIcon.svg" />
+                <img src="/cardIcon.svg" />
             </ng-template>
         </div>
 
         <div class="card-modal__section">
             <div class="card-modal__info">
-                <!-- <p class="card-modal__type">Изображение SVG</p> -->
                 <h2 class="card-modal__name">{{ card.name }}</h2>
             </div>
             <div class="card-modal__sidebar">
@@ -37,10 +36,10 @@
 
         <div class="card-modal__footer">
             <div class="card-modal__buttons">
-                <button>Открыть</button>
-                <button>Скопировать ссылку</button>
-                <button>Скачать</button>
-                <button>К каталогу</button>
+                <button (click)="openFile()">Открыть</button>
+                <button (click)="copyLink()">Скопировать ссылку</button>
+                <button (click)="downloadFile()">Скачать</button>
+                <button (click)="close.emit()">К каталогу</button>
             </div>
             
             <div class="card-modal__meta">

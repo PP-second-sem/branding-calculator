@@ -1,25 +1,24 @@
 <header class="header">
     <div class="header__text-block">
         <p class="header__personal-account">Личный кабинет</p>
-        <h1 class="header__title">Добро пожаловать, Иван Петров!</h1>
+        <h1 class="header__title">Добро пожаловать, {{ currentUser.firstName }} {{ currentUser.lastName }}</h1>
     </div>
     <div class="header__buttons">
-        <button class="header__buttons-main">На главную</button>
-        <button class="header__buttons-exit">Выйти</button>
+        <button class="header__buttons-main" (click)="goHome()">На главную</button>
+        <button class="header__buttons-exit" (click)="logout()">Выйти</button>
     </div>
 </header>
 
 
 <section class="constructor-section">
     <div class="pages-switcher">
-        <button class="pages-switcher__button pages-switcher__button--active" routerLink="/profile/layouts">
+        <button class="pages-switcher__button pages-switcher__button--active" routerLink="/constructor/layouts">
             <img src="/layoutIcon.svg">
             Мои макеты
         </button>
-        <button class="pages-switcher__button" routerLink="/profile/requests">
+        <button class="pages-switcher__button" routerLink="/constructor/requests">
             <img src="/chatIcon.svg">
             Запросы к администратору
-            <span class="pages-switcher__button-count">1</span>
         </button>
     </div>
     
@@ -29,28 +28,56 @@
             <img src="/plusIcon.svg">
             Создать макет</button>
     </div>
-    <div class="layout-card">
-        <div class="layout-card__img">
-            <div class="layout-card__logo">
-                <img src="/cardIcon.svg">
+    <div class="layout-grid">
+        <div class="layout-card" *ngFor="let layout of layouts">
+            <div class="layout-card__img">
+                <div class="layout-card__logo">
+                    <img src="/cardIcon.svg">
+                </div>
             </div>
-        </div>
 
-        <div class="layout-card__content">
-            <h3 class="layout-card__title">Фирменный бланк ЯНАО</h3>
-            <div class="layout-card__info">
-                <p class="layout-card__type">Документы · 18 апреля 2024</p>
-            </div>
-            <div class="layout-card__buttons">
-                <button class="layout-card__button-view">
-                    <img src="/eyeIcon.svg">
+            <div class="layout-card__content">
+
+                <h3 class="layout-card__title">
+                    {{ layout.metadata?.templateId
+                        ? (layout.metadata.templateId === 1
+                            ? 'Визитка'
+                            : 'Макет №' + layout.metadata.templateId)
+                        : 'Без названия' }}
+                </h3>
+
+                <div class="layout-card__info">
+                <p class="layout-card__type">
+                    {{ layout.createdAtUtc | date:'dd MMMM yyyy':'':'ru' }}
+                </p>
+                </div>
+
+                <div class="layout-card__buttons">
+
+                <button
+                    class="layout-card__button-view"
+                >
+                    <img src="/eyeIcon.svg" (click)="openLayout(layout)">
                     Просмотр
                 </button>
-                <button class="layout-card__button-download">
+
+                <app-layout-preview-modal
+                    *ngIf="selectedLayout"
+                    [layout]="selectedLayout"
+                    [formData]="selectedLayout.formData"
+                    (close)="closeModal()"
+                ></app-layout-preview-modal>
+
+                <button
+                    class="layout-card__button-download"
+                    (click)="loadLayouts()"
+                >
                     <img src="/downloadIcon.svg">
                 </button>
+
+                </div>
+
             </div>
-            
         </div>
     </div>
 </section>

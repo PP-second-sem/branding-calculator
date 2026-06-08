@@ -2,88 +2,113 @@
     <div class="header-info">
         <div class="header__text-block">
             <p class="header__personal-account">Личный кабинет</p>
-            <h1 class="header__title">Добро пожаловать, Иван Петров!</h1>
+            <h1 class="header__title">Добро пожаловать, {{currentUser.firstName }} {{ currentUser.lastName }}</h1>
         </div>
         <div class="header__buttons">
-            <button class="header__buttons-main">На главную</button>
-            <button class="header__buttons-exit">Выйти</button>
-        </div>
-    </div>
-
-    <div class="cards-info">
-        <div class="cards-info__item">
-            <span class="cards-info__count">4</span>
-            <p class="cards-info__text">Всего макетов</p>
-        </div>
-        <div class="cards-info__item">
-            <span class="cards-info__count">2</span>
-            <p class="cards-info__text">Одобрено</p>
-        </div>
-        <div class="cards-info__item">
-            <span class="cards-info__count">1</span>
-            <p class="cards-info__text">На проверке</p>
-        </div>
-        <div class="cards-info__item">
-            <span class="cards-info__count">3</span>
-            <p class="cards-info__text">Запроса</p>
+            <button class="header__buttons-main" (click)="goHome()">На главную</button>
+            <button class="header__buttons-exit" (click)="logout()">Выйти</button>
         </div>
     </div>
 </header>
 
 <section class="requests-section">
     <div class="pages-switcher">
-        <button class="pages-switcher__button" routerLink="/profile/layouts">
+        <button class="pages-switcher__button" routerLink="/constructor/layouts">
             <img src="/unactiveLayoutIcon.svg">
             Мои макеты
         </button>
-        <button class="pages-switcher__button pages-switcher__button--active" routerLink="/profile/requests">
+        <button class="pages-switcher__button pages-switcher__button--active" routerLink="/constructor/requests">
             <img src="/activeChatIcon.svg">
             Запросы к администратору
-            <div class="pages-switcher__badge">
-                <span class="pages-switcher__button-count">1</span>
-            </div>
         </button>
     </div>
 
     <div class="requests-content">
         <div class="requests-content__header">
             <h4 class="requests-content__title">Запросы к администратору</h4>
-            <button class="requests-content__button">
+            <button class="requests-content__button" (click)="openRequestModal()">
                 <img src="/plusIcon.svg">
                 <span>Новый запрос</span>
             </button>
+            <app-request-modal *ngIf="isModalOpen" (close)="closeModal()"></app-request-modal>
         </div>
     </div>
 
     <div class="requests-cards">
-        <div class="requests-card">
-            <div class="requests-card__header">
-                <h3 class="requests-card__title">Согласование макета визитной карточки</h3>
-                <button class="requests-card__button">
-                    <span>Ответ получен</span>
-                </button>
-            </div>
-            <p class="requests-card__date">Отправлено: 16 апреля 2024</p>
 
-            <div class="requests-card__user-question">
-                <div class="user-info">
-                    <div class="user-info__badge">
-                        <p class="user-info__avatar">Вы</p>
-                    </div>
-                    <p class="user-info__text">Ваш запрос</p>
-                </div>
-                <p class="question-text">Добрый день! Прошу согласовать макет визитной карточки для отдела экологии ЯНАО.</p>
-            </div>
+    <div
+        class="requests-card"
+        *ngFor="let question of questions"
+    >
 
-            <div class="requests-card__user-response">
-                <div class="user-info">
-                    <div class="user-info__green-badge">
-                        <p class="user-info__green-text">А</p>
-                    </div>
-                    <p class="user-info__text--green">Ответ администратора · 17 апреля 2024</p>
-                </div>
-                <p class="question-text">Здравствуйте! Макет согласован. Можно передавать в печать. Рекомендуем использовать бумагу плотностью не менее 350г/м².</p>
-            </div>
+        <div class="requests-card__header">
+
+        <h3 class="requests-card__title">
+            {{ question.title }}
+        </h3>
+
+        <button class="requests-card__button">
+
+            <span *ngIf="question.adminRequest" class="requests-card__pending--green requests-card__pending">
+            Ответ получен
+            </span>
+
+            <span *ngIf="!question.adminRequest" class="requests-card__pending--red requests-card__pending">
+            Ожидание ответа
+            </span>
+
+        </button>
+
         </div>
+
+        <p class="requests-card__date">
+        Отправлено:
+        {{ question.createdAt | date:'dd.MM.yyyy' }}
+        </p>
+
+        <div class="requests-card__user-question">
+
+        <div class="user-info">
+            <div class="user-info__badge">
+            <p class="user-info__avatar">Вы</p>
+            </div>
+
+            <p class="user-info__text">
+            Ваш запрос
+            </p>
+        </div>
+
+        <p class="question-text">
+            {{ question.userResponse }}
+        </p>
+
+        </div>
+
+        <div
+        class="requests-card__user-response"
+        *ngIf="question.adminRequest"
+        >
+
+        <div class="user-info">
+
+            <div class="user-info__green-badge">
+                <p class="user-info__green-text">А</p>
+            </div>
+
+            <p class="user-info__text--green">
+            Ответ администратора ·
+            {{ question.answeredAt | date:'dd.MM.yyyy' }}
+            </p>
+
+        </div>
+
+        <p class="question-text">
+            {{ question.adminRequest }}
+        </p>
+
+        </div>
+
+    </div>
+
     </div>
 </section>

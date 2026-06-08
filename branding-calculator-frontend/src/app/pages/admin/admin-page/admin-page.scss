@@ -1,0 +1,327 @@
+.admin {
+
+    &__header {
+        background-color: rgba(26, 26, 26, 1);
+        padding: 32px 158px 56px 158px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &--subtitle {
+            background-color: rgba(196, 14, 61, 1);
+            border-radius: 6px;
+            padding-left: 13px;
+            padding-right: 13px;
+            font-size: 13px;
+            line-height: 20px;
+            color: rgba(255, 255, 255, 1);
+            max-width: 183px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &--title {
+            font-size: 24px;
+            line-height: 36px;
+            color: rgba(255, 255, 255, 1);
+        }
+
+        &--buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        &--button {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 1);
+            border-radius: 12px;
+            padding: 8px 16px;
+
+            &-exit {
+                background-color: rgba(196, 14, 61, 1);
+            }
+
+            &-main {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+
+    &__menu {
+        display: flex;
+        margin: 32px 151px;
+        padding: 7px;
+        gap: 8px;
+        align-items: center;
+        max-width: 850px;
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(240, 240, 240, 1);
+        box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+
+        &--button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 12px;
+            color: rgba(136, 136, 136, 1);
+            font-size: 14px;
+            line-height: 21px;
+            padding: 13px 20px;
+
+            &-active {
+                background-color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+}
+
+.question-card {
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(240, 240, 240, 1);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.question-card__status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.question-card__status.pending {
+  background: rgba(252, 234, 238, 1);
+  color: #c0392b;
+}
+
+.question-card__status.answered {
+  background: rgba(225, 245, 230, 1);
+  color: #1e7e34;
+}
+
+.question-card__title {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.question-card__meta {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.question-card__message {
+  background: rgba(249, 240, 225, 1);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.question-card__answer {
+  background: rgba(235, 248, 245, 1);
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.question-card__btn {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(26, 26, 26, 1);
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  font-size: 13px;
+  line-height: 20px;
+  padding: 7px 15px;
+}
+
+.question-card__reply textarea {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.question-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+
+  &--send {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 1);
+    gap: 8px;
+    background-color: rgba(196, 14, 61, 1);
+    border-radius: 10px;
+  }
+
+  &--close {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(232, 232, 232, 1);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+}
+
+.admin__menu--button-active {
+    background-color: rgba(26, 26, 26, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.catalog-form {
+    margin-left: 151px;
+    margin-right: 151px;
+}
+
+.form-section {
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(240, 240, 240, 1);
+    box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.form-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row .form-block {
+  flex: 1;
+}
+
+input, select, textarea {
+  padding: 10px 12px;
+  border: 1px solid rgba(232, 232, 232, 1);
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: rgba(250, 250, 250, 1);
+}
+
+textarea {
+  min-height: 90px;
+  resize: none;
+}
+
+label {
+    font-size: 13px;
+    font-size: 500;
+    color: rgba(26, 26, 26, 1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(196, 14, 61, 1);
+    color: rgba(255, 255, 255, 1);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 13px 23px;
+    border-radius: 14px;
+}
+
+.btn-secondary {
+    color: rgba(136, 136, 136, 1);
+    padding: 10px 16px;
+    border: 1px solid rgba(232, 232, 232, 1);
+    border-radius: 14px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.file-uploader__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 24px;
+  border: 1px dashed rgba(200, 200, 200, 1);
+  border-radius: 12px;
+
+  cursor: pointer;
+  text-align: center;
+
+  background: rgba(250, 250, 250, 1);
+  transition: 0.2s ease;
+}
+
+.file-uploader__box:hover {
+  border-color: black;
+  background: rgba(245, 245, 245, 1);
+}
+
+.file-uploader__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.file-uploader__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-uploader__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+}
+
+.file-uploader__subtitle {
+  font-size: 12px;
+  color: #777;
+}
+
+.my-layouts {
+    margin-left: 151px;
+}
+
+.sect-quest {
+    margin-left: 151px;
+    margin-right: 151px;
+}
