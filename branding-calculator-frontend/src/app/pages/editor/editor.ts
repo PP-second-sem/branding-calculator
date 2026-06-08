@@ -242,7 +242,7 @@ export class Editor implements OnInit {
     const firstName = parts[1] || '';
     const middleName = parts[2] || '';
 
-    if (templateId === 1) {
+    if (templateId === 1 || templateId === 2 || templateId === 4) {
       return {
         line1: `${lastName}`,
         line2: `${firstName}`

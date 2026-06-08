@@ -188,18 +188,18 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 40,
-        y: 170
+        x: 30,
+        y: 220
       },
 
       first: {
-        x: 40,
-        y: 120
+        x: 30,
+        y: 200
       },
 
       second: {
-        x: 40,
-        y: 200
+        x: 30,
+        y: 300
       }
     },
     fields: [
