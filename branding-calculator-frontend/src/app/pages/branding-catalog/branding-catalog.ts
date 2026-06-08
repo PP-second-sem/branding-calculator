@@ -15,5 +15,13 @@ import { RequestModalComponent } from '../../components/request-modal.component/
   styleUrl: './branding-catalog.scss',
 })
 export class BrandingCatalog {
-    public isModalOpen = false;
+  public isModalOpen = false;
+  public downloadGuide() {
+    const link = document.createElement('a');
+
+      link.href = '/guide.pdf';
+      link.download = 'guide.pdf';
+
+      link.click();
+  }  
 }

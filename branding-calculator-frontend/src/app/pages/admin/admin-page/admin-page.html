@@ -130,10 +130,14 @@
                     <label>Категория</label>
 
                     <select [(ngModel)]="catalogForm.category">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                        <option value="logotype">Логотипы</option>
+                        <option value="font">Шрифты</option>
+                        <option value="pattern">Паттерны</option>
+                        <option value="images">Иллюстрации</option>
+                        <option value="cases">Кейсы</option>
+                        <option value="branbook">Брендбуки</option>
+                        <option value="brandName">Фирменный знак</option>
+                        <option value="souvenir">Сувенирная продукция</option>
                     </select>
                 </div>
 
@@ -141,10 +145,20 @@
                     <label>Тэги</label>
 
                     <select [(ngModel)]="catalogForm.tags">
-                    <option value="id">Айдентика</option>
-                    <option value="nav">Навигация</option>
-                    <option value="docs">Документы</option>
-                    <option value="digital">Диджитал</option>
+                        <option value="id">Айдентика</option>
+                        <option value="nav">Навигация</option>
+                        <option value="docs">Документы</option>
+                        <option value="digital">Диджитал</option>
+                        <p>Города</p>
+                        <option value="Salehard">Салехард</option>
+                        <option value="New Urengoi">Новый Уренгой</option>
+                        <option value="Novembersk">Ноябрьск</option>
+                        <p>Цвет</p>
+                        <option value="white">Белый</option>
+                        <option value="black">Чёрный</option>
+                        <option value="red">Красный</option>
+                        <option value="blue">Синий</option>
+                        <option value="green">Зелёный</option>
                     </select>
                 </div>
 
