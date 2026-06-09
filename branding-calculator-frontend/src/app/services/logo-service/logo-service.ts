@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class LogoService {
   private http = inject(HttpClient);
 
-  private baseUrl = '/api/LogoLibrary';
+  private baseUrl = environment.baseUrl;
 
   getAll(): Observable<any> {
     return this.http.get(`${this.baseUrl}/all`);

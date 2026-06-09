@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { IUser } from '../../components/login-modal.component/login-modal.component';
-
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class AuthService {
 
   public currentUser = signal<any | null>(null);
   public router: Router = inject(Router);
-  private baseUrl = '/api/User';
+  private baseUrl = environment.baseUrl;
 
   private http: HttpClient = inject(HttpClient);
 
@@ -56,7 +56,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post('/api/User/exit', {}, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}/User/exit`, {}, { withCredentials: true });
   }
 
   clearSession() {
