@@ -108,6 +108,7 @@ namespace branding_calculator.Controllers
         }
 
         [HttpPatch("change-role")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ChangeUserRole([FromBody] ChangeRoleRequest request)
         {
 
@@ -130,7 +131,6 @@ namespace branding_calculator.Controllers
         }
 
         [HttpPost("exit")]
-        [Authorize] 
         public async Task<IActionResult> Exit()
         {
             var token = HttpContext.Request.Cookies["MegaCookies"];

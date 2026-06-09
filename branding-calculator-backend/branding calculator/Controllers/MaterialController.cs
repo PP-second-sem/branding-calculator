@@ -8,7 +8,6 @@ namespace branding_calculator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
     public class MaterialController : ControllerBase
     {
         private readonly IServices<Material> _services;
@@ -104,6 +103,7 @@ namespace branding_calculator.Controllers
         // POST: api/Material (создание с файлом)
         [HttpPost]
         [Consumes("multipart/form-data")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> CreateMaterial([FromForm] MaterialWithFileRequest request)
         {
             // 1. Валидация обязательных полей
@@ -172,6 +172,7 @@ namespace branding_calculator.Controllers
         // PUT: api/Material/5 (полное обновление материала)
         [HttpPut("{id:int}")]
         [Consumes("multipart/form-data")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> UpdateMaterial(int id, [FromForm] MaterialWithFileRequest request)
         {
             // 1. Проверяем существование материала

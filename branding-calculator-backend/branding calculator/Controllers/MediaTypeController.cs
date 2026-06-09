@@ -6,13 +6,12 @@ using Yamal.Core.Models;
 namespace branding_calculator.Controllers
 {
     [Route("api/[controller]")]
-
     [ApiController]
-    public class MediaTypeControler : ControllerBase
+    public class MediaTypeController : ControllerBase
     {
         private readonly IServices<MediaType> _service;
 
-        public MediaTypeControler(IServices<MediaType> service)
+        public MediaTypeController(IServices<MediaType> service)
         {
             _service = service;
         }
