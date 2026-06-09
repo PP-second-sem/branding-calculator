@@ -37,7 +37,6 @@ export class Editor implements OnInit {
   @Input() layoutData: any = null;
   ngOnInit(): void {
 
-    //  РЕЖИМ ПРОСМОТРА (из БД)
     if (this.layoutData) {
       this.loadFromLayout(this.layoutData);
       this.loadLogos();
@@ -143,10 +142,9 @@ export class Editor implements OnInit {
           { type: blob.type }
         );
 
-        // 👉 СНАЧАЛА СОХРАНЕНИЕ
+
         this.saveLayout(file);
 
-        // 👉 ПОТОМ СКАЧИВАНИЕ
         const link = document.createElement('a');
         link.download = `template.${this.selectedFormat}`;
         link.href = URL.createObjectURL(blob);
@@ -268,11 +266,11 @@ export class Editor implements OnInit {
     const firstName = parts[1] || '';
     const middleName = parts.slice(2).join(' '); 
 
-    if (templateId === 1 || templateId === 2 || templateId === 4) {
+    if (templateId === 2 || templateId === 3 || templateId === 5) {
       return { line1: lastName, line2: firstName };
     }
 
-    if (templateId === 3) {
+    if (templateId === 4) {
       const fullFirstLine = `${lastName} ${firstName}`.trim();
       
       let line1 = fullFirstLine;
