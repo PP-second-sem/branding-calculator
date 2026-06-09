@@ -336,22 +336,16 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-
-  width: max-content;
 }
-
-.fio-text:not(.fio-text--gramota) {
-  align-items: flex-start;
-}
-
-.fio-text--gramota {
-  align-items: center;
-}
-
-
 
 .fio-line {
+  width: 100%;
+  text-align: center;
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform 0.2s ease;
 }
 
 .download-button {

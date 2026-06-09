@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
@@ -12,7 +12,7 @@ import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-editor',
-  imports: [CommonModule, FormsModule, MainHeaderComponent],
+  imports: [CommonModule, FormsModule, MainHeaderComponent, RouterModule],
   templateUrl: './editor.html',
   styleUrl: './editor.scss',
 })
@@ -33,19 +33,47 @@ export class Editor implements OnInit {
   public formData: any = {};
   public http: HttpClient = inject(HttpClient);
   public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
-
+  @Input() readonly = false;
+  @Input() layoutData: any = null;
   ngOnInit(): void {
+
+    //  РЕЖИМ ПРОСМОТРА (из БД)
+    if (this.layoutData) {
+      this.loadFromLayout(this.layoutData);
+      this.loadLogos();
+      return;
+    }
+
+    //  РЕЖИМ СОЗДАНИЯ (как сейчас)
     const id = Number(this.route.snapshot.paramMap.get('id'));
-
     const found = templates.find(item => item.id === id);
-
-    console.log('ROUTE ID:', id);
-    console.log('TEMPLATE:', found);
 
     if (!found) return;
 
     this.setTemplate(found);
     this.loadLogos();
+  }
+
+  
+
+  loadFromLayout(layout: any) {
+    const json = JSON.parse(layout.jsonContent);
+
+    this.template = {
+      ...this.template, // важно
+      id: json.templateId,
+      fields: json.fields,
+      width: json.width,
+      height: json.height,
+      logos: json.logos,
+      logoPositions: json.logoPositions,
+      logoSizes: json.logoSizes,
+      exportSize: json.exportSize
+    };
+
+    this.formData = json.formData || {};
+    this.photoPreview = json.photo || '';
+    this.avatarPreview = json.avatar || '';
   }
 
   loadLogos() {
@@ -94,10 +122,6 @@ export class Editor implements OnInit {
 
   public handleDownload(): void {
 
-    const wrapper = document.querySelector(
-      '.editor-export-wrapper'
-    ) as HTMLElement;
-
     const element = document.querySelector(
       '.editor-export'
     ) as HTMLElement;
@@ -110,24 +134,25 @@ export class Editor implements OnInit {
       backgroundColor: null
     }).then(canvas => {
 
-      const link = document.createElement('a');
-      link.download = `template.${this.selectedFormat}`;
+      canvas.toBlob(blob => {
+        if (!blob) return;
 
-      if (this.selectedFormat === 'png') {
-        canvas.toBlob(blob => {
-          if (!blob) return;
-          link.href = URL.createObjectURL(blob);
-          link.click();
-        }, 'image/png');
-      }
+        const file = new File(
+          [blob],
+          `template.${this.selectedFormat}`,
+          { type: blob.type }
+        );
 
-      if (this.selectedFormat === 'jpeg') {
-        canvas.toBlob(blob => {
-          if (!blob) return;
-          link.href = URL.createObjectURL(blob);
-          link.click();
-        }, 'image/jpeg', 0.95);
-      }
+        // 👉 СНАЧАЛА СОХРАНЕНИЕ
+        this.saveLayout(file);
+
+        // 👉 ПОТОМ СКАЧИВАНИЕ
+        const link = document.createElement('a');
+        link.download = `template.${this.selectedFormat}`;
+        link.href = URL.createObjectURL(blob);
+        link.click();
+
+      }, this.selectedFormat === 'png' ? 'image/png' : 'image/jpeg', 0.95);
 
     });
   }
@@ -234,32 +259,34 @@ export class Editor implements OnInit {
   }
 
   formatFio(value: string, templateId?: number) {
-    if (!value) return { line1: '', line2: '' };
+    if (!value) {
+      return { line1: '', line2: '' };
+    }
 
-    const parts = value.trim().split(' ').filter(Boolean);
-
+    const parts = value.trim().split(/\s+/);
     const lastName = parts[0] || '';
     const firstName = parts[1] || '';
-    const middleName = parts[2] || '';
+    const middleName = parts.slice(2).join(' '); 
 
-    if (templateId === 1) {
-      return {
-        line1: `${lastName}`,
-        line2: `${firstName}`
-      };
+    if (templateId === 1 || templateId === 2 || templateId === 4) {
+      return { line1: lastName, line2: firstName };
     }
 
     if (templateId === 3) {
-      return {
-        line1: `${lastName} ${firstName}`,
-        line2: `${middleName}`
-      };
+      const fullFirstLine = `${lastName} ${firstName}`.trim();
+      
+      let line1 = fullFirstLine;
+      let line2 = middleName;
+
+      if (fullFirstLine.length > 18) {
+        line1 = lastName;
+        line2 = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + `${firstName} ${middleName}`.trim();
+      }
+
+      return { line1: line1, line2: line2 };
     }
 
-    return {
-      line1: value,
-      line2: ''
-    };
+    return { line1: value, line2: '' };
   }
 
 

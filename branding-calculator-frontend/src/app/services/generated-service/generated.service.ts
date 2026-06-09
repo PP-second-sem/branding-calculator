@@ -40,8 +40,14 @@ export class GeneratedService {
   }
 
   getLayoutMetadata(guid: string) {
-    return this.http.get<LayoutMetadata>(
+    return this.http.get(
       `/api/GeneratedLayout/userLayout/${guid}/metadata`
+    );
+  }
+
+  getLayoutJson(guid: string) {
+    return this.http.get<any>(
+      `/api/GeneratedLayout/userLayout/${guid}`
     );
   }
 }

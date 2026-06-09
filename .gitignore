@@ -14,6 +14,10 @@
 *.sln.docstates
 *.userprefs
 
+**/bin/
+**/obj/
+.vs/
+
 # Файлы для отладки и сборки
 *.pdb
 *.ilk

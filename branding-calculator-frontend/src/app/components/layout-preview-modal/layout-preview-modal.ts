@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { templates } from '../../mock/templates';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-layout-preview-modal',
@@ -15,8 +17,24 @@ export class LayoutPreviewModal {
 
   @Output() close = new EventEmitter<void>();
 
+  @ViewChild('previewRef') previewRef!: ElementRef;
+
+  previewUrl: string | null = null;
+
   closeModal() {
     this.close.emit();
+  }
+
+  generatePreview() {
+    if (!this.previewRef) return;
+
+    html2canvas(this.previewRef.nativeElement, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: null
+    }).then(canvas => {
+      this.previewUrl = canvas.toDataURL('image/png');
+    });
   }
 
   formatFio(value: string, templateId?: number) {
@@ -46,5 +64,16 @@ export class LayoutPreviewModal {
       line1: value,
       line2: ''
     };
+  }
+
+  get template(): any {
+
+    if (!this.layout?.templateData) {
+      return null;
+    }
+
+    return templates.find(
+      x => x.id === this.layout.templateData.templateId
+    );
   }
 }

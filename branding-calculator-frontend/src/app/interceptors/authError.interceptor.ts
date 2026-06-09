@@ -1,7 +1,8 @@
 import { inject } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
-import { catchError, switchMap, throwError } from 'rxjs';
-import { AuthService } from '../services/auth-service/auth.service'; 
+import { AuthService } from '../services/auth-service/auth.service';
+import { catchError, throwError } from 'rxjs';
+
 export const authErrorInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
@@ -9,15 +10,14 @@ export const authErrorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
 
       if (error.status === 401) {
-        return authService.logout().pipe(
-          switchMap(() => {
-            authService.currentUser.set(null);
-            localStorage.removeItem('user');
-            authService.router.navigate(['/']);
 
-            return throwError(() => error);
-          })
-        );
+        // ❌ НИКАКИХ HTTP ЗАПРОСОВ ТУТ
+
+        authService.currentUser.set(null);
+        localStorage.removeItem('user');
+
+        authService.router.navigate(['/login']); // или '/'
+
       }
 
       return throwError(() => error);

@@ -7,9 +7,13 @@ export const templates = [
     height: 355,
     hasPhotoUpload: false,
     hasDesignButtons: true,
+    showLocationSettings: false,
     logos: {
       photo1: '/Logotip_Color 9.svg',
-      photo2: '/gazprom.svg'
+      photo2: '/gazprom.svg',
+      photo3: '/Новый уренгой_Color.png',
+      photo4: '/Ноябрьск_Color.png',
+      photo5: '/Салехард_Color.png'
     },
     logoSizes: {
       photo1: {
@@ -19,7 +23,19 @@ export const templates = [
       photo2: {
         width: 150,
         height: 77
-      }
+      },
+      photo3: {
+        width: 150,
+        height: 80
+      },
+      photo4: {
+        width: 150,
+        height: 80
+      },
+      photo5: {
+        width: 150,
+        height: 80
+      },
     },
     exportSize: {
       width: 1150,
@@ -28,7 +44,7 @@ export const templates = [
     logoPositions: {
       single: {
         x: 50,
-        y: 105,
+        y: 125,
       },
 
       first: {
@@ -38,24 +54,24 @@ export const templates = [
 
       second: {
         x: 50,
-        y: 125
+        y: 180
       }
     },
     fields: [
-      { 
-        key: 'organization',
-        label: 'Организация',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'ЯНАО, Правительство ЯНАО...',
-        visibleInPreview: false
-      },
+        // { 
+        //   key: 'organization',
+        //   label: 'Организация',
+        //   type: 'text',
+        //   group: 'carrier',
+        //   placeholder: 'ЯНАО, Правительство ЯНАО...',
+        //   visibleInPreview: false
+        // },
       {
         key: 'fullName',
-        label: 'ФИО',
+        label: 'Фамилия Имя',
         type: 'text',
         group: 'carrier',
-        placeholder: 'Иванов Иван Иванович',
+        placeholder: 'Иванов Иван',
 
         x: 275,
         y: 90,
@@ -106,30 +122,6 @@ export const templates = [
         formatAsFio: false
       },
       {
-        key: 'address',
-        label: 'Адрес',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'Салехард, ул. Матросова, 1',
-        visibleInPreview: false,
-      },
-      {
-        key: 'city',
-        label: 'Населённый пункт',
-        type: 'text',
-        group: 'location',
-        placeholder: 'г. Салехард',
-        visibleInPreview: false
-      },
-      {
-        key: 'date',
-        label: 'Дата',
-        type: 'text',
-        group: 'location',
-        placeholder: '24 апреля 2025',
-        visibleInPreview: false
-      },
-      {
         key: 'cover1',
         label: 'Логотип 1',
         type: 'select',
@@ -137,7 +129,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
+          { label: 'Газпром', value: 'photo2' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
@@ -150,7 +145,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
+          { label: 'Газпром', value: 'photo2' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
@@ -162,12 +160,15 @@ export const templates = [
     id: 2,
     name: 'Бейдж',
     image: '/badge.svg',
-
+    showLocationSettings: true,
     width: 329,
     height: 464,
     logos: {
       photo1: '/badge_with_photo_1.svg',
-      photo2: '/badge_with_photo_2.svg'
+      photo2: '/badge_with_photo_2.svg',
+      photo3: '/Новый уренгой_Color.png',
+      photo4: '/Ноябрьск_Color.png',
+      photo5: '/Салехард_Color.png'
     },
     logoSizes: {
       photo1: {
@@ -177,7 +178,19 @@ export const templates = [
       photo2: {
         width: 57,
         height: 96
-      }
+      },
+      photo3: {
+        width: 85,
+        height: 100
+      },
+      photo4: {
+        width: 85,
+        height: 100
+      },
+      photo5: {
+        width: 85,
+        height: 100
+      },
     },
     hasPhotoUpload: false,
     hasDesignButtons: false,
@@ -187,35 +200,35 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 40,
-        y: 170
+        x: 30,
+        y: 220
       },
 
       first: {
-        x: 40,
-        y: 120
+        x: 30,
+        y: 200
       },
 
       second: {
-        x: 40,
-        y: 200
+        x: 30,
+        y: 300
       }
     },
     fields: [
-      {
-        key: 'event',
-        label: 'Название мероприятия',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'Форум молодёжи Ямала',
-        visibleInPreview: false
-      },
+      // {
+      //   key: 'event',
+      //   label: 'Название мероприятия',
+      //   type: 'text',
+      //   group: 'carrier',
+      //   placeholder: 'Форум молодёжи Ямала',
+      //   visibleInPreview: false
+      // },
       {
         key: 'field1',
         label: 'Поле 1',
         type: 'text',
         group: 'carrier',
-        placeholder: 'ФИО',
+        placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
         x: 170,
         y: 240,
@@ -274,7 +287,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
+          { label: 'Газпром', value: 'photo2' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
@@ -287,7 +303,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
+          { label: 'Газпром', value: 'photo2' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
@@ -302,13 +321,17 @@ export const templates = [
     height: 393,
     hasPhotoUpload: false,
     hasDesignButtons: false,
+    showLocationSettings: true,
     exportSize: {
       width: 2480,
       height: 3508
     },
     logos: {
       photo1: '/Logotip_Color 9.svg',
-      photo2: '/gazprom.svg'
+      photo2: '/gazprom.svg',
+      photo3: '/Новый уренгой_Color.png',
+      photo4: '/Ноябрьск_Color.png',
+      photo5: '/Салехард_Color.png'
     },
     logoSizes: {
       photo1: {
@@ -318,7 +341,19 @@ export const templates = [
       photo2: {
         width: 65,
         height: 31
-      }
+      },
+      photo3: {
+        width: 69,
+        height: 60
+      },
+      photo4: {
+        width: 69,
+        height: 60
+      },
+      photo5: {
+        width: 69,
+        height: 60
+      },
     },
     logoPositions: {
       single: {
@@ -327,7 +362,7 @@ export const templates = [
       },
 
       first: {
-        x: 40,
+        x: 20,
         y: 280
       },
       second: {
@@ -338,10 +373,10 @@ export const templates = [
     fields: [
       {
         key: 'recipientFullName',
-        label: 'ФИО получателя',
+        label: 'ФИО получателя (в родительном падеже)',
         type: 'text',
         group: 'carrier',
-        placeholder: 'Иванов Иван Иванович',
+        placeholder: 'Иванову Ивану Ивановичу',
 
         x: 80,
         y: 120,
@@ -434,7 +469,10 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' }
+          { label: 'Газпром', value: 'photo2' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
@@ -448,6 +486,9 @@ export const templates = [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
           { label: 'Газпром', value: 'photo2' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
@@ -460,11 +501,15 @@ export const templates = [
     image: '/badgeWithPhoto.svg',
     logos: {
       photo1: '/badge_with_photo_1.svg',
+      photo3: '/Новый уренгой_Color.png',
+      photo4: '/Ноябрьск_Color.png',
+      photo5: '/Салехард_Color.png'
     },
     width: 294,
     height: 455,
     hasPhotoUpload: true,
     hasDesignButtons: false,
+    showLocationSettings: true,
     exportSize: {
       width: 709,
       height: 1063
@@ -473,7 +518,7 @@ export const templates = [
     logoPositions: {
       single: {
         x: 0,
-        y: 25
+        y: 65
       },
 
       first: {
@@ -491,23 +536,32 @@ export const templates = [
         width: 50,
         height: 40
       },
-      photo2: {
-        width: 36,
+      photo3: {
+        width: 80,
         height: 60
-      }
+      },
+      photo4: {
+        width: 80,
+        height: 60
+      },
+      photo5: {
+        width: 80,
+        height: 60
+      },
+      
     },
     fields: [
-      {
-        key: 'event',
-        label: 'Название мероприятия',
-        type: 'text',
-        group: 'carrier',
-        placeholder: 'Форум молодёжи',
-        visibleInPreview: false
-      },
+      // {
+      //   key: 'event',
+      //   label: 'Название мероприятия',
+      //   type: 'text',
+      //   group: 'carrier',
+      //   placeholder: 'Форум молодёжи',
+      //   visibleInPreview: false
+      // },
       {
         key: 'fullName',
-        label: 'ФИО',
+        label: 'Фамилия Имя',
         type: 'text',
         group: 'carrier',
         placeholder: 'Иванов Иван',
@@ -570,6 +624,9 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
+          { label: 'Новый Уренгой', value: 'photo3' },
+          { label: 'Ноябрьск', value: 'photo4' },
+          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false,

@@ -27,4 +27,12 @@ export class MaterialService {
   delete(id: number) {
     return this.http.delete(`/api/Material/${id}`);
   }
+
+  getMyLayouts() {
+    return this.http.get('/api/GeneratedLayout/userLayouts/mine');
+  }
+
+  getUserLayout(guid: string) {
+    return this.http.get(`/api/GeneratedLayout/userLayout/${guid}`);
+  }
 }

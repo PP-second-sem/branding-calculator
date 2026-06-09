@@ -22,7 +22,7 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<MaterialResponse>>> GetMaterials()
         {
             var materials = await _services.GetAllEntities();
@@ -46,6 +46,7 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material/5
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<ActionResult<MaterialResponse>> GetMaterial(int id)
         {
             var materials = await _services.GetAllEntities();
@@ -73,6 +74,7 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material/{id}/download
         [HttpGet("{id:int}/download")]
+        [AllowAnonymous]
         public async Task<IActionResult> DownloadMaterialFile(int id)
         {
             var materials = await _services.GetAllEntities();

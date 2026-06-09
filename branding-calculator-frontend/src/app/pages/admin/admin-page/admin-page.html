@@ -43,26 +43,36 @@
                 <div class="layouts-list">
 
                     <div
-                    class="layout-card"
-                    *ngFor="let layout of layouts"
+                        class="layout-card"
+                        *ngFor="let layout of layouts"
                     >
-                    <img [src]="layout.previewUrl || '/cardIcon.svg'">
+                        <div class="layout-card__header">
+                            <div class="layout-card__img">
+                                <img [src]="'/cardIcon.svg'">
+                            </div>
+                        </div>
+                        
+                        <div class="layout-card__main-content">
+                            <div class="layout-card__info">
+                                <p>{{ getLayoutTitle(layout) }}</p>
+                            </div>
 
-                    <div class="layout-card__info">
-                        <p>{{ layout.name }}</p>
+                            <div class="layout-card__buttons">
+                                <!-- <button (click)="openLayoutCard(layout)" class="layout-card__button">
+                                    <img src="/eyeIcon.svg">
+                                    Просмотр
+                                </button> -->
+
+                                <button class="layout-card__download-button" (click)="downloadLayout(layout, $event)">
+                                    <img src="/downloadIcon.svg">
+                                </button>
+                            </div>
+                        </div>
                     </div>
-
-                    <button (click)="openLayoutCard(layout)">
-                        Просмотр
-                    </button>
-
-                    </div>
-
                 </div>
             </div>
 
             <div *ngSwitchCase="'questions'" class="sect-quest">
-                Входящие вопросы
                 <h2>Входящие вопросы</h2>
 
                 <div class="question-card" *ngFor="let q of questions">
@@ -145,39 +155,51 @@
             </div>
 
             <div class="form-row">
-                <div class="form-block">
-                    <label>Категория</label>
 
+                <!-- СФЕРА -->
+                <div class="form-part">
+                    <label>Сфера</label>
                     <select [(ngModel)]="catalogForm.category">
-                        <option value="logotype">Логотипы</option>
-                        <option value="font">Шрифты</option>
-                        <option value="pattern">Паттерны</option>
-                        <option value="images">Иллюстрации</option>
-                        <option value="cases">Кейсы</option>
-                        <option value="branbook">Брендбуки</option>
-                        <option value="brandName">Фирменный знак</option>
-                        <option value="souvenir">Сувенирная продукция</option>
+                    <option value="identity">Айдентика</option>
+                    <option value="navigation">Навигация</option>
+                    <option value="digital">Диджитал</option>
+                    <option value="docs">Документы</option>
                     </select>
                 </div>
 
-                <div class="form-block">
-                    <label>Тэги</label>
+                <!-- ГОРОД -->
+                <div class="form-part">
+                    <label>Город</label>
+                    <select [(ngModel)]="catalogForm.city">
+                    <option value="salehard">Салехард</option>
+                    <option value="noyabrsk">Ноябрьск</option>
+                    <option value="novy-urengoy">Новый Уренгой</option>
+                    </select>
+                </div>
 
-                    <select [(ngModel)]="catalogForm.tags">
-                        <option value="id">Айдентика</option>
-                        <option value="nav">Навигация</option>
-                        <option value="docs">Документы</option>
-                        <option value="digital">Диджитал</option>
-                        <p>Города</p>
-                        <option value="Salehard">Салехард</option>
-                        <option value="New Urengoi">Новый Уренгой</option>
-                        <option value="Novembersk">Ноябрьск</option>
-                        <p>Цвет</p>
-                        <option value="white">Белый</option>
-                        <option value="black">Чёрный</option>
-                        <option value="red">Красный</option>
-                        <option value="blue">Синий</option>
-                        <option value="green">Зелёный</option>
+                <!-- ЦВЕТ -->
+                <div class="form-part">
+                    <label>Цвет</label>
+                    <select [(ngModel)]="catalogForm.color">
+                    <option value="white">Белый</option>
+                    <option value="black">Чёрный</option>
+                    <option value="red">Красный</option>
+                    <option value="blue">Синий</option>
+                    <option value="green">Зелёный</option>
+                    </select>
+                </div>
+
+                <div class="form-part">
+                    <label>Категория</label>
+                    <select [(ngModel)]="catalogForm.sphere">
+                    <option value="logos">Логотипы</option>
+                    <option value="fonts">Шрифты</option>
+                    <option value="patterns">Паттерны</option>
+                    <option value="illustrations">Иллюстрации</option>
+                    <option value="cases">Кейсы</option>
+                    <option value="brandbooks">Брендбуки</option>
+                    <option value="brand_mark">Фирменный знак</option>
+                    <option value="souvenir_products">Сувенирная продукция</option>
                     </select>
                 </div>
 
@@ -235,51 +257,51 @@
     </div>
     <div class="catalog-form" *ngIf="activeTab === 'addingLogotype'">
 
-    <h2>Добавить элемент в каталог</h2>
+        <h2>Добавить Логотип в каталог</h2>
 
-    <div class="form-section">
-        <div class="form-block">
-        <label>Название элемента</label>
-
-        <input
-            type="text"
-            placeholder="Например: Логотип горизонтальный"
-            [(ngModel)]="logoForm.name"
-        />
-        </div>
-
-        <!-- ФАЙЛ -->
-        <div class="form-block">
-        <label>Файл элемента</label>
-
-        <div class="file-uploader">
+        <div class="form-section">
+            <div class="form-block">
+            <label>Название элемента</label>
 
             <input
-            type="file"
-            id="logoFile"
-            (change)="onLogoSelected($event)"
-            hidden
-            >
-
-            <label for="logoFile" class="file-uploader__box">
-
-            <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
-
-            <div class="file-uploader__text">
-
-                <p class="file-uploader__title">
-                Перетащите файл или нажмите для выбора
-                </p>
-
-                <p class="file-uploader__subtitle">
-                SVG, PNG, JPG
-                </p>
-
+                type="text"
+                placeholder="Например: Логотип горизонтальный"
+                [(ngModel)]="logoForm.name"
+            />
             </div>
 
-            </label>
+            <!-- ФАЙЛ -->
+            <div class="form-block">
+            <label>Файл элемента</label>
 
-        </div>
+            <div class="file-uploader">
+
+                <input
+                type="file"
+                id="logoFile"
+                (change)="onLogoSelected($event)"
+                hidden
+                >
+
+                <label for="logoFile" class="file-uploader__box">
+
+                <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
+
+                <div class="file-uploader__text">
+
+                    <p class="file-uploader__title">
+                    Перетащите файл или нажмите для выбора
+                    </p>
+
+                    <p class="file-uploader__subtitle">
+                    SVG, PNG, JPG
+                    </p>
+
+                </div>
+
+                </label>
+
+            </div>
         </div>
         <div class="form-actions">
 
@@ -299,11 +321,9 @@
     </div>
 </div>
 
-
-
 <app-layout-preview-modal
   *ngIf="selectedLayout"
   [layout]="selectedLayout"
-  [formData]="selectedLayout.formData"
-  (close)="selectedLayout = null"
-></app-layout-preview-modal>
+  [formData]="selectedLayout.templateData.formData"
+  (close)="selectedLayout = null">
+</app-layout-preview-modal>
