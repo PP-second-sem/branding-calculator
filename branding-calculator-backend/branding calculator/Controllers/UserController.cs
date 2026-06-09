@@ -1,8 +1,7 @@
 ﻿using branding_calculator.Contracts.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Yamal.Application;
+using System.Security.Claims;
 using Yamal.Core.Abstractions;
 
 namespace branding_calculator.Controllers
@@ -28,7 +27,7 @@ namespace branding_calculator.Controllers
 
             var response = new UserResponse(
                 user.Id,
-                user.Email, 
+                user.Email,
                 user.FirstName,
                 user.LastName,
                 user.MiddleName,
@@ -116,19 +115,39 @@ namespace branding_calculator.Controllers
             var users = await _usersService.GetAllUser();
             var user = users.FirstOrDefault(x => x.Email == request.Email);
 
-            if (user == null) 
+            if (user == null)
                 return NotFound($"User with email {request.Email} not found");
 
 
             user.ChangeRole(request.Role);
 
             await _usersService.UpdateEntity(user);
-            
+
             return Ok(new
             {
                 message = "Change role successful",
                 user = request.Email
             });
         }
+
+        [HttpPost("exit")]
+        public async Task<IActionResult> Exit()
+        {
+            var token = HttpContext.Request.Cookies["MegaCookies"];
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                HttpContext.Response.Cookies.Delete("MegaCookies");
+
+            }
+
+            return Ok(new
+            {
+                status = "success",
+                message = "Successfully logged out"
+            });
+        }
+
+
     }
 }

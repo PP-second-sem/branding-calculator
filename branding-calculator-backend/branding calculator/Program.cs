@@ -1,6 +1,7 @@
 using branding_calculator.Extintions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SQLitePCL;
 using Yamal.Application;
 using Yamal.Core.Abstractions;
@@ -41,13 +42,20 @@ namespace branding_calculator
             builder.WebHost.ConfigureKestrel(serverOptions =>
             {
                 serverOptions.Limits.MaxRequestBodySize = 50 * 1024 * 1024; // 50 MB
+                serverOptions.ListenAnyIP(8080);
             });
 
             builder.Services.AddDbContext<YamalDbContext>(options =>
             {
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                var absolutePath = Path.Combine(AppContext.BaseDirectory, connectionString);
-                var dbFolder = Path.GetDirectoryName(absolutePath);
+
+                // Если строка подключения — это просто имя файла (без "Data Source="), добавляем префикс
+                if (!string.IsNullOrEmpty(connectionString) &&
+                    !connectionString.Contains("Data Source=", StringComparison.OrdinalIgnoreCase) &&
+                    !connectionString.Contains("DataSource=", StringComparison.OrdinalIgnoreCase))
+                {
+                    connectionString = $"Data Source={connectionString}";
+                }
 
                 options.UseSqlite(connectionString);
             });
@@ -78,21 +86,23 @@ namespace branding_calculator
 
             var app = builder.Build();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<YamalDbContext>();
+                context.Database.EnsureCreated();
+            }
+
             app.UseStaticFiles();
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI();
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); 
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.MapGet("/", () => Results.Redirect("swagger"));
 
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

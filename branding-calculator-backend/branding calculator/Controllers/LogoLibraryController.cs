@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using branding_calculator.Contracts.Logos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-using branding_calculator.Contracts.Logos;
 
 namespace branding_calculator.Controllers
 {
-    [Route("api/[controller]")]  
+    [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class LogoLibraryController : ControllerBase
     {

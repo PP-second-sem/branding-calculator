@@ -21,13 +21,14 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<MaterialResponse>>> GetMaterials()
         {
             var materials = await _services.GetAllEntities();
 
             var response = materials.Select(m => new MaterialResponse(
                 m.Id,
-                m.Category, 
+                m.Category,
                 m.Sphere,
                 m.Name,
                 m.Description,
@@ -44,6 +45,7 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material/5
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public async Task<ActionResult<MaterialResponse>> GetMaterial(int id)
         {
             var materials = await _services.GetAllEntities();
@@ -71,6 +73,7 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material/{id}/download
         [HttpGet("{id:int}/download")]
+        [AllowAnonymous]
         public async Task<IActionResult> DownloadMaterialFile(int id)
         {
             var materials = await _services.GetAllEntities();
@@ -100,6 +103,7 @@ namespace branding_calculator.Controllers
         // POST: api/Material (создание с файлом)
         [HttpPost]
         [Consumes("multipart/form-data")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> CreateMaterial([FromForm] MaterialWithFileRequest request)
         {
             // 1. Валидация обязательных полей
@@ -142,7 +146,7 @@ namespace branding_calculator.Controllers
                 request.Description,
                 request.City,
                 request.Color,
-                true,  
+                true,
                 request.PreviewUrl,
                 filePath,  // Путь к папке с файлами
                 fileType,
@@ -168,6 +172,7 @@ namespace branding_calculator.Controllers
         // PUT: api/Material/5 (полное обновление материала)
         [HttpPut("{id:int}")]
         [Consumes("multipart/form-data")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> UpdateMaterial(int id, [FromForm] MaterialWithFileRequest request)
         {
             // 1. Проверяем существование материала

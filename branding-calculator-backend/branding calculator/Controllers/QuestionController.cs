@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Yamal.Application;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
 
@@ -16,7 +16,8 @@ namespace branding_calculator.Controllers
         private readonly IQuestionServices _services;
         private readonly IUsersServices _userService;
 
-        public QuestionController(IQuestionServices services, IUsersServices userService) {
+        public QuestionController(IQuestionServices services, IUsersServices userService)
+        {
             _userService = userService;
             _services = services;
         }
@@ -55,15 +56,28 @@ namespace branding_calculator.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{userId:int}/GetUserQuestions")]
-        public async Task<ActionResult<List<QuestionResponse>>> GetUserQuestions(int userId)
-        {
 
+        [HttpGet("GetUserQuestions")]
+        public async Task<ActionResult<List<UserQuestionResponse>>> GetUserQuestions()
+        {
+            int userId;
+            try
+            {
+                userId = GetUserIdFromToken();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            var userInfo = await _userService.GetUserById(userId);
             var userQuestions = await _services.GetUserQuestions(userId);
             if (userQuestions == null) return NotFound("The user has no questions");
-            var response = userQuestions.Select(q => new QuestionResponse(
+            var response = userQuestions.Select(q => new UserQuestionResponse(
                 q.Id,
-                q.UserId,
+                userId,
+                userInfo.Email,
+                userInfo.FirstName,
                 q.Title,
                 q.UserQuestion,
                 q.AdminResponse,
@@ -75,6 +89,7 @@ namespace branding_calculator.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles="Admin")]
         public async Task<ActionResult<int>> DeleteQuestion(int id)
         {
             var question = await _services.GetByIdQuestion(id);
@@ -99,7 +114,8 @@ namespace branding_calculator.Controllers
         }
 
         [HttpPatch("AnwserQuestion")]
-        public async Task <ActionResult<int>> CreateAnswer(int id, string answer)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<int>> CreateAnswer(int id, string answer)
         {
             var question = await _services.GetByIdQuestion(id);
             if (question == null) return BadRequest("Question not found");

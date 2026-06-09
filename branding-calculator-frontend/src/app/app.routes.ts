@@ -3,6 +3,7 @@ import { Catalog } from './pages/catalog/catalog';
 import { MainPage } from './pages/main-page/main-page';
 import { authGuard } from './guards/auth.guards';
 import { AdminPage } from './pages/admin/admin-page/admin-page';
+
 export const routes: Routes = [
     {
         path: '',
@@ -37,7 +38,7 @@ export const routes: Routes = [
         path: 'editor/:id',
         loadComponent: () =>
             import('./pages/editor/editor')
-            .then(m => m.Editor)
+            .then(m => m.Editor),
     },
     {
         path: 'admin',

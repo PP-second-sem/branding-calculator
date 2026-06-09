@@ -21,13 +21,13 @@ namespace branding_calculator.Contracts.Users
         }
 
         public int Id { get; }
-        public string Email { get; } = string.Empty; 
+        public string Email { get; } = string.Empty;
         public string FirstName { get; } = string.Empty;
         public string LastName { get; } = string.Empty;
         public string? MiddleName { get; } = string.Empty;
         public string PhoneNumber { get; } = string.Empty;
         public string? Organization { get; } = string.Empty;
-        public Role Role { get; } 
+        public Role Role { get; }
         public bool IsActive { get; }
     }
 }

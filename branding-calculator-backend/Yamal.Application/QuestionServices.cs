@@ -1,5 +1,5 @@
-﻿using Yamal.Core.Models;
-using Yamal.DataAccess.Repositories;
+﻿using Yamal.Core.Abstractions;
+using Yamal.Core.Models;
 
 namespace Yamal.Application
 {
@@ -7,7 +7,7 @@ namespace Yamal.Application
     {
         private readonly IQuestionRepository _questionRepository;
 
-        public QuestionServices(IQuestionRepository questionRepository) 
+        public QuestionServices(IQuestionRepository questionRepository)
             => _questionRepository = questionRepository;
 
         public async Task<int> CreateEntity(Question entity)
@@ -39,7 +39,7 @@ namespace Yamal.Application
         {
             return await _questionRepository.GetUsersQuestions(userId);
         }
-        
+
 
 
     }

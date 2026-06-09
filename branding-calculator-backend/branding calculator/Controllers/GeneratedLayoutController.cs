@@ -1,19 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using branding_calculator.Contracts.Layouts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using System.Security.Claims;
 using System.Text;
-using Yamal.Application;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-using Yamal.DataAccess;
-using Yamal.DataAccess.Entites;
 
 namespace branding_calculator.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class GeneratedLayoutController : ControllerBase
     {
@@ -27,10 +24,6 @@ namespace branding_calculator.Controllers
             _service = service;
             _env = env;
         }
-
- 
-
-
 
         // ==================== 🗄️ МЕТОДЫ РАБОТЫ С БД (оставляем без изменений) ====================
 
@@ -49,6 +42,7 @@ namespace branding_calculator.Controllers
         }
 
         [HttpDelete("{id:int}/Delete")]
+        [Authorize(Roles ="Admin")]
         public async Task<ActionResult<int>> Delete(int id)
         {
             return await _service.Delete(id);
@@ -57,7 +51,6 @@ namespace branding_calculator.Controllers
 
 
         [HttpPost("saveUserLayout")]
-        [Authorize]
         [RequestSizeLimit(57671680)] // 55 МБ
         [DisableRequestSizeLimit]
         public async Task<IActionResult> SaveUserLayout([FromForm] LayoutSaveRequest request)
@@ -113,12 +106,12 @@ namespace branding_calculator.Controllers
 
                 // 3. Сохраняем запись в БД
                 var layoutEntity = new GeneratedLayout
-                ( 0,
+                (0,
                     userId,
                     request.CarrierTypeId,
                     jsonContent,
                     packageUrl,
-                    outputFormatsString, 
+                    outputFormatsString,
                     DateTime.UtcNow
                 );
 
@@ -147,7 +140,6 @@ namespace branding_calculator.Controllers
 
 
         [HttpGet("userLayout/{guid}")]
-        [Authorize]
         [Produces("application/zip", "application/json")]
         public async Task<IActionResult> DownloadUserLayout(string guid)
         {
@@ -171,7 +163,6 @@ namespace branding_calculator.Controllers
         /// Скачать только JSON-метаданные макета
         /// </summary>
         [HttpGet("userLayout/{guid}/metadata")]
-        [Authorize]
         [Produces("application/json")]
         public async Task<IActionResult> DownloadLayoutMetadata(string guid)
         {
@@ -190,7 +181,6 @@ namespace branding_calculator.Controllers
 
 
         [HttpDelete("userLayout/{guid}")]
-        [Authorize]
         public IActionResult DeleteUserLayout(string guid)
         {
             var userId = GetUserIdFromToken();
@@ -246,7 +236,7 @@ namespace branding_calculator.Controllers
                 var guidStr = fileName.Substring(guidStartIndex, guidEndIndex - guidStartIndex);
                 if (!Guid.TryParse(guidStr, out var guid))
                 {
-                  
+
                     continue;
                 }
 
@@ -297,7 +287,7 @@ namespace branding_calculator.Controllers
         {
             var relativePath = Path.Combine("Data", "UserLayouts");
             var targetDirectory = Path.Combine(_env.ContentRootPath, relativePath);
-            Directory.CreateDirectory(targetDirectory); 
+            Directory.CreateDirectory(targetDirectory);
             return Path.Combine(targetDirectory, $"{baseFileName}{extension}");
         }
 
@@ -311,35 +301,5 @@ namespace branding_calculator.Controllers
             }
         }
 
-
-    }
-
-
-    public class LayoutSaveRequest
-    {
-        /// <summary>
-        /// ID типа носителя (FK → CarrierTypes.id)
-        /// </summary>
-        public int CarrierTypeId { get; set; }
-
-        /// <summary>
-        /// JSON с параметрами генерации (сохраняется как есть, без валидации)
-        /// </summary>
-        public string? JsonContent { get; set; }
-
-        /// <summary>
-        /// Файлы для упаковки в ZIP
-        /// </summary>
-        public List<IFormFile> Files { get; set; } = new();
-    }
-
-    public class UserLayoutInfoDto
-    {
-        public string Guid { get; set; } = string.Empty;
-        public string ZipFileName { get; set; } = string.Empty;
-        public string JsonFileName { get; set; } = string.Empty;
-        public bool JsonExists { get; set; }
-        public long FileSizeBytes { get; set; }
-        public DateTime CreatedAtUtc { get; set; }
     }
 }
