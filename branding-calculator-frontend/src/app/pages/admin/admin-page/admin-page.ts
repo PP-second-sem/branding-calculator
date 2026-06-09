@@ -136,7 +136,6 @@ export class AdminPage implements OnInit {
         this.router.navigate(['/']);
       },
       error: () => {
-        // даже если сервер вернул ошибку
         this.authService.clearSession();
         this.router.navigate(['/']);
       }

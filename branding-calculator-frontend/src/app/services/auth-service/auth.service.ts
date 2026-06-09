@@ -17,7 +17,7 @@ export class AuthService {
   private http: HttpClient = inject(HttpClient);
 
   login(email: string, password: string) {
-    return this.http.post(`${this.baseUrl}/login`, {
+    return this.http.post(`${this.baseUrl}/User/login`, {
       email,
       password
     }).pipe(
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   register(data: any) {
-    return this.http.post(`${this.baseUrl}/register`, data);
+    return this.http.post(`${this.baseUrl}/User/register`, data);
   }
 
   setSession(user: any) {
@@ -71,6 +71,6 @@ export class AuthService {
   }
 
   getUserByEmail(email: string) {
-    return this.http.get<IUser>(`${this.baseUrl}/${email}`);
+    return this.http.get<IUser>(`${this.baseUrl}/User/${email}`);
   }
 }

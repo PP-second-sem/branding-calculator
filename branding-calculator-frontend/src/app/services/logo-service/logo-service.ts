@@ -12,22 +12,22 @@ export class LogoService {
   private baseUrl = environment.baseUrl;
 
   getAll(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/all`);
+    return this.http.get(`${this.baseUrl}/LogoLibrary/all`);
   }
 
   getById(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+    return this.http.get(`${this.baseUrl}/LogoLibrary/${id}`);
   }
 
   add(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add`, formData);
+    return this.http.post(`${this.baseUrl}/LogoLibrary/add`, formData);
   }
 
   update(id: number, formData: FormData): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, formData);
+    return this.http.put(`${this.baseUrl}/LogoLibrary/${id}`, formData);
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/LogoLibrary/${id}`);
   }
 }
