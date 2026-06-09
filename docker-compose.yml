@@ -8,7 +8,7 @@ services:
     container_name: branding-backend
     user: root
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Develompent
       - ASPNETCORE_URLS=http://0.0.0.0:8080
       - ConnectionStrings__DefaultConnection=Data Source=/app/yamal.db;Foreign Keys=True;Mode=ReadWrite
     volumes:
