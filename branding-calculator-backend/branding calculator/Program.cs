@@ -108,6 +108,15 @@ namespace branding_calculator
 
             app.MapControllers();
 
+            app.UseExceptionHandler(appError =>
+            {
+                appError.Run(async context =>
+                {
+                    context.Response.StatusCode = 500;
+                    context.Response.ContentType = "application/json";
+                    await context.Response.WriteAsync("{\"error\": \"Внутренняя ошибка сервера. Проверьте логи.\"}");
+                });
+            });
 
             app.Run();
         }
