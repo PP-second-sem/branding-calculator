@@ -9,33 +9,30 @@ services:
     user: root
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://0.0.0.0:5001
-      - ConnectionStrings__DefaultConnection=Data
-        Source=/app/Data/yamal.db;Foreign Keys=True;Mode=ReadWrite
       - ASPNETCORE_URLS=http://0.0.0.0:8080
-      - ConnectionStrings__DefaultConnection=Data Source=/app/yamal.db;Foreign
-        Keys=True;Mode=ReadWrite
+      - ConnectionStrings__DefaultConnection=Data Source=/app/yamal.db;Foreign Keys=True;Mode=ReadWrite
     volumes:
       - ./yamal.db:/app/yamal.db
       - ./uploads:/app/uploads
     ports:
-      - 5001:5001
-      - 5001:8080
+      - "5001:8080"
     networks:
       - app-network
     restart: unless-stopped
+
   frontend:
     build:
       context: ./branding-calculator-frontend
       dockerfile: Dockerfile
     container_name: branding-frontend
     ports:
-      - 8080:80
+      - "8080:80"
     depends_on:
       - backend
     networks:
       - app-network
     restart: unless-stopped
+
 networks:
   app-network:
     driver: bridge
