@@ -28,7 +28,7 @@ export class AdminPage implements OnInit {
   private logoService: LogoService = inject(LogoService);
   private generatedService: GeneratedService = inject(GeneratedService);
   public http: HttpClient = inject(HttpClient);
-  private cdr = inject(ChangeDetectorRef);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   logoForm = {
     name: '',
     isActive: true,
@@ -60,16 +60,13 @@ export class AdminPage implements OnInit {
   questions: any[] = [];
 
   ngOnInit() {
+    this.loadLayouts();
     this.loadQuestions();
-    this.loadMaterials();
-    
+    // this.loadMaterials(); 
   }
 
   getLayoutTitle(layout: any): string {
-
-    console.log(layout);
-
-    const id = layout?.templateId;
+    const id = layout?.metadata.templateId;
 
     switch (id) {
       case 1:
@@ -85,7 +82,7 @@ export class AdminPage implements OnInit {
         return 'Бейдж с фото';
 
       default:
-        return 'Макет'
+        return 'Макет';
     }
   }
 
@@ -93,6 +90,7 @@ export class AdminPage implements OnInit {
     this.questionService.getAllQuestions()
       .subscribe((res: any) => {
         this.questions = [...res];
+        this.cdr.detectChanges();
       });
   }
 
@@ -227,17 +225,17 @@ export class AdminPage implements OnInit {
   }
 
   loadLayouts() {
-  this.http.get<any[]>('/api/GeneratedLayout/userLayouts/mine')
+    this.http.get<any[]>('/api/GeneratedLayout/userLayouts/mine')
     .pipe(
       switchMap(layouts => {
 
         const requests = layouts.map(layout =>
           this.http.get<any>(
-            `/api/GeneratedLayout/userLayout/${layout.guid}`
+            `/api/GeneratedLayout/userLayout/${layout.guid}/metadata`
           ).pipe(
-            map(json => ({
+            map(metadata => ({
               ...layout,
-              json
+              metadata
             }))
           )
         );
@@ -246,9 +244,11 @@ export class AdminPage implements OnInit {
       })
     )
     .subscribe(result => {
-      this.layouts = result;
+      console.log('LAYOUTS RESULT:', result);
+      this.layouts = [...result];
+      this.cdr.markForCheck();
     });
-}
+  }
 
   openLayout(layout: any) {
     console.log('LAYOUT:', layout);

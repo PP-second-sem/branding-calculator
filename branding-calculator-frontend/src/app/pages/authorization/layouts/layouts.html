@@ -24,9 +24,10 @@
     
     <div class="history-catalog">
         <h2 class="history-catalog__title">История созданных макетов</h2>
-        <button class="history-catalog__button">
+        <button class="history-catalog__button" routerLink="/branding-catalog">
             <img src="/plusIcon.svg">
-            Создать макет</button>
+            Создать макет
+        </button>
     </div>
     <div class="layout-grid">
         <div class="layout-card" *ngFor="let layout of layouts">
@@ -39,11 +40,7 @@
             <div class="layout-card__content">
 
                 <h3 class="layout-card__title">
-                    {{ layout.metadata?.templateId
-                        ? (layout.metadata.templateId === 1
-                            ? 'Визитка'
-                            : 'Макет №' + layout.metadata.templateId)
-                        : 'Без названия' }}
+                    {{ getLayoutTitle(layout) }}
                 </h3>
 
                 <div class="layout-card__info">
@@ -54,13 +51,6 @@
 
                 <div class="layout-card__buttons">
 
-                <button
-                    class="layout-card__button-view"
-                >
-                    <img src="/eyeIcon.svg" (click)="openLayout(layout)">
-                    Просмотр
-                </button>
-
                 <app-layout-preview-modal
                     *ngIf="selectedLayout"
                     [layout]="selectedLayout"
@@ -68,12 +58,12 @@
                     (close)="closeModal()"
                 ></app-layout-preview-modal>
 
-                <button
-                    class="layout-card__button-download"
-                    (click)="loadLayouts()"
-                >
-                    <img src="/downloadIcon.svg">
-                </button>
+                    <button
+                        class="layout-card__button-download"
+                        (click)="downloadLayout(layout, $event)"
+                    >
+                        <img src="/downloadIcon.svg">
+                    </button>
 
                 </div>
 

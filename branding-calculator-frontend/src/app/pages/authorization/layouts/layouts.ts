@@ -43,7 +43,6 @@ export class Layouts {
 
   ngOnInit() {
     this.loadLayouts();
-    this.cdr.detectChanges();
   }
 
   loadLayouts() {
@@ -54,10 +53,13 @@ export class Layouts {
           const requests = layouts.map(layout =>
             this.http.get(`/api/GeneratedLayout/userLayout/${layout.guid}/metadata`)
               .pipe(
-                map(metadata => ({
-                  ...layout,
-                  metadata
-                }))
+                map(metadata => {
+                  console.log('METADATA for layout:', layout, metadata);
+                  return {
+                    ...layout,
+                    metadata
+                  }
+                })
               )
           );
 
@@ -66,8 +68,8 @@ export class Layouts {
       )
       .subscribe({
         next: (result) => {
-          this.layouts = result;
-          console.log('LAYOUTS WITH METADATA:', result);
+          this.layouts = [...result];
+          this.cdr.markForCheck();
         },
         error: (err) => {
           console.error(err);
@@ -75,6 +77,39 @@ export class Layouts {
       });
   }
   selectedLayout: any = null;
+
+  downloadLayout(layout: any, event: MouseEvent) {
+
+    event.stopPropagation();
+
+    const url = `/api/GeneratedLayout/userLayout/${layout.guid}`;
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${layout.guid}.zip`;
+    link.click();
+  }
+
+  getLayoutTitle(layout: any): string {
+    const id = layout?.metadata.templateId;
+
+    switch (id) {
+      case 1:
+        return 'Визитка';
+
+      case 2:
+        return 'Бейдж';
+
+      case 3:
+        return 'Грамота';
+
+      case 4:
+        return 'Бейдж с фото';
+
+      default:
+        return 'Макет';
+    }
+  }
 
   openLayout(layout: any) {
     this.selectedLayout = layout;

@@ -23,7 +23,7 @@ export class QuestionService {
 
   answerQuestion(id: number, answer: string) {
     return this.http.patch(
-      `${this.baseUrl}Question/AnwserQuestion?id=${id}&answer=${answer}`,
+      `${this.baseUrl}/Question/AnwserQuestion?id=${id}&answer=${encodeURIComponent(answer)}`,
       {}
     );
   }
