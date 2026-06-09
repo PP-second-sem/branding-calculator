@@ -20,8 +20,18 @@ export class Layouts {
   private authService = inject(AuthService);
   public router: Router = inject(Router);
   public cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
-  public logout() {
-    this.authService.logout();
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        // даже если сервер вернул ошибку
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   public goHome() {

@@ -74,7 +74,7 @@
 
       </div>
 
-      <button class="login-modal__submit" (click)="onSubmit()">
+      <button class="login-modal__submit" (click)="mode === 'login' ? onSubmit() : onRegister()">
         {{ mode === 'login' ? 'Войти' : 'Зарегистрироваться' }}
       </button>
 

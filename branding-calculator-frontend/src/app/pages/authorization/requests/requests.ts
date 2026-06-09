@@ -30,8 +30,18 @@ export class Requests {
     });
   }
 
-  public logout() {
-    this.authService.logout();
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        // даже если сервер вернул ошибку
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   get currentUser() {

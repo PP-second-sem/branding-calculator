@@ -34,7 +34,7 @@
               "src/styles.scss"
             ],
             "security": {
-              "allowedHosts": []
+              "allowedHosts": ["localhost"]
             }
           },
           "configurations": {
