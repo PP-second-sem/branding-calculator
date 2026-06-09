@@ -92,7 +92,7 @@ export class AdminPage implements OnInit {
   loadQuestions() {
     this.questionService.getAllQuestions()
       .subscribe((res: any) => {
-        this.questions = res;
+        this.questions = [...res];
       });
   }
 
@@ -101,7 +101,7 @@ export class AdminPage implements OnInit {
       .subscribe({
         next: (res: any) => {
           this.layouts = res;
-          this.cdr.detectChanges();
+
         },
         error: (err) => console.error(err)
       });
@@ -112,7 +112,9 @@ export class AdminPage implements OnInit {
   answerQuestion(q: any, text: string) {
     this.questionService.answerQuestion(q.id, text)
       .subscribe({
-        next: () => this.loadQuestions(),
+        next: () => {
+          this.loadQuestions();
+        },
         error: (err) => console.log(err)
       });
   }
@@ -127,8 +129,18 @@ export class AdminPage implements OnInit {
     color: ''
   };
 
-  public logout() {
-    this.authService.logout();
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        // даже если сервер вернул ошибку
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   public goHome() {

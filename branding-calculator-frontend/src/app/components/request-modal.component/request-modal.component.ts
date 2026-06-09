@@ -18,7 +18,6 @@ export class RequestModalComponent {
   }
 
   private questionService = inject(QuestionService);
-  //sprivate authService = inject(AuthService);
 
   title = '';
   message = '';

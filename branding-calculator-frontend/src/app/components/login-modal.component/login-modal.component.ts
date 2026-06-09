@@ -4,8 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service/auth.service';
-import { first } from 'rxjs';
-
+import { first, map, switchMap } from 'rxjs';
+export interface IUser {
+  email: string,
+  firstName: string,
+  id: number;
+  isActive: boolean;
+  lastName: string;
+  middleName: string;
+  organization: string;
+  phoneNumber: string;
+  role: string
+}
 @Component({
   selector: 'app-login-modal',
   imports: [FormsModule, RouterModule, CommonModule],
@@ -41,38 +51,43 @@ export class LoginModalComponent {
 
     if (this.mode === 'login') {
 
-      if (!this.email || !this.password) {
-        console.error('EMPTY LOGIN FIELDS');
-        return;
-      }
+      if (!this.email || !this.password) return;
 
-      this.authService.login(this.email, this.password).subscribe({
-        next: (res: any) => {
-          if (res?.token) {
-            localStorage.setItem('token', res.token);
-          }
-
-          this.authService.getUserByEmail(this.email)
-            .subscribe((user: any) => {
-
-              this.authService.setSession({
-                ...user,
-                token: res?.token
-              });
-
-              this.onClose();
-
-              if (user.role === 'Admin') {
-                this.router.navigate(['/admin']);
-              } else {
-                this.router.navigate(['/branding-catalog']);
-              }
-
-            });
-        },
-        error: (err) => console.error(err)
-      });
+      this.handleAuth(this.email, this.password);
     }
+  }
+
+  private handleAuth(email: string, password: string) {
+
+    this.authService.login(email, password).pipe(
+      switchMap((res: any) => {
+
+        if (res?.token) {
+          localStorage.setItem('token', res.token);
+        }
+
+        return this.authService.getUserByEmail(email).pipe(
+          map((user: IUser) => ({ user, token: res.token }))
+        );
+      })
+    ).subscribe({
+      next: ({ user, token }) => {
+
+        this.authService.setSession({
+          ...user,
+          token
+        });
+
+        this.onClose();
+
+        this.router.navigate([
+          user.role === 'Admin'
+            ? '/admin'
+            : '/branding-catalog'
+        ]);
+      },
+      error: err => console.error(err)
+    });
   }
 
   public onRegister(): void {
@@ -82,33 +97,12 @@ export class LoginModalComponent {
       isActive: true
     }).subscribe({
       next: () => {
-
-        this.authService.login(
+        this.handleAuth(
           this.registerData.email,
           this.registerData.password
-        ).subscribe({
-          next: (res: any) => {
-
-            if (res?.token) {
-              localStorage.setItem('token', res.token);
-            }
-
-            this.authService.getUserByEmail(
-              this.registerData.email
-            ).subscribe((user: any) => {
-
-              this.authService.setSession({
-                ...user,
-                token: res?.token
-              });
-
-              this.router.navigate(['/branding-catalog']);
-            });
-          }
-        });
-
+        );
       },
-      error: (err) => console.error('REGISTER ERROR:', err)
+      error: err => console.error('REGISTER ERROR:', err)
     });
   }
 }

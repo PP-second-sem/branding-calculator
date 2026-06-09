@@ -17,7 +17,7 @@ export class QuestionService {
   }
 
   getUserQuestions(userId: number) {
-    return this.http.get(`/api/Question/${userId}/GetUserQuestions`);
+    return this.http.get(`/api/Question/GetUserQuestions`);
   }
 
   answerQuestion(id: number, answer: string) {
