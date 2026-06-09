@@ -4,3 +4,10 @@ export const SPHERE_CLASS_MAP: Record<string, string> = {
   'Документы': 'docs',
   'Диджитал': 'digital'
 };
+
+export const SPHERE_MAP: Record<string, string> = {
+  identity: 'Айдентика',
+  nav: 'Навигация',
+  docs: 'Документы',
+  digital: 'Диджитал'
+};

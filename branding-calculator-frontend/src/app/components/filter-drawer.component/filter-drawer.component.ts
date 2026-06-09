@@ -62,10 +62,11 @@ export class FilterDrawer {
   public toggleFormat(value: string): void {
     const arr = this.filtersDraft.formats;
 
-    const index = arr.indexOf(value);
+    const normalized = value.toLowerCase();
+    const index = arr.indexOf(normalized);
 
     if (index === -1) {
-      arr.push(value);
+      arr.push(normalized);
     } else {
       arr.splice(index, 1);
     }

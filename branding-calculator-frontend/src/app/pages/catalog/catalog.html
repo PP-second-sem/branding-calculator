@@ -116,6 +116,7 @@
                 *ngIf="authService.currentUser()?.role === 'Admin'"
                 class="hero-catalog__delete"
                 (click)="deleteCard(card.id, $event)"
+
             >
                 <img src="/closeIcon.svg">
             </button>
@@ -133,7 +134,7 @@
                     />
                 </ng-template>
                 <span class="hero-catalog__card-category">
-                    {{ card.sphere }}
+                    {{ SPHERE_MAP[card.category] }}
                 </span>
             </div>
 
@@ -149,15 +150,3 @@
         </div>
     </div>
 </section>
-
-<footer class="page-footer">
-    <div class="page-footer__container">
-        <p class="page-footer__name">© 2024 Бренд Ямал. Все права защищены</p>
-        <div class="page-footer__meta">
-            <span class="page-footer__meta">Политика конфиденциальности</span>
-            <a href="mailto:brand@yanao.ru">brand@yanao.ru</a>
-        </div>
-        
-    </div>
-</footer>
-

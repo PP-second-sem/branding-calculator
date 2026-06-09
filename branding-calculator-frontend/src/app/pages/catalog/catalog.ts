@@ -11,6 +11,7 @@ import { SPHERE_CLASS_MAP } from '../../utils/sphere-map';
 import { CardsService } from '../../services/cards-service/cards.service';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { SPHERE_MAP } from '../../utils/sphere-map';
 
 @Component({
   selector: 'app-catalog',
@@ -36,6 +37,8 @@ export class Catalog {
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   public router: Router = inject(Router);
   public getImageUrl = this.materialsService.getMaterialImageUrl.bind(this.materialsService);
+  public imageMap: Record<number, string> = {};
+  public SPHERE_MAP = SPHERE_MAP;
   
   public filters: IFilterState = {
     sphere: [],
@@ -58,8 +61,19 @@ export class Catalog {
     { label: 'Диджитал', value: 'digital', color: 'swamp' }
   ];
 
-  deleteCard(id: number, event: MouseEvent) {
+  private categoryMap: Record<string, string> = {
+    'Логотип': 'logos',
+    'Шрифт': 'fonts',
+    'Паттерн': 'patterns',
+    'Иллюстрация': 'illustrations',
+    'Кейс': 'cases',
+    'Брендбук': 'brandbooks',
+    'Фирменный знак': 'brand_mark',
+    'Сувенирная продукция': 'souvenir_products',
+  };
 
+  deleteCard(id: number, event: MouseEvent) {
+    console.log('DELETE CLICKED', id)
     event.stopPropagation();
 
     if (!confirm('Удалить макет?')) {
@@ -140,7 +154,9 @@ export class Catalog {
 
   public setCategory(category: string) {
     this.filters.sphere =
-      category === 'Все' ? [] : [category];
+      category === 'Все'
+        ? []
+        : [this.categoryMap[category]];
   }
 
   public applyFilters(event: IFilterState) {
@@ -169,7 +185,7 @@ export class Catalog {
 
       const matchFormat =
         this.filters.formats.length === 0 ||
-        this.filters.formats.includes(card.fileType);
+        this.filters.formats.includes(card.fileType.toLowerCase());
 
       const matchCity =
         this.filters.cities.length === 0 ||
