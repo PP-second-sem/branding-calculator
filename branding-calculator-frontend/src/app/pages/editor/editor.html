@@ -6,11 +6,11 @@
     <img src="pagePathIcon.svg">
     <p class="section-header__text">Брендирование</p>
     <img src="pagePathIcon.svg">
-    <p class="section-header__text">Визитная карточка</p>
+    <p class="section-header__text">{{ template.name }}</p>
   </div>
 
   <div class="section-header__title">
-    <button class="icon-circle">
+    <button class="icon-circle" routerLink="/branding-catalog">
       <img src="backIconWhite.svg">
     </button>
     <p class="section-header__title--text">{{ template.name }}</p>
@@ -255,15 +255,6 @@
             value="pdf"
             [(ngModel)]="selectedFormat">
           PDF
-        </label>
-
-        <label class="checkbox-item">
-          <input
-            type="radio"
-            name="format"
-            value="svg"
-            [(ngModel)]="selectedFormat">
-          SVG
         </label>
 
         <label class="checkbox-item">

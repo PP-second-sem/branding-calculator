@@ -9,18 +9,17 @@
       <button (click)="closeModal()">✕</button>
     </div>
 
-    <!-- PREVIEW -->
+    <!-- PREVIEW WRAPPER (ВАЖНО для html2canvas) -->
     <div
+      #previewRef
       class="preview"
-      [style.width.px]="layout.width"
-      [style.height.px]="layout.height"
+      [style.width.px]="template?.width"
+      [style.height.px]="template?.height"
     >
 
-      <!-- фон -->
-      <img [src]="layout.image" class="bg" />
+      <img [src]="template?.image" class="bg" />
 
-      <!-- текст -->
-      <ng-container *ngFor="let field of layout.fields">
+      <ng-container *ngFor="let field of (template?.fields || [])">
 
         <div
           *ngIf="field.type === 'text'"
@@ -28,18 +27,35 @@
           [style.left.px]="field.x"
           [style.top.px]="field.y"
           [style.fontSize.px]="field.fontSize"
-          [style.color]="field.color"
+          [style.color]="field.color || '#000'"
         >
 
           <ng-container *ngIf="field.formatAsFio; else normal">
+
             <div class="fio">
-              <div>{{ formatFio(formData[field.key], layout.id).line1 }}</div>
-              <div>{{ formatFio(formData[field.key], layout.id).line2 }}</div>
+              <div>
+                {{
+                  formatFio(
+                    layout?.templateData?.formData?.[field.key],
+                    template?.id
+                  ).line1
+                }}
+              </div>
+
+              <div>
+                {{
+                  formatFio(
+                    layout?.templateData?.formData?.[field.key],
+                    template?.id
+                  ).line2
+                }}
+              </div>
             </div>
+
           </ng-container>
 
           <ng-template #normal>
-            {{ formData[field.key] }}
+            {{ layout?.templateData?.formData?.[field.key] }}
           </ng-template>
 
         </div>
@@ -47,7 +63,6 @@
       </ng-container>
 
     </div>
-
   </div>
 
 </div>

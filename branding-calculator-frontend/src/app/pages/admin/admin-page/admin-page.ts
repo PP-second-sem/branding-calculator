@@ -7,6 +7,11 @@ import { LogoService } from '../../../services/logo-service/logo-service';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { LayoutPreviewModal } from '../../../components/layout-preview-modal/layout-preview-modal';
+import { GeneratedService } from '../../../services/generated-service/generated.service';
+import { forkJoin, map, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import html2canvas from 'html2canvas';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-admin-page',
@@ -21,6 +26,9 @@ export class AdminPage implements OnInit {
   private questionService: QuestionService = inject(QuestionService);
   private materialService: MaterialService = inject(MaterialService);
   private logoService: LogoService = inject(LogoService);
+  private generatedService: GeneratedService = inject(GeneratedService);
+  public http: HttpClient = inject(HttpClient);
+  private cdr = inject(ChangeDetectorRef);
   logoForm = {
     name: '',
     isActive: true,
@@ -30,36 +38,93 @@ export class AdminPage implements OnInit {
   selectedLayout: any = null;
   layouts: any = [];
   openLayoutCard(layout: any) {
-    this.selectedLayout = layout;
+
+    this.generatedService.getLayoutJson(layout.guid)
+      .subscribe({
+        next: (json: any) => {
+
+          const parsed = typeof json === 'string'
+            ? JSON.parse(json)
+            : json;
+
+          this.selectedLayout = {
+            templateData: parsed
+          };
+        },
+
+        error: err => console.error(err)
+      });
   }
 
   selectedLogoFile: File | null = null;
   questions: any[] = [];
 
   ngOnInit() {
-    this.load();
+    this.loadQuestions();
+    this.loadMaterials();
+    
   }
 
-  load() {
+  getLayoutTitle(layout: any): string {
+
+    console.log(layout);
+
+    const id = layout?.templateId;
+
+    switch (id) {
+      case 1:
+        return 'Визитка';
+
+      case 2:
+        return 'Бейдж';
+
+      case 3:
+        return 'Грамота';
+
+      case 4:
+        return 'Бейдж с фото';
+
+      default:
+        return 'Макет'
+    }
+  }
+
+  loadQuestions() {
     this.questionService.getAllQuestions()
       .subscribe((res: any) => {
         this.questions = res;
       });
   }
 
+  loadMaterials() {
+    this.materialService.getMyLayouts()
+      .subscribe({
+        next: (res: any) => {
+          this.layouts = res;
+          this.cdr.detectChanges();
+        },
+        error: (err) => console.error(err)
+      });
+  }
+
+  // getLayoutMetaData
+
   answerQuestion(q: any, text: string) {
     this.questionService.answerQuestion(q.id, text)
       .subscribe({
-        next: () => this.load(),
+        next: () => this.loadQuestions(),
         error: (err) => console.log(err)
       });
   }
 
-    catalogForm = {
+  catalogForm = {
     name: '',
     category: '',
-    tags: '',
-    description: ''
+    description: '',
+
+    sphere: '',
+    city: '',
+    color: ''
   };
 
   public logout() {
@@ -79,8 +144,11 @@ export class AdminPage implements OnInit {
     this.catalogForm = {
       name: '',
       category: '',
-      tags: '',
-      description: ''
+      description: '',
+
+      sphere: '',
+      city: '',
+      color: ''
     };
 
     this.selectedFile = null;
@@ -96,12 +164,11 @@ export class AdminPage implements OnInit {
 
     formData.append('Name', this.catalogForm.name);
     formData.append('Category', this.catalogForm.category);
-    formData.append('Sphere', this.catalogForm.tags);
+    formData.append('Sphere', this.catalogForm.sphere);
     formData.append('Description', this.catalogForm.description);
 
-    formData.append('City', '');
-    formData.append('Color', '');
-    formData.append('PreviewUrl', '');
+    formData.append('City', this.catalogForm.city);
+    formData.append('Color', this.catalogForm.color);
 
     formData.append('File', this.selectedFile);
 
@@ -147,4 +214,71 @@ export class AdminPage implements OnInit {
       }
     });
   }
+
+  loadLayouts() {
+  this.http.get<any[]>('/api/GeneratedLayout/userLayouts/mine')
+    .pipe(
+      switchMap(layouts => {
+
+        const requests = layouts.map(layout =>
+          this.http.get<any>(
+            `/api/GeneratedLayout/userLayout/${layout.guid}`
+          ).pipe(
+            map(json => ({
+              ...layout,
+              json
+            }))
+          )
+        );
+
+        return forkJoin(requests);
+      })
+    )
+    .subscribe(result => {
+      this.layouts = result;
+    });
+}
+
+  openLayout(layout: any) {
+    console.log('LAYOUT:', layout);
+    console.log('METADATA:', layout?.metadata);
+    console.log('TEMPLATE DATA:', layout?.templateData);
+    this.selectedLayout = layout;
+  }
+
+  downloadLayout(layout: any, event: MouseEvent) {
+
+    event.stopPropagation();
+
+    const url = `/api/GeneratedLayout/userLayout/${layout.guid}`;
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${layout.guid}.zip`;
+    link.click();
+  }
+
+  renderAndDownload(json: any, guid: string) {
+
+    const element = document.querySelector('.layout-export-temp') as HTMLElement;
+
+    html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: null
+    }).then(canvas => {
+
+      canvas.toBlob(blob => {
+        if (!blob) return;
+
+        const link = document.createElement('a');
+        link.download = `layout-${guid}.png`;
+        link.href = URL.createObjectURL(blob);
+        link.click();
+
+      }, 'image/png');
+
+    });
+  }
+
 }

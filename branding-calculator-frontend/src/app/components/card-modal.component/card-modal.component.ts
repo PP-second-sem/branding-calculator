@@ -3,6 +3,7 @@ import { IMaterial } from '../../models/material.model';
 import { CommonModule } from '@angular/common';
 import { CardsService } from '../../services/cards-service/cards.service';
 import { Router, RouterModule } from '@angular/router';
+import { SPHERE_MAP } from '../../utils/sphere-map';
 
 @Component({
   selector: 'app-card-modal',
@@ -11,6 +12,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './card-modal.component.scss',
 })
 export class CardModalComponent {
+  public SPHERE_MAP = SPHERE_MAP;
   public materialService: CardsService = inject(CardsService);
   public router: Router = inject(Router);
   @Input() card!: IMaterial;
