@@ -5,6 +5,7 @@ yamal.db
 uploads/
 backup_/
 
+
 # История сборки и кэш Visual Studio
 .vs/
 [Bb]in/
