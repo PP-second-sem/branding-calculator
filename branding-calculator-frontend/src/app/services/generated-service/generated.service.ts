@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environment';
 
 export interface LayoutItem {
   guid: string;
@@ -23,31 +24,31 @@ export interface LayoutMetadata {
 
 
 export class GeneratedService {
-  
+  private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
   
   saveUserLayout(formData: FormData) {
     return this.http.post(
-      '/api/GeneratedLayout/saveUserLayout',
+      `${this.baseUrl}/GeneratedLayout/saveUserLayout`,
       formData
     );
   }
 
   getMyLayouts() {
     return this.http.get<LayoutItem[]>(
-      '/api/GeneratedLayout/userLayouts/mine'
+      `${this.baseUrl}/GeneratedLayout/userLayouts/mine`
     );
   }
 
   getLayoutMetadata(guid: string) {
     return this.http.get(
-      `/api/GeneratedLayout/userLayout/${guid}/metadata`
+      `${this.baseUrl}/GeneratedLayout/userLayout/${guid}/metadata`
     );
   }
 
   getLayoutJson(guid: string) {
     return this.http.get<any>(
-      `/api/GeneratedLayout/userLayout/${guid}`
+      `${this.baseUrl}/GeneratedLayout/userLayout/${guid}`
     );
   }
 }

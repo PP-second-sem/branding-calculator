@@ -11,6 +11,7 @@ import { IFilterState } from '../../models/filter-state.model';
 export class FilterDrawer {
   public filtersDraft: IFilterState = {
     sphere: [],
+    category: [],
     formats: [],
     cities: [],
     colors: []
@@ -48,7 +49,7 @@ export class FilterDrawer {
   }
 
   public toggleCategory(value: string): void {
-    const arr = this.filtersDraft.sphere;
+    const arr = this.filtersDraft.category;
 
     const index = arr.indexOf(value);
 
@@ -101,7 +102,20 @@ export class FilterDrawer {
       formats: [],
       cities: [],
       colors: [],
-      sphere: []
+      sphere: [],
+      category: []
+    }
+  }
+
+  public toggleSphere(value: string): void {
+    const arr = this.filtersDraft.sphere;
+
+    const index = arr.indexOf(value);
+
+    if (index === -1) {
+      arr.push(value);
+    } else {
+      arr.splice(index, 1);
     }
   }
 }

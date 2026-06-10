@@ -2,7 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-
+import { IUser } from '../../components/login-modal.component/login-modal.component';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,12 @@ export class AuthService {
 
   public currentUser = signal<any | null>(null);
   public router: Router = inject(Router);
-  private baseUrl = '/api/User';
+  private baseUrl = environment.baseUrl;
 
   private http: HttpClient = inject(HttpClient);
 
   login(email: string, password: string) {
-    return this.http.post(`${this.baseUrl}/login`, {
+    return this.http.post(`${this.baseUrl}/User/login`, {
       email,
       password
     }).pipe(
@@ -34,7 +35,7 @@ export class AuthService {
   }
 
   register(data: any) {
-    return this.http.post(`${this.baseUrl}/register`, data);
+    return this.http.post(`${this.baseUrl}/User/register`, data);
   }
 
   setSession(user: any) {
@@ -55,7 +56,14 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post('/api/User/exit', {}, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}/User/exit`, {}, { withCredentials: true });
+  }
+
+  clearSession() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    this.currentUser.set(null);
   }
 
   isLoggedIn(): boolean {
@@ -63,6 +71,6 @@ export class AuthService {
   }
 
   getUserByEmail(email: string) {
-    return this.http.get(`${this.baseUrl}/${email}`);
+    return this.http.get<IUser>(`${this.baseUrl}/User/${email}`);
   }
 }

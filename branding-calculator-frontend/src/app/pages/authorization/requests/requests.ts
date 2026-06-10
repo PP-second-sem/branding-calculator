@@ -21,17 +21,28 @@ export class Requests {
   public cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   ngOnInit() {
     console.log('USER', this.authService.currentUser());
-
+    
     const userId = this.authService.currentUser()?.id;
 
     this.questionService.getUserQuestions(userId).subscribe((res: any) => {
+      console.log('QUESTIONS:', res);
       this.questions = res;
       this.cdr.detectChanges();
     });
   }
 
-  public logout() {
-    this.authService.logout();
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        // даже если сервер вернул ошибку
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   get currentUser() {

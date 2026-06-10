@@ -43,27 +43,27 @@
 
         <div class="requests-card__header">
 
-        <h3 class="requests-card__title">
-            {{ question.title }}
-        </h3>
+            <h3 class="requests-card__title">
+                {{ question.title }}
+            </h3>
 
-        <button class="requests-card__button">
+            <button class="requests-card__button">
 
-            <span *ngIf="question.adminRequest" class="requests-card__pending--green requests-card__pending">
-            Ответ получен
-            </span>
+                <span *ngIf="question.adminResponse" class="requests-card__pending--green requests-card__pending">
+                Ответ получен
+                </span>
 
-            <span *ngIf="!question.adminRequest" class="requests-card__pending--red requests-card__pending">
-            Ожидание ответа
-            </span>
+                <span *ngIf="!question.adminResponse" class="requests-card__pending--red requests-card__pending">
+                Ожидание ответа
+                </span>
 
-        </button>
+            </button>
 
         </div>
 
         <p class="requests-card__date">
-        Отправлено:
-        {{ question.createdAt | date:'dd.MM.yyyy' }}
+            Отправлено:
+            {{ question.createdAt | date:'dd.MM.yyyy' }}
         </p>
 
         <div class="requests-card__user-question">
@@ -86,7 +86,7 @@
 
         <div
         class="requests-card__user-response"
-        *ngIf="question.adminRequest"
+        *ngIf="question.adminResponse"
         >
 
         <div class="user-info">
@@ -103,7 +103,7 @@
         </div>
 
         <p class="question-text">
-            {{ question.adminRequest }}
+            {{ question.adminResponse }}
         </p>
 
         </div>

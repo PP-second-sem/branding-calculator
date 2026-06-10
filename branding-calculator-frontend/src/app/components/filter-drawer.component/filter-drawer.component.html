@@ -14,7 +14,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.sphere.includes('Айдентика')"
-                    (change)="toggleCategory('Айдентика')"
+                    (change)="toggleSphere('Айдентика')"
                     >
                     <span class="drawer__dot drawer__dot--red"></span>
                     <span class="drawer__label">Айдентика</span>
@@ -25,7 +25,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.sphere.includes('Навигация')"
-                    (change)="toggleCategory('Навигация')"
+                    (change)="toggleSphere('Навигация')"
                     >
                     <span class="drawer__dot drawer__dot--blue"></span>
                     <span class="drawer__label">Навигация</span>
@@ -36,7 +36,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.sphere.includes('Документы')"
-                    (change)="toggleCategory('Документы')"
+                    (change)="toggleSphere('Документы')"
                     >
                     <span class="drawer__dot drawer__dot--green"></span>
                     <span class="drawer__label">Документы</span>
@@ -47,7 +47,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.sphere.includes('Диджитал')"
-                    (change)="toggleCategory('Диджитал')"
+                    (change)="toggleSphere('Диджитал')"
                     >
                     <span class="drawer__dot drawer__dot--swamp"></span>
                     <span class="drawer__label">Диджитал</span>
@@ -64,7 +64,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.formats.includes('pdf')"
-                    (change)="toggleFormat('PDF')"
+                    (change)="toggleFormat('pdf')"
                     >
                     <span class="drawer__label">PDF</span>
                 </label>
@@ -74,7 +74,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.formats.includes('svg')"
-                    (change)="toggleFormat('SVG')">
+                    (change)="toggleFormat('svg')">
                     <span class="drawer__label">SVG</span>
                 </label>
             </li>
@@ -83,7 +83,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.formats.includes('png')"
-                    (change)="toggleFormat('PNG')">
+                    (change)="toggleFormat('png')">
                     <span class="drawer__label">PNG</span>
                 </label>
             </li>
@@ -92,7 +92,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.formats.includes('ai / eps')"
-                    (change)="toggleFormat('AI / EPS')">
+                    (change)="toggleFormat('ai / eps')">
                     <span class="drawer__label">AI / EPS</span>
                 </label>
             </li>
@@ -101,7 +101,7 @@
                 <label class="drawer__item">
                     <input type="checkbox"
                     [checked]="filtersDraft.formats.includes('docs / pptx')"
-                    (change)="toggleFormat('DOCS / PPTX')">
+                    (change)="toggleFormat('docs / pptx')">
                     <span class="drawer__label">DOCS / PPTX</span>
                 </label>
             </li>

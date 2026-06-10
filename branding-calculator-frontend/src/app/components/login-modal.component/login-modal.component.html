@@ -1,6 +1,6 @@
 <div class="login-modal">
   <header class="login-modal__topbar">
-    <img src="/logo.svg" class="login-modal__logo" />
+    <img src="/Logotip_Color 3.svg" class="login-modal__logo" />
 
     <a routerLink="/" class="login-modal__button" (click)="onClose()">
       ← На главную
@@ -74,7 +74,7 @@
 
       </div>
 
-      <button class="login-modal__submit" (click)="onSubmit()">
+      <button class="login-modal__submit" (click)="mode === 'login' ? onSubmit() : onRegister()">
         {{ mode === 'login' ? 'Войти' : 'Зарегистрироваться' }}
       </button>
 
