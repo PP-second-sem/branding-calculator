@@ -25,16 +25,16 @@ export const templates = [
         height: 77
       },
       photo3: {
-        width: 150,
-        height: 80
+        width: 180,
+        height: 60
       },
       photo4: {
-        width: 150,
-        height: 80
+        width: 180,
+        height: 60
       },
       photo5: {
-        width: 150,
-        height: 80
+        width: 180,
+        height: 60
       },
     },
     exportSize: {
@@ -180,15 +180,15 @@ export const templates = [
         height: 96
       },
       photo3: {
-        width: 85,
+        width: 75,
         height: 100
       },
       photo4: {
-        width: 85,
+        width: 75,
         height: 100
       },
       photo5: {
-        width: 85,
+        width: 75,
         height: 100
       },
     },
@@ -230,7 +230,7 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
-        x: 170,
+        x: 140,
         y: 240,
         fontSize: 16,
         fontWeight: 600,
@@ -344,15 +344,15 @@ export const templates = [
       },
       photo3: {
         width: 69,
-        height: 60
+        height: 40
       },
       photo4: {
         width: 69,
-        height: 60
+        height: 40
       },
       photo5: {
         width: 69,
-        height: 60
+        height: 40
       },
     },
     logoPositions: {

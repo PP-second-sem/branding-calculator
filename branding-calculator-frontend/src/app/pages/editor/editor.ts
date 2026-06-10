@@ -266,11 +266,11 @@ export class Editor implements OnInit {
     const firstName = parts[1] || '';
     const middleName = parts.slice(2).join(' '); 
 
-    if (templateId === 2 || templateId === 3 || templateId === 5) {
+    if (templateId === 2 || templateId === 3 || templateId === 4) {
       return { line1: lastName, line2: firstName };
     }
 
-    if (templateId === 4) {
+    if (templateId === 5) {
       const fullFirstLine = `${lastName} ${firstName}`.trim();
       
       let line1 = fullFirstLine;

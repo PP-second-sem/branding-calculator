@@ -3,6 +3,7 @@ import { Catalog } from './pages/catalog/catalog';
 import { MainPage } from './pages/main-page/main-page';
 import { authGuard } from './guards/auth.guards';
 import { AdminPage } from './pages/admin/admin-page/admin-page';
+import { LoginModalComponent } from './components/login-modal.component/login-modal.component';
 
 export const routes: Routes = [
     {
@@ -11,7 +12,12 @@ export const routes: Routes = [
     },
     {
         path: 'catalog',
+        canActivate: [authGuard],
         component: Catalog
+    },
+    {
+        path: 'login',
+        component: LoginModalComponent
     },
     {
         path: 'constructor/layouts',
