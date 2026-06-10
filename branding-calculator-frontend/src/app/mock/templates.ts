@@ -180,16 +180,16 @@ export const templates = [
         height: 96
       },
       photo3: {
-        width: 75,
-        height: 100
+        width: 90,
+        height: 50
       },
       photo4: {
-        width: 75,
-        height: 100
+        width: 90,
+        height: 50
       },
       photo5: {
-        width: 75,
-        height: 100
+        width: 90,
+        height: 50
       },
     },
     hasPhotoUpload: false,
@@ -200,17 +200,17 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 30,
+        x: 15,
         y: 220
       },
 
       first: {
-        x: 30,
+        x: 15,
         y: 200
       },
 
       second: {
-        x: 30,
+        x: 15,
         y: 300
       }
     },
@@ -231,7 +231,7 @@ export const templates = [
         placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
         x: 140,
-        y: 240,
+        y: 235,
         fontSize: 16,
         fontWeight: 600,
         visibleInPreview: true,
@@ -440,7 +440,7 @@ export const templates = [
         placeholder: 'г. Салехард',
         formatAsFio: false,
 
-        x: 115,
+        x: 105,
         y: 355,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
