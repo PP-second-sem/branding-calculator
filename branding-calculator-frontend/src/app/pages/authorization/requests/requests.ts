@@ -21,10 +21,11 @@ export class Requests {
   public cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   ngOnInit() {
     console.log('USER', this.authService.currentUser());
-
+    
     const userId = this.authService.currentUser()?.id;
 
     this.questionService.getUserQuestions(userId).subscribe((res: any) => {
+      console.log('QUESTIONS:', res);
       this.questions = res;
       this.cdr.detectChanges();
     });

@@ -1,6 +1,6 @@
 export const templates = [
   {
-    id: 1,
+    id: 2,
     name: 'Визитка',
     image: '/business_card.svg',
     width: 640,
@@ -157,7 +157,7 @@ export const templates = [
   },
 
   {
-    id: 2,
+    id: 4,
     name: 'Бейдж',
     image: '/badge.svg',
     showLocationSettings: true,
@@ -314,7 +314,7 @@ export const templates = [
     ]
   },
   {
-    id: 3,
+    id: 5,
     name: 'Грамота',
     image: '/certificate.svg',
     width: 278,
@@ -496,7 +496,7 @@ export const templates = [
     ]
   },
   {
-    id: 4,
+    id: 3,
     name: 'Бейдж с фото',
     image: '/badgeWithPhoto.svg',
     logos: {
