@@ -70,6 +70,7 @@ namespace Yamal.DataAccess.Repositories
         public async Task<int> Update(GeneratedLayout layout)
         {
             await _context.GeneratedLayouts
+                .Where(e => e.Id == layout.Id)
                 .ExecuteUpdateAsync(e => e
                 .SetProperty(p => p.ParametersJson, layout.ParametersJson)
                 .SetProperty(p => p.PackageUrl, layout.PackageUrl)

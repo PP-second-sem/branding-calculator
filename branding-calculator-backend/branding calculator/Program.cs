@@ -1,7 +1,6 @@
 using branding_calculator.Extintions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using SQLitePCL;
 using Yamal.Application;
 using Yamal.Core.Abstractions;
@@ -35,13 +34,13 @@ namespace branding_calculator
             builder.Services.Configure<FormOptions>(options =>
             {
                 options.ValueLengthLimit = int.MaxValue;
-                options.MultipartBodyLengthLimit = 50 * 1024 * 1024; // 50 MB
+                options.MultipartBodyLengthLimit = 500 * 1024 * 1024; // 500 MB
                 options.MemoryBufferThreshold = int.MaxValue;
             });
 
             builder.WebHost.ConfigureKestrel(serverOptions =>
             {
-                serverOptions.Limits.MaxRequestBodySize = 50 * 1024 * 1024; // 50 MB
+                serverOptions.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 MB
                 serverOptions.ListenAnyIP(8080);
             });
 
@@ -49,7 +48,6 @@ namespace branding_calculator
             {
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-                // Если строка подключения — это просто имя файла (без "Data Source="), добавляем префикс
                 if (!string.IsNullOrEmpty(connectionString) &&
                     !connectionString.Contains("Data Source=", StringComparison.OrdinalIgnoreCase) &&
                     !connectionString.Contains("DataSource=", StringComparison.OrdinalIgnoreCase))
@@ -83,6 +81,9 @@ namespace branding_calculator
 
             builder.Services.AddScoped<IGeneratedLayoutRepository, GeneratedLayoutRepository>();
             builder.Services.AddScoped<IGeneratedLayoutService, GeneratedLayoutService>();
+
+            builder.Services.AddScoped<IStatisticsRepository, StatisticsRepository>();
+            builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
             var app = builder.Build();
 

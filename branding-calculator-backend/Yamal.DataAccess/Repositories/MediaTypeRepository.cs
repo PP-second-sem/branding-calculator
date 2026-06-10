@@ -58,5 +58,6 @@ namespace Yamal.DataAccess.Repositories
             return entity.Id;
 
         }
+
     }
 }

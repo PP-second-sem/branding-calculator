@@ -51,12 +51,12 @@ namespace branding_calculator.Controllers
 
 
         [HttpPost("saveUserLayout")]
-        [RequestSizeLimit(57671680)] // 55 МБ
+        [RequestSizeLimit(524_288_000)] // 500 МБ
         [DisableRequestSizeLimit]
         public async Task<IActionResult> SaveUserLayout([FromForm] LayoutSaveRequest request)
         {
             if (request?.Files == null || request.Files.Count == 0)
-                return BadRequest(new { error = "Файлы не предоставлены." });
+                return BadRequest(new { error = "Файлы не предоставлены" });
 
             int userId;
             try { userId = GetUserIdFromToken(); }
@@ -65,7 +65,6 @@ namespace branding_calculator.Controllers
                 return Unauthorized(new { error = ex.Message });
             }
 
-            // 🔍 АВТО-ПАРСИНГ ФОРМАТОВ ИЗ ЗАГРУЖЕННЫХ ФАЙЛОВ
             var formats = request.Files
                 .Select(f => Path.GetExtension(f.FileName)?.TrimStart('.').ToLowerInvariant())
                 .Where(ext => !string.IsNullOrWhiteSpace(ext))
