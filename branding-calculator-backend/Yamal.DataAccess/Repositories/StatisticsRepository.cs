@@ -30,6 +30,26 @@ namespace Yamal.DataAccess.Repositories
         }
 
 
+        public async Task<List<StatisticResponse>> GetStatisticByTime(DateTime start, DateTime end)
+        {
+            var types = await new MediaTypeRepository(_context).Get();
+
+            var generates = await new GeneratedLayoutRepository(_context).GetAll();
+
+
+            var response = types.Select(t => new StatisticResponse
+            {
+                MeterialTypeId = t.Id,
+                MeterialTypeName = t.Name,
+                GenerateCount = generates
+                .Where(g => start <= g.CreatedAt && g.CreatedAt <= end)
+                .Count(g => g.CarrierTypeId == t.Id)
+            }).ToList();
+
+            return response;
+
+        }
+
     }
 
 

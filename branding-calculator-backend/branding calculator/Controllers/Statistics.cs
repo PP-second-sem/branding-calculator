@@ -28,13 +28,19 @@ namespace branding_calculator.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("GetStatistics/{start:datetime}/{end:datetime}")]
+        public async Task<ActionResult<List<StatisticResponse>>> GetStatisticsByTime(DateTime start, DateTime end)
+        {
+            var response = await _service.GetStatisticByTime(start, end);
+
+            if (response == null)
+            {
+                return NotFound("Statistics not found");
+            }
+
+            return Ok(response);
+        }
     }
 
-    public class StatisticsResponse
-    {
-        public int TotalUsers { get; set; }
-        public int TotalQuestions { get; set; }
-        public int TotalMediaTypes { get; set; }
-        // Add more fields as needed for statistics
-    }
 }

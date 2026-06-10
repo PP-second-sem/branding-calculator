@@ -16,5 +16,10 @@ namespace Yamal.Application
         {
             return await _repository.GetStatisticsAsync();
         }
+
+        public async Task<List<StatisticResponse>> GetStatisticByTime(DateTime start, DateTime end)
+        {
+            return await _repository.GetStatisticByTime(start, end);
+        }
     }
 }
