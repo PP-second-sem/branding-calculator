@@ -333,7 +333,7 @@
 }
 
 .fio-text {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -346,7 +346,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   transition: transform 0.2s ease;
+
 }
+
 
 .download-button {
   width: 100%;

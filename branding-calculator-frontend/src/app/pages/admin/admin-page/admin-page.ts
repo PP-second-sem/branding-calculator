@@ -28,7 +28,8 @@ export class AdminPage implements OnInit {
   private logoService: LogoService = inject(LogoService);
   private generatedService: GeneratedService = inject(GeneratedService);
   public http: HttpClient = inject(HttpClient);
-  private cdr = inject(ChangeDetectorRef);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public successMessage = '';
   logoForm = {
     name: '',
     isActive: true,
@@ -60,16 +61,13 @@ export class AdminPage implements OnInit {
   questions: any[] = [];
 
   ngOnInit() {
+    this.loadLayouts();
     this.loadQuestions();
-    this.loadMaterials();
-    
+    // this.loadMaterials(); 
   }
 
   getLayoutTitle(layout: any): string {
-
-    console.log(layout);
-
-    const id = layout?.templateId;
+    const id = layout?.metadata.templateId;
 
     switch (id) {
       case 1:
@@ -85,14 +83,15 @@ export class AdminPage implements OnInit {
         return 'Бейдж с фото';
 
       default:
-        return 'Макет'
+        return 'Макет';
     }
   }
 
   loadQuestions() {
     this.questionService.getAllQuestions()
       .subscribe((res: any) => {
-        this.questions = res;
+        this.questions = [...res];
+        this.cdr.detectChanges();
       });
   }
 
@@ -101,18 +100,18 @@ export class AdminPage implements OnInit {
       .subscribe({
         next: (res: any) => {
           this.layouts = res;
-          this.cdr.detectChanges();
+
         },
         error: (err) => console.error(err)
       });
   }
 
-  // getLayoutMetaData
-
   answerQuestion(q: any, text: string) {
     this.questionService.answerQuestion(q.id, text)
       .subscribe({
-        next: () => this.loadQuestions(),
+        next: () => {
+          this.loadQuestions();
+        },
         error: (err) => console.log(err)
       });
   }
@@ -127,8 +126,17 @@ export class AdminPage implements OnInit {
     color: ''
   };
 
-  public logout() {
-    this.authService.logout();
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.authService.clearSession();
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   public goHome() {
@@ -159,6 +167,7 @@ export class AdminPage implements OnInit {
     if (!this.selectedFile) {
       return;
     }
+    console.log('click')
 
     const formData = new FormData();
 
@@ -176,6 +185,9 @@ export class AdminPage implements OnInit {
       .subscribe({
         next: () => {
           this.clearCatalogForm();
+          this.successMessage = 'Макет опубликован';
+          // this.cdr.detectChanges()
+          this.cdr.markForCheck();
         }
       });
   }
@@ -216,17 +228,17 @@ export class AdminPage implements OnInit {
   }
 
   loadLayouts() {
-  this.http.get<any[]>('/api/GeneratedLayout/userLayouts/mine')
+    this.http.get<any[]>('/api/GeneratedLayout/userLayouts/mine')
     .pipe(
       switchMap(layouts => {
 
         const requests = layouts.map(layout =>
           this.http.get<any>(
-            `/api/GeneratedLayout/userLayout/${layout.guid}`
+            `/api/GeneratedLayout/userLayout/${layout.guid}/metadata`
           ).pipe(
-            map(json => ({
+            map(metadata => ({
               ...layout,
-              json
+              metadata
             }))
           )
         );
@@ -235,9 +247,11 @@ export class AdminPage implements OnInit {
       })
     )
     .subscribe(result => {
-      this.layouts = result;
+      console.log('LAYOUTS RESULT:', result);
+      this.layouts = [...result];
+      this.cdr.markForCheck();
     });
-}
+  }
 
   openLayout(layout: any) {
     console.log('LAYOUT:', layout);

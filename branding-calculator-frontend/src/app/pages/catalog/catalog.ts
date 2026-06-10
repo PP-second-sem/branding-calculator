@@ -41,6 +41,7 @@ export class Catalog {
   public SPHERE_MAP = SPHERE_MAP;
   
   public filters: IFilterState = {
+    category: [],
     sphere: [],
     formats: [],
     cities: [],
@@ -48,11 +49,17 @@ export class Catalog {
   };
 
   public drawerFilters: IFilterState = {
-    sphere: [],
-    formats: [],
-    cities: [],
+    sphere: [],   // логические ключи (logos, fonts...)
+    formats: [],  // pdf, png, svg...
+    cities: [],   // Салехард...
     colors: [],
+    category: []  // white, black...
   };
+
+  // public filters = {
+  //   category: []
+  // };
+
 
   categories = [
     { label: 'Айдентика', value: 'id', color: 'red' },
@@ -115,7 +122,7 @@ export class Catalog {
   }
 
   public openDrawer() {
-    this.drawerFilters = structuredClone(this.filters);
+    //this.drawerFilters = structuredClone(this.filters);
     this.isOpen = true;
   }
 
@@ -126,8 +133,8 @@ export class Catalog {
   ngOnInit(): void {
     this.materialsService.getMaterials().subscribe({
       next: (data) => {
-
-        this.cards = data;
+        console.log('🔥 RAW BACKEND DATA:', data);
+        this.cards = data.map(card => this.normalizeCard(card));
 
         this.route.queryParams.subscribe(params => {
 
@@ -152,51 +159,84 @@ export class Catalog {
     });
   }
 
+  private normalizeCard(card: IMaterial): IMaterial {
+    const categoryMap: Record<string, string> = {
+      'Брендбук': 'brandbooks',
+      'Логотип': 'logos',
+      'Шрифт': 'fonts',
+      'Паттерн': 'patterns',
+      'Иллюстрация': 'illustrations',
+      'Кейс': 'cases',
+      'Фирменный знак': 'brand_mark',
+      'Сувенирная продукция': 'souvenir_products',
+    };
+    
+    return {
+      ...card,
+      category: categoryMap[card.category] ?? card.category,
+
+    };
+  }
+
   public setCategory(category: string) {
-    this.filters.sphere =
+    this.filters.category =
       category === 'Все'
         ? []
         : [this.categoryMap[category]];
   }
 
   public applyFilters(event: IFilterState) {
-    console.log('APPLIED FILTERS:', event);
-    this.filters = structuredClone(event);
+    this.drawerFilters = structuredClone(event);
   }
 
   public isActiveCategory(category: string): boolean {
-    return (
-      (category === 'Все' && this.filters.sphere.length === 0) ||
-      this.filters.sphere.includes(category)
-    );
+    if (category === 'Все') {
+      return this.filters.category.length === 0;
+    }
+
+    const key = this.categoryMap[category];
+    return this.filters.category.includes(key);
   }
 
   public get filteredCards(): IMaterial[] {
     const search = this.search.toLowerCase();
 
     return this.cards.filter(card => {
+      console.log('CARD CATEGORY:', card.category);
+      console.log('FILTER CATEGORY:', this.filters.category);
 
+      // 🔎 поиск
       const matchSearch =
         !search || card.name.toLowerCase().includes(search);
 
+      // 🟡 верхние кнопки (РУССКИЕ категории)
+      const matchCategory =
+        this.filters.category.length === 0 ||
+        this.filters.category.includes(card.category);
+
+      // 🔵 drawer sphere (технические ключи)
       const matchSphere =
-        this.filters.sphere.length === 0 ||
-        this.filters.sphere.includes(card.sphere);
+        this.drawerFilters.sphere.length === 0 ||
+        this.drawerFilters.sphere.includes(card.sphere);
 
+      // 📁 форматы
       const matchFormat =
-        this.filters.formats.length === 0 ||
-        this.filters.formats.includes(card.fileType.toLowerCase());
+        this.drawerFilters.formats.length === 0 ||
+        this.drawerFilters.formats.includes(card.fileType.toLowerCase());
 
+      // 🌆 города
       const matchCity =
-        this.filters.cities.length === 0 ||
-        this.filters.cities.includes(card.city);
+        this.drawerFilters.cities.length === 0 ||
+        this.drawerFilters.cities.includes(card.city);
 
+      // 🎨 цвета
       const matchColor =
-        this.filters.colors.length === 0 ||
-        this.filters.colors.includes(card.color);
+        this.drawerFilters.colors.length === 0 ||
+        this.drawerFilters.colors.includes(card.color);
 
       return (
         matchSearch &&
+        matchCategory &&
         matchSphere &&
         matchFormat &&
         matchCity &&
