@@ -240,7 +240,7 @@
             </div>
 
             <div class="form-actions">
-                <button class="btn-primary" (click)="addTemplate()">
+                <button type="button" class="btn-primary" (click)="addTemplate()">
                     <img src="/plusIcon.svg">
                     Добавить в каталог
                 </button>
@@ -248,7 +248,12 @@
                 <button class="btn-secondary" (click)="clearCatalogForm()">
                     Очистить форму
                 </button>
+
+                <div class="toast-success" *ngIf="successMessage">
+                    {{ successMessage }}
+                </div>
             </div>
+            
         </div>
     </div>
     <div class="catalog-form" *ngIf="activeTab === 'addingLogotype'">

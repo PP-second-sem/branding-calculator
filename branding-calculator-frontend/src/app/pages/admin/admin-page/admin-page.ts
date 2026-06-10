@@ -29,6 +29,7 @@ export class AdminPage implements OnInit {
   private generatedService: GeneratedService = inject(GeneratedService);
   public http: HttpClient = inject(HttpClient);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  public successMessage = '';
   logoForm = {
     name: '',
     isActive: true,
@@ -105,8 +106,6 @@ export class AdminPage implements OnInit {
       });
   }
 
-  // getLayoutMetaData
-
   answerQuestion(q: any, text: string) {
     this.questionService.answerQuestion(q.id, text)
       .subscribe({
@@ -168,6 +167,7 @@ export class AdminPage implements OnInit {
     if (!this.selectedFile) {
       return;
     }
+    console.log('click')
 
     const formData = new FormData();
 
@@ -185,6 +185,9 @@ export class AdminPage implements OnInit {
       .subscribe({
         next: () => {
           this.clearCatalogForm();
+          this.successMessage = 'Макет опубликован';
+          // this.cdr.detectChanges()
+          this.cdr.markForCheck();
         }
       });
   }
