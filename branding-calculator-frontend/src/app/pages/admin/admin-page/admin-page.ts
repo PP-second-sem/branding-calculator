@@ -70,16 +70,16 @@ export class AdminPage implements OnInit {
     const id = layout?.metadata.templateId;
 
     switch (id) {
-      case 1:
+      case 2:
         return 'Визитка';
 
-      case 2:
+      case 4:
         return 'Бейдж';
 
-      case 3:
+      case 5:
         return 'Грамота';
 
-      case 4:
+      case 3:
         return 'Бейдж с фото';
 
       default:

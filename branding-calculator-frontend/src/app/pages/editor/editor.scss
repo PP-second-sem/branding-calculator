@@ -340,7 +340,7 @@
 
 .fio-line {
   width: 100%;
-  text-align: center;
+  //text-align: center;
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -456,4 +456,58 @@
 
 .editor-file-upload__icon:hover {
   background: rgba(240, 240, 240, 1);
+}
+
+
+.field-text {
+  white-space: nowrap;
+}
+
+.field-text--multiline {
+  display: block;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.editor-preview__stripe {
+  position: absolute;
+
+  left: 124px;
+  top: 76px;
+
+  width: 158px;
+  height: 369px;
+
+  z-index: 2;
+  pointer-events: none;
+
+}
+
+
+.certificate-text {
+  display: block;
+
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+
+.dynamic-text--center {
+  width: 120px;
+  text-align: center;
+}
+.dynamic-text--left {
+  width: 120px;
+  text-align: left;
+}
+
+.fio-line--center {
+  text-align: center;
+  width: 100%;
 }

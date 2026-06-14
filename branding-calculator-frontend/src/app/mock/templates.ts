@@ -74,7 +74,7 @@ export const templates = [
         placeholder: 'Иванов Иван',
 
         x: 275,
-        y: 90,
+        y: 70,
         fontSize: 24,
         fontWeight: 800,
         visibleInPreview: true,
@@ -86,9 +86,11 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Директор, начальник отдела...',
+        multiline: true,
+        width: 210,
 
         x: 275,
-        y: 155,
+        y: 125,
         fontSize: 14,
         visibleInPreview: true,
         formatAsFio: false
@@ -129,30 +131,22 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
       },
-      {
-        key: 'cover2',
-        label: 'Логотип 2',
-        type: 'select',
-        group: 'logo',
-        options: [
-          { label: 'Без логотипа', value: 'none' },
-          { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
-        ],
-        visibleInPreview: true,
-        formatAsFio: false
-      }
+      // {
+      //   key: 'cover2',
+      //   label: 'Логотип 2',
+      //   type: 'select',
+      //   group: 'logo',
+      //   options: [
+      //     { label: 'Без логотипа', value: 'none' },
+      //     { label: 'ЯМАЛ', value: 'photo1' },
+      //   ],
+      //   visibleInPreview: true,
+      //   formatAsFio: false
+      // }
     ]
   },
 
@@ -200,7 +194,7 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 15,
+        x: 35,
         y: 220
       },
 
@@ -215,14 +209,18 @@ export const templates = [
       }
     },
     fields: [
-      // {
-      //   key: 'event',
-      //   label: 'Название мероприятия',
-      //   type: 'text',
-      //   group: 'carrier',
-      //   placeholder: 'Форум молодёжи Ямала',
-      //   visibleInPreview: false
-      // },
+      {
+        key: 'event',
+        label: 'Название мероприятия',
+        type: 'text',
+        group: 'carrier',
+        placeholder: 'Форум молодёжи Ямала',
+        visibleInPreview: true,
+        color: 'rgba(208, 0, 51, 1)',
+        x: 80,
+        y: 110,
+        fontWeight: 700
+      },
       {
         key: 'field1',
         label: 'Поле 1',
@@ -230,8 +228,8 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
-        x: 140,
-        y: 235,
+        x: 165,
+        y: 225,
         fontSize: 16,
         fontWeight: 600,
         visibleInPreview: true,
@@ -245,7 +243,7 @@ export const templates = [
         placeholder: 'Должность',
         visibleInPreview: true,
         formatAsFio: false,
-        x: 100,
+        x: 130,
         y: 360,
         fontSize: 14,
         fontWeight: 800,
@@ -260,7 +258,7 @@ export const templates = [
         formatAsFio: false,
 
         x: 40,
-        y: 385,
+        y: 410,
         fontSize: 10,
         color: 'rgba(255, 255, 255, 1)',
         visibleInPreview: true
@@ -272,8 +270,8 @@ export const templates = [
         group: 'location',
         placeholder: '24 апреля 2025',
 
-        x: 170,
-        y: 385,
+        x: 210,
+        y: 410,
         fontSize: 10,
         color: 'rgba(255, 255, 255, 1)',
         visibleInPreview: true,
@@ -287,30 +285,26 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false
       },
-      {
-        key: 'cover2',
-        label: 'Логотип 2',
-        type: 'select',
-        group: 'logo',
-        options: [
-          { label: 'Без логотипа', value: 'none' },
-          { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
-        ],
-        visibleInPreview: true,
-        formatAsFio: false
-      }
+      // {
+      //   key: 'cover2',
+      //   label: 'Логотип 2',
+      //   type: 'select',
+      //   group: 'logo',
+      //   options: [
+      //     { label: 'Без логотипа', value: 'none' },
+      //     { label: 'ЯМАЛ', value: 'photo1' },
+      //     { label: 'Газпром', value: 'photo2' },
+      //     { label: 'Новый Уренгой', value: 'photo3' },
+      //     { label: 'Ноябрьск', value: 'photo4' },
+      //     { label: 'Салехард', value: 'photo5' },
+      //   ],
+      //   visibleInPreview: true,
+      //   formatAsFio: false
+      // }
     ]
   },
   {
@@ -328,10 +322,6 @@ export const templates = [
     },
     logos: {
       photo1: '/Logotip_Color 9.svg',
-      photo2: '/gazprom.svg',
-      photo3: '/Новый уренгой_Color.png',
-      photo4: '/Ноябрьск_Color.png',
-      photo5: '/Салехард_Color.png'
     },
     logoSizes: {
       photo1: {
@@ -357,8 +347,8 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 70,
-        y: 280
+        x: 80,
+        y: 300
       },
 
       first: {
@@ -386,7 +376,6 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: true
       },
-
       {
         key: 'giverFullName',
         label: 'ФИО вручающего',
@@ -394,8 +383,8 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Петров Пётр Петрович',
 
-        x: 85,
-        y: 260,
+        x: 90,
+        y: 265,
         fontSize: 8,
         fontWeight: 600,
         color: 'rgba(208, 16, 57, 1)',
@@ -410,9 +399,10 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Директор департамента',
         formatAsFio: false,
-
-        x: 85,
-        y: 270,
+        multiline: true,
+        x: 90,
+        y: 280,
+        width: 120,
         fontSize: 8,
         fontWeight: 400,
         visibleInPreview: true
@@ -426,11 +416,27 @@ export const templates = [
         formatAsFio: false,
         placeholder: 'Министерство развития...',
 
-        x: 85,
-        y: 280,
+        x: 90,
+        y: 300,
         fontSize: 8,
         fontWeight: 400,
-        visibleInPreview: true
+        visibleInPreview: true,
+        multiline: true,
+        width: 90
+      },
+      {
+        key: 'certificateText',
+        label: 'Текст',
+        type: 'text',
+        group: 'carrier',
+        placeholder: '',  
+        width: 140,
+        x: 75,
+        y: 180,
+        fontSize: 7,
+        fontWeight: 500,
+        color: 'rgba(29, 29, 27, 1)',
+        visibleInPreview: true,
       },
       {
         key: 'city',
@@ -440,8 +446,8 @@ export const templates = [
         placeholder: 'г. Салехард',
         formatAsFio: false,
 
-        x: 105,
-        y: 355,
+        x: 120,
+        y: 365,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
         visibleInPreview: true
@@ -455,8 +461,8 @@ export const templates = [
         placeholder: '24 апреля 2025',
         formatAsFio: false,
 
-        x: 105,
-        y: 345,
+        x: 115,
+        y: 355,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
         visibleInPreview: true
@@ -468,37 +474,18 @@ export const templates = [
         group: 'logo',
         options: [
           { label: 'Без логотипа', value: 'none' },
-          { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
+          { label: 'ЯМАЛ', value: 'photo1' }
         ],
         visibleInPreview: true,
         formatAsFio: false
       },
-      {
-        key: 'cover2',
-        label: 'Логотип 2',
-        type: 'select',
-        group: 'logo',
-        options: [
-          { label: 'Без логотипа', value: 'none' },
-          { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Газпром', value: 'photo2' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
-        ],
-        visibleInPreview: true,
-        formatAsFio: false
-      }
+
     ]
   },
   {
     id: 3,
     name: 'Бейдж с фото',
-    image: '/badgeWithPhoto.svg',
+    image: '/badge_with_photo.svg',
     logos: {
       photo1: '/badge_with_photo_1.svg',
       photo3: '/Новый уренгой_Color.png',
@@ -518,7 +505,7 @@ export const templates = [
     logoPositions: {
       single: {
         x: 0,
-        y: 65
+        y: 50
       },
 
       first: {
@@ -551,14 +538,17 @@ export const templates = [
       
     },
     fields: [
-      // {
-      //   key: 'event',
-      //   label: 'Название мероприятия',
-      //   type: 'text',
-      //   group: 'carrier',
-      //   placeholder: 'Форум молодёжи',
-      //   visibleInPreview: false
-      // },
+      {
+        key: 'event',
+        label: 'Название мероприятия',
+        type: 'text',
+        group: 'carrier',
+        placeholder: 'Форум молодёжи',
+        visibleInPreview: true,
+        color: 'rgba(0, 0, 0, 1)',
+        x: 28,
+        y: 110
+      },
       {
         key: 'fullName',
         label: 'Фамилия Имя',
@@ -569,7 +559,7 @@ export const templates = [
         formatAsFio: true,
 
         x: 110,
-        y: 80,
+        y: 65,
         fontSize: 14,
         fontWeight: 600,
         color: 'rgba(207, 17, 53, 1)'
@@ -624,9 +614,9 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          { label: 'Новый Уренгой', value: 'photo3' },
-          { label: 'Ноябрьск', value: 'photo4' },
-          { label: 'Салехард', value: 'photo5' },
+          // { label: 'Новый Уренгой', value: 'photo3' },
+          // { label: 'Ноябрьск', value: 'photo4' },
+          // { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false,

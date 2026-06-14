@@ -31,6 +31,8 @@ export class Editor implements OnInit {
   public isFormatOpen = true;
   public template: any;
   public formData: any = {};
+  public MAX_NAME_LENGTH = 21;
+  public MAX_EVENT_LENGTH = 21;
   public http: HttpClient = inject(HttpClient);
   public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
   @Input() readonly = false;
@@ -43,7 +45,6 @@ export class Editor implements OnInit {
       return;
     }
 
-    //  РЕЖИМ СОЗДАНИЯ (как сейчас)
     const id = Number(this.route.snapshot.paramMap.get('id'));
     const found = templates.find(item => item.id === id);
 
@@ -53,7 +54,11 @@ export class Editor implements OnInit {
     this.loadLogos();
   }
 
-  
+  truncateEventName(value: string): string {
+    if (!value) return '';
+
+    return value.trim().slice(0, this.MAX_EVENT_LENGTH);
+  }
 
   loadFromLayout(layout: any) {
     const json = JSON.parse(layout.jsonContent);
@@ -126,12 +131,68 @@ export class Editor implements OnInit {
     ) as HTMLElement;
 
     const exportScale = this.getExportScale();
+    console.log(
+        'offset',
+        element.offsetWidth,
+        element.offsetHeight
+    );
 
+    console.log(
+        'client',
+        element.clientWidth,
+        element.clientHeight
+    );
+    console.log(
+      getComputedStyle(element).width,
+      getComputedStyle(element).height
+    );
+    console.log('template width', this.template.width)
+    console.log(this.template.height);;
+    console.log('export size', this.template.exportSize);
+    console.log(
+      this.template.exportSize.height / this.template.height
+    );
+    console.log('scale', this.getExportScale());
     html2canvas(element, {
       scale: exportScale,
       useCORS: true,
       backgroundColor: null
     }).then(canvas => {
+      if (this.selectedFormat === 'pdf') {
+
+        const pdf = new jsPDF({
+          orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+          unit: 'px',
+          format: [canvas.width, canvas.height]
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+
+        pdf.addImage(
+          imgData,
+          'PNG',
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        const pdfBlob = pdf.output('blob');
+
+        const file = new File(
+          [pdfBlob],
+          'template.pdf',
+          {
+            type: 'application/pdf'
+          }
+        );
+
+        this.saveLayout(file);
+
+        pdf.save('template.pdf');
+
+        return;
+      }
 
       canvas.toBlob(blob => {
         if (!blob) return;
@@ -262,29 +323,36 @@ export class Editor implements OnInit {
     }
 
     const parts = value.trim().split(/\s+/);
-    const lastName = parts[0] || '';
-    const firstName = parts[1] || '';
-    const middleName = parts.slice(2).join(' '); 
+
+    let lastName = (parts[0] || '').toUpperCase().slice(0, 10);
+    let firstName = (parts[1] || '').toUpperCase().slice(0, 10);
+    let middleName = parts.slice(2).join(' ').toUpperCase().slice(0, 10);
 
     if (templateId === 2 || templateId === 3 || templateId === 4) {
-      return { line1: lastName, line2: firstName };
+      return {
+        line1: lastName,
+        line2: firstName
+      };
     }
 
     if (templateId === 5) {
       const fullFirstLine = `${lastName} ${firstName}`.trim();
-      
+
       let line1 = fullFirstLine;
       let line2 = middleName;
 
       if (fullFirstLine.length > 18) {
         line1 = lastName;
-        line2 = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + `${firstName} ${middleName}`.trim();
+        line2 = `${firstName} ${middleName}`.trim();
       }
 
-      return { line1: line1, line2: line2 };
+      return { line1, line2 };
     }
 
-    return { line1: value, line2: '' };
+    return {
+      line1: `${lastName} ${firstName} ${middleName}`.trim(),
+      line2: ''
+    };
   }
 
 

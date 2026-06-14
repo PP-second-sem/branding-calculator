@@ -157,7 +157,7 @@
       </div>
       <div class="editor-preview">
         <div class="editor-export-wrapper">
-          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height">
+          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height" >
 
             <img
               [src]="template.image"
@@ -167,8 +167,13 @@
             <img
               *ngIf="photoPreview"
               [src]="photoPreview"
-              class="editor-preview__photo"
+              class="editor-preview__photo" 
             >
+            <img
+              *ngIf="photoPreview"
+              src="/badge-stripe.svg"
+              class="editor-preview__stripe"
+            />
 
             <div class="logo-stack">
               <ng-container *ngFor="let logo of activeLogos; let i = index">
@@ -189,6 +194,8 @@
               <div
                 *ngIf="field.type === 'text' && field.visibleInPreview"
                 class="dynamic-text"
+                [ngClass]="{ 'dynamic-text--center': template.id === 4 }"
+                [ngClass]="{ 'dynamic-text--left': template.id === 4 }"
                 [style.left.px]="field.x"
                 [style.top.px]="field.y"
                 [style.fontSize.px]="field.fontSize"
@@ -202,7 +209,7 @@
                       {{ formatFio(formData[field.key], template.id).line1 }}
                     </div>
 
-                    <div class="fio-line fio-line--bottom">
+                    <div class="fio-line fio-line--bottom fio-line--center">
                       {{ formatFio(formData[field.key], template.id).line2 }}
                     </div>
                   </div>
@@ -210,7 +217,14 @@
                 </ng-container>
 
                 <ng-template #normalText>
-                  {{ formData[field.key] }}
+                  <span
+                    class="field-text"
+                    [class.field-text--multiline]="field.multiline"
+                    [class.certificate-text]="field.key === 'certificateText'"
+                    [style.width.px]="field.width"
+                  >
+                    {{ field.key === 'event' ? truncateEventName(formData[field.key]) : formData[field.key] }}
+                  </span>
                 </ng-template>
 
               </div>
@@ -248,14 +262,14 @@
           PNG
         </label>
 
-        <!-- <label class="checkbox-item">
+        <label class="checkbox-item">
           <input
             type="radio"
             name="format"
             value="pdf"
             [(ngModel)]="selectedFormat">
           PDF
-        </label> -->
+        </label>
 
         <label class="checkbox-item">
           <input
