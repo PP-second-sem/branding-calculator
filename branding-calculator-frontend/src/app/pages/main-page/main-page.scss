@@ -76,11 +76,11 @@
 }
 
 .example-section {
-    flex: 1 0 auto;
     background-color: #F9F0E1;
-    margin-left: 111px;
+    padding: 0 111px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 24px;
     &__text-with-line {
         display: flex;
@@ -108,6 +108,7 @@
     &__carousel {
         display: flex;
         align-items: center;
+        justify-content: center;
         margin-bottom: 32px;
     }
 
@@ -140,12 +141,15 @@
     }
 
     &__images {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 16px;
         position: relative;
+        width: auto;
 
         &-container {
             position: relative;
+            flex: 1;
 
             img {
                 display: block;
@@ -189,9 +193,9 @@
         background-color: #C8B898;
 
         &--active {
-          background-color: #C40E3D;
-          width: 24px;
-          border-radius: 9999px;
+        background-color: #C40E3D;
+        width: 24px;
+        border-radius: 9999px;
         }
     }
     
@@ -228,13 +232,14 @@
     &__icon-container {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         padding: 14px;
         border-radius: 16px;
         margin-top: 41px;
         margin-left: 183px;
         margin-right: 183px;
         margin-bottom: 16px;
+        gap: 22px;
         &--brand {
             background-color: #FCEAEE;
             border: 1px solid #F0B3C0;
@@ -255,14 +260,14 @@
 
 .example-section__images-container {
     width: 384px;
-    height: 220px;
+    height: 288px;
     flex-shrink: 0;
     position: relative;
 }
 
 .example-section__images-container img {
     width: 384px;
-    height: 220px;
+    height: 288px;
 
     object-fit: cover;
     border-radius: 16px;
