@@ -194,24 +194,29 @@
               <div
                 *ngIf="field.type === 'text' && field.visibleInPreview"
                 class="dynamic-text"
-                [ngClass]="{ 'dynamic-text--center': template.id === 4 }"
-                [ngClass]="{ 'dynamic-text--left': template.id === 4 }"
                 [style.left.px]="field.x"
                 [style.top.px]="field.y"
                 [style.fontSize.px]="field.fontSize"
                 [style.fontWeight]="field.fontWeight"
                 [style.color]="field.color"
+
               >
                 
                 <ng-container *ngIf="field.formatAsFio; else normalText">
-                  <div class="fio-text" [class.fio-text--gramota]="template.id === 3">
-                    <div class="fio-line fio-line--top">
+                  <div class="fio-text" [class.fio-text--gramota]="template.id === 5">
+
+                    <div class="fio-line">
                       {{ formatFio(formData[field.key], template.id).line1 }}
                     </div>
 
-                    <div class="fio-line fio-line--bottom fio-line--center">
+                    <div class="fio-line">
                       {{ formatFio(formData[field.key], template.id).line2 }}
                     </div>
+
+                    <div class="fio-line" *ngIf="formatFio(formData[field.key], template.id).line3">
+                      {{ formatFio(formData[field.key], template.id).line3 }}
+                    </div>
+
                   </div>
 
                 </ng-container>
@@ -223,7 +228,12 @@
                     [class.certificate-text]="field.key === 'certificateText'"
                     [style.width.px]="field.width"
                   >
-                    {{ field.key === 'event' ? truncateEventName(formData[field.key]) : formData[field.key] }}
+                    {{ field.key === 'event'
+                        ? truncateEventName(formData[field.key])
+                        : field.key === 'position'
+                          ? truncatePosition(formData[field.key])
+                          : formData[field.key]
+                    }}
                   </span>
                 </ng-template>
 

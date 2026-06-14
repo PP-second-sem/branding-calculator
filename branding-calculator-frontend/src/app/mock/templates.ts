@@ -58,14 +58,6 @@ export const templates = [
       }
     },
     fields: [
-        // { 
-        //   key: 'organization',
-        //   label: 'Организация',
-        //   type: 'text',
-        //   group: 'carrier',
-        //   placeholder: 'ЯНАО, Правительство ЯНАО...',
-        //   visibleInPreview: false
-        // },
       {
         key: 'fullName',
         label: 'Фамилия Имя',
@@ -81,7 +73,7 @@ export const templates = [
         formatAsFio: true
       },
       {
-        key: 'position',
+        key: 'major',
         label: 'Должность',
         type: 'text',
         group: 'carrier',
@@ -110,6 +102,20 @@ export const templates = [
         formatAsFio: false
       },
       {
+        key: 'secondPhone',
+        label: 'Телефон',
+        type: 'text',
+        group: 'carrier',
+        placeholder: '+7 (___) ___-__-__',
+
+        x: 275,
+        y: 215,
+        fontSize: 14,
+        fontWeight: 500,
+        visibleInPreview: true,
+        formatAsFio: false
+      },
+      {
         key: 'email',
         label: 'Email',
         type: 'text',
@@ -117,7 +123,7 @@ export const templates = [
         placeholder: 'name@yanao.ru',
 
         x: 275,
-        y: 215,
+        y: 230,
         fontSize: 14,
         color: '#C40E3D',
         visibleInPreview: true,
@@ -135,18 +141,6 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: false
       },
-      // {
-      //   key: 'cover2',
-      //   label: 'Логотип 2',
-      //   type: 'select',
-      //   group: 'logo',
-      //   options: [
-      //     { label: 'Без логотипа', value: 'none' },
-      //     { label: 'ЯМАЛ', value: 'photo1' },
-      //   ],
-      //   visibleInPreview: true,
-      //   formatAsFio: false
-      // }
     ]
   },
 
@@ -217,18 +211,18 @@ export const templates = [
         placeholder: 'Форум молодёжи Ямала',
         visibleInPreview: true,
         color: 'rgba(208, 0, 51, 1)',
-        x: 80,
+        x: 65,
         y: 110,
         fontWeight: 700
       },
       {
         key: 'field1',
-        label: 'Поле 1',
+        label: 'Фамилия Имя',
         type: 'text',
         group: 'carrier',
         placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
-        x: 165,
+        x: 140,
         y: 225,
         fontSize: 16,
         fontWeight: 600,
@@ -236,14 +230,14 @@ export const templates = [
         formatAsFio: true
       },
       {
-        key: 'field2',
-        label: 'Поле 2',
+        key: 'position',
+        label: 'Должность',
         type: 'text',
         group: 'carrier',
         placeholder: 'Должность',
         visibleInPreview: true,
         formatAsFio: false,
-        x: 130,
+        x: 100,
         y: 360,
         fontSize: 14,
         fontWeight: 800,
@@ -289,22 +283,6 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: false
       },
-      // {
-      //   key: 'cover2',
-      //   label: 'Логотип 2',
-      //   type: 'select',
-      //   group: 'logo',
-      //   options: [
-      //     { label: 'Без логотипа', value: 'none' },
-      //     { label: 'ЯМАЛ', value: 'photo1' },
-      //     { label: 'Газпром', value: 'photo2' },
-      //     { label: 'Новый Уренгой', value: 'photo3' },
-      //     { label: 'Ноябрьск', value: 'photo4' },
-      //     { label: 'Салехард', value: 'photo5' },
-      //   ],
-      //   visibleInPreview: true,
-      //   formatAsFio: false
-      // }
     ]
   },
   {
@@ -368,7 +346,7 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Иванову Ивану Ивановичу',
 
-        x: 80,
+        x: 85,
         y: 120,
         fontSize: 14,
         fontWeight: 500,
@@ -546,7 +524,7 @@ export const templates = [
         placeholder: 'Форум молодёжи',
         visibleInPreview: true,
         color: 'rgba(0, 0, 0, 1)',
-        x: 28,
+        x: 23,
         y: 110
       },
       {
@@ -614,9 +592,6 @@ export const templates = [
         options: [
           { label: 'Без логотипа', value: 'none' },
           { label: 'ЯМАЛ', value: 'photo1' },
-          // { label: 'Новый Уренгой', value: 'photo3' },
-          // { label: 'Ноябрьск', value: 'photo4' },
-          // { label: 'Салехард', value: 'photo5' },
         ],
         visibleInPreview: true,
         formatAsFio: false,

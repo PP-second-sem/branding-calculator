@@ -56,7 +56,6 @@ export class Editor implements OnInit {
 
   truncateEventName(value: string): string {
     if (!value) return '';
-
     return value.trim().slice(0, this.MAX_EVENT_LENGTH);
   }
 
@@ -64,7 +63,7 @@ export class Editor implements OnInit {
     const json = JSON.parse(layout.jsonContent);
 
     this.template = {
-      ...this.template, // важно
+      ...this.template,
       id: json.templateId,
       fields: json.fields,
       width: json.width,
@@ -319,43 +318,51 @@ export class Editor implements OnInit {
 
   formatFio(value: string, templateId?: number) {
     if (!value) {
-      return { line1: '', line2: '' };
+      return { line1: '', line2: '', line3: '' };
     }
 
     const parts = value.trim().split(/\s+/);
 
-    let lastName = (parts[0] || '').toUpperCase().slice(0, 10);
-    let firstName = (parts[1] || '').toUpperCase().slice(0, 10);
-    let middleName = parts.slice(2).join(' ').toUpperCase().slice(0, 10);
-
-    if (templateId === 2 || templateId === 3 || templateId === 4) {
-      return {
-        line1: lastName,
-        line2: firstName
-      };
-    }
+    const lastName = (parts[0] || '').toUpperCase().slice(0, 11);
+    const firstName = (parts[1] || '').toUpperCase().slice(0, 11);
+    const middleName = (parts.slice(2).join(' ') || '').toUpperCase().slice(0, 14);
 
     if (templateId === 5) {
       const fullFirstLine = `${lastName} ${firstName}`.trim();
 
-      let line1 = fullFirstLine;
-      let line2 = middleName;
-
       if (fullFirstLine.length > 18) {
-        line1 = lastName;
-        line2 = `${firstName} ${middleName}`.trim();
+        return {
+          line1: lastName,
+          line2: firstName,
+          line3: middleName
+        };
       }
 
-      return { line1, line2 };
+      return {
+        line1: fullFirstLine,
+        line2: middleName,
+        line3: ''
+      };
+    }
+
+    if (templateId === 2 || templateId === 3 || templateId === 4) {
+      return {
+        line1: lastName,
+        line2: firstName,
+        line3: ''
+      };
     }
 
     return {
       line1: `${lastName} ${firstName} ${middleName}`.trim(),
-      line2: ''
+      line2: '',
+      line3: ''
     };
   }
 
-
+  truncatePosition(value: string = ''): string {
+    return value.slice(0, 15);
+  }
 
   saveLayout(file: File) {
 
