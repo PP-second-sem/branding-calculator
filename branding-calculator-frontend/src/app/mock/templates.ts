@@ -479,22 +479,7 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: false
       },
-      // {
-      //   key: 'cover2',
-      //   label: 'Логотип 2',
-      //   type: 'select',
-      //   group: 'logo',
-      //   options: [
-      //     { label: 'Без логотипа', value: 'none' },
-      //     { label: 'ЯМАЛ', value: 'photo1' },
-      //     { label: 'Газпром', value: 'photo2' },
-      //     { label: 'Новый Уренгой', value: 'photo3' },
-      //     { label: 'Ноябрьск', value: 'photo4' },
-      //     { label: 'Салехард', value: 'photo5' },
-      //   ],
-      //   visibleInPreview: true,
-      //   formatAsFio: false
-      // }
+
     ]
   },
   {
