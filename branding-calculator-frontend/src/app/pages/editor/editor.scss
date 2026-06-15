@@ -314,8 +314,7 @@
   z-index: 3;
   font-weight: 700;
   
-
-  white-space: pre-line;
+  // white-space: pre-line;
 }
 
 .checkbox-group {
@@ -336,7 +335,6 @@
 .fio-text {
   display: flex;
   flex-direction: column;
-  // align-items: flex-start;
 }
 
 
@@ -348,9 +346,15 @@
 }
 
 .fio-text--gramota {
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
+.fio-text--gramota .fio-line {
+  width: auto;
+  text-align: center;
+}
 
 .download-button {
   width: 100%;
