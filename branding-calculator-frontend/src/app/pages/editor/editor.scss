@@ -313,6 +313,7 @@
   position: absolute;
   z-index: 3;
   font-weight: 700;
+  
 
   white-space: pre-line;
 }
@@ -333,20 +334,21 @@
 }
 
 .fio-text {
-  position: relative;
   display: flex;
   flex-direction: column;
+  // align-items: flex-start;
 }
+
 
 .fio-line {
   width: 100%;
-  //text-align: center;
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: transform 0.2s ease;
+  word-break: break-word;
+  white-space: normal;
+}
 
+.fio-text--gramota {
+  text-align: center;
 }
 
 
@@ -459,10 +461,6 @@
 }
 
 
-.field-text {
-  white-space: nowrap;
-}
-
 .field-text--multiline {
   display: block;
   white-space: normal;
@@ -497,17 +495,3 @@
   text-align: center;
 }
 
-
-.dynamic-text--center {
-  width: 120px;
-  text-align: center;
-}
-.dynamic-text--left {
-  width: 120px;
-  text-align: left;
-}
-
-.fio-line--center {
-  text-align: center;
-  width: 100%;
-}
