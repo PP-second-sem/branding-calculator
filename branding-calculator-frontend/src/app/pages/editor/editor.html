@@ -194,12 +194,14 @@
               <div
                 *ngIf="field.type === 'text' && field.visibleInPreview"
                 class="dynamic-text"
+                [style.text-align]="field.textAlign || 'left'"
                 [style.left.px]="field.x"
                 [style.top.px]="field.y"
                 [style.fontSize.px]="field.fontSize"
                 [style.fontWeight]="field.fontWeight"
                 [style.color]="field.color"
-
+                [style.width.px]="template.id === 5 ? 140 : null"
+                [style.width.px]="field.width"
               >
                 
                 <ng-container *ngIf="field.formatAsFio; else normalText">

@@ -213,7 +213,9 @@ export const templates = [
         color: 'rgba(208, 0, 51, 1)',
         x: 65,
         y: 110,
-        fontWeight: 700
+        fontWeight: 700,
+        textAlign: 'center',
+        width: 190,
       },
       {
         key: 'field1',
@@ -222,7 +224,7 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
-        x: 140,
+        x: 160,
         y: 225,
         fontSize: 16,
         fontWeight: 600,
@@ -237,10 +239,12 @@ export const templates = [
         placeholder: 'Должность',
         visibleInPreview: true,
         formatAsFio: false,
-        x: 100,
+        x: 70,
         y: 360,
         fontSize: 14,
         fontWeight: 800,
+        textAlign: 'center',
+        width: 190,
         color: 'rgba(207, 17, 53, 1)'
       },
       {
@@ -345,8 +349,8 @@ export const templates = [
         type: 'text',
         group: 'carrier',
         placeholder: 'Иванову Ивану Ивановичу',
-
-        x: 85,
+        width: 140,
+        x: 75,
         y: 120,
         fontSize: 14,
         fontWeight: 500,
@@ -423,8 +427,9 @@ export const templates = [
         group: 'location',
         placeholder: 'г. Салехард',
         formatAsFio: false,
-
-        x: 120,
+        width: 140,
+        textAlign: 'center',
+        x: 75,
         y: 365,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
@@ -438,8 +443,9 @@ export const templates = [
         group: 'location',
         placeholder: '24 апреля 2025',
         formatAsFio: false,
-
-        x: 115,
+        textAlign: 'center',
+        width: 140,
+        x: 75,
         y: 355,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
