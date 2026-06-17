@@ -2,7 +2,7 @@ export const templates = [
   {
     id: 2,
     name: 'Визитка',
-    image: '/business_card.svg',
+    image: '/business_card_2.svg',
     width: 640,
     height: 355,
     hasPhotoUpload: false,
@@ -43,8 +43,8 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 50,
-        y: 125,
+        x: 75,
+        y: 185,
       },
 
       first: {
@@ -131,7 +131,7 @@ export const templates = [
       },
       {
         key: 'cover1',
-        label: 'Логотип 1',
+        label: 'Логотип',
         type: 'select',
         group: 'logo',
         options: [
@@ -188,8 +188,8 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 35,
-        y: 220
+        x: 60,
+        y: 270
       },
 
       first: {
@@ -277,7 +277,7 @@ export const templates = [
       },
       {
         key: 'cover1',
-        label: 'Логотип 1',
+        label: 'Логотип',
         type: 'select',
         group: 'logo',
         options: [
@@ -329,8 +329,8 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 80,
-        y: 300
+        x: 110,
+        y: 350
       },
 
       first: {
@@ -453,7 +453,7 @@ export const templates = [
       },
       {
         key: 'cover1',
-        label: 'Логотип 1',
+        label: 'Логотип',
         type: 'select',
         group: 'logo',
         options: [
@@ -488,8 +488,8 @@ export const templates = [
     
     logoPositions: {
       single: {
-        x: 0,
-        y: 50
+        x: 25,
+        y: 100
       },
 
       first: {
@@ -542,7 +542,7 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: true,
 
-        x: 110,
+        x: 80,
         y: 65,
         fontSize: 14,
         fontWeight: 600,
@@ -585,14 +585,14 @@ export const templates = [
         formatAsFio: false,
 
         x: 25,
-        y: 390,
+        y: 393,
         fontSize: 10,
         color: 'rgba(0, 0, 0, 1)',
         visibleInPreview: true
       },
       {
         key: 'cover1',
-        label: 'Логотип 1',
+        label: 'Логотип',
         type: 'select',
         group: 'logo',
         options: [
