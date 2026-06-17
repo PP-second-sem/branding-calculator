@@ -7,7 +7,6 @@ using Yamal.Core.Models;
 namespace branding_calculator.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
     [ApiController]
     public class LogoLibraryController : ControllerBase
     {
