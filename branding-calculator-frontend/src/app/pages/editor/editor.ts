@@ -33,6 +33,7 @@ export class Editor implements OnInit {
   public formData: any = {};
   public MAX_NAME_LENGTH = 21;
   public MAX_EVENT_LENGTH = 21;
+  public MAX_POSITION_LENGTH = 82;
   public http: HttpClient = inject(HttpClient);
   public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
   @Input() readonly = false;
@@ -57,6 +58,11 @@ export class Editor implements OnInit {
   truncateEventName(value: string): string {
     if (!value) return '';
     return value.trim().slice(0, this.MAX_EVENT_LENGTH);
+  }
+
+  truncateMemberPosition(value: string): string {
+    if (!value) return '';
+    return value.trim().slice(0, this.MAX_POSITION_LENGTH);
   }
 
   loadFromLayout(layout: any) {
@@ -119,7 +125,6 @@ export class Editor implements OnInit {
   }
 
   getLogoSize(logo: string) {
-
     return this.template.logoSizes?.[logo];
   }
 
@@ -130,28 +135,7 @@ export class Editor implements OnInit {
     ) as HTMLElement;
 
     const exportScale = this.getExportScale();
-    console.log(
-        'offset',
-        element.offsetWidth,
-        element.offsetHeight
-    );
 
-    console.log(
-        'client',
-        element.clientWidth,
-        element.clientHeight
-    );
-    console.log(
-      getComputedStyle(element).width,
-      getComputedStyle(element).height
-    );
-    console.log('template width', this.template.width)
-    console.log(this.template.height);;
-    console.log('export size', this.template.exportSize);
-    console.log(
-      this.template.exportSize.height / this.template.height
-    );
-    console.log('scale', this.getExportScale());
     html2canvas(element, {
       scale: exportScale,
       useCORS: true,
@@ -186,7 +170,9 @@ export class Editor implements OnInit {
           }
         );
 
-        this.saveLayout(file);
+          if (localStorage.getItem('token')) {
+            this.saveLayout(file);
+          }
 
         pdf.save('template.pdf');
 
@@ -202,8 +188,9 @@ export class Editor implements OnInit {
           { type: blob.type }
         );
 
-
-        this.saveLayout(file);
+          if (localStorage.getItem('token')) {
+            this.saveLayout(file);
+          }
 
         const link = document.createElement('a');
         link.download = `template.${this.selectedFormat}`;
@@ -312,7 +299,7 @@ export class Editor implements OnInit {
 
     return {
       x: position.x,
-      y: position.y - size.height
+      y: position.y 
     };
   }
 
@@ -365,7 +352,6 @@ export class Editor implements OnInit {
   }
 
   saveLayout(file: File) {
-
     const json = {
       templateId: this.template.id,
       formData: this.formData,
@@ -380,10 +366,6 @@ export class Editor implements OnInit {
     formData.append('JsonContent', JSON.stringify(json));
 
     formData.append('Files', file);
-    console.log('TEMPLATE ID:', this.template.id);
-    console.log('JSON:', json);
-    console.log('FILE:', file);
-    console.log(JSON.stringify(json));
 
     this.generatedService.saveUserLayout(formData)
       .subscribe({

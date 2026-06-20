@@ -2,40 +2,20 @@ export const templates = [
   {
     id: 2,
     name: 'Визитка',
-    image: '/business_card_2.svg',
-    width: 640,
-    height: 355,
+    image: '/visitka.svg',
+    width: 320,
+    height: 177,
     hasPhotoUpload: false,
     hasDesignButtons: true,
     showLocationSettings: false,
     logos: {
       photo1: '/Logotip_Color 9.svg',
-      photo2: '/gazprom.svg',
-      photo3: '/Новый уренгой_Color.png',
-      photo4: '/Ноябрьск_Color.png',
-      photo5: '/Салехард_Color.png'
     },
     logoSizes: {
       photo1: {
-        width: 148,
-        height: 24
-      },
-      photo2: {
-        width: 150,
-        height: 77
-      },
-      photo3: {
-        width: 180,
-        height: 60
-      },
-      photo4: {
-        width: 180,
-        height: 60
-      },
-      photo5: {
-        width: 180,
-        height: 60
-      },
+        width: 74,
+        height: 12
+      }
     },
     exportSize: {
       width: 1150,
@@ -43,19 +23,9 @@ export const templates = [
     },
     logoPositions: {
       single: {
-        x: 75,
-        y: 185,
+        x: 15,
+        y: 80,
       },
-
-      first: {
-        x: 50,
-        y: 60
-      },
-
-      second: {
-        x: 50,
-        y: 180
-      }
     },
     fields: [
       {
@@ -65,9 +35,9 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Иванов Иван',
 
-        x: 275,
-        y: 70,
-        fontSize: 24,
+        x: 135,
+        y: 40,
+        fontSize: 18,
         fontWeight: 800,
         visibleInPreview: true,
         formatAsFio: true
@@ -79,38 +49,38 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Директор, начальник отдела...',
         multiline: true,
-        width: 210,
+        width: 180,
 
-        x: 275,
-        y: 125,
-        fontSize: 14,
+        x: 135,
+        y: 87,
+        fontSize: 10,
         visibleInPreview: true,
         formatAsFio: false
       },
       {
         key: 'phone',
-        label: 'Телефон',
+        label: 'Сотовый телефон',
         type: 'text',
         group: 'carrier',
         placeholder: '+7 (___) ___-__-__',
 
-        x: 275,
-        y: 200,
-        fontSize: 14,
+        x: 135,
+        y: 130,
+        fontSize: 8,
         fontWeight: 500,
         visibleInPreview: true,
         formatAsFio: false
       },
       {
         key: 'secondPhone',
-        label: 'Телефон',
+        label: 'Рабочий телефон',
         type: 'text',
         group: 'carrier',
         placeholder: '+7 (___) ___-__-__',
 
-        x: 275,
-        y: 215,
-        fontSize: 14,
+        x: 135,
+        y: 140,
+        fontSize: 8,
         fontWeight: 500,
         visibleInPreview: true,
         formatAsFio: false
@@ -122,9 +92,9 @@ export const templates = [
         group: 'carrier',
         placeholder: 'name@yanao.ru',
 
-        x: 275,
-        y: 230,
-        fontSize: 14,
+        x: 135,
+        y: 150,
+        fontSize: 8,
         color: '#C40E3D',
         visibleInPreview: true,
         formatAsFio: false
@@ -162,23 +132,7 @@ export const templates = [
       photo1: {
         width: 85,
         height: 55
-      },
-      photo2: {
-        width: 57,
-        height: 96
-      },
-      photo3: {
-        width: 90,
-        height: 50
-      },
-      photo4: {
-        width: 90,
-        height: 50
-      },
-      photo5: {
-        width: 90,
-        height: 50
-      },
+      }
     },
     hasPhotoUpload: false,
     hasDesignButtons: false,
@@ -189,7 +143,7 @@ export const templates = [
     logoPositions: {
       single: {
         x: 60,
-        y: 270
+        y: 220
       },
 
       first: {
@@ -211,7 +165,7 @@ export const templates = [
         placeholder: 'Форум молодёжи Ямала',
         visibleInPreview: true,
         color: 'rgba(208, 0, 51, 1)',
-        x: 65,
+        x: 59,
         y: 110,
         fontWeight: 700,
         textAlign: 'center',
@@ -330,7 +284,7 @@ export const templates = [
     logoPositions: {
       single: {
         x: 110,
-        y: 350
+        y: 335
       },
 
       first: {
@@ -365,8 +319,8 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Петров Пётр Петрович',
 
-        x: 90,
-        y: 265,
+        x: 85,
+        y: 255,
         fontSize: 8,
         fontWeight: 600,
         color: 'rgba(208, 16, 57, 1)',
@@ -375,15 +329,15 @@ export const templates = [
       },
 
       {
-        key: 'giverPosition',
+        key: 'major',
         label: 'Должность вручающего',
         type: 'text',
         group: 'carrier',
         placeholder: 'Директор департамента',
         formatAsFio: false,
         multiline: true,
-        x: 90,
-        y: 280,
+        x: 85,
+        y: 273,
         width: 120,
         fontSize: 8,
         fontWeight: 400,
@@ -398,8 +352,8 @@ export const templates = [
         formatAsFio: false,
         placeholder: 'Министерство развития...',
 
-        x: 90,
-        y: 300,
+        x: 85,
+        y: 310,
         fontSize: 8,
         fontWeight: 400,
         visibleInPreview: true,
@@ -430,7 +384,7 @@ export const templates = [
         width: 140,
         textAlign: 'center',
         x: 75,
-        y: 365,
+        y: 360,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
         visibleInPreview: true
@@ -446,7 +400,7 @@ export const templates = [
         textAlign: 'center',
         width: 140,
         x: 75,
-        y: 355,
+        y: 350,
         fontSize: 8,
         color: 'rgba(208, 16, 57, 1)',
         visibleInPreview: true

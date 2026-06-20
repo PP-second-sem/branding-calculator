@@ -1,7 +1,6 @@
 .section-header {
   background-color: #C40E3D;
   padding: 20px 151px;
-
   &__path {
     display: flex;
     align-items: center;
@@ -238,76 +237,66 @@
   background: rgba(249, 240, 225, 1);
 }
 
-  .editor-preview {
-    width: 100%;
-    max-width: 800px;
-    max-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-  }
+.editor-preview {
+  width: 100%;
+  max-width: 800px;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
 
-  .editor-export {
-    position: relative;
-  }
+.editor-export {
+  position: relative;
+}
 
-  .editor-export-wrapper {
-    position: relative;
-    width: fit-content;
-    
-  }
+.editor-export-wrapper {
+  position: relative;
+  width: fit-content;
 
-  .editor-preview__image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    inset: 0;
-  }
+}
 
-  .logo-stack {
-    position: absolute;
+.editor-preview__image {
+  position: absolute;
+  width: auto;
+  height: 100%;
+  z-index: 1;
+  inset: 0;
+}
 
-    // top: 50px;  
-    // left: 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 70px;
-  }
+.logo-stack {
+  position: absolute;
+  // left: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+}
 
-  .editor-preview__cover--top {
-    transform: translateY(-70px);
-  }
+.editor-preview__cover {
+  position: absolute;
+  z-index: 3;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
 
-  .editor-preview__cover--bottom {
-    transform: translateY(70px);
-  }
+.logo-item-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+}
 
-  .editor-preview__cover {
-    position: absolute;
-    z-index: 3;
-    display: block;
-    object-fit: contain;
-    object-position: center;
-  }
-
-  .logo-item-wrapper {
-    position: absolute;
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .editor-preview__photo {
-    position: absolute;
-    width: 200px;
-    height: 180px;
-    left: 5px;
-    top: 165px;
-    object-fit: cover;
-    z-index: 2;
-  }
+.editor-preview__photo {
+  position: absolute;
+  width: 200px;
+  height: 180px;
+  left: 5px;
+  top: 165px;
+  object-fit: cover;
+  z-index: 2;
+}
 
 .dynamic-text {
   position: absolute;
@@ -499,3 +488,14 @@
   text-align: center;
 }
 
+.editor-preview__logo-flat {
+  position: absolute;
+  z-index: 10; /* Поднимаем повыше, чтобы не перекрыл фон */
+  display: block;
+  
+  // Отключаем любые встроенные умные сжатия браузера
+  object-fit: fill; 
+  transform: none;
+  margin: 0;
+  padding: 0;
+}

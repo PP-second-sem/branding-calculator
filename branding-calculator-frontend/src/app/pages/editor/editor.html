@@ -176,7 +176,7 @@
             />
 
             <div class="logo-stack">
-              <ng-container *ngFor="let logo of activeLogos; let i = index">
+              <!-- <ng-container *ngFor="let logo of activeLogos; let i = index">
 
                 <img
                   [src]="getLogoSrc(logo)"
@@ -187,6 +187,17 @@
                   [style.height.px]="getLogoSize(logo).height"
                 >
 
+              </ng-container> -->
+              <ng-container *ngFor="let logo of activeLogos; let i = index">
+                <img
+                  class="editor-preview__logo-flat"
+                  [src]="getLogoSrc(logo)"
+                  [style.left.px]="getLogoPosition(i, logo).x"
+                  [style.top.px]="getLogoPosition(i, logo).y"
+                  [style.width.px]="getLogoSize(logo).width"
+                  [style.height.px]="getLogoSize(logo).height"
+                  alt="logo"
+                />
               </ng-container>
             </div>
 
@@ -234,6 +245,8 @@
                         ? truncateEventName(formData[field.key])
                         : field.key === 'position'
                           ? truncatePosition(formData[field.key])
+                          : field.key === 'major'
+                          ? truncateMemberPosition(formData[field.key])
                           : formData[field.key]
                     }}
                   </span>
@@ -295,7 +308,7 @@
       </div>
 
       <button class="download-button" (click)="handleDownload()">
-        Скачать и Сохранить
+        Скачать
       </button>
 
     </div>

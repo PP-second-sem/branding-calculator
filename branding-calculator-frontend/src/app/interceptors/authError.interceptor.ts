@@ -14,7 +14,7 @@ export const authErrorInterceptor: HttpInterceptorFn = (req, next) => {
         authService.currentUser.set(null);
         localStorage.removeItem('user');
 
-        authService.router.navigate(['/login']); // или '/'
+        authService.router.navigate(['/login']);
 
       }
 
