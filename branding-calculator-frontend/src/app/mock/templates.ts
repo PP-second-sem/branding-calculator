@@ -119,6 +119,7 @@ export const templates = [
     name: 'Бейдж',
     image: '/badge.svg',
     showLocationSettings: true,
+
     width: 329,
     height: 464,
     logos: {
@@ -178,9 +179,9 @@ export const templates = [
         group: 'carrier',
         placeholder: 'Фамилия Имя',
         color: 'rgba(207, 17, 53, 1)',
-        x: 160,
-        y: 225,
-        fontSize: 16,
+        x: 142,
+        y: 206,
+        fontSize: 18,
         fontWeight: 600,
         visibleInPreview: true,
         formatAsFio: true
@@ -193,7 +194,7 @@ export const templates = [
         placeholder: 'Должность',
         visibleInPreview: true,
         formatAsFio: false,
-        x: 70,
+        x: 60,
         y: 360,
         fontSize: 14,
         fontWeight: 800,
@@ -229,18 +230,6 @@ export const templates = [
         visibleInPreview: true,
         formatAsFio: false
       },
-      {
-        key: 'cover1',
-        label: 'Логотип',
-        type: 'select',
-        group: 'logo',
-        options: [
-          { label: 'Без логотипа', value: 'none' },
-          { label: 'ЯМАЛ', value: 'photo1' },
-        ],
-        visibleInPreview: true,
-        formatAsFio: false
-      },
     ]
   },
   {
@@ -263,38 +252,13 @@ export const templates = [
       photo1: {
         width: 69,
         height: 11
-      },
-      photo2: {
-        width: 65,
-        height: 31
-      },
-      photo3: {
-        width: 69,
-        height: 40
-      },
-      photo4: {
-        width: 69,
-        height: 40
-      },
-      photo5: {
-        width: 69,
-        height: 40
-      },
+      }
     },
     logoPositions: {
       single: {
         x: 110,
         y: 335
       },
-
-      first: {
-        x: 20,
-        y: 280
-      },
-      second: {
-        x: 140,
-        y: 280
-      }
     },
     fields: [
       {
@@ -320,7 +284,7 @@ export const templates = [
         placeholder: 'Петров Пётр Петрович',
 
         x: 85,
-        y: 255,
+        y: 260,
         fontSize: 8,
         fontWeight: 600,
         color: 'rgba(208, 16, 57, 1)',
@@ -329,7 +293,7 @@ export const templates = [
       },
 
       {
-        key: 'major',
+        key: 'certMajor',
         label: 'Должность вручающего',
         type: 'text',
         group: 'carrier',
@@ -337,7 +301,7 @@ export const templates = [
         formatAsFio: false,
         multiline: true,
         x: 85,
-        y: 273,
+        y: 270,
         width: 120,
         fontSize: 8,
         fontWeight: 400,
@@ -353,7 +317,7 @@ export const templates = [
         placeholder: 'Министерство развития...',
 
         x: 85,
-        y: 310,
+        y: 280,
         fontSize: 8,
         fontWeight: 400,
         visibleInPreview: true,
@@ -367,8 +331,8 @@ export const templates = [
         group: 'carrier',
         placeholder: '',  
         width: 140,
-        x: 75,
-        y: 180,
+        x: 70,
+        y: 160,
         fontSize: 7,
         fontWeight: 500,
         color: 'rgba(29, 29, 27, 1)',

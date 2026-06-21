@@ -34,6 +34,7 @@ export class Editor implements OnInit {
   public MAX_NAME_LENGTH = 21;
   public MAX_EVENT_LENGTH = 21;
   public MAX_POSITION_LENGTH = 82;
+  public SERTIFICATE_MAX_LENGTH = 100000;
   public http: HttpClient = inject(HttpClient);
   public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
   @Input() readonly = false;
@@ -63,6 +64,41 @@ export class Editor implements OnInit {
   truncateMemberPosition(value: string): string {
     if (!value) return '';
     return value.trim().slice(0, this.MAX_POSITION_LENGTH);
+  }
+
+  truncateSymbolCertificate(value: string): string {
+    if (!value) return '';
+    return value.trim().slice(0, this.SERTIFICATE_MAX_LENGTH);
+  }
+
+  getInstitutionY(field: any): number {
+    const baseY = field.y;
+
+    const giverName = this.formData['giverFullName'] || '';
+    const certMajor = this.formData['certMajor'] || '';
+
+    const fioLines = this.getFioLines(giverName);
+
+    const majorLines =
+      certMajor.length > 40 ? 3 :
+      certMajor.length > 25 ? 2 : 1;
+
+    return baseY + (fioLines - 1) * 10 + (majorLines - 1) * 10;
+  }
+
+  getFioLines(value: string): number {
+    if (!value) return 1;
+    return value.length > 30 ? 2 : 1;
+  }
+
+  getCertMajorY(field: any): number {
+    const baseY = field.y;
+
+    const giverName = this.formData['giverFullName'] || '';
+
+    const fioLines = this.getFioLines(giverName);
+
+    return baseY + (fioLines - 1) * 10;
   }
 
   loadFromLayout(layout: any) {
@@ -331,6 +367,7 @@ export class Editor implements OnInit {
         line3: ''
       };
     }
+  
 
     if (templateId === 2 || templateId === 3 || templateId === 4) {
       return {

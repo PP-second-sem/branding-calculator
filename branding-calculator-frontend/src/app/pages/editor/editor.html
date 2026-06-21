@@ -88,7 +88,7 @@
       </div>
     </div>
 
-    <div class="editor-card">
+    <div class="editor-card" *ngIf="template.id !== 4">
       <div class="editor-card__header">
 
         <div class="editor-card__title-wrapper">
@@ -176,18 +176,6 @@
             />
 
             <div class="logo-stack">
-              <!-- <ng-container *ngFor="let logo of activeLogos; let i = index">
-
-                <img
-                  [src]="getLogoSrc(logo)"
-                  class="editor-preview__cover"
-                  [style.left.px]="getLogoPosition(i, logo).x"
-                  [style.top.px]="getLogoPosition(i, logo).y"
-                  [style.width.px]="getLogoSize(logo).width"
-                  [style.height.px]="getLogoSize(logo).height"
-                >
-
-              </ng-container> -->
               <ng-container *ngFor="let logo of activeLogos; let i = index">
                 <img
                   class="editor-preview__logo-flat"
@@ -207,16 +195,22 @@
                 class="dynamic-text"
                 [style.text-align]="field.textAlign || 'left'"
                 [style.left.px]="field.x"
-                [style.top.px]="field.y"
                 [style.fontSize.px]="field.fontSize"
                 [style.fontWeight]="field.fontWeight"
                 [style.color]="field.color"
                 [style.width.px]="template.id === 5 ? 140 : null"
                 [style.width.px]="field.width"
+                [style.top.px]="
+                  field.key === 'certMajor'
+                    ? getCertMajorY(field)
+                    : field.key === 'institution'
+                      ? getInstitutionY(field)
+                      : field.y
+                "
               >
                 
                 <ng-container *ngIf="field.formatAsFio; else normalText">
-                  <div class="fio-text" [class.fio-text--gramota]="template.id === 5">
+                  <div class="fio-text" [class.fio-text--gramota]="template.id === 5" [class.fio-text--badge]="template.id === 4">
 
                     <div class="fio-line">
                       {{ formatFio(formData[field.key], template.id).line1 }}
@@ -229,9 +223,7 @@
                     <div class="fio-line" *ngIf="formatFio(formData[field.key], template.id).line3">
                       {{ formatFio(formData[field.key], template.id).line3 }}
                     </div>
-
                   </div>
-
                 </ng-container>
 
                 <ng-template #normalText>
@@ -247,6 +239,8 @@
                           ? truncatePosition(formData[field.key])
                           : field.key === 'major'
                           ? truncateMemberPosition(formData[field.key])
+                          : field.key === 'certMajor' || field.key === 'institution'
+                          ? truncateSymbolCertificate(formData[field.key])
                           : formData[field.key]
                     }}
                   </span>
