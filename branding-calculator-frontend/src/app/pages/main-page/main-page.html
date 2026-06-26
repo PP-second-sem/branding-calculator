@@ -6,7 +6,7 @@
         <p>ОФИЦИАЛЬНАЯ ПЛАТФОРМА БРЕНДА</p>
     </div>
 
-    <h1 class="hero-section__title">Конструктор бренда <span class="hero-section__title--painted">ЯМАЛ</span></h1>
+    <h1 class="hero-section__title">Конструктор бренда ЯМАЛ</h1>
 
     <p class="hero-section__text">Создание и управление фирменным стилем ЯНАО</p>
     
@@ -26,90 +26,51 @@
     <div class="example-section__text-with-line">
         <p class="example-section__text">Примеры брендирования</p>
     </div>
-        <div class="example-section__carousel">
+    <div class="example-section__carousel">
+
+        <div
+            class="example-section__button example-section__button--left"
+            (click)="prevSlide()"
+        >
+            <img src="/anotherButtonLast.svg">
+        </div>
+
+        <div class="example-section__images">
 
             <div
-                class="example-section__button example-section__button--left"
-                (click)="prevSlide()"
+                class="example-section__images-container"
+                *ngFor="let slide of visibleSlides"
             >
-                <img src="/anotherButtonLast.svg">
-            </div>
+                <img [src]="slide.image">
 
-            <div class="example-section__images">
+                <p class="example-section__image-caption">
+                    {{ slide.title }}
 
-                <div
-                    class="example-section__images-container"
-                    *ngFor="let slide of visibleSlides"
-                >
-                    <img [src]="slide.image">
-
-                    <p class="example-section__image-caption">
-                        {{ slide.title }}
-
-                        <span class="example-section__image-caption-desc">
-                            {{ slide.desc }}
-                        </span>
-                    </p>
-                </div>
-
-            </div>
-
-            <div
-                class="example-section__button example-section__button--right"
-                (click)="nextSlide()"
-            >
-                <img src="/anotherButtonLast.svg">
+                    <span class="example-section__image-caption-desc">
+                        {{ slide.desc }}
+                    </span>
+                </p>
             </div>
 
         </div>
 
-        <div class="example-section__dots">
-
-            <span
-                *ngFor="let _ of [].constructor(dotsCount); let i = index"
-                class="example-section__dot"
-                [class.example-section__dot--active]="i === currentIndex"
-                (click)="setSlideByDot(i)"
-            ></span>
-
+        <div
+            class="example-section__button example-section__button--right"
+            (click)="nextSlide()"
+        >
+            <img src="/anotherButtonLast.svg">
         </div>
 
-    <!-- </div> -->
+    </div>
 
-    <div class="example-section__cards">
+    <div class="example-section__dots">
 
-        <div class="example-section__card">
-            <div class="example-section__icon-container example-section__icon-container--brand">
-                <img src="/brandIcon.svg" class="example-section__icon">
-            </div>
-
-            <p class="example-section__card-title">100+</p>
-            <p class="example-section__card-desc">
-                носителей бренда
-            </p>
-        </div>
-
-        <div class="example-section__card">
-            <div class="example-section__icon-container example-section__icon-container--star">
-                <img src="/starIcon.svg">
-            </div>
-
-            <p class="example-section__card-title">80+</p>
-            <p class="example-section__card-desc">
-                успешных проектов
-            </p>
-        </div>
-
-        <div class="example-section__card">
-            <div class="example-section__icon-container example-section__icon-container--watch">
-                <img src="/watchIcon.svg">
-            </div>
-
-            <p class="example-section__card-title">15 мин</p>
-            <p class="example-section__card-desc">
-                среднее время создания
-            </p>
-        </div>
+        <span
+            *ngFor="let _ of [].constructor(dotsCount); let i = index"
+            class="example-section__dot"
+            [class.example-section__dot--active]="i === currentIndex"
+            (click)="setSlideByDot(i)"
+        ></span>
 
     </div>
 </section>

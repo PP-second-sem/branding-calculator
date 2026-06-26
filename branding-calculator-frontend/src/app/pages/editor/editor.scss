@@ -1,7 +1,6 @@
 .section-header {
   background-color: #C40E3D;
   padding: 20px 151px;
-
   &__path {
     display: flex;
     align-items: center;
@@ -245,7 +244,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .editor-export {
@@ -255,12 +254,12 @@
 .editor-export-wrapper {
   position: relative;
   width: fit-content;
-  
+
 }
 
 .editor-preview__image {
   position: absolute;
-  width: 100%;
+  width: auto;
   height: 100%;
   z-index: 1;
   inset: 0;
@@ -268,21 +267,11 @@
 
 .logo-stack {
   position: absolute;
-
-  top: 50px;  
-  left: 30px;
+  // left: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 70px;
-}
-
-.editor-preview__cover--top {
-  transform: translateY(-70px);
-}
-
-.editor-preview__cover--bottom {
-  transform: translateY(70px);
 }
 
 .editor-preview__cover {
@@ -313,8 +302,8 @@
   position: absolute;
   z-index: 3;
   font-weight: 700;
-
-  white-space: pre-line;
+  
+  // white-space: pre-line;
 }
 
 .checkbox-group {
@@ -333,20 +322,27 @@
 }
 
 .fio-text {
-  position: relative;
   display: flex;
   flex-direction: column;
 }
 
+
 .fio-line {
   width: 100%;
-  text-align: center;
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: transform 0.2s ease;
+  word-break: break-word;
+  white-space: normal;
+}
 
+.fio-text--gramota {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.fio-text--gramota .fio-line {
+  width: auto;
+  text-align: center;
 }
 
 
@@ -456,4 +452,57 @@
 
 .editor-file-upload__icon:hover {
   background: rgba(240, 240, 240, 1);
+}
+
+
+.field-text--multiline {
+  display: block;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.editor-preview__stripe {
+  position: absolute;
+
+  left: 124px;
+  top: 76px;
+
+  width: 158px;
+  height: 369px;
+
+  z-index: 2;
+  pointer-events: none;
+
+}
+
+
+.certificate-text {
+  display: block;
+
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+.editor-preview__logo-flat {
+  position: absolute;
+  z-index: 10; /* Поднимаем повыше, чтобы не перекрыл фон */
+  display: block;
+  
+  // Отключаем любые встроенные умные сжатия браузера
+  object-fit: fill; 
+  transform: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fio-text--badge {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

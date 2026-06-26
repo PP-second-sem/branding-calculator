@@ -88,7 +88,7 @@
       </div>
     </div>
 
-    <div class="editor-card">
+    <div class="editor-card" *ngIf="template.id !== 4">
       <div class="editor-card__header">
 
         <div class="editor-card__title-wrapper">
@@ -130,7 +130,7 @@
       </div>
 
       <div *ngIf="template.hasPhotoUpload" class="editor-file-upload">
-        <p class="editor-file-upload__title">Фото</p>
+        <p class="editor-file-upload__title">Фото (будет сжиматься к размеру 535 на 541)</p>
 
         <input
           type="file"
@@ -157,7 +157,7 @@
       </div>
       <div class="editor-preview">
         <div class="editor-export-wrapper">
-          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height">
+          <div class="editor-export"   [style.width.px]="template.width" [style.height.px]="template.height" >
 
             <img
               [src]="template.image"
@@ -167,21 +167,25 @@
             <img
               *ngIf="photoPreview"
               [src]="photoPreview"
-              class="editor-preview__photo"
+              class="editor-preview__photo" 
             >
+            <img
+              *ngIf="photoPreview"
+              src="/badge-stripe.svg"
+              class="editor-preview__stripe"
+            />
 
             <div class="logo-stack">
               <ng-container *ngFor="let logo of activeLogos; let i = index">
-
                 <img
+                  class="editor-preview__logo-flat"
                   [src]="getLogoSrc(logo)"
-                  class="editor-preview__cover"
                   [style.left.px]="getLogoPosition(i, logo).x"
                   [style.top.px]="getLogoPosition(i, logo).y"
                   [style.width.px]="getLogoSize(logo).width"
                   [style.height.px]="getLogoSize(logo).height"
-                >
-
+                  alt="logo"
+                />
               </ng-container>
             </div>
 
@@ -189,28 +193,57 @@
               <div
                 *ngIf="field.type === 'text' && field.visibleInPreview"
                 class="dynamic-text"
+                [style.text-align]="field.textAlign || 'left'"
                 [style.left.px]="field.x"
-                [style.top.px]="field.y"
                 [style.fontSize.px]="field.fontSize"
                 [style.fontWeight]="field.fontWeight"
                 [style.color]="field.color"
+                [style.width.px]="template.id === 5 ? 140 : null"
+                [style.width.px]="field.width"
+                [style.top.px]="
+                  field.key === 'certMajor'
+                    ? getCertMajorY(field)
+                    : field.key === 'institution'
+                      ? getInstitutionY(field)
+                      : field.y
+                "
               >
                 
                 <ng-container *ngIf="field.formatAsFio; else normalText">
-                  <div class="fio-text" [class.fio-text--gramota]="template.id === 3">
-                    <div class="fio-line fio-line--top">
+                  <div class="fio-text" [class.fio-text--gramota]="template.id === 5" [class.fio-text--badge]="template.id === 4">
+
+                    <div class="fio-line">
                       {{ formatFio(formData[field.key], template.id).line1 }}
                     </div>
 
-                    <div class="fio-line fio-line--bottom">
+                    <div class="fio-line">
                       {{ formatFio(formData[field.key], template.id).line2 }}
                     </div>
-                  </div>
 
+                    <div class="fio-line" *ngIf="formatFio(formData[field.key], template.id).line3">
+                      {{ formatFio(formData[field.key], template.id).line3 }}
+                    </div>
+                  </div>
                 </ng-container>
 
                 <ng-template #normalText>
-                  {{ formData[field.key] }}
+                  <span
+                    class="field-text"
+                    [class.field-text--multiline]="field.multiline"
+                    [class.certificate-text]="field.key === 'certificateText'"
+                    [style.width.px]="field.width"
+                  >
+                    {{ field.key === 'event'
+                        ? truncateEventName(formData[field.key])
+                        : field.key === 'position'
+                          ? truncatePosition(formData[field.key])
+                          : field.key === 'major'
+                          ? truncateMemberPosition(formData[field.key])
+                          : field.key === 'certMajor' || field.key === 'institution'
+                          ? truncateSymbolCertificate(formData[field.key])
+                          : formData[field.key]
+                    }}
+                  </span>
                 </ng-template>
 
               </div>
@@ -269,7 +302,7 @@
       </div>
 
       <button class="download-button" (click)="handleDownload()">
-        Скачать и Сохранить
+        Скачать
       </button>
 
     </div>

@@ -31,6 +31,10 @@ export class Editor implements OnInit {
   public isFormatOpen = true;
   public template: any;
   public formData: any = {};
+  public MAX_NAME_LENGTH = 21;
+  public MAX_EVENT_LENGTH = 21;
+  public MAX_POSITION_LENGTH = 82;
+  public SERTIFICATE_MAX_LENGTH = 100000;
   public http: HttpClient = inject(HttpClient);
   public selectedFormat: 'png' | 'jpeg' | 'pdf' | 'svg' = 'png';
   @Input() readonly = false;
@@ -43,7 +47,6 @@ export class Editor implements OnInit {
       return;
     }
 
-    //  РЕЖИМ СОЗДАНИЯ (как сейчас)
     const id = Number(this.route.snapshot.paramMap.get('id'));
     const found = templates.find(item => item.id === id);
 
@@ -53,13 +56,56 @@ export class Editor implements OnInit {
     this.loadLogos();
   }
 
-  
+  truncateEventName(value: string): string {
+    if (!value) return '';
+    return value.trim().slice(0, this.MAX_EVENT_LENGTH);
+  }
+
+  truncateMemberPosition(value: string): string {
+    if (!value) return '';
+    return value.trim().slice(0, this.MAX_POSITION_LENGTH);
+  }
+
+  truncateSymbolCertificate(value: string): string {
+    if (!value) return '';
+    return value.trim().slice(0, this.SERTIFICATE_MAX_LENGTH);
+  }
+
+  getInstitutionY(field: any): number {
+    const baseY = field.y;
+
+    const giverName = this.formData['giverFullName'] || '';
+    const certMajor = this.formData['certMajor'] || '';
+
+    const fioLines = this.getFioLines(giverName);
+
+    const majorLines =
+      certMajor.length > 40 ? 3 :
+      certMajor.length > 25 ? 2 : 1;
+
+    return baseY + (fioLines - 1) * 10 + (majorLines - 1) * 10;
+  }
+
+  getFioLines(value: string): number {
+    if (!value) return 1;
+    return value.length > 30 ? 2 : 1;
+  }
+
+  getCertMajorY(field: any): number {
+    const baseY = field.y;
+
+    const giverName = this.formData['giverFullName'] || '';
+
+    const fioLines = this.getFioLines(giverName);
+
+    return baseY + (fioLines - 1) * 10;
+  }
 
   loadFromLayout(layout: any) {
     const json = JSON.parse(layout.jsonContent);
 
     this.template = {
-      ...this.template, // важно
+      ...this.template,
       id: json.templateId,
       fields: json.fields,
       width: json.width,
@@ -115,7 +161,6 @@ export class Editor implements OnInit {
   }
 
   getLogoSize(logo: string) {
-
     return this.template.logoSizes?.[logo];
   }
 
@@ -132,6 +177,43 @@ export class Editor implements OnInit {
       useCORS: true,
       backgroundColor: null
     }).then(canvas => {
+      if (this.selectedFormat === 'pdf') {
+
+        const pdf = new jsPDF({
+          orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+          unit: 'px',
+          format: [canvas.width, canvas.height]
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+
+        pdf.addImage(
+          imgData,
+          'PNG',
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        const pdfBlob = pdf.output('blob');
+
+        const file = new File(
+          [pdfBlob],
+          'template.pdf',
+          {
+            type: 'application/pdf'
+          }
+        );
+
+          if (localStorage.getItem('token')) {
+            this.saveLayout(file);
+          }
+
+        pdf.save('template.pdf');
+
+        return;
+      }
 
       canvas.toBlob(blob => {
         if (!blob) return;
@@ -142,8 +224,9 @@ export class Editor implements OnInit {
           { type: blob.type }
         );
 
-
-        this.saveLayout(file);
+          if (localStorage.getItem('token')) {
+            this.saveLayout(file);
+          }
 
         const link = document.createElement('a');
         link.download = `template.${this.selectedFormat}`;
@@ -252,45 +335,60 @@ export class Editor implements OnInit {
 
     return {
       x: position.x,
-      y: position.y - size.height
+      y: position.y 
     };
   }
 
   formatFio(value: string, templateId?: number) {
     if (!value) {
-      return { line1: '', line2: '' };
+      return { line1: '', line2: '', line3: '' };
     }
 
     const parts = value.trim().split(/\s+/);
-    const lastName = parts[0] || '';
-    const firstName = parts[1] || '';
-    const middleName = parts.slice(2).join(' '); 
 
-    if (templateId === 2 || templateId === 3 || templateId === 4) {
-      return { line1: lastName, line2: firstName };
-    }
+    const lastName = (parts[0] || '').toUpperCase().slice(0, 11);
+    const firstName = (parts[1] || '').toUpperCase().slice(0, 11);
+    const middleName = (parts.slice(2).join(' ') || '').toUpperCase().slice(0, 14);
 
     if (templateId === 5) {
       const fullFirstLine = `${lastName} ${firstName}`.trim();
-      
-      let line1 = fullFirstLine;
-      let line2 = middleName;
 
       if (fullFirstLine.length > 18) {
-        line1 = lastName;
-        line2 = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + `${firstName} ${middleName}`.trim();
+        return {
+          line1: lastName,
+          line2: firstName,
+          line3: middleName
+        };
       }
 
-      return { line1: line1, line2: line2 };
+      return {
+        line1: fullFirstLine,
+        line2: middleName,
+        line3: ''
+      };
+    }
+  
+
+    if (templateId === 2 || templateId === 3 || templateId === 4) {
+      return {
+        line1: lastName,
+        line2: firstName,
+        line3: ''
+      };
     }
 
-    return { line1: value, line2: '' };
+    return {
+      line1: `${lastName} ${firstName} ${middleName}`.trim(),
+      line2: '',
+      line3: ''
+    };
   }
 
-
+  truncatePosition(value: string = ''): string {
+    return value.slice(0, 15);
+  }
 
   saveLayout(file: File) {
-
     const json = {
       templateId: this.template.id,
       formData: this.formData,
@@ -305,10 +403,6 @@ export class Editor implements OnInit {
     formData.append('JsonContent', JSON.stringify(json));
 
     formData.append('Files', file);
-    console.log('TEMPLATE ID:', this.template.id);
-    console.log('JSON:', json);
-    console.log('FILE:', file);
-    console.log(JSON.stringify(json));
 
     this.generatedService.saveUserLayout(formData)
       .subscribe({

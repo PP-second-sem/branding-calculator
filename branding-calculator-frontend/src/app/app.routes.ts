@@ -35,7 +35,6 @@ export const routes: Routes = [
     },
     {
         path: 'branding-catalog',
-        canActivate: [authGuard],
         loadComponent: () =>
             import('./pages/branding-catalog/branding-catalog')
             .then(m => m.BrandingCatalog)

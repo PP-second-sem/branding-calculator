@@ -11,12 +11,10 @@ export const authErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
       if (error.status === 401) {
 
-        // ❌ НИКАКИХ HTTP ЗАПРОСОВ ТУТ
-
         authService.currentUser.set(null);
         localStorage.removeItem('user');
 
-        authService.router.navigate(['/login']); // или '/'
+        authService.router.navigate(['/login']);
 
       }
 
