@@ -62,8 +62,7 @@ export class AdminPage implements OnInit {
 
   ngOnInit() {
     this.loadLayouts();
-    this.loadQuestions();
-    // this.loadMaterials(); 
+    this.loadQuestions(); 
   }
 
   getLayoutTitle(layout: any): string {
@@ -167,7 +166,6 @@ export class AdminPage implements OnInit {
     if (!this.selectedFile) {
       return;
     }
-    console.log('click')
 
     const formData = new FormData();
 
@@ -219,7 +217,6 @@ export class AdminPage implements OnInit {
     this.logoService.add(formData).subscribe({
       next: () => {
         this.clearLogoForm();
-        console.log('Логотип добавлен');
       },
       error: (err) => {
         console.error('Ошибка загрузки логотипа', err);
@@ -247,16 +244,12 @@ export class AdminPage implements OnInit {
       })
     )
     .subscribe(result => {
-      console.log('LAYOUTS RESULT:', result);
       this.layouts = [...result];
       this.cdr.markForCheck();
     });
   }
 
   openLayout(layout: any) {
-    console.log('LAYOUT:', layout);
-    console.log('METADATA:', layout?.metadata);
-    console.log('TEMPLATE DATA:', layout?.templateData);
     this.selectedLayout = layout;
   }
 

@@ -40,7 +40,6 @@ export class Editor implements OnInit {
   @Input() readonly = false;
   @Input() layoutData: any = null;
   ngOnInit(): void {
-
     if (this.layoutData) {
       this.loadFromLayout(this.layoutData);
       this.loadLogos();
@@ -49,7 +48,6 @@ export class Editor implements OnInit {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     const found = templates.find(item => item.id === id);
-
     if (!found) return;
 
     this.setTemplate(found);
@@ -330,8 +328,6 @@ export class Editor implements OnInit {
         ? this.template.logoPositions.first 
         : this.template.logoPositions.second;
     }
-
-    const size = this.getLogoSize(logo);
 
     return {
       x: position.x,

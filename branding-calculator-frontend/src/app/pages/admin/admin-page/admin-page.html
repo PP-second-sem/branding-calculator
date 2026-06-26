@@ -36,7 +36,6 @@
         </button>
     </div>
     <div class="admin__content">
-
         <ng-container [ngSwitch]="activeTab">
             <div *ngSwitchCase="'layouts'" class="my-layouts">
                 <h2>Мои макеты</h2>
@@ -51,14 +50,11 @@
                                 <img [src]="'/cardIcon.svg'">
                             </div>
                         </div>
-                        
                         <div class="layout-card__main-content">
                                 <div class="layout-card__info">
                                     <p>{{ getLayoutTitle(layout) }}</p>
                                 </div>
-
                             <div class="layout-card__buttons">
-
                                 <button class="layout-card__download-button" (click)="downloadLayout(layout, $event)">
                                     <img src="/downloadIcon.svg">
                                 </button>
@@ -74,17 +70,14 @@
                 <div class="question-card" *ngFor="let q of questions">
                     <div class="question-card__status"
                         [ngClass]="q.adminRequest ? 'answered' : 'pending'">
-
                         <span *ngIf="!q.adminRequest">
                             <img src="pendingIcon.svg">
                             Ожидает ответа
                         </span>
-
                         <span *ngIf="q.adminRequest">
-                        <img src="replayIcon.svg">
-                         Отвечено
+                            <img src="replayIcon.svg">
+                            Отвечено
                         </span>
-
                     </div>
                     <h3 class="question-card__title">
                         {{ q.title }}
@@ -112,27 +105,21 @@
                     </button>
 
                     <div class="question-card__reply" *ngIf="q.showAnswerInput">
-
                         <textarea
                         [(ngModel)]="q.tempAnswer"
                         placeholder="Введите ответ на вопрос пользователя...">
                         </textarea>
-
                         <div class="question-card__actions">
                             <button (click)="answerQuestion(q, q.tempAnswer)" class="question-card__actions--send">
                                 <img src="/msgIcon.svg">
                                 Отправить ответ
                             </button>
-
                             <button (click)="q.showAnswerInput = false" class="question-card__actions--close">
                                 <img src="/closeIcon.svg">
                                 Отмена
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </ng-container>
@@ -151,8 +138,6 @@
             </div>
 
             <div class="form-row">
-
-                <!-- СФЕРА -->
                 <div class="form-part">
                     <label>Сфера</label>
                     <select [(ngModel)]="catalogForm.sphere">
@@ -163,7 +148,6 @@
                     </select>
                 </div>
 
-                <!-- ГОРОД -->
                 <div class="form-part">
                     <label>Город</label>
                     <select [(ngModel)]="catalogForm.city">
@@ -173,7 +157,6 @@
                     </select>
                 </div>
 
-                <!-- ЦВЕТ -->
                 <div class="form-part">
                     <label>Цвет</label>
                     <select [(ngModel)]="catalogForm.color">
@@ -199,10 +182,8 @@
                 </div>
 
             </div>
-
             <div class="form-block">
                 <label>Описание</label>
-
                 <textarea
                     placeholder="Краткое описание элемента"
                     [(ngModel)]="catalogForm.description"
@@ -210,32 +191,23 @@
             </div>
 
             <div class="file-uploader">
-
                 <input
                     type="file"
                     id="fileUpload"
                     (change)="onTemplateSelected($event)"
                     hidden
                 >
-
                 <label for="fileUpload" class="file-uploader__box">
-
                     <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
-
                     <div class="file-uploader__text">
-
-                    <p class="file-uploader__title">
-                        Перетащите файл или нажмите для выбора
-                    </p>
-
-                    <p class="file-uploader__subtitle">
-                        PDF, AI, SVG, PNG, JPG, ZIP, EPS
-                    </p>
-
+                        <p class="file-uploader__title">
+                            Перетащите файл или нажмите для выбора
+                        </p>
+                        <p class="file-uploader__subtitle">
+                            PDF, AI, SVG, PNG, JPG, ZIP, EPS
+                        </p>
                     </div>
-
                 </label>
-
             </div>
 
             <div class="form-actions">
@@ -270,54 +242,42 @@
             />
             </div>
 
-            <!-- ФАЙЛ -->
             <div class="form-block">
-            <label>Файл элемента</label>
+                <label>Файл элемента</label>
 
-            <div class="file-uploader">
+                <div class="file-uploader">
 
-                <input
-                type="file"
-                id="logoFile"
-                (change)="onLogoSelected($event)"
-                hidden
-                >
+                    <input
+                    type="file"
+                    id="logoFile"
+                    (change)="onLogoSelected($event)"
+                    hidden
+                    >
 
-                <label for="logoFile" class="file-uploader__box">
-
-                <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
-
-                <div class="file-uploader__text">
-
-                    <p class="file-uploader__title">
-                    Перетащите файл или нажмите для выбора
-                    </p>
-
-                    <p class="file-uploader__subtitle">
-                    SVG, PNG, JPG
-                    </p>
+                    <label for="logoFile" class="file-uploader__box">
+                        <img src="/greyDownloadIcon.svg" class="file-uploader__icon">
+                        <div class="file-uploader__text">
+                            <p class="file-uploader__title">
+                            Перетащите файл или нажмите для выбора
+                            </p>
+                            <p class="file-uploader__subtitle">
+                            SVG, PNG, JPG
+                            </p>
+                        </div>
+                    </label>
 
                 </div>
-
-                </label>
-
+            </div>
+            <div class="form-actions">
+                <button class="btn-primary" (click)="addLogo()">
+                    <img src="/plusIcon.svg">
+                    Добавить в каталог
+                </button>
+                <button class="btn-secondary" (click)="clearLogoForm()">
+                    Сбросить форму
+                </button>
             </div>
         </div>
-        <div class="form-actions">
-
-        <button class="btn-primary" (click)="addLogo()">
-            <img src="/plusIcon.svg">
-            Добавить в каталог
-        </button>
-
-        <button class="btn-secondary" (click)="clearLogoForm()">
-            Сбросить форму
-        </button>
-
-        </div>
-
-    </div>
-
     </div>
 </div>
 

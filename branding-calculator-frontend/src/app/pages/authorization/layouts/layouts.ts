@@ -14,7 +14,6 @@ import { LayoutPreviewModal } from '../../../components/layout-preview-modal/lay
   styleUrl: './layouts.scss',
 })
 export class Layouts {
-  private generatedService = inject(GeneratedService);
   private http: HttpClient = inject(HttpClient)
   layouts: any[] = [];
   private authService = inject(AuthService);
@@ -27,7 +26,6 @@ export class Layouts {
         this.router.navigate(['/']);
       },
       error: () => {
-        // даже если сервер вернул ошибку
         this.authService.clearSession();
         this.router.navigate(['/']);
       }
@@ -54,7 +52,6 @@ export class Layouts {
             this.http.get(`/api/GeneratedLayout/userLayout/${layout.guid}/metadata`)
               .pipe(
                 map(metadata => {
-                  console.log('METADATA for layout:', layout, metadata);
                   return {
                     ...layout,
                     metadata

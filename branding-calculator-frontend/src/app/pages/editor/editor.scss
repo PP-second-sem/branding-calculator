@@ -5,13 +5,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
-
     margin-bottom: 12px;
-
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-
     color: rgba(255, 255, 255, 0.65);
   }
 
@@ -31,11 +28,8 @@
 
 .icon-circle {
   display: flex;
-
   padding: 10px;
-
   border-radius: 50%;
-
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -43,7 +37,6 @@
   display: flex;
   align-items: flex-start;
   gap: 24px;
-
   padding: 32px 151px;
 
   &__header {
@@ -73,7 +66,6 @@
   background: white;
   padding: 0;
   border-radius: 20px;
-
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -81,9 +73,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 20px;
-
   cursor: pointer;
 }
 
@@ -114,10 +104,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: transparent;
   border: none;
-
   cursor: pointer;
 
   img {
@@ -130,10 +118,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 40px;
   height: 40px;
-
   border-radius: 12px;
   img {
     width: 24px;
@@ -156,9 +142,7 @@
 .editor-field {
   display: flex;
   flex-direction: column;
-
   gap: 6px;
-
   margin-bottom: 16px;
 }
 
@@ -180,18 +164,13 @@
 
 .editor-field select {
   width: 100%;
-
   padding: 12px 40px 12px 16px;
-
   border: 1px solid #E8E8E8;
   border-radius: 12px;
-
   background-color: #FAFAFA;
-
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
   background-image: url('/arrowUpIcon.svg');
   background-repeat: no-repeat;
   background-position: right 16px center;
@@ -267,7 +246,6 @@
 
 .logo-stack {
   position: absolute;
-  // left: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -302,8 +280,6 @@
   position: absolute;
   z-index: 3;
   font-weight: 700;
-  
-  // white-space: pre-line;
 }
 
 .checkbox-group {
@@ -347,17 +323,11 @@
 
 .download-button {
   width: 100%;
-
   padding: 14px;
-
   border-radius: 14px;
-
   background: #C40E3D;
-
   color: white;
-
   font-weight: 700;
-
   cursor: pointer;
 }
 
@@ -393,24 +363,17 @@
 .editor-preview-info__button {
   width: 100%;
   box-sizing: border-box;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 8px;
-
   padding: 10px 12px;
-
   border: 1px solid #E8E8E8;
   border-radius: 10px;
-
   background: white;
-
   font-size: 13px;
   color: #888;
   font-weight: 500;
-
   cursor: pointer;
 }
 
@@ -463,13 +426,10 @@
 
 .editor-preview__stripe {
   position: absolute;
-
   left: 124px;
   top: 76px;
-
   width: 158px;
   height: 369px;
-
   z-index: 2;
   pointer-events: none;
 
@@ -478,22 +438,17 @@
 
 .certificate-text {
   display: block;
-
   white-space: pre-wrap;
   overflow-wrap: break-word;
   word-break: break-word;
-
   line-height: 1.4;
-
   text-align: center;
 }
 
 .editor-preview__logo-flat {
   position: absolute;
-  z-index: 10; /* Поднимаем повыше, чтобы не перекрыл фон */
+  z-index: 10;
   display: block;
-  
-  // Отключаем любые встроенные умные сжатия браузера
   object-fit: fill; 
   transform: none;
   margin: 0;
