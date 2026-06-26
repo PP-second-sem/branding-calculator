@@ -28,7 +28,6 @@ export class RequestModalComponent {
       userQuestion: this.message
     }).subscribe({
       next: (res) => {
-        console.log('Success:', res)
         alert('Отправлено');
 
         this.title = '',

@@ -1,15 +1,10 @@
 <div class="modal-overlay" (click)="closeModal()">
-
   <div class="modal-content" (click)="$event.stopPropagation()">
-
-    <!-- HEADER -->
     <div class="modal-header">
       <h2>Предпросмотр макета</h2>
 
       <button (click)="closeModal()">✕</button>
     </div>
-
-    <!-- PREVIEW WRAPPER (ВАЖНО для html2canvas) -->
     <div
       #previewRef
       class="preview"

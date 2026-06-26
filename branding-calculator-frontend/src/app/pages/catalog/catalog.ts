@@ -49,17 +49,12 @@ export class Catalog {
   };
 
   public drawerFilters: IFilterState = {
-    sphere: [],   // логические ключи (logos, fonts...)
-    formats: [],  // pdf, png, svg...
-    cities: [],   // Салехард...
+    sphere: [],
+    formats: [],
+    cities: [],
     colors: [],
-    category: []  // white, black...
+    category: []
   };
-
-  // public filters = {
-  //   category: []
-  // };
-
 
   categories = [
     { label: 'Айдентика', value: 'id', color: 'red' },
@@ -122,7 +117,6 @@ export class Catalog {
   }
 
   public openDrawer() {
-    //this.drawerFilters = structuredClone(this.filters);
     this.isOpen = true;
   }
 
@@ -205,31 +199,25 @@ export class Catalog {
       console.log('CARD CATEGORY:', card.category);
       console.log('FILTER CATEGORY:', this.filters.category);
 
-      // 🔎 поиск
       const matchSearch =
         !search || card.name.toLowerCase().includes(search);
 
-      // 🟡 верхние кнопки (РУССКИЕ категории)
       const matchCategory =
         this.filters.category.length === 0 ||
         this.filters.category.includes(card.category);
 
-      // 🔵 drawer sphere (технические ключи)
       const matchSphere =
         this.drawerFilters.sphere.length === 0 ||
         this.drawerFilters.sphere.includes(card.sphere);
 
-      // 📁 форматы
       const matchFormat =
         this.drawerFilters.formats.length === 0 ||
         this.drawerFilters.formats.includes(card.fileType.toLowerCase());
 
-      // 🌆 города
       const matchCity =
         this.drawerFilters.cities.length === 0 ||
         this.drawerFilters.cities.includes(card.city);
 
-      // 🎨 цвета
       const matchColor =
         this.drawerFilters.colors.length === 0 ||
         this.drawerFilters.colors.includes(card.color);

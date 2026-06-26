@@ -44,19 +44,19 @@
                 </h3>
 
                 <div class="layout-card__info">
-                <p class="layout-card__type">
-                    {{ layout.createdAtUtc | date:'dd MMMM yyyy':'':'ru' }}
-                </p>
+                    <p class="layout-card__type">
+                        {{ layout.createdAtUtc | date:'dd MMMM yyyy':'':'ru' }}
+                    </p>
                 </div>
 
                 <div class="layout-card__buttons">
 
-                <app-layout-preview-modal
-                    *ngIf="selectedLayout"
-                    [layout]="selectedLayout"
-                    [formData]="selectedLayout.formData"
-                    (close)="closeModal()"
-                ></app-layout-preview-modal>
+                    <app-layout-preview-modal
+                        *ngIf="selectedLayout"
+                        [layout]="selectedLayout"
+                        [formData]="selectedLayout.formData"
+                        (close)="closeModal()"
+                    ></app-layout-preview-modal>
 
                     <button
                         class="layout-card__button-download"

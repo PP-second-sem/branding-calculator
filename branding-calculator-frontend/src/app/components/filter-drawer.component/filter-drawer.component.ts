@@ -43,7 +43,6 @@ export class FilterDrawer {
   }
 
   public onApply(): void { 
-    console.log(this.filtersDraft);
     this.apply.emit(this.filtersDraft);
 
   }
