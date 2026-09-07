@@ -19,7 +19,6 @@ namespace Yamal.DataAccess.Repositories
                 Name = entity.Name,
                 Description = entity.Description,
                 SortOrder = entity.SortOrder,
-                BgColor = entity.BgColor,
                 IsActive = entity.IsActive,
             };
 
@@ -41,7 +40,7 @@ namespace Yamal.DataAccess.Repositories
             return _context.MediaCategories
                 .AsNoTracking()
                 .Select(m => new MediaCategory(m.Id, m.Name,
-                m.Description, m.BgColor,
+                m.Description,
                 m.SortOrder, m.IsActive))
                 .ToListAsync();
         }
@@ -54,7 +53,6 @@ namespace Yamal.DataAccess.Repositories
                 .SetProperty(p => p.Name, entity.Name)
                 .SetProperty(p => p.IsActive, entity.IsActive)
                 .SetProperty(p => p.SortOrder, entity.SortOrder)
-                .SetProperty(p => p.BgColor, entity.BgColor)
                 .SetProperty(p => p.Description, entity.Description));
 
             return entity.Id;

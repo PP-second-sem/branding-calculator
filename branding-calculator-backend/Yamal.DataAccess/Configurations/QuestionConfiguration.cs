@@ -10,11 +10,7 @@ namespace Yamal.DataAccess.Configurations
         {
 
             builder.HasKey(q => q.Id);
-
-            // Внешний ключ на User
-            builder.Property(q => q.UserId)
-                   .IsRequired();
-
+            
             // Свойства
             builder.Property(q => q.Title)
                    .IsRequired()
@@ -23,19 +19,9 @@ namespace Yamal.DataAccess.Configurations
             builder.Property(q => q.UserQuestion)
                    .IsRequired();
 
-
-            builder.Property(q => q.IsActive)
-                   .IsRequired();
-
             builder.Property(q => q.CreatedAt)
                    .IsRequired();
-
-            builder.Property(q => q.AnsweredAt);
-
-            builder.HasOne(q => q.User)
-                   .WithMany(u => u.Questions)
-                   .HasForeignKey(q => q.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);
+            
         }
     }
 }

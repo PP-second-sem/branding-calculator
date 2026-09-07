@@ -26,7 +26,6 @@ namespace branding_calculator.Controllers
             var category = new MediaCategory(0,
                                              request.Name,
                                              request.Description,
-                                             request.BgColor,
                                              request.SortOrder,
                                              request.IsActive);
             return await _service.CreateEntity(category);
@@ -44,7 +43,6 @@ namespace branding_calculator.Controllers
             var category = new MediaCategory(0,
                                              request.Name,
                                              request.Description,
-                                             request.BgColor,
                                              request.SortOrder,
                                              request.IsActive);
             return await _service.UpdateEntity(category);

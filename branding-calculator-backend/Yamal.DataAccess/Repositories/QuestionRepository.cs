@@ -15,13 +15,11 @@ namespace Yamal.DataAccess.Repositories
         {
             var questionEntity = new QuestionsEntity()
             {
-                UserId = question.UserId,
+                UserName = question.UserName,
                 Title = question.Title,
                 UserQuestion = question.UserQuestion,
-                AdminResponse = null,
-                IsActive = true,
+                UserEmail = question.UserEmail,
                 CreatedAt = DateTime.Now,
-                AnsweredAt = null,
             };
 
             await _context.Questions.AddAsync(questionEntity);
@@ -40,13 +38,13 @@ namespace Yamal.DataAccess.Repositories
             return id;
         }
 
-        public async Task<List<Question>> Get()
+        public async Task<List<Question>> GetAll()
         {
             return await _context.Questions
                 .AsNoTracking()
-                .Select(q => new Question(q.Id, q.UserId, q.Title,
-                q.UserQuestion, q.AdminResponse, q.IsActive,
-                q.CreatedAt, q.AnsweredAt)).ToListAsync();
+                .Select(q => new Question(q.Id, q.UserName, 
+                q.UserEmail, q.Title,
+                q.UserQuestion, q.CreatedAt)).ToListAsync();
 
         }
 
@@ -55,11 +53,10 @@ namespace Yamal.DataAccess.Repositories
             await _context.Questions
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
-                .SetProperty(p => p.Title, entity.Title)
-                .SetProperty(p => p.UserQuestion, entity.UserQuestion)
-                .SetProperty(p => p.AdminResponse, entity.AdminResponse)
-                .SetProperty(p => p.IsActive, entity.IsActive)
-                .SetProperty(p => p.AnsweredAt, entity.AnsweredAt));
+                    .SetProperty(p => p.Title, entity.Title)
+                    .SetProperty(p => p.UserName, entity.UserName)
+                    .SetProperty(p => p.UserEmail, entity.UserEmail)
+                    .SetProperty(p => p.UserQuestion, entity.UserQuestion));
             return entity.Id;
         }
 
@@ -67,21 +64,11 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Questions
                 .Where(e => e.Id == id)
-                .Select(c => new Question(c.Id, c.UserId, c.Title,
-                c.UserQuestion, c.AdminResponse,
-                c.IsActive, c.CreatedAt, c.AnsweredAt)).FirstOrDefaultAsync();
+                .Select(c => new Question(c.Id, c.UserName,
+                        c.UserEmail, c.Title,
+                        c.UserQuestion, c.CreatedAt)).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Question>> GetUsersQuestions(int userId)
-        {
-            return await _context.Questions
-                .AsNoTracking()
-                .Where(q => q.UserId == userId)
-                .Select(q => new Question(q.Id, q.UserId,
-                q.Title, q.UserQuestion,
-                q.AdminResponse, q.IsActive,
-                q.CreatedAt, q.AnsweredAt))
-                .ToListAsync();
-        }
+
     }
 }

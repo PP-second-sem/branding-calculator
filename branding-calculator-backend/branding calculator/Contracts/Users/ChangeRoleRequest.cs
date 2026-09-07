@@ -7,8 +7,7 @@ namespace branding_calculator.Contracts.Users
     public class ChangeRoleRequest
     {
         [Required]
-        [EmailAddress(ErrorMessage = "Неверный формат email")]
-        public string Email { get; set; }
+        public string Login { get; set; }
         [Required]
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Role Role { get; set; }

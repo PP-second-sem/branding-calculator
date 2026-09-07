@@ -6,13 +6,12 @@ namespace Yamal.Core.Models
     {
 
         public MediaCategory(int id, string name,
-            string? description, string bgColor,
+            string? description,
             int sortOrder, bool isActive)
         {
             Id = id;
             Name = name;
             Description = description;
-            BgColor = bgColor;
             SortOrder = sortOrder;
             IsActive = isActive;
         }
@@ -20,7 +19,6 @@ namespace Yamal.Core.Models
         public int Id { get; }
         public string Name { get; }
         public string? Description { get; }
-        public string BgColor { get; }
         public int SortOrder { get; }
         public bool IsActive { get; }
     }

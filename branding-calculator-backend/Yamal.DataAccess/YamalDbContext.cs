@@ -25,12 +25,10 @@ namespace Yamal.DataAccess
 
         public DbSet<MediaTypesEntity> MediaTypes { get; set; }
 
-        public DbSet<GeneratedLayoutsEntity> GeneratedLayouts { get; set; }
-
+        public DbSet<CarrierTypeLogosEntity> CarrierTypeLogos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
             base.OnModelCreating(modelBuilder);
         }
 

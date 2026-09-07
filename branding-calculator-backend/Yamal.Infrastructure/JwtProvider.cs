@@ -17,7 +17,7 @@ namespace YamalBrand.Infrastructure
             Claim[] claims =
                 [
                     new("userId", user.Id.ToString()),
-                    new("email", user.Email),
+                    new("email", user.Login),
                     new(ClaimTypes.Role, user.Role.ToString())
                 ];
 

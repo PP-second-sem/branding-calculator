@@ -16,29 +16,7 @@ namespace branding_calculator.Controllers
         {
             _usersService = usersService;
         }
-
-        [HttpGet("{email}")]
-        public async Task<ActionResult<UserResponse>> GetByEmail(string email)
-        {
-            var user = await _usersService.GetUserByEmail(email);
-
-            if (user == null)
-                return NotFound();
-
-            var response = new UserResponse(
-                user.Id,
-                user.Email,
-                user.FirstName,
-                user.LastName,
-                user.MiddleName,
-                user.PhoneNumber,
-                user.Organization,
-                user.Role,
-                user.IsActive
-            );
-
-            return Ok(response);
-        }
+        
 
         [HttpPost("register")]
         public async Task<ActionResult<int>> Register([FromBody] RegistrationUserRequest request)
@@ -46,18 +24,10 @@ namespace branding_calculator.Controllers
             if (request == null)
                 return BadRequest("Invalid request data");
 
-            var (user, error) = Yamal.Core.Models.User.Create(
-                0,
-                request.Email,
-                request.Password,
-                request.FirstName,
-                request.LastName,
-                request.MiddleName,
-                request.PhoneNumber,
-                request.Organization,
-                Role.User,
-                request.IsActive
-            );
+            var (user, error) = Yamal.Core.Models.User.Create(0,
+                request.Login, 
+                request.Password, 
+                Role.User);
 
             if (!string.IsNullOrEmpty(error))
             {
@@ -72,14 +42,14 @@ namespace branding_calculator.Controllers
         public async Task<IActionResult> Login([FromBody] LoginUserRequest request)
         {
             // 1. Валидация входных данных
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            if (string.IsNullOrEmpty(request.Login) || string.IsNullOrEmpty(request.Password))
             {
                 return BadRequest("Email and password are required");
             }
 
             // 2. Попытка входа
             // Предположим, что сервис возвращает токен или бросает исключение / возвращает null при ошибке
-            var token = await _usersService.Login(request.Email, request.Password);
+            var token = await _usersService.Auth(request.Login, request.Password);
 
             if (string.IsNullOrEmpty(token))
             {
@@ -102,7 +72,7 @@ namespace branding_calculator.Controllers
             return Ok(new
             {
                 message = "Login successful",
-                user = request.Email
+                user = request.Login
 
             });
         }
@@ -111,22 +81,21 @@ namespace branding_calculator.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ChangeUserRole([FromBody] ChangeRoleRequest request)
         {
-
+        
             var users = await _usersService.GetAllUser();
-            var user = users.FirstOrDefault(x => x.Email == request.Email);
+            var user = users.FirstOrDefault(x => x.Login == request.Login);
 
             if (user == null)
-                return NotFound($"User with email {request.Email} not found");
-
-
+                return NotFound($"User with Login {request.Login} not found");
+            
             user.ChangeRole(request.Role);
 
             await _usersService.UpdateEntity(user);
-
+        
             return Ok(new
             {
                 message = "Change role successful",
-                user = request.Email
+                user = request.Login
             });
         }
 
