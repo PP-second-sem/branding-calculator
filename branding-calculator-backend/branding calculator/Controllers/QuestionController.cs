@@ -1,7 +1,6 @@
 ﻿using branding_calculator.Contracts.Questions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
@@ -14,11 +13,11 @@ namespace branding_calculator.Controllers
     public class QuestionController : ControllerBase
     {
         private readonly IQuestionServices _services;
-        private readonly IUsersServices _userService;
+        //private readonly IUsersServices _userService;
 
         public QuestionController(IQuestionServices services, IUsersServices userService)
         {
-            _userService = userService;
+            //_userService = userService;
             _services = services;
         }
 
@@ -27,14 +26,14 @@ namespace branding_calculator.Controllers
         {
             var questions = await _services.GetAllEntities();
 
-            var response = questions.Select(q => new QuestionResponse(q.Id,
-                q.UserId,
+            var response = questions.Select(q => new QuestionResponse(
+                q.Id,
+                q.UserName,
+                q.UserEmail,
                 q.Title,
                 q.UserQuestion,
-                q.AdminResponse,
-                q.IsActive,
-                q.CreatedAt,
-                q.AnsweredAt));
+                q.CreatedAt
+                ));
 
             return Ok(response);
         }
@@ -46,48 +45,14 @@ namespace branding_calculator.Controllers
             if (question == null) return NotFound($"Question with ID {id} not found");
 
             var response = new QuestionResponse(question.Id,
-                question.UserId,
+                question.UserName,
+                question.UserEmail,
                 question.Title,
                 question.UserQuestion,
-                question.AdminResponse,
-                question.IsActive,
-                question.CreatedAt,
-                question.AnsweredAt);
+                question.CreatedAt );
             return Ok(response);
         }
-
-
-        [HttpGet("GetUserQuestions")]
-        public async Task<ActionResult<List<UserQuestionResponse>>> GetUserQuestions()
-        {
-            int userId;
-            try
-            {
-                userId = GetUserIdFromToken();
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            var userInfo = await _userService.GetUserById(userId);
-            var userQuestions = await _services.GetUserQuestions(userId);
-            if (userQuestions == null) return NotFound("The user has no questions");
-            var response = userQuestions.Select(q => new UserQuestionResponse(
-                q.Id,
-                userId,
-                userInfo.Email,
-                userInfo.FirstName,
-                q.Title,
-                q.UserQuestion,
-                q.AdminResponse,
-                q.IsActive,
-                q.CreatedAt,
-                q.AnsweredAt));
-            return response.ToList();
-
-        }
-
+        
         [HttpDelete("{id:int}")]
         [Authorize(Roles="Admin")]
         public async Task<ActionResult<int>> DeleteQuestion(int id)
@@ -97,32 +62,29 @@ namespace branding_calculator.Controllers
 
             return await _services.DeleteEntity(id);
         }
-
-
-
+        
         [HttpPost("CreateQuestion")]
         public async Task<ActionResult<int>> CreateQuestion([FromBody] QuestionCreateRequest request)
         {
-
+            if (request.UserName is null || request.UserEmail is null)
+                return BadRequest("Username or Email can't be empty");
             if (request.Title == null || request.UserQuestion == null)
                 return BadRequest($"Title or Question can't be empty");
-            var userId = GetUserIdFromToken();
-            var question = new Question(0, userId, request.Title,
-                request.UserQuestion, null, true,
-                DateTime.Now, null);
+            var question = new Question(0,  request.UserName, request.UserEmail, request.Title,
+                request.UserQuestion, DateTime.Now);
             return await _services.CreateEntity(question);
         }
 
-        [HttpPatch("AnwserQuestion")]
+        /*[HttpPatch("AnwserQuestion")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> CreateAnswer(int id, string answer)
         {
             var question = await _services.GetByIdQuestion(id);
             if (question == null) return BadRequest("Question not found");
             var answeredQuestion = new Question(question.Id,
-                                                question.UserId,
+                                                question.UserName,
+                                                question.UserEmail,
                                                 question.Title,
-                                                question.UserQuestion,
                                                 answer,
                                                 false,
                                                 question.CreatedAt,
@@ -146,7 +108,7 @@ namespace branding_calculator.Controllers
                 throw new UnauthorizedAccessException("Неверный формат userId в токене");
 
             return userId;
-        }
+        }*/
 
 
 

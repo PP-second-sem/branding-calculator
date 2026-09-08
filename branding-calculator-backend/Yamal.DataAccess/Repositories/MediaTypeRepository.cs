@@ -16,6 +16,9 @@ namespace Yamal.DataAccess.Repositories
             {
                 CategoryId = entity.CategoryId,
                 Name = entity.Name,
+                TemplatesJson = entity.TemplatesJson,
+                ColorSchemesJson = entity.ColorSchemesJson,
+                ParametersSchema = entity.ParametersSchema,
                 SortOrder = entity.SortOrder,
                 IsActive = entity.IsActive
             };
@@ -42,6 +45,9 @@ namespace Yamal.DataAccess.Repositories
                  .Select(m => new MediaType(m.Id,
                                             m.CategoryId,
                                             m.Name,
+                                            m.TemplatesJson,
+                                            m.ColorSchemesJson,
+                                            m.ParametersSchema,
                                             m.SortOrder,
                                             m.IsActive))
                  .ToListAsync();
@@ -53,6 +59,9 @@ namespace Yamal.DataAccess.Repositories
             await _context.MediaTypes
                 .ExecuteUpdateAsync(e => e
                 .SetProperty(p => p.Name, entity.Name)
+                .SetProperty(p => p.TemplatesJson, entity.TemplatesJson)
+                .SetProperty(p => p.ColorSchemesJson, entity.ColorSchemesJson)
+                .SetProperty(p => p.ParametersSchema, entity.ParametersSchema)
                 .SetProperty(p => p.SortOrder, entity.SortOrder)
                 .SetProperty(p => p.CategoryId, entity.CategoryId));
             return entity.Id;

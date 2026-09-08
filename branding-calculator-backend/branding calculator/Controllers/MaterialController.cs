@@ -28,8 +28,6 @@ namespace branding_calculator.Controllers
 
             var response = materials.Select(m => new MaterialResponse(
                 m.Id,
-                m.Category,
-                m.Sphere,
                 m.Name,
                 m.Description,
                 m.City,
@@ -56,8 +54,6 @@ namespace branding_calculator.Controllers
 
             var response = new MaterialResponse(
                 material.Id,
-                material.Category,
-                material.Sphere,
                 material.Name,
                 material.Description,
                 material.City,
@@ -107,8 +103,6 @@ namespace branding_calculator.Controllers
         public async Task<ActionResult<int>> CreateMaterial([FromForm] MaterialWithFileRequest request)
         {
             // 1. Валидация обязательных полей
-            if (string.IsNullOrWhiteSpace(request.Category))
-                return BadRequest("Category is required");
 
             if (string.IsNullOrWhiteSpace(request.Name))
                 return BadRequest("Name is required");
@@ -140,8 +134,6 @@ namespace branding_calculator.Controllers
             // 4. Создаем Domain модель
             var (material, error) = Material.Create(
                 0,
-                request.Category,
-                request.Sphere,
                 request.Name,
                 request.Description,
                 request.City,
@@ -183,8 +175,6 @@ namespace branding_calculator.Controllers
                 return NotFound($"Material with ID {id} not found");
 
             // 2. Валидация обязательных полей
-            if (string.IsNullOrWhiteSpace(request.Category))
-                return BadRequest("Category is required");
 
             if (string.IsNullOrWhiteSpace(request.Name))
                 return BadRequest("Name is required");
@@ -229,8 +219,6 @@ namespace branding_calculator.Controllers
             // 4. Создаем обновленную Domain модель
             var (material, error) = Material.Create(
                 id,
-                request.Category,
-                request.Sphere,
                 request.Name,
                 request.Description,
                 request.City,

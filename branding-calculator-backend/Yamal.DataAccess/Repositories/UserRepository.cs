@@ -18,15 +18,8 @@ namespace Yamal.DataAccess.Repositories
         {
             var user = new UserEntity()
             {
-                Email = entity.Email,
-                PasswordHash = entity.PasswordHash,
-                FirstName = entity.FirstName,
-                LastName = entity.LastName,
-                MiddleName = entity.MiddleName,
-                PhoneNumber = entity.PhoneNumber,
-                Organization = entity.Organization,
+                PasswordHash = entity.Password,
                 Role = entity.Role.ToString(),
-                IsActive = entity.IsActive,
             };
 
             await _context.Users.AddAsync(user);
@@ -47,20 +40,18 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Users
                 .AsNoTracking()
-                .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
-                u.FirstName, u.LastName, u.MiddleName,
-                u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
+                .Select(u => User.Create(u.Id, u.Login, u.PasswordHash, 
+                    Enum.Parse<Role>(u.Role, true)).user)
                 .ToListAsync();
         }
 
-        public async Task<User> GetByEmail(string email)
+        public async Task<User> GetByLogin(string login)
         {
             return await _context.Users
                 .AsNoTracking()
-                .Where(u => u.Email == email)
-                .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
-                u.FirstName, u.LastName, u.MiddleName,
-                u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
+                .Where(u => u.Login == login)
+                .Select(u => User.Create(u.Id, u.Login, u.PasswordHash,
+                 Enum.Parse<Role>(u.Role, true)).user)
                 .FirstOrDefaultAsync();
         }
 
@@ -69,9 +60,8 @@ namespace Yamal.DataAccess.Repositories
             return await _context.Users
                .AsNoTracking()
                .Where(u => u.Id == id)
-               .Select(u => User.Create(u.Id, u.Email, u.PasswordHash,
-               u.FirstName, u.LastName, u.MiddleName,
-               u.PhoneNumber, u.Organization, Enum.Parse<Role>(u.Role, true), u.IsActive).user)
+               .Select(u => User.Create(u.Id, u.Login, u.PasswordHash, 
+                   Enum.Parse<Role>(u.Role, true)).user)
                .FirstOrDefaultAsync();
         }
 
@@ -80,17 +70,9 @@ namespace Yamal.DataAccess.Repositories
             await _context.Users
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
-                .SetProperty(u => u.Id, entity.Id)
-                .SetProperty(u => u.Email, entity.Email)
-                .SetProperty(u => u.PasswordHash, entity.PasswordHash)
-                .SetProperty(u => u.FirstName, entity.FirstName)
-                .SetProperty(u => u.LastName, entity.LastName)
-                .SetProperty(u => u.MiddleName, entity.MiddleName)
-                .SetProperty(u => u.PhoneNumber, entity.PhoneNumber)
-                .SetProperty(u => u.Organization, entity.Organization)
-                .SetProperty(u => u.Role, entity.Role.ToString())
-                .SetProperty(u => u.IsActive, entity.IsActive));
-
+                    .SetProperty(u => u.Id, entity.Id)
+                    .SetProperty(u => u.PasswordHash, entity.Password)
+                    .SetProperty(u => u.Role, entity.Role.ToString()));
             return entity.Id;
         }
 

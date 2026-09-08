@@ -5,51 +5,40 @@ namespace Yamal.Core.Models
     public class User
     {
 
-        public User(int id, string email, string password, string firstName,
-            string lastName, string? middleNmae, string phoneNumber,
-            string? organization, Role role, bool isActive)
+        public User(int id, string login, string password, Role role)
         {
             Id = id;
-            Email = email;
-            PasswordHash = password;
-            FirstName = firstName;
-            LastName = lastName;
-            MiddleName = middleNmae;
-            PhoneNumber = phoneNumber;
-            Organization = organization;
+            Login = login;
+            Password = password;
             Role = role;
-            IsActive = isActive;
+
         }
 
         //Все что заполняет пользователь
         public int Id { get; }
-        public string Email { get; }
-        public string PasswordHash { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string? MiddleName { get; }
-        public string PhoneNumber { get; }
-        public string? Organization { get; }
-
+        public string Login { get; }
+        public string Password { get; }
+        
         // Для внутреней работы с сервисом
         public Role Role { get; private set; }
-        public bool IsActive { get; }
+
 
         //validation
-        public static (User user, string error) Create(int id, string email, string passwordHash, string firstName,
-            string lastName, string? middleNmae, string phoneNumber,
-            string? organization, Role role, bool isActive)
+        public static (User user, string error) Create(int id, string login, string password, Role role)
         {
             var error = string.Empty;
 
-            if (email is null || passwordHash is null)
+            if (password is null || password == string.Empty)
             {
-                error = "Email or password can't be null";
+                error = "Password can't be null";
             }
 
-            var user = new User(id, email, passwordHash,
-                firstName, lastName, middleNmae,
-                phoneNumber, organization, role, isActive);
+            if (login is null || login == string.Empty)
+            {
+                error = "Login can't be null";
+            }
+
+            var user = new User(id, login, password, role);
             return (user, error);
         }
 

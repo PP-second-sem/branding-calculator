@@ -78,21 +78,13 @@ namespace branding_calculator
 
             builder.Services.AddScoped<IRepository<MediaType>, MediaTypeRepository>();
             builder.Services.AddScoped<IServices<MediaType>, MediaTypeService>();
-
-            builder.Services.AddScoped<IGeneratedLayoutRepository, GeneratedLayoutRepository>();
-            builder.Services.AddScoped<IGeneratedLayoutService, GeneratedLayoutService>();
-
-            builder.Services.AddScoped<IStatisticsRepository, StatisticsRepository>();
-            builder.Services.AddScoped<IStatisticsService, StatisticsService>();
+            
+            builder.Services.AddScoped<IRepository<CarrierTypeLogo>, CarrierTypeLogoRepository>();
+            builder.Services.AddScoped<IServices<CarrierTypeLogo>, CarrierTypeLogoService>();
+            
 
             var app = builder.Build();
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<YamalDbContext>();
-                context.Database.EnsureCreated();
-            }
-
+            
             app.UseStaticFiles();
 
             if (app.Environment.IsDevelopment())

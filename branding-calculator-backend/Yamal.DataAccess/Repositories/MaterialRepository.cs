@@ -15,8 +15,6 @@ namespace Yamal.DataAccess.Repositories
         {
             var materialEntity = new MaterialsEntity()
             {
-                Category = entity.Category,
-                Sphere = entity.Sphere,
                 Name = entity.Name,
                 Description = entity.Description,
                 City = entity.City,
@@ -50,8 +48,7 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Materials
                 .AsNoTracking()
-                .Select(c => Material.Create(c.Id, c.Category,
-                c.Sphere,
+                .Select(c => Material.Create(c.Id,
                 c.Name, c.Description,
                 c.City, c.Color,
                 c.IsDownloadable, c.PreviewUrl,
@@ -65,7 +62,6 @@ namespace Yamal.DataAccess.Repositories
             await _context.Materials
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
-                .SetProperty(p => p.Category, entity.Category)
                 .SetProperty(p => p.Name, entity.Name)
                 .SetProperty(p => p.Description, entity.Description)
                 .SetProperty(p => p.City, entity.City)
