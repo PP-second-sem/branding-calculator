@@ -1,27 +1,21 @@
-﻿
-
-namespace Yamal.Core.Models
+﻿namespace Yamal.Core.Models
 {
     public class Question
     {
 
         public Question(int id,
-                        int userId,
+                        string userName,
+                        string userEmail,
                         string title,
                         string userQuestion,
-                        string? adminResponse,
-                        bool is_active,
-                        DateTime createdAt,
-                        DateTime? answeredAt)
+                        DateTime createdAt)
         {
             Id = id;
-            UserId = userId;
+            UserName = userName;
+            UserEmail =  userEmail;
             Title = title;
             UserQuestion = userQuestion;
-            AdminResponse = adminResponse;
-            IsActive = is_active;
             CreatedAt = createdAt;
-            AnsweredAt = answeredAt;
         }
 
 
@@ -30,18 +24,12 @@ namespace Yamal.Core.Models
 
 
         public int Id { get; }
-        public int UserId { get; }
-
+        public string UserName { get; }
+        public string UserEmail { get; }
         public string Title { get; }
 
         public string UserQuestion { get; }
-
-        public string? AdminResponse { get; }
-
-        public bool IsActive { get; } = true;
-
+        
         public DateTime CreatedAt { get; }
-
-        public DateTime? AnsweredAt { get; }
     }
 }

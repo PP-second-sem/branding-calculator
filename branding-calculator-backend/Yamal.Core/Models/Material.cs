@@ -10,8 +10,7 @@
 
 
 
-        public Material(int id, string category,
-                        string? sphere,
+        public Material(int id,
                         string name, string? description,
                         string? city, string? color,
                         bool isDownloadable, string? previewUrl,
@@ -19,8 +18,6 @@
                         int fileSize, DateTime createdAt)
         {
             Id = id;
-            Category = category;
-            Sphere = sphere;
             Name = name;
             Description = description;
             City = city;
@@ -34,10 +31,7 @@
         }
 
         public int Id { get; }
-
-        public string Category { get; }
-
-        public string? Sphere { get; }
+        
 
         public string Name { get; }
 
@@ -60,8 +54,7 @@
         public DateTime CreatedAt { get; }
 
 
-        public static (Material Materil, string Error) Create(int id, string category,
-                                                            string? sphere,
+        public static (Material Materil, string Error) Create(int id,
                                                             string name, string? description,
                                                             string? city, string? color,
                                                             bool isDownloadable, string? previewUrl,
@@ -75,9 +68,7 @@
                 error = "Name can't be null";
             }
 
-            var material = new Material(id, category,
-                                        sphere,
-                                        name, description,
+            var material = new Material(id, name, description,
                                         city, color,
                                         isDownloadable, previewUrl,
                                         filePath, fileType,

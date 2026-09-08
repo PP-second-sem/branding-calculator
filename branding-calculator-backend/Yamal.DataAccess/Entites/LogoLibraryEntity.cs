@@ -31,5 +31,7 @@ namespace Yamal.DataAccess.Entites
         public bool IsActive { get; set; }
         [Column("sort_order")]
         public int SortOrder { get; set; }
+        
+        public ICollection<CarrierTypeLogosEntity> CarrierTypeLogos { get; set; }
     }
 }

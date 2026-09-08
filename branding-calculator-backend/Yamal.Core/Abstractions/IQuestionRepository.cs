@@ -6,9 +6,8 @@ namespace Yamal.Core.Abstractions
     {
         Task<int> Create(Question question);
         Task<int> Delete(int id);
-        Task<List<Question>> Get();
+        Task<List<Question>> GetAll();
         Task<Question> GetById(int id);
         Task<int> Update(Question entity);
-        Task<List<Question>> GetUsersQuestions(int userId);
     }
 }

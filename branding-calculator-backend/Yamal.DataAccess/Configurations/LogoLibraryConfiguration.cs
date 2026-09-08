@@ -10,25 +10,31 @@ namespace Yamal.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<LogoLibraryEntity> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(l => l.Id);
 
-            builder.Property(x => x.Name)
+            builder.Property(l => l.Name)
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(x => x.FilePath)
+            builder.Property(l => l.FilePath)
                 .HasMaxLength(255)
                 .IsRequired();
 
-            builder.Property(x => x.FileType)
+            builder.Property(l => l.FileType)
                 .HasMaxLength(20)
                 .IsRequired();
 
-            builder.Property(x => x.IsActive)
+            builder.Property(l => l.IsActive)
                 .IsRequired();
 
-            builder.Property(x => x.SortOrder)
+            builder.Property(l => l.SortOrder)
                 .IsRequired();
+            
+            builder.HasMany(l => l.CarrierTypeLogos)
+                .WithOne(c => c.LogoLibrary)
+                .HasForeignKey(c => c.LogoId)
+                .OnDelete(DeleteBehavior.Cascade);
+                
         }
     }
 }

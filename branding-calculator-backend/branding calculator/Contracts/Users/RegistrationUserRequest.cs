@@ -1,32 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace branding_calculator.Contracts.Users
 {
     public record RegistrationUserRequest
     {
-        public RegistrationUserRequest(string email, string password,
-            string firstName, string lastName, string? middleName,
-            string phoneNumber, string? organization, bool isActive)
+        public RegistrationUserRequest(string login, string password)
         {
-            Email = email;
             Password = password;
-            FirstName = firstName;
-            LastName = lastName;
-            MiddleName = middleName;
-            PhoneNumber = phoneNumber;
-            Organization = organization;
-            IsActive = isActive;
         }
 
-        [EmailAddress(ErrorMessage = "Неверный формат email")]
-        public string Email { get; } = string.Empty;
+        [PasswordPropertyText]
         public string Password { get; } = string.Empty;
-        public string FirstName { get; } = string.Empty;
-        public string LastName { get; } = string.Empty;
-        public string? MiddleName { get; } = string.Empty;
-        [Phone(ErrorMessage = "Неверно введен номер телефона")]
-        public string PhoneNumber { get; } = string.Empty;
-        public string? Organization { get; } = string.Empty;
-        public bool IsActive { get; } = true;
+        
+        public string Login { get; } = string.Empty;
     }
 }

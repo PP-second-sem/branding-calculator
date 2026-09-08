@@ -9,8 +9,5 @@ namespace Yamal.Core.Abstractions
         Task<List<Question>> GetAllEntities();
         Task<int> UpdateEntity(Question entity);
         Task<Question> GetByIdQuestion(int id);
-        Task<List<Question>> GetUserQuestions(int userId);
-
-
     }
 }

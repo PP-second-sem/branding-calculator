@@ -1,6 +1,5 @@
 ﻿using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
-
 namespace Yamal.Application
 {
     public class UsersServices : IUsersServices
@@ -22,13 +21,13 @@ namespace Yamal.Application
 
         public async Task<int> CreateUser(User user)
         {
-            var hashedPassword = _passwordHasher.Generate(user.PasswordHash);
+            var hashedPassword = _passwordHasher.Generate(user.Password);
 
-            var newUser = User.Create(0, user.Email, hashedPassword,
-                user.FirstName, user.LastName, user.MiddleName,
-                user.PhoneNumber, user.Organization, user.Role,
-                user.IsActive
-                ).user;
+            var newUser = User.Create(
+                0, 
+                user.Login,
+                hashedPassword,
+                user.Role).user;
 
             return await _userRepository.Create(newUser);
         }
@@ -42,24 +41,20 @@ namespace Yamal.Application
         {
             return await _userRepository.GetAll();
         }
-
-        public async Task<User> GetUserByEmail(string email)
-        {
-            return await _userRepository.GetByEmail(email);
-        }
+        
 
         public async Task<int> UpdateEntity(User user)
         {
             return await _userRepository.Update(user);
         }
 
-        public async Task<string> Login(string email, string password)
+        public async Task<string> Auth(string login, string password)
         {
-            var user = await _userRepository.GetByEmail(email);
+            var user = await _userRepository.GetByLogin(login);
 
             if (user == null) return null;
 
-            var result = _passwordHasher.Verify(password, user.PasswordHash);
+            var result = _passwordHasher.Verify(password, user.Password);
 
             if (result == false) { throw new Exception("Failed to login"); }
 

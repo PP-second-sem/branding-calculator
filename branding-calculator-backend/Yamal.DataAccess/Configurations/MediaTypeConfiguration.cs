@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Logging.Abstractions;
 using Yamal.DataAccess.Entites;
 
 namespace Yamal.DataAccess.Configurations
@@ -18,7 +19,15 @@ namespace Yamal.DataAccess.Configurations
                    .IsRequired()
                    .HasMaxLength(100);
 
-
+            builder.Property(t => t.TemplatesJson)
+                .IsRequired();
+            
+            builder.Property(t => t.ColorSchemesJson)
+                .IsRequired();
+            
+            builder.Property(t => t.ParametersSchema)
+                .IsRequired();
+            
             builder.Property(t => t.SortOrder)
                    .IsRequired();
 
@@ -29,6 +38,14 @@ namespace Yamal.DataAccess.Configurations
                    .WithMany(c => c.Types)
                    .HasForeignKey(t => t.CategoryId)
                    .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasMany(c => c.CarrierTypes)
+                .WithOne(c => c.MediaType)
+                .HasForeignKey(c => c.CarrierTypeId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            
+            
         }
     }
 }

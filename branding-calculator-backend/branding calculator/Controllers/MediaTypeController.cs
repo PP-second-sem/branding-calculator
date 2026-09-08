@@ -38,6 +38,9 @@ namespace branding_calculator.Controllers
                 0,
                 request.CategoryId,
                 request.Name,
+                request.templatesJson,
+                request.colorSchemeJson,
+                request.parametersSchema,
                 request.SortOrder,
                 true
             );

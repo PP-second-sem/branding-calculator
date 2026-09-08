@@ -9,31 +9,23 @@ namespace Yamal.DataAccess.Entites
         public QuestionsEntity(QuestionsEntity question)
         {
             Id = question.Id;
-            UserId = question.UserId;
+            UserName = question.UserName;
+            UserEmail = question.UserEmail;
             Title = question.Title;
             UserQuestion = question.UserQuestion;
-            AdminResponse = question.AdminResponse;
-            IsActive = question.IsActive;
             CreatedAt = question.CreatedAt;
-            AnsweredAt = question.AnsweredAt;
         }
 
         public int Id { get; set; }
-        [Column("user_id")]
-        public int UserId { get; set; }
-
+        [Column("user_name")]
+        public string UserName { get; set; }
+        [Column("user_email")]
+        public string UserEmail { get; set; }
         public string Title { get; set; }
         [Column("user_question")]
         public string UserQuestion { get; set; }
-        [Column("admin_response")]
-        public string? AdminResponse { get; set; }
-        [Column("is_active")]
-        public bool IsActive { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
-        [Column("answered_at")]
-        public DateTime? AnsweredAt { get; set; }
-
-        public UserEntity User { get; set; }
+        
     }
 }

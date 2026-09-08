@@ -12,10 +12,7 @@ namespace Yamal.DataAccess.Configurations
 
 
             builder.HasKey(x => x.Id);
-
-            builder.Property(x => x.Category)
-                .HasMaxLength(50)
-                .IsRequired();
+            
 
             builder.Property(x => x.Name)
                 .HasMaxLength(Material.NAME_MAX_LENGTH)
@@ -41,7 +38,7 @@ namespace Yamal.DataAccess.Configurations
                 .IsRequired();
 
             builder.Property(x => x.FileType)
-                .HasMaxLength(255)
+                .HasMaxLength(20)
                 .IsRequired();
 
             builder.Property(x => x.FileSize)

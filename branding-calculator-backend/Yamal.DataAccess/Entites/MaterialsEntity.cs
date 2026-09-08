@@ -9,8 +9,6 @@ namespace Yamal.DataAccess.Entites
         public MaterialsEntity(MaterialsEntity material)
         {
             Id = material.Id;
-            Category = material.Category;
-            Sphere = material.Sphere;
             Name = material.Name;
             Description = material.Description;
             City = material.City;
@@ -25,11 +23,7 @@ namespace Yamal.DataAccess.Entites
 
 
         public int Id { get; set; }
-
-        public string Category { get; set; }
-
-        public string? Sphere { get; set; }
-
+        
         public string Name { get; set; }
 
         public string? Description { get; set; }
@@ -51,10 +45,9 @@ namespace Yamal.DataAccess.Entites
         public string FileType { get; set; }
 
         [Column("file_size")]
-
         public int FileSize { get; set; }
 
-        [Column("create_at")]
+        [Column("created_at")]
         public DateTime CreatedAt { get; set; }
 
     }

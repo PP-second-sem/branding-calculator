@@ -2,13 +2,11 @@
 {
     public record QuestionResponse(
         int Id,
-        int Userid,
+        string UserName,
+        string UserEmail,
         string Title,
         string UserResponse,
-        string? AdminRequest,
-        bool isActive,
-        DateTime CreatedAt,
-        DateTime? AnsweredAt)
+        DateTime CreatedAt)
     {
     }
 }

@@ -7,12 +7,15 @@ namespace Yamal.DataAccess.Entites
         public MediaTypesEntity() { }
 
         public MediaTypesEntity(int id, int categoryId,
-            string name,
-            int sortOrder, bool isActive)
+            string name, string templatesJson, string colorSchemesJson,
+            string parametersSchema,int sortOrder, bool isActive)
         {
             Id = id;
             CategoryId = categoryId;
             Name = name;
+            TemplatesJson = templatesJson;
+            ColorSchemesJson = colorSchemesJson;
+            ParametersSchema = parametersSchema;
             SortOrder = sortOrder;
             IsActive = isActive;
         }
@@ -21,6 +24,12 @@ namespace Yamal.DataAccess.Entites
         [Column("category_id")]
         public int CategoryId { get; set; }
         public string Name { get; set; }
+        [Column("templates_json")]
+        public string TemplatesJson { get; set; }
+        [Column("color_schemes_json")]
+        public string ColorSchemesJson { get; set; }
+        [Column("parameters_schema")]
+        public string ParametersSchema { get; set; }
         [Column("sort_order")]
         public int SortOrder { get; set; }
         [Column("is_active")]
@@ -28,7 +37,7 @@ namespace Yamal.DataAccess.Entites
 
         public MediaCategoriesEntity Category { get; set; }
 
-        public ICollection<GeneratedLayoutsEntity> GeneratedLayouts { get; set; }
+        public ICollection<CarrierTypeLogosEntity> CarrierTypes { get; set; }
 
     }
 }

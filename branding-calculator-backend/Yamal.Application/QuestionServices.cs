@@ -27,20 +27,12 @@ namespace Yamal.Application
 
         public async Task<List<Question>> GetAllEntities()
         {
-            return await _questionRepository.Get();
+            return await _questionRepository.GetAll();
         }
 
         public async Task<int> UpdateEntity(Question entity)
         {
             return await _questionRepository.Update(entity);
         }
-
-        public async Task<List<Question>> GetUserQuestions(int userId)
-        {
-            return await _questionRepository.GetUsersQuestions(userId);
-        }
-
-
-
     }
 }
