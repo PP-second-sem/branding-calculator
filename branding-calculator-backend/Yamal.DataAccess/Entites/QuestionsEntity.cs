@@ -9,7 +9,6 @@ namespace Yamal.DataAccess.Entites
         public QuestionsEntity(QuestionsEntity question)
         {
             Id = question.Id;
-            UserName = question.UserName;
             UserEmail = question.UserEmail;
             Title = question.Title;
             UserQuestion = question.UserQuestion;
@@ -17,8 +16,6 @@ namespace Yamal.DataAccess.Entites
         }
 
         public int Id { get; set; }
-        [Column("user_name")]
-        public string UserName { get; set; }
         [Column("user_email")]
         public string UserEmail { get; set; }
         public string Title { get; set; }

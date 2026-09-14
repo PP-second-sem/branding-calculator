@@ -1,14 +1,6 @@
 ﻿namespace branding_calculator.Contracts.Materials
 {
-    public record MaterialResponse(int Id,
-                                   string Name,
-                                   string? Description,
-                                   string? City,
-                                   string? Color,
-                                   string? PreviewUrl,
-                                   string FilePath,
-                                   string FileType,
-                                   int FileSize)
+    public record MaterialResponse(int Id, string Name, string Description, string City, string Color, string PreviewUrl, string FilePath, string FileType, int FileSize)
     {
     }
 }

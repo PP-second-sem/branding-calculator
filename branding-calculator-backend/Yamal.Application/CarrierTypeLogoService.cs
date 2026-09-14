@@ -1,31 +1,29 @@
 ﻿using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
-namespace Yamal.Application;
-
-public class CarrierTypeLogoService : IServices<CarrierTypeLogo>
+namespace Yamal.Application
 {
-    private readonly IRepository<CarrierTypeLogo> _repository;
-    
-    
-    
-    public Task<int> CreateEntity(CarrierTypeLogo entity)
+    public class CarrierTypeLogoService : ICarrierTypeLogoService
     {
-        return _repository.Create(entity);
-    }
+        private readonly ICarriersTypeLogoRepository _repository;
 
-    public Task<int> DeleteEntity(int id)
-    {
-        return _repository.Delete(id);
-    }
+        public CarrierTypeLogoService(ICarriersTypeLogoRepository repository)
+            => _repository = repository;
 
-    public Task<List<CarrierTypeLogo>> GetAllEntities()
-    {
-        return _repository.Get();
-    }
+        public async Task<List<CarrierTypeLogo>> GetByMediaTypeId(int mediaTypeId)
+        {
+            return await _repository.GetByMediaTypeId(mediaTypeId);
+        }
 
-    public Task<int> UpdateEntity(CarrierTypeLogo entity)
-    {
-        return  _repository.Update(entity);
+        public async Task<int> CreateBinding(int mediaTypeId, int logoId, bool isRecommended)
+        {
+            var binding = new CarrierTypeLogo(0, mediaTypeId, logoId, isRecommended);
+            return await _repository.Create(binding);
+        }
+
+        public async Task<bool> DeleteBinding(int mediaTypeId, int logoId)
+        {
+            return await _repository.Delete(mediaTypeId, logoId);
+        }
     }
 }

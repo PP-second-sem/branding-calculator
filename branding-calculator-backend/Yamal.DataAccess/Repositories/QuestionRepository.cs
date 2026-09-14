@@ -15,7 +15,6 @@ namespace Yamal.DataAccess.Repositories
         {
             var questionEntity = new QuestionsEntity()
             {
-                UserName = question.UserName,
                 Title = question.Title,
                 UserQuestion = question.UserQuestion,
                 UserEmail = question.UserEmail,
@@ -42,7 +41,7 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Questions
                 .AsNoTracking()
-                .Select(q => new Question(q.Id, q.UserName, 
+                .Select(q => new Question(q.Id, 
                 q.UserEmail, q.Title,
                 q.UserQuestion, q.CreatedAt)).ToListAsync();
 
@@ -54,7 +53,6 @@ namespace Yamal.DataAccess.Repositories
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
                     .SetProperty(p => p.Title, entity.Title)
-                    .SetProperty(p => p.UserName, entity.UserName)
                     .SetProperty(p => p.UserEmail, entity.UserEmail)
                     .SetProperty(p => p.UserQuestion, entity.UserQuestion));
             return entity.Id;
@@ -64,7 +62,7 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Questions
                 .Where(e => e.Id == id)
-                .Select(c => new Question(c.Id, c.UserName,
+                .Select(c => new Question(c.Id,
                         c.UserEmail, c.Title,
                         c.UserQuestion, c.CreatedAt)).FirstOrDefaultAsync();
         }

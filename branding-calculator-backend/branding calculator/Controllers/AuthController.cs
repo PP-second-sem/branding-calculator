@@ -1,45 +1,23 @@
-﻿using branding_calculator.Contracts.Users;
-using Microsoft.AspNetCore.Authorization;
+﻿using branding_calculator.Contracts.Auth;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using Yamal.Application;
 using Yamal.Core.Abstractions;
 
 namespace branding_calculator.Controllers
 {
+    [Route("auth")]
     [ApiController]
-    [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class AuthController : Controller
     {
         private readonly IUsersServices _usersService;
 
-        public UserController(IUsersServices usersService)
+        public AuthController(IUsersServices userService)
         {
-            _usersService = usersService;
-        }
-        
-
-        [HttpPost("register")]
-        public async Task<ActionResult<int>> Register([FromBody] RegistrationUserRequest request)
-        {
-            if (request == null)
-                return BadRequest("Invalid request data");
-
-            var (user, error) = Yamal.Core.Models.User.Create(0,
-                request.Login, 
-                request.Password, 
-                Role.User);
-
-            if (!string.IsNullOrEmpty(error))
-            {
-                return BadRequest(error);
-            }
-
-            var userId = await _usersService.CreateUser(user);
-            return Ok(new { id = userId, message = "User registered successfully" });
+            _usersService = userService;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginUserRequest request)
+        public async Task<IActionResult> Login([FromBody] AuthUserRequest request)
         {
             // 1. Валидация входных данных
             if (string.IsNullOrEmpty(request.Login) || string.IsNullOrEmpty(request.Password))
@@ -77,29 +55,8 @@ namespace branding_calculator.Controllers
             });
         }
 
-        [HttpPatch("change-role")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> ChangeUserRole([FromBody] ChangeRoleRequest request)
-        {
-        
-            var users = await _usersService.GetAllUser();
-            var user = users.FirstOrDefault(x => x.Login == request.Login);
 
-            if (user == null)
-                return NotFound($"User with Login {request.Login} not found");
-            
-            user.ChangeRole(request.Role);
-
-            await _usersService.UpdateEntity(user);
-        
-            return Ok(new
-            {
-                message = "Change role successful",
-                user = request.Login
-            });
-        }
-
-        [HttpPost("exit")]
+        [HttpPost("logout")]
         public async Task<IActionResult> Exit()
         {
             var token = HttpContext.Request.Cookies["MegaCookies"];
@@ -115,6 +72,13 @@ namespace branding_calculator.Controllers
                 status = "success",
                 message = "Successfully logged out"
             });
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh()
+        {
+
+            return Ok();
         }
 
 

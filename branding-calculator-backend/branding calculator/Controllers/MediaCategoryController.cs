@@ -5,7 +5,7 @@ using Yamal.Core.Models;
 
 namespace branding_calculator.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MediaCategoryController : ControllerBase
     {
@@ -13,14 +13,14 @@ namespace branding_calculator.Controllers
 
         public MediaCategoryController(IServices<MediaCategory> service) => _service = service;
 
-        [HttpGet("GetAll")]
+        [HttpGet("/carriers/categories")]
         public async Task<ActionResult<List<MediaCategory>>> GetAll()
         {
             var response = await _service.GetAllEntities();
             return Ok(response);
         }
 
-        [HttpPost("Create")]
+        [HttpPost("/admin/carrier-categories")]
         public async Task<ActionResult<int>> CreateCategory(CategoryRequest request)
         {
             var category = new MediaCategory(0,
@@ -31,13 +31,13 @@ namespace branding_calculator.Controllers
             return await _service.CreateEntity(category);
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("/admin/carrier-categories/{id:int}")]
         public async Task<ActionResult<int>> DeleteCategory(int id)
         {
             return await _service.DeleteEntity(id);
         }
 
-        [HttpPatch("Update")]
+        [HttpPatch("/admin/carrier-categories/")]
         public async Task<ActionResult<int>> PatchCategory(CategoryRequest request)
         {
             var category = new MediaCategory(0,

@@ -57,6 +57,7 @@ namespace Yamal.DataAccess.Repositories
         public async Task<int> Update(MediaType entity)
         {
             await _context.MediaTypes
+                .Where(e => e.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
                 .SetProperty(p => p.Name, entity.Name)
                 .SetProperty(p => p.TemplatesJson, entity.TemplatesJson)

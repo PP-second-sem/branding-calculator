@@ -1,13 +1,13 @@
 ﻿using branding_calculator.Contracts.Materials;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
+
 namespace branding_calculator.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class MaterialController : ControllerBase
     {
         private readonly IServices<Material> _services;
@@ -21,7 +21,6 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<List<MaterialResponse>>> GetMaterials()
         {
             var materials = await _services.GetAllEntities();
@@ -43,7 +42,6 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material/5
         [HttpGet("{id:int}")]
-        [AllowAnonymous]
         public async Task<ActionResult<MaterialResponse>> GetMaterial(int id)
         {
             var materials = await _services.GetAllEntities();
@@ -69,7 +67,6 @@ namespace branding_calculator.Controllers
 
         // GET: api/Material/{id}/download
         [HttpGet("{id:int}/download")]
-        [AllowAnonymous]
         public async Task<IActionResult> DownloadMaterialFile(int id)
         {
             var materials = await _services.GetAllEntities();
@@ -97,9 +94,8 @@ namespace branding_calculator.Controllers
         }
 
         // POST: api/Material (создание с файлом)
-        [HttpPost]
+        [HttpPost("/admin/materials")]
         [Consumes("multipart/form-data")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> CreateMaterial([FromForm] MaterialWithFileRequest request)
         {
             // 1. Валидация обязательных полей
@@ -162,9 +158,8 @@ namespace branding_calculator.Controllers
         }
 
         // PUT: api/Material/5 (полное обновление материала)
-        [HttpPut("{id:int}")]
+        [HttpPut("/admin/materials/{id:int}")]
         [Consumes("multipart/form-data")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<int>> UpdateMaterial(int id, [FromForm] MaterialWithFileRequest request)
         {
             // 1. Проверяем существование материала
@@ -240,8 +235,7 @@ namespace branding_calculator.Controllers
             return Ok(new { id = materialId, message = "Material updated successfully" });
         }
 
-        // DELETE: api/Material/5 (удаление материала и файла)
-        [HttpDelete("{id:int}")]
+        [HttpDelete("/admin/materials/{id:int}")]
         public async Task<ActionResult<int>> DeleteMaterial(int id)
         {
             // 1. Проверяем существование материала

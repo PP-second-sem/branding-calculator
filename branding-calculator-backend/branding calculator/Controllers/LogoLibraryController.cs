@@ -1,12 +1,11 @@
 ﻿using branding_calculator.Contracts.Logos;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
 namespace branding_calculator.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LogoLibraryController : ControllerBase
     {
@@ -20,7 +19,7 @@ namespace branding_calculator.Controllers
         }
 
         // GET: api/LogoLibrary/all
-        [HttpGet("all")]
+        [HttpGet("/admin/logos")]
         public async Task<ActionResult<List<LogoResponse>>> GetAllEntity()
         {
             var logos = await _service.GetAllEntities();
@@ -35,7 +34,7 @@ namespace branding_calculator.Controllers
         }
 
         // DELETE: api/LogoLibrary/{id}
-        [HttpDelete("{id}")]
+        [HttpDelete("/admin/logos{id}")]
         public async Task<ActionResult<int>> DeleteEntity(int id)
         {
             var logos = await _service.GetAllEntities();
@@ -56,7 +55,7 @@ namespace branding_calculator.Controllers
         }
 
         // POST: api/LogoLibrary/add
-        [HttpPost("add")]
+        [HttpPost("/admin/logos")]
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<int>> AddLogo([FromForm] LogoWithFileRequest request)
         {
@@ -139,25 +138,83 @@ namespace branding_calculator.Controllers
             return Ok(response);
         }
 
-        // PUT: api/LogoLibrary/{id}
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateLogo(int id, [FromBody] LogoUpdateRequest request)
+        // PUT: api/admin/logos/{id}
+        [HttpPut("/admin/logos/{id}")]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult> UpdateLogo(int id, [FromForm] LogoUpdateRequest request)
         {
-            var logos = await _service.GetAllEntities();
-            var existingLogo = logos.FirstOrDefault(l => l.Id == id);
+            try
+            {
+                var logos = await _service.GetAllEntities();
+                var existingLogo = logos.FirstOrDefault(l => l.Id == id);
 
-            if (existingLogo == null)
-                return NotFound(new { error = $"Logo with ID {id} not found" });
+                if (existingLogo == null)
+                    return NotFound(new { error = $"Logo with ID {id} not found" });
 
-            // Обновление полей
-            var logo = new LogoLibrary(existingLogo.Id, existingLogo.Name,
-                existingLogo.FilePath, existingLogo.FileType,
-                existingLogo.IsActive, existingLogo.SortOrder);
+                // Обновляем метаданные
+                var name = string.IsNullOrWhiteSpace(request.Name) ? existingLogo.Name : request.Name;
+                var isActive = request.IsActive ?? existingLogo.IsActive;
+                var sortOrder = request.SortOrder ?? existingLogo.SortOrder;
+                var filePath = existingLogo.FilePath;
+                var fileType = existingLogo.FileType;
 
+                // Если предоставлен новый файл, удаляем старый и сохраняем новый
+                if (request.File != null && request.File.Length > 0)
+                {
+                    // Валидация размера файла (5 MB)
+                    if (request.File.Length > 5 * 1024 * 1024)
+                        return BadRequest(new { error = "File too large (max 5 MB)" });
 
-            await _service.UpdateEntity(logo);
+                    // Валидация типа файла
+                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".svg", ".gif", ".ai", ".eps" };
+                    var fileExtension = Path.GetExtension(request.File.FileName).ToLower();
 
-            return Ok(new { message = "Logo updated successfully" });
+                    if (!allowedExtensions.Contains(fileExtension))
+                        return BadRequest(new { error = $"File type {fileExtension} not allowed. Allowed: {string.Join(", ", allowedExtensions)}" });
+
+                    // Удаление старого файла
+                    if (!string.IsNullOrEmpty(existingLogo.FilePath) && System.IO.File.Exists(existingLogo.FilePath))
+                    {
+                        System.IO.File.Delete(existingLogo.FilePath);
+                    }
+
+                    // Сохранение нового файла
+                    var uploadsFolder = Path.Combine(_environment.ContentRootPath, "Uploads", "Logos");
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    var uniqueFileName = $"{Guid.NewGuid()}_{request.File.FileName}";
+                    filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await request.File.CopyToAsync(stream);
+                    }
+
+                    // Обновляем тип файла
+                    fileType = fileExtension.TrimStart('.');
+                    if (string.IsNullOrEmpty(fileType))
+                        fileType = "bin";
+                }
+
+                // Создаем обновленную сущность
+                var updatedLogo = new LogoLibrary(
+                    existingLogo.Id,
+                    name,
+                    filePath,
+                    fileType,
+                    isActive,
+                    sortOrder
+                );
+
+                await _service.UpdateEntity(updatedLogo);
+
+                return Ok(new { message = "Logo updated successfully", id = updatedLogo.Id });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
         }
     }
 }

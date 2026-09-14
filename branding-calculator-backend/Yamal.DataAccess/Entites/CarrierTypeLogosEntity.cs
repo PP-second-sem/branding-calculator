@@ -29,8 +29,4 @@ public class CarrierTypeLogosEntity
     
     public LogoLibraryEntity LogoLibrary { get; set; }
     
-    
-    // узнать про связи в проекте
-    // дописать сущность CarrierTypeLogo
-    // отдыхать
 }

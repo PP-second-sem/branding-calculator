@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using System.IO;
 
 namespace Yamal.DataAccess;
 
@@ -9,8 +10,12 @@ public class YamalDbContextFactory : IDesignTimeDbContextFactory<YamalDbContext>
     {
         var optionsBuilder = new DbContextOptionsBuilder<YamalDbContext>();
 
-        optionsBuilder.UseSqlite("Data Source=D:\\Project\\branding-calculator-backend\\branding calculator\\Data\\yamal.db;Foreign Keys=True;;Mode=ReadWrite");
-        
+        var dbPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\branding calculator\Data\yamal.db"));
+
+
+        // 3. Передаем путь в строку подключения SQLite
+        optionsBuilder.UseSqlite($"Data Source={dbPath};Foreign Keys=True;Mode=ReadWrite");
+
         return new YamalDbContext(optionsBuilder.Options);
     }
 }
