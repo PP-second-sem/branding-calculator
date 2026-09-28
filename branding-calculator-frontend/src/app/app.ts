@@ -1,6 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './services/auth-service/auth.service';
+import { MainPage } from './pages/main-page/main-page';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,5 @@ import { AuthService } from './services/auth-service/auth.service';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('branding-calculator-frontend');
-  public authService: AuthService = inject(AuthService);  
-  ngOnInit() {
-    this.authService.loadUserFromStorage();
-  }
+  protected readonly title = signal('yamal-constructor');
 }

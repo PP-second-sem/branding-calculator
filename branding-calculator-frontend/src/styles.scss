@@ -1,17 +1,23 @@
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
+html,
 body {
-  margin: 0; 
-  font-family: 'Golos Text', sans-serif;
-  background-color: #F9F0E1;
+    background-color: #F8F2ED;
+    font-family: 'Golos Text', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+    list-style: none;
 }
 
 button {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+

@@ -1,0 +1,46 @@
+.layout-preview {
+    position: relative;
+    &__image {
+        width: 100%;
+    }
+
+    &__full-name,
+    &__position,
+    &__phone,
+    &__mobilePhone,
+    &__email,
+    &__address,
+    &__qr-code {
+        position: absolute;
+    }
+
+    &__phone,
+    &__mobilePhone,
+    &__email,
+    &__address  {
+        color: rgba(34, 37, 47, 1);
+    }
+
+    &__email {
+        text-decoration: underline;
+    }
+
+    &__address-line {
+        &--continuation {
+            transform: translateX(var(--address-continuation-offset));
+        }
+    }
+}
+
+.layout-preview__qr-label {
+    position: absolute;
+    transform: translateY(calc(-100% - 5px));
+
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+}
