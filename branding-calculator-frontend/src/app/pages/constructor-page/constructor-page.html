@@ -1,0 +1,114 @@
+<main class="constructor">
+    <header class="constructor__header">
+        <div class="constructor__logo">
+            <img class="logo-img" src="/yamal_logo.svg">
+            <p class="constructor__logo-text">Конструктор<br>Материалов</p>
+        </div>
+        <div class="constructor__buttons">
+            <div class="constructor__action-buttons">
+                <button class="constructor__action-button" type="button" (click)="undo()">
+                    <img src="/left_arrow.svg">
+                    
+                    Отменить действие
+                </button>
+
+                <button class="constructor__action-button" type="button" (click)="redo()">
+                    Вернуть действие
+                    <img src="/right_arrow.svg">
+                </button>
+            </div>
+
+            <button 
+                class="constructor__download-button"
+                type="button"
+                (click)="downloadLayout()">
+                <img
+                    class="constructor__download-icon"
+                    src="/white_download_icon.svg"
+                >
+                Скачать
+            </button>
+        </div>
+    </header>
+
+    <div class="line"></div>
+
+    <div class="constructor__content">
+
+        <div class="constructor__meta">
+            <p class="constructor__title">
+                <img
+                    class="title-image"
+                    src="layouts_icon.svg"
+                >
+                Макеты
+            </p>
+
+            <div class="constructor__sidebar">
+                <nav class="constructor__layouts">
+                    <p>Категории</p>
+
+                    <button
+                        *ngFor="let layout of layouts"
+                        class="constructor__layout"
+                        [class.constructor__layout--active]="selectedLayout === layout"
+                        (click)="selectLayout(layout)"
+                    >
+                        <img
+                            [src]="layout.icon"
+                            [alt]="layout.name"
+                        >
+                        <span>{{ layout.name }}</span>
+                    </button>
+                </nav>
+
+                <app-template-list
+                    [templates]="selectedLayout.templates"
+                    [selectedTemplate]="selectedTemplate"
+                    [categoryName]="selectedLayout.name"
+                    (templateSelected)="selectTemplate($event)"
+                ></app-template-list>
+            </div>
+        </div>
+
+        <div class="constructor__workspace">
+            <app-layout-preview
+                #layoutPreview
+                [template]="selectedTemplate"
+                [fullName]="fullName"
+                [position]="position"
+                [phone]="phone"
+                [mobilePhone]="mobilePhone"
+                [email]="email"
+                [address]="address"
+                [qrCode1]="qrCode1"
+                [qrCode1Label]="qrCode1Label"
+                [qrCode2]="qrCode2"
+                [qrCode2Label]="qrCode2Label"
+                [qrCodesGenerated]="qrCodesGenerated"
+                [qrCode2Enabled]="qrCode2Enabled"
+            ></app-layout-preview>
+
+            <div class="constructor__form">
+                <app-data-tabs
+                    (fullNameChange)="saveState(); fullName = $event; updateSelectedTemplateData()"
+                    (positionChange)="saveState(); position = $event; updateSelectedTemplateData()"
+                    (phoneChange)="saveState(); phone = $event; updateSelectedTemplateData()"
+                    (mobilePhoneChange)="saveState(); mobilePhone = $event; updateSelectedTemplateData()"
+                    (emailChange)="saveState(); email = $event; updateSelectedTemplateData()"
+                    (addressChange)="saveState(); address = $event; updateSelectedTemplateData()"
+                    (qrCode1Change)="saveState(); setQrCode1($event)"
+                    (qrCode1LabelChange)="saveState(); setQrCode1Label($event)"
+                    (qrCode2Change)="saveState(); setQrCode2($event)"
+                    (qrCode2LabelChange)="saveState(); setQrCode2Label($event)"
+                    (qrCodesGeneratedChange)="qrCodesGenerated = $event; updateSelectedTemplateData()"
+                    (qrCode2EnabledChange)="saveState(); qrCode2Enabled = $event; updateSelectedTemplateData()"
+                ></app-data-tabs>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="line-vertical"></div>
+    <div class="line-vertical line-vertical--right"></div>
+</main>

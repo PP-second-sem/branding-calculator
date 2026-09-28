@@ -1,0 +1,116 @@
+<div 
+    class="layout-preview"
+    #preview>
+    <img
+        class="layout-preview__image"
+        [src]="template.preview"
+        alt=""
+    >
+    <app-qr-code
+        *ngIf="qrCodesGenerated"
+        class="layout-preview__qr-code"
+        [value]="qrCode1"
+        [size]="template.qrCodes[0].size"
+        [style.left.px]="template.qrCodes[0].x"
+        [style.top.px]="template.qrCodes[0].y"
+    ></app-qr-code>
+    <div
+        *ngIf="qrCodesGenerated && qrCode1Label"
+        class="layout-preview__qr-label"
+        [style.left.px]="template.qrCodes[0].x"
+        [style.top.px]="template.qrCodes[0].y"
+        [style.width.px]="template.qrCodes[0].size"
+        [style.fontSize.px]="template.qrCodes[0].labelFontSize"
+    >
+        {{ qrCode1Label }}
+    </div>
+    <app-qr-code
+        *ngIf="qrCodesGenerated && qrCode2Enabled"
+        class="layout-preview__qr-code"
+        [value]="qrCode2"
+        [size]="template.qrCodes[1].size"
+        [style.left.px]="template.qrCodes[1].x"
+        [style.top.px]="template.qrCodes[1].y"
+    ></app-qr-code>
+        <div
+        *ngIf="qrCodesGenerated && qrCode2Enabled && qrCode2Label"
+        class="layout-preview__qr-label"
+        [style.left.px]="template.qrCodes[1].x"
+        [style.top.px]="template.qrCodes[1].y"
+        [style.width.px]="template.qrCodes[1].size"
+        [style.fontSize.px]="template.qrCodes[0].labelFontSize"
+    >
+        {{ qrCode2Label }}
+    </div>
+    <div 
+        class="layout-preview__full-name"
+        [style.left.px]="fullNameField?.x"
+        [style.top.px]="fullNameField?.y"
+        [style.fontSize.px]="fullNameField?.fontSize"
+        [style.fontWeight]="fullNameField?.fontWeight"
+    >
+        <div
+            *ngFor="let line of formatFullName(fullName); let i = index"
+        >
+            {{ line }}
+        </div>
+    </div>
+
+    <div
+        class="layout-preview__position"
+        [style.left.px]="positionField?.x"
+        [style.top.px]="positionField?.y"
+        [style.fontSize.px]="positionField?.fontSize"
+        [style.fontWeight]="positionField?.fontWeight"
+    >
+        {{ position }}
+    </div>
+
+    <div
+        class="layout-preview__phone"
+        [style.left.px]="phoneField?.x"
+        [style.top.px]="phoneField?.y"
+        [style.fontSize.px]="phoneField?.fontSize"
+        [style.fontWeight]="phoneField?.fontWeight"
+    >
+        {{ phone }}
+    </div>
+
+    <div
+        class="layout-preview__mobilePhone"
+        [style.left.px]="mobilePhoneField?.x"
+        [style.top.px]="mobilePhoneField?.y"
+        [style.fontSize.px]="mobilePhoneField?.fontSize"
+        [style.fontWeight]="mobilePhoneField?.fontWeight"
+    >
+        {{ mobilePhone }}
+    </div>
+
+    <div
+        class="layout-preview__email"
+        [style.left.px]="emailField?.x"
+        [style.top.px]="emailField?.y"
+        [style.fontSize.px]="emailField?.fontSize"
+        [style.fontWeight]="emailField?.fontWeight"
+    >
+        {{ email }}
+    </div>
+
+    <div
+        class="layout-preview__address"
+        [style.left.px]="addressField?.x"
+        [style.top.px]="addressField?.y"
+        [style.fontSize.px]="addressField?.fontSize"
+        [style.fontWeight]="addressField?.fontWeight"
+        [style.width.px]="addressField?.width"
+        [style.--address-continuation-offset.px]="template.addressContinuationOffset ?? 0"
+    >
+        <div *ngFor="let line of formatAddress(address); let i = index"
+            class="layout-preview__address-line"
+            [class.layout-preview__address-line--continuation]="
+            i > 0 && template.addressContinuationOffset !== undefined
+        ">
+            {{ line }}
+        </div>
+    </div>
+</div>

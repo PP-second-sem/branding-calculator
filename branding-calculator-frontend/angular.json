@@ -3,11 +3,11 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": false
+    "analytics": "f2fad3a0-8fc3-4440-9390-71c130ae2b6b"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "branding-calculator-frontend": {
+    "yamal-constructor": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -32,10 +32,7 @@
             ],
             "styles": [
               "src/styles.scss"
-            ],
-            "security": {
-              "allowedHosts": ["localhost"]
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -43,7 +40,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1mb"
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -65,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "branding-calculator-frontend:build:production"
+              "buildTarget": "yamal-constructor:build:production"
             },
             "development": {
-              "buildTarget": "branding-calculator-frontend:build:development"
+              "buildTarget": "yamal-constructor:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -42,15 +42,3 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
-
-
-.vs/
-*.user
-*.suo
-
-bin/
-obj/
-
-**/bin/
-**/obj/
-.vs/
