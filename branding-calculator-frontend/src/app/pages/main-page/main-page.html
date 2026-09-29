@@ -1,78 +1,172 @@
-<app-main-header></app-main-header>
+<div class="main-page">
+    <header class="main-page__header">
+        <img src="/yamal_logo.svg">
+    </header>
 
-<section class="hero-section">
-    <div class="hero-section__subtitle">
-        <img src="/addIcon.svg">
-        <p>ОФИЦИАЛЬНАЯ ПЛАТФОРМА БРЕНДА</p>
-    </div>
-
-    <h1 class="hero-section__title">Конструктор бренда ЯМАЛ</h1>
-
-    <p class="hero-section__text">Создание и управление фирменным стилем ЯНАО</p>
-    
-    <div class="hero-section__buttons">
-        <button type="button" class="hero-section__button hero-section__button--branding" routerLink="/branding-catalog">
-            <span>Брендирование</span>
-            <img src="/moveIcon.svg">
-        </button>
-
-        <button type="button" class="hero-section__button hero-section__button--catalog">
-            <span routerLink="/catalog">Каталог</span>
-        </button>
-    </div>
-</section>
-
-<section class="example-section">
-    <div class="example-section__text-with-line">
-        <p class="example-section__text">Примеры брендирования</p>
-    </div>
-    <div class="example-section__carousel">
-
-        <div
-            class="example-section__button example-section__button--left"
-            (click)="prevSlide()"
-        >
-            <img src="/anotherButtonLast.svg">
-        </div>
-
-        <div class="example-section__images">
-
-            <div
-                class="example-section__images-container"
-                *ngFor="let slide of visibleSlides"
-            >
-                <img [src]="slide.image">
-
-                <p class="example-section__image-caption">
-                    {{ slide.title }}
-
-                    <span class="example-section__image-caption-desc">
-                        {{ slide.desc }}
-                    </span>
-                </p>
+    <section class="main-page__hero-section">
+        <div class="main-page__content">
+            <h1 class="main-page__title">Создавайте<br>материалы</h1>
+            <p class="main-page__subtitle">в фирменном стиле Ямала</p>
+            <div class="main-page__slogan">
+                <p class="main-page__text">Выбирайте шаблон, редактируйте текст,</p>
+                <p class="main-page__text">добавляйте фото и скачивайте готовый</p>
+                <p class="main-page__text">макет за пару минут</p>
             </div>
-
+            <div class="main-page__buttons">
+                <button class="main-page__red-button" (click)="goToConstructor()">
+                    Создать дизайн
+                </button>
+                <button class="main-page__transparent-button">
+                    <img src="/play_icon.svg">
+                    Как это работает
+                </button>
+            </div>
         </div>
-
-        <div
-            class="example-section__button example-section__button--right"
-            (click)="nextSlide()"
-        >
-            <img src="/anotherButtonLast.svg">
+        <div class="main-page__images">
+            <img class="main-page__triangle" src="/red_triangle.svg">
+            <img class="main-page__books" src="/yamal_books.svg">
         </div>
+    </section>
+    <section class="main-page__cards">
+        <div class="main-page__card">
+            <img class="main-page__card-icon" src="/clock_icon.svg" alt="">
 
-    </div>
+            <div class="main-page__card-text">
+                <p class="main-page__card-title">Быстро</p>
 
-    <div class="example-section__dots">
+                <div class="main-page__card-caption">
+                    <p class="main-page__card-desc">Готовый результат</p>
+                    <p class="main-page__card-desc">за несколько минут</p>
+                </div>
+            </div>
+        </div>
+        <div class="main-page__card">
+            <img class="main-page__card-icon" src="/trophy_icon.svg" alt="">
 
-        <span
-            *ngFor="let _ of [].constructor(dotsCount); let i = index"
-            class="example-section__dot"
-            [class.example-section__dot--active]="i === currentIndex"
-            (click)="setSlideByDot(i)"
-        ></span>
+            <div class="main-page__card-text">
+                <p class="main-page__card-title">Просто</p>
 
-    </div>
-</section>
+                <div class="main-page__card-caption">
+                    <p class="main-page__card-desc">Интуитивный редактор,</p>
+                    <p class="main-page__card-desc">без лишних настроек</p>
+                </div>
+            </div>
+        </div>
+        <div class="main-page__card">
+            <img class="main-page__card-icon" src="/yamal_icon.svg" alt="">
 
-<app-main-footer></app-main-footer>
+            <div class="main-page__card-text">
+                <p class="main-page__card-title">В фирменном стиле</p>
+
+                <div class="main-page__card-caption">
+                    <p class="main-page__card-desc">Шаблоны с брендированным</p>
+                    <p class="main-page__card-desc">дизайном Ямала</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-page__info">
+        <h2 class="main-page__heading">Как это работает</h2>
+        <div class="main-page__schema">
+            <div class="main-page__step">
+                <div class="main-page__visual">
+                    <div class="main-page__logo main-page__logo--first">
+                        <img src="options_icon.svg" alt="">
+                    </div>
+
+                    <img class="main-page__arrow" src="arrow.svg" alt="">
+                </div>
+
+                <div class="main-page__step-info main-page__step-info--first">
+                    <span class="main-page__number">01</span>
+                    <h3 class="main-page__headline">Выберите шаблон</h3>
+                    <p class="main-page__description">
+                        Выберите подходящий макет<br>из нашей библиотеки
+                    </p>
+                </div>
+            </div>
+            <div class="main-page__step">
+                <div class="main-page__visual">
+                    <div class="main-page__logo">
+                        <img src="letter_icon.svg" alt="">
+                    </div>
+
+                    <img class="main-page__arrow" src="arrow.svg" alt="">
+                </div>
+
+                <div class="main-page__step-info">
+                    <span class="main-page__number">02</span>
+                    <h3 class="main-page__headline">Редактируйте текст</h3>
+                    <p class="main-page__description">
+                        Замените текст на свой.<br>Шрифты и цвета уже настроены
+                    </p>
+                </div>
+            </div>
+            <div class="main-page__step">
+                <div class="main-page__visual">
+                    <div class="main-page__logo">
+                        <img src="image_icon.svg" alt="">
+                    </div>
+
+                    <img class="main-page__arrow" src="arrow.svg" alt="">
+                </div>
+
+                <div class="main-page__step-info">
+                    <span class="main-page__number">03</span>
+                    <h3 class="main-page__headline">Добавьте фото</h3>
+                    <p class="main-page__description">
+                        Загрузите изображения<br>в отмеченные области
+                    </p>
+                </div>
+            </div>
+            <div class="main-page__step">
+                <div class="main-page__visual">
+                    <div class="main-page__logo">
+                        <img src="download_icon.svg" alt="">
+                    </div>
+                </div>
+
+                <div class="main-page__step-info">
+                    <span class="main-page__number">04</span>
+                    <h3 class="main-page__headline">Скачайте готовые материалы</h3>
+                    <p class="main-page__description">
+                        Скачайте в удобном формате<br>и используйте
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main-page__meta">
+        <div class="main-page__container">
+            <div class="main-page__container-text">
+                <h3 class="main-page__meta-title">Создавайте профессиональные<br>материалы легко и быстро</h3>
+                <p class="main-page__meta-text">Начните сейчас</p>
+                <button class="main-page__meta-button" (click)="goToConstructor()">Выбрать шаблон</button>
+            </div>
+            <img class="main-page__meta-img" src="logo_yamal.svg">    
+        </div>
+        <div class="main-page__footer">
+            <div class="main-page__footer-text">
+                <img src="yamal_logo.svg">
+                <p class="main-page__footer-info">Онлайн-конструктор материалов<br>в фирменном стиле Ямало-Ненецкого<br>автономного округа.</p>
+            </div>
+            <div class="main-page__footer-meta">
+                <p class="main-page__footer-desc">Управление внешний связей управления<br>делами Правительства ЯНАО</p>
+                <p class="main-page__footer-links">Контакты:</p>
+                <ul class="main-page__footer-list">
+                    <li class="main-page__footer-list--item">
+                        <a class="main-page__link" href="tel:+7 000 000 00 00">
+                            Тел: +7 000 000 00 00
+                        </a>
+                    </li>
+                    <li class="main-page__footer-list--item">
+                        <a class="main-page__link main-page__link--mail" href="mailto:pochta@yanao.ru">
+                            E-mail: pochta@yanao.ru
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

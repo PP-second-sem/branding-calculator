@@ -1,0 +1,155 @@
+<div class="data-tabs">
+    <button
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'personal'"
+        (click)="activeTab = 'personal'"
+    >
+        ФИО и должность
+    </button>
+
+    <button
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'contacts'"
+        (click)="activeTab = 'contacts'"
+    >
+        Контактные данные
+    </button>
+
+    <button
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'logo'"
+        (click)="activeTab = 'logo'"
+    >
+        Логотип
+    </button>
+
+    <button
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'qr'"
+        (click)="activeTab = 'qr'"
+    >
+        QR-коды
+    </button>
+</div>
+
+<div class="data-tabs__content">
+    <ng-container *ngIf="activeTab === 'personal'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                label="ФИО"
+                placeholder="Иванов Иван Иванович"
+                [value]="fullName"
+                (valueChange)="setFullName($event)"
+            ></app-placeholder>
+            <app-placeholder
+                label="Должность"
+                placeholder="Должность"
+                [value]="position"
+                (valueChange)="setPosition($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'contacts'">
+        <div class="data-tabs__container">
+            <div>
+                <app-placeholder 
+                    label="Тел:"
+                    placeholder="+7 (000) 000 00 00"
+                    [value]="phone"
+                    (valueChange)="setPhone($event)"
+                ></app-placeholder>
+                <app-placeholder
+                    label="Моб. тел:"
+                    placeholder="+7 (000) 000 00 00"
+                    [value]="mobilePhone"
+                    (valueChange)="setMobilePhone($event)"
+                    ></app-placeholder>
+            </div>
+            <div>
+                <app-placeholder
+                    label="E-mail:"
+                    placeholder="pochta@mail.ru" 
+                    [underlinePlaceholder]="true"
+                    [value]="email"
+                    (valueChange)="setEmail($event)"
+                ></app-placeholder>
+                <app-placeholder 
+                    label="Адрес:"
+                    placeholder="УЛ. ЛЕНИНА, ДОМ 1..."
+                    [value]="address"
+                    (valueChange)="setAddress($event)"
+                ></app-placeholder>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab === 'qr'">
+        <div class="data-tabs__qr">
+            <div class="data-tabs__qr-header">
+                <p class="data-tabs__qr-header--left">Добавьте ссылку и подпись</p>
+                <p class="data-tabs__qr-header--right">Настройка QR-кодов</p>
+            </div>
+
+            <div class="data-tabs__qr-container">
+                <div class="data-tabs__qr-block">
+                    <h3>QR-code 1</h3>
+
+                    <app-placeholder
+                        label="Подпись"
+                        (valueChange)="setQrCode1Label($event)"
+                        [value]="qrCode1Label"
+                        placeholder="Правительство ЯНАО"
+                    ></app-placeholder>
+
+                    <app-placeholder
+                        label="Ссылка"
+                        placeholder="https://yanao.ru/"
+                        [value]="qrCode1"
+                        (valueChange)="setQrCode1($event)"
+                    ></app-placeholder>
+                </div>
+
+                <div class="data-tabs__qr-block">
+                    <div class="data-tabs__qr-block-header">
+                        <h3>QR-code 2</h3>
+
+                        <label class="data-tabs__switch">
+                            <input type="checkbox" [(ngModel)]="qrCode2Enabled" (ngModelChange)="setQrCode2Enabled($event)">
+                            <span></span>
+                        </label>
+                    </div>
+
+                    <app-placeholder
+                        label="Подпись"
+                        (valueChange)="setQrCode2Label($event)"
+                        [value]="qrCode2Label"
+                        placeholder="Ямал. Официально"
+                    ></app-placeholder>
+
+                    <app-placeholder
+                        label="Ссылка"
+                        placeholder="https://max.ru/YANAO_official"
+                        [value]="qrCode2"
+                        (valueChange)="setQrCode2($event)"
+                    ></app-placeholder>
+                </div>
+            </div>
+            <div class="data-tabs__meta">
+                <p class="data-tabs__text">Второй QR-код можно отключить переключателем в его блоке</p>
+            
+                <button
+                    type="button"
+                    class="data-tabs__button"
+                    (click)="generateQrCodes()"
+                >
+                    Сгенерировать
+                </button>
+            </div>
+        </div>
+    </ng-container>
+
+</div>

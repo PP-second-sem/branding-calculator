@@ -1,0 +1,36 @@
+<div class="template-list-wrapper">
+
+    <div class="template-list__header">
+        <h2>{{ categoryName }}</h2>
+    </div>
+
+    <button
+        type="button"
+        class="template-list__scroll-button template-list__scroll-button--up"
+        (click)="selectPreviousTemplate()"
+    >
+        Вверх
+        <img src="scrollIcon.svg">
+    </button>
+    <nav class="template-list">
+        <button
+            *ngFor="let template of templates"
+            type="button"
+            class="template-list__item"
+            [class.template-list__item--active]="selectedTemplate === template"
+            (click)="selectTemplate(template)"
+        >
+            <img [src]="template.preview" alt="">
+        </button>
+    </nav>
+
+    <button
+        type="button"
+        class="template-list__scroll-button template-list__scroll-button--down"
+        (click)="selectNextTemplate()"
+    >
+        Вниз
+        <img class="down-icon" src="scrollIcon.svg">
+    </button>
+
+</div>

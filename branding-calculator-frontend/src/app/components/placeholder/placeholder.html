@@ -1,0 +1,14 @@
+<div class="input">
+    <label class="input__label">
+        <span class="input__title">{{ label }}</span>
+        <input
+            class="input__field"
+            #input
+            [class.input__field--underline-placeholder]="underlinePlaceholder"
+            type="text"
+            [placeholder]="placeholder"
+            [value]="value"
+            (input)="onInput($event)"
+        >
+    </label>
+</div>
