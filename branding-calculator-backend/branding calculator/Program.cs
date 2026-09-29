@@ -22,6 +22,8 @@ namespace branding_calculator
 
             var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
 
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
             builder.Services.AddApiAuthentication(jwtOptions);
             builder.Services.AddAuthorization();
             builder.Services.AddControllers().AddJsonOptions(options =>
@@ -82,6 +84,7 @@ namespace branding_calculator
             builder.Services.AddScoped<ICarriersTypeLogoRepository, CarrierTypeLogoRepository>();
             builder.Services.AddScoped<ICarrierTypeLogoService, CarrierTypeLogoService>();
             
+            builder.Services.AddScoped<IFileService, FileService>();
 
             var app = builder.Build();
             

@@ -235,6 +235,7 @@ namespace branding_calculator.Controllers
             return Ok(new { id = materialId, message = "Material updated successfully" });
         }
 
+
         [HttpDelete("/admin/materials/{id:int}")]
         public async Task<ActionResult<int>> DeleteMaterial(int id)
         {
