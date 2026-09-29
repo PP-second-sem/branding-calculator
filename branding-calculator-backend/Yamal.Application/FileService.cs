@@ -9,8 +9,6 @@ namespace Yamal.Application
     {
         public FileService() { }
 
-        private List<VisitCard> visitCards = new List<VisitCard>();
-
         public async Task<List<VisitCard>> ReadFileAsync(Stream stream)
         {
             using var reader = ExcelReaderFactory.CreateReader(stream);
@@ -22,14 +20,14 @@ namespace Yamal.Application
                 }
             });
 
-            TakeAllRows(dataSet.Tables[0]);
+            return TakeAllRows(dataSet.Tables[0]);
 
-            return await Task.FromResult(visitCards);
 
         }
 
-        private void TakeAllRows(DataTable dataTable)
+        private List<VisitCard> TakeAllRows(DataTable dataTable)
         {
+            var visitCards = new List<VisitCard>();
             foreach (DataRow row in dataTable.Rows)
             {
                 var visitCard = new VisitCard
@@ -45,6 +43,7 @@ namespace Yamal.Application
                 };
                 visitCards.Add(visitCard);
             }
+            return visitCards;
         }
     }
 }

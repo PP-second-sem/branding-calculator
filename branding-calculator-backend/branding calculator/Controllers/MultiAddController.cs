@@ -8,7 +8,7 @@ using Yamal.Core.Abstractions;
 namespace branding_calculator.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MultiAddController : Controller
     {
         private readonly IFileService _fileService;
@@ -19,7 +19,7 @@ namespace branding_calculator.Controllers
         }
 
 
-        [HttpPost("/file/parsing")]
+        [HttpPost("file/parsing")]
         [Consumes("multipart/form-data")]
         public async Task<ActionResult> ParsingContext(IFormFile file)
         {
