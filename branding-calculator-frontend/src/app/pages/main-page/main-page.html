@@ -16,7 +16,7 @@
                 <button class="main-page__red-button" (click)="goToConstructor()">
                     Создать дизайн
                 </button>
-                <button class="main-page__transparent-button">
+                <button class="main-page__transparent-button" (click)="scrollToHowItWorks()">
                     <img src="/play_icon.svg">
                     Как это работает
                 </button>
@@ -68,7 +68,7 @@
 
     <section class="main-page__info">
         <h2 class="main-page__heading">Как это работает</h2>
-        <div class="main-page__schema">
+        <div class="main-page__schema" id="how-it-works">
             <div class="main-page__step">
                 <div class="main-page__visual">
                     <div class="main-page__logo main-page__logo--first">
