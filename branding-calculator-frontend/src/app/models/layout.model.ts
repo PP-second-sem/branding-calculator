@@ -3,6 +3,7 @@ import { ConstructorState } from "./constructor-state.model";
 export interface Template {
     id: number;
     preview: string;
+    filledPreview: string;
     textFields: TextField[];
     qrCodes: {
       x: number;

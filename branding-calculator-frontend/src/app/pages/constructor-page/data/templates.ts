@@ -8,6 +8,7 @@ export const layouts: Layout[] = [
     {
       id: 1,
       preview: 'business_card_1.svg',
+      filledPreview: 'filled_business_card_1.svg',
       addressContinuationOffset: -75,
       textFields: [
       {
@@ -95,6 +96,7 @@ export const layouts: Layout[] = [
     {
       id: 2,
       preview: 'business_card_2.svg',
+      filledPreview: 'filled_business_card_2.svg',
       textFields: [
       {
         id: 'fullName',
@@ -183,6 +185,7 @@ export const layouts: Layout[] = [
     {
       id: 3,
       preview: 'business_card_3.svg',
+      filledPreview: 'filled_business_card_3.svg',
       textFields: [
       {
         id: 'fullName',
@@ -271,6 +274,7 @@ export const layouts: Layout[] = [
       id: 4,
       preview: 'business_card_4.svg',
       fullNameContinuationOffset: -30,
+      filledPreview: 'filled_business_card_4.svg',
       textFields: [
       {
         id: 'fullName',
@@ -362,6 +366,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -381,6 +386,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -400,6 +406,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -425,6 +432,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -444,6 +452,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -463,6 +472,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -488,6 +498,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -507,6 +518,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -526,6 +538,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -551,6 +564,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'diploma.svg',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -570,6 +584,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -589,6 +604,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -614,6 +630,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -633,6 +650,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -652,6 +670,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -677,6 +696,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -696,6 +716,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -715,6 +736,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -740,6 +762,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -759,6 +782,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -778,6 +802,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -803,6 +828,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -822,6 +848,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -841,6 +868,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -866,6 +894,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -885,6 +914,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -904,6 +934,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -929,6 +960,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -948,6 +980,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -967,6 +1000,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
