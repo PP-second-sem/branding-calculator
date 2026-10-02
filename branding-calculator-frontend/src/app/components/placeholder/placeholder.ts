@@ -10,6 +10,7 @@ export class Placeholder{
   @Input() label = '';
   @Input() placeholder = '';
   @Input() underlinePlaceholder = false;
+  @Input() maxlength?: number;
   @Input() value = '';
   @Output() valueChange = new EventEmitter<string>();
   public onInput(event: Event): void {
