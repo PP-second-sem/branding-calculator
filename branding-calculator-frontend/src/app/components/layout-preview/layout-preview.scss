@@ -44,6 +44,16 @@
     &__full-name-line--second {
         transform: translateX(var(--full-name-continuation-offset));
     }
+
+    &__full-name-line--short {
+        transform: none;
+        text-align: center;
+    }
+
+    &__full-name-line--centered {
+        transform: translateX(-55px);
+        text-align: center;
+    }
 }
 
 .layout-preview__qr-label {

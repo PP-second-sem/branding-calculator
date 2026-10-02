@@ -99,9 +99,49 @@ export class LayoutPreview {
         return words;
     }
 
+    const lastName = words[0];
+    const firstName = words[1];
+    const patronymic = words[2];
+
+    if (!patronymic) {
+        return [
+            lastName,
+            firstName,
+        ];
+    }
+
+    const secondLine = `${firstName} ${patronymic}`;
+
+    if (secondLine.length <= 25) {
+        return [
+            lastName,
+            secondLine,
+        ];
+    }
+
     return [
-        words[0],
-        words.slice(1).join(' '),
+        lastName,
+        `${firstName[0]}. ${patronymic[0]}.`,
     ];
+  }
+
+  public getShortFullNameLeft(): number {
+    const field = this.fullNameField;
+
+    if (!field) {
+        return 0;
+    }
+
+    return field.x + field.width / 2;
+  }
+
+  public isShortFullName(fullName: string): boolean {
+    const words = fullName.trim().split(/\s+/);
+
+    if (words.length < 3) {
+        return false;
+    }
+
+    return `${words[1]} ${words[2]}`.length > 25;
   }
 }
