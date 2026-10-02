@@ -9,7 +9,6 @@ export const layouts: Layout[] = [
       id: 1,
       preview: 'business_card_1.svg',
       filledPreview: 'filled_business_card_1.svg',
-      addressContinuationOffset: -75,
       textFields: [
       {
         id: 'fullName',
@@ -51,7 +50,7 @@ export const layouts: Layout[] = [
         id: 'email',
         type: 'email',
         x: 78,
-        y: 206,
+        y: 210,
         width: 500,
         fontSize: 8,
         fontWeight: 400
@@ -112,7 +111,7 @@ export const layouts: Layout[] = [
         type: 'position',
         x: 187,
         y: 80,
-        width: 500,
+        width: 100,
         fontSize: 8,
         fontWeight: 700
       },
@@ -235,7 +234,7 @@ export const layouts: Layout[] = [
       {
         id: 'address',
         type: 'address',
-        x: 135,
+        x: 145,
         y: 196,
         width: 300,
         fontSize: 7,
@@ -290,7 +289,7 @@ export const layouts: Layout[] = [
         type: 'position',
         x: 110,
         y: 115,
-        width: 500,
+        width: 60,
         fontSize: 9,
         fontWeight: 400
       },

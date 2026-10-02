@@ -56,7 +56,13 @@
             <div
                 *ngFor="let name of formatFullName(fullName); let i = index"
                 [class.layout-preview__full-name-line--second]="i === 1"
+                [class.layout-preview__full-name-line--short]="
+                    i === 1 && isShortFullName(fullName)
+                "
                 [style.--full-name-continuation-offset.px]="template.fullNameContinuationOffset ?? 0"
+                [class.layout-preview__full-name-line--centered]="
+                    i === 1 && template.id === 4
+                "
             >
                 {{ name }}
             </div>
@@ -67,6 +73,7 @@
             [style.left.px]="positionField?.x"
             [style.top.px]="positionField?.y"
             [style.fontSize.px]="positionField?.fontSize"
+            [style.width.px]="positionField?.width"
             [style.fontWeight]="positionField?.fontWeight"
         >
             {{ position }}
