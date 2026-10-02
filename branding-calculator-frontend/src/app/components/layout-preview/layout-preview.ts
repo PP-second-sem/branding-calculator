@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Template, TextField } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
 import { QrCode } from '../qr-code/qr-code';
@@ -11,6 +11,8 @@ import { QrCode } from '../qr-code/qr-code';
 })
 export class LayoutPreview {
   @Input() template!: Template;
+  @ViewChild('image', { static: true })
+  public image!: ElementRef<HTMLImageElement>;
   @ViewChild('preview', { static: true })
   public preview!: ElementRef<HTMLElement>;
   @Input() fullName: string = '';
@@ -25,10 +27,11 @@ export class LayoutPreview {
   @Input() qrCode2Label = '';
   @Input() qrCodesGenerated = false;
   @Input() qrCode2Enabled = false;
+
   public get fullNameField(): TextField | undefined {
-      return this.template.textFields.find(
-          field => field.type === 'fullName'
-      );
+    return this.template.textFields.find(
+        field => field.type === 'fullName'
+    );
   };
 
   public get positionField(): TextField | undefined {

@@ -2,8 +2,8 @@ import { Layout } from "../../../models/layout.model";
 
 export const layouts: Layout[] = [
   {
-    name: 'Аншлаги',
-    icon: 'soldoutIcon.svg',
+    name: 'Визитки',
+    icon: 'businessCardIcon.svg',
     templates : [
     {
       id: 1,
@@ -13,69 +13,69 @@ export const layouts: Layout[] = [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 300,
-        y: 90,
+        x: 150,
+        y: 49,
         width: 500,
-        fontSize: 26,
+        fontSize: 14,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
-        x: 300,
-        y: 180,
+        x: 150,
+        y: 89,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'phone',
         type: 'phone',
-        x: 140,
-        y: 349,
+        x: 70,
+        y: 181.5,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 175,
-        y: 377,
+        x: 88,
+        y: 196,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
-        x: 150,
-        y: 405,
+        x: 78,
+        y: 206,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 490,
-        y: 350,
+        x: 254,
+        y: 183.5,
         width: 300,
-        fontSize: 12,
+        fontSize: 6,
         fontWeight: 400
       },],
       qrCodes:
       [{
-        x: 720,
-        y: 165,
-        size: 120,
-        labelFontSize: 12,
+        x: 383,
+        y: 95,
+        size: 50,
+        labelFontSize: 7,
       },
       {
-        x: 720,
-        y: 320,
-        size: 120,
-        labelFontSize: 12,
+        x: 383,
+        y: 175,
+        size: 50,
+        labelFontSize: 7,
       }],
       data: {
         fullName: '',
@@ -99,70 +99,70 @@ export const layouts: Layout[] = [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 360,
-        y: 70,
+        x: 187,
+        y: 40,
         width: 500,
-        fontSize: 22,
+        fontSize: 11,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
-        x: 360,
-        y: 140,
+        x: 187,
+        y: 80,
         width: 500,
-        fontSize: 16,
+        fontSize: 8,
         fontWeight: 700
       },
       {
         id: 'phone',
         type: 'phone',
-        x: 400,
-        y: 271,
+        x: 208,
+        y: 141,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 440,
-        y: 295,
+        x: 227,
+        y: 153,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
-        x: 415,
-        y: 317,
+        x: 215,
+        y: 164,
         width: 500,
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 360,
-        y: 350,
+        x: 187,
+        y: 180,
         width: 300,
-        fontSize: 12,
+        fontSize: 6,
         fontWeight: 400
       },],
       qrCodes:
       [
         {
-          x: 730,
-          y: 170,
-          size: 90,
-          labelFontSize: 11,
+          x: 380,
+          y: 95,
+          size: 45,
+          labelFontSize: 6,
         },
         {
-          x: 730,
-          y: 340,
-          size: 90,
-          labelFontSize: 11,
+          x: 380,
+          y: 180,
+          size: 45,
+          labelFontSize: 6,
         }
       ],
       data: {
@@ -187,69 +187,69 @@ export const layouts: Layout[] = [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 180,
-        y: 60,
+        x: 90,
+        y: 30,
         width: 500,
-        fontSize: 32,
+        fontSize: 17,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
-        x: 60,
-        y: 180,
+        x: 30,
+        y: 100,
         width: 500,
-        fontSize: 16,
+        fontSize: 8,
         fontWeight: 400
       },
       {
         id: 'phone',
         type: 'phone',
-        x: 95,
-        y: 377,
+        x: 48,
+        y: 196,
         width: 500,
-        fontSize: 14,
+        fontSize: 7,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 125,
-        y: 398,
+        x: 65,
+        y: 207.5,
         width: 500,
-        fontSize: 14,
+        fontSize: 7,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
-        x: 105,
-        y: 420,
+        x: 55,
+        y: 219,
         width: 500,
-        fontSize: 14,
+        fontSize: 7,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 330,
-        y: 380,
+        x: 135,
+        y: 196,
         width: 300,
         fontSize: 7,
         fontWeight: 400
       },],
       qrCodes:[
         {
-          x: 560,
-          y: 370,
-          size: 70,
-          labelFontSize: 9,
+          x: 330,
+          y: 196,
+          size: 40,
+          labelFontSize: 5,
         },
         {
-          x: 730,
-          y: 370,
-          size: 70,
-          labelFontSize: 9,
+          x: 390,
+          y: 196,
+          size: 40,
+          labelFontSize: 5,
         }
       ],
       data: {
@@ -274,68 +274,68 @@ export const layouts: Layout[] = [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 180,
-        y: 60,
+        x: 110,
+        y: 55,
         width: 500,
-        fontSize: 32,
+        fontSize: 15,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
-        x: 60,
-        y: 180,
+        x: 110,
+        y: 115,
         width: 500,
-        fontSize: 16,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'phone',
         type: 'phone',
-        x: 95,
-        y: 377,
+        x: 88,
+        y: 366,
         width: 500,
-        fontSize: 14,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 125,
-        y: 398,
+        x: 110,
+        y: 390,
         width: 500,
-        fontSize: 14,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
-        x: 105,
-        y: 420,
+        x: 97,
+        y: 414,
         width: 500,
-        fontSize: 14,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 360,
-        y: 380,
-        width: 300,
-        fontSize: 14,
+        x: 61,
+        y: 435.5,
+        width: 400,
+        fontSize: 9,
         fontWeight: 400
       },],
       qrCodes:[
       {
-        x: 640,
-        y: 370,
-        size: 80,
+        x: 75,
+        y: 220,
+        size: 57,
         labelFontSize: 8,
       },
       {
-        x: 763,
-        y: 370,
-        size: 80,
+        x: 150,
+        y: 220,
+        size: 57,
         labelFontSize: 8,
       }],
       data: {
@@ -481,8 +481,8 @@ export const layouts: Layout[] = [
     ]
   },
   {
-    name: 'Визитки',
-    icon: 'businessCardIcon.svg',
+    name: 'Аншлаги',
+    icon: 'soldoutIcon.svg',
     templates : [
       {
         id: 1,

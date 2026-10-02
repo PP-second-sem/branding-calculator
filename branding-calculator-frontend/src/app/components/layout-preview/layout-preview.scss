@@ -1,7 +1,17 @@
 .layout-preview {
     position: relative;
+    width: fit-content;
+    margin: 0 auto;
+
     &__image {
-        width: 100%;
+        display: block;
+        max-width: auto;
+        height: auto;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
     }
 
     &__full-name,
@@ -29,6 +39,10 @@
         &--continuation {
             transform: translateX(var(--address-continuation-offset));
         }
+    }
+
+    &__full-name-line--second {
+        transform: translateX(-30px);
     }
 }
 
