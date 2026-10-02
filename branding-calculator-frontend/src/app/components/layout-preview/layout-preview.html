@@ -54,10 +54,11 @@
             [style.fontWeight]="fullNameField?.fontWeight"
         >
             <div
-                *ngFor="let line of formatFullName(fullName); let i = index"
+                *ngFor="let name of formatFullName(fullName); let i = index"
                 [class.layout-preview__full-name-line--second]="i === 1"
+                [style.--full-name-continuation-offset.px]="template.fullNameContinuationOffset ?? 0"
             >
-                {{ line }}
+                {{ name }}
             </div>
         </div>
 

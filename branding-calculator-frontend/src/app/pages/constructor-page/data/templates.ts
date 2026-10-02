@@ -270,6 +270,7 @@ export const layouts: Layout[] = [
     {
       id: 4,
       preview: 'business_card_4.svg',
+      fullNameContinuationOffset: -30,
       textFields: [
       {
         id: 'fullName',

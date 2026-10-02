@@ -7,10 +7,11 @@ import { DataTabs } from '../../components/data-tabs/data-tabs';
 import { LayoutPreview } from '../../components/layout-preview/layout-preview';
 import { ConstructorState } from '../../models/constructor-state.model';
 import html2canvas from 'html2canvas';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-constructor-page',
-  imports: [CommonModule, TemplateList, DataTabs, LayoutPreview],
+  imports: [CommonModule, TemplateList, DataTabs, LayoutPreview, RouterLink],
   templateUrl: './constructor-page.html',
   styleUrl: './constructor-page.scss',
 })
@@ -31,10 +32,6 @@ export class ConstructorPage {
   public qrCode2Label = '';
   public qrCodesGenerated = false;
   public qrCode2Enabled = false;
-
-  public undoStack: ConstructorState[] = [];
-  public redoStack: ConstructorState[] = [];
-
   public selectedLayout: Layout = this.layouts[0];
   public selectedTemplate: Template = this.selectedLayout.templates[0];
 
@@ -173,39 +170,48 @@ export class ConstructorPage {
   }
 
   public saveState(): void {
-    this.undoStack.push(this.getCurrentState());
-    this.redoStack = [];
+    this.selectedTemplate.undoStack ??= [];
+    this.selectedTemplate.redoStack ??= [];
+
+    this.selectedTemplate.undoStack.push(this.getCurrentState());
+    this.selectedTemplate.redoStack = [];
   }
 
   public undo(): void {
-    if (this.undoStack.length === 0) {
+    const undoStack = this.selectedTemplate.undoStack ??= [];
+    const redoStack = this.selectedTemplate.redoStack ??= [];
+
+    if (undoStack.length === 0) {
       return;
     }
 
     const currentState = this.getCurrentState();
-    const previousState = this.undoStack.pop();
+    const previousState = undoStack.pop();
 
     if (!previousState) {
       return;
     }
 
-    this.redoStack.push(currentState);
+    redoStack.push(currentState);
     this.restoreState(previousState);
   }
 
   public redo(): void {
-    if (this.redoStack.length === 0) {
+    const undoStack = this.selectedTemplate.undoStack ??= [];
+    const redoStack = this.selectedTemplate.redoStack ??= [];
+
+    if (redoStack.length === 0) {
       return;
     }
 
     const currentState = this.getCurrentState();
-    const nextState = this.redoStack.pop();
+    const nextState = redoStack.pop();
 
     if (!nextState) {
       return;
     }
 
-    this.undoStack.push(currentState);
+    undoStack.push(currentState);
     this.restoreState(nextState);
   }
 

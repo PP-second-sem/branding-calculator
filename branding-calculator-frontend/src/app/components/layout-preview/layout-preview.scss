@@ -42,7 +42,7 @@
     }
 
     &__full-name-line--second {
-        transform: translateX(-30px);
+        transform: translateX(var(--full-name-continuation-offset));
     }
 }
 

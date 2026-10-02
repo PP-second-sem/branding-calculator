@@ -1,3 +1,5 @@
+import { ConstructorState } from "./constructor-state.model";
+
 export interface Template {
     id: number;
     preview: string;
@@ -9,7 +11,10 @@ export interface Template {
       labelFontSize: number;
     }[];
     addressContinuationOffset?: number;
+    fullNameContinuationOffset?: number;
     data?: TemplateData;
+    undoStack?: ConstructorState[];
+    redoStack?: ConstructorState[];
 }
 
 export interface Layout {
