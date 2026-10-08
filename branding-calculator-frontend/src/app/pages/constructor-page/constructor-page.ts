@@ -31,6 +31,7 @@ export class ConstructorPage {
   public qrCode2 = '';
   public qrCode2Label = '';
   public qrCodesGenerated = false;
+  public qrCode1Enabled = true;
   public qrCode2Enabled = false;
   public selectedLayout: Layout = this.layouts[0];
   public selectedTemplate: Template = this.selectedLayout.templates[0];

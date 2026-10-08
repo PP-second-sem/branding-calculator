@@ -24,6 +24,7 @@ export class DataTabs {
   public qrCode2Label = '';
   public address = '';
   public qrCodesGenerated = false;
+  public qrCode1Enabled = true;
   public qrCode2Enabled = false;
   @ViewChild(Placeholder) fullNameInput!: Placeholder;
   @Output() fullNameChange = new EventEmitter<string>();
@@ -37,6 +38,7 @@ export class DataTabs {
   @Output() qrCode2Change = new EventEmitter<string>();
   @Output() qrCode2LabelChange = new EventEmitter<string>();
   @Output() qrCodesGeneratedChange = new EventEmitter<boolean>();
+  @Output() qrCode1EnabledChange = new EventEmitter<boolean>();
   @Output() qrCode2EnabledChange = new EventEmitter<boolean>();
 
   public syncData(data: TemplateData): void {
@@ -111,6 +113,11 @@ export class DataTabs {
   public generateQrCodes(): void {
     this.qrCodesGenerated = true;
     this.qrCodesGeneratedChange.emit(true);
+  }
+
+  public setQrCode1Enabled(value: boolean): void {
+    this.qrCode1Enabled = value;
+    this.qrCode1EnabledChange.emit(value);
   }
 
   public setQrCode2Enabled(value: boolean): void {
