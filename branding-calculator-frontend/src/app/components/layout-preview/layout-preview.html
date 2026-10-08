@@ -11,7 +11,7 @@
     <div class="layout-preview__overlay"
     >
         <app-qr-code
-            *ngIf="qrCodesGenerated"
+            *ngIf="qrCodesGenerated && qrCode1Enabled"
             class="layout-preview__qr-code"
             [value]="qrCode1"
             [size]="template.qrCodes[0].size"
@@ -19,7 +19,7 @@
             [style.top.px]="template.qrCodes[0].y"
         ></app-qr-code>
         <div
-            *ngIf="qrCodesGenerated && qrCode1Label"
+            *ngIf="qrCodesGenerated && qrCode1Enabled && qrCode1Label"
             class="layout-preview__qr-label"
             [style.left.px]="template.qrCodes[0].x"
             [style.top.px]="template.qrCodes[0].y"

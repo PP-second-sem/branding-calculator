@@ -90,6 +90,7 @@
                     [qrCode2]="qrCode2"
                     [qrCode2Label]="qrCode2Label"
                     [qrCodesGenerated]="qrCodesGenerated"
+                    [qrCode1Enabled]="qrCode1Enabled"
                     [qrCode2Enabled]="qrCode2Enabled"
                 ></app-layout-preview>
 
@@ -106,6 +107,7 @@
                         (qrCode2Change)="saveState(); setQrCode2($event)"
                         (qrCode2LabelChange)="saveState(); setQrCode2Label($event)"
                         (qrCodesGeneratedChange)="qrCodesGenerated = $event; updateSelectedTemplateData()"
+                        (qrCode1EnabledChange)="saveState(); qrCode1Enabled = $event; updateSelectedTemplateData()"
                         (qrCode2EnabledChange)="saveState(); qrCode2Enabled = $event; updateSelectedTemplateData()"
                     ></app-data-tabs>
                 </div>

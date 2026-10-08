@@ -98,7 +98,13 @@
 
             <div class="data-tabs__qr-container">
                 <div class="data-tabs__qr-block">
-                    <h3>QR-code 1</h3>
+                    <div class="data-tabs__qr-block-header">
+                        <h3>QR-code 1</h3>
+                        <label class="data-tabs__switch">
+                            <input type="checkbox" [(ngModel)]="qrCode1Enabled" (ngModelChange)="setQrCode1Enabled($event)">
+                            <span></span>
+                        </label>
+                    </div>
 
                     <app-placeholder
                         label="Подпись"
