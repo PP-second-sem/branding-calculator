@@ -27,7 +27,7 @@ export class LayoutPreview {
   @Input() qrCode2Label = '';
   @Input() qrCodesGenerated = false;
   @Input() qrCode2Enabled = false;
-  @Input() qrCode1Enabled = false;
+  @Input() qrCode1Enabled = true;
 
   public get fullNameField(): TextField | undefined {
     return this.template.textFields.find(
