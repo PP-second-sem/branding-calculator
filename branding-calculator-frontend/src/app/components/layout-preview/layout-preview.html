@@ -11,38 +11,38 @@
     <div class="layout-preview__overlay"
     >
         <app-qr-code
-            *ngIf="qrCodesGenerated && qrCode1Enabled"
+            *ngIf="qrCodesGenerated && qrCode1Enabled && template.qrCodes?.[0] as qrCode"
             class="layout-preview__qr-code"
             [value]="qrCode1"
-            [size]="template.qrCodes[0].size"
-            [style.left.px]="template.qrCodes[0].x"
-            [style.top.px]="template.qrCodes[0].y"
+            [size]="qrCode.size"
+            [style.left.px]="qrCode.x"
+            [style.top.px]="qrCode.y"
         ></app-qr-code>
         <div
-            *ngIf="qrCodesGenerated && qrCode1Enabled && qrCode1Label"
+            *ngIf="qrCodesGenerated && qrCode1Enabled && qrCode1Label && template.qrCodes?.[0] as qrCode"
             class="layout-preview__qr-label"
-            [style.left.px]="template.qrCodes[0].x"
-            [style.top.px]="template.qrCodes[0].y"
-            [style.width.px]="template.qrCodes[0].size"
-            [style.fontSize.px]="template.qrCodes[0].labelFontSize"
+            [style.left.px]="qrCode.x"
+            [style.top.px]="qrCode.y"
+            [style.width.px]="qrCode.size"
+            [style.fontSize.px]="qrCode.labelFontSize"
         >
             {{ qrCode1Label }}
         </div>
         <app-qr-code
-            *ngIf="qrCodesGenerated && qrCode2Enabled"
+            *ngIf="qrCodesGenerated && qrCode2Enabled && template.qrCodes?.[1] as qrCode"
             class="layout-preview__qr-code"
             [value]="qrCode2"
-            [size]="template.qrCodes[1].size"
-            [style.left.px]="template.qrCodes[1].x"
-            [style.top.px]="template.qrCodes[1].y"
+            [size]="qrCode.size"
+            [style.left.px]="qrCode.x"
+            [style.top.px]="qrCode.y"
         ></app-qr-code>
-            <div
-            *ngIf="qrCodesGenerated && qrCode2Enabled && qrCode2Label"
+        <div
+            *ngIf="qrCodesGenerated && qrCode2Enabled && qrCode2Label && template.qrCodes?.[1] as qrCode"
             class="layout-preview__qr-label"
-            [style.left.px]="template.qrCodes[1].x"
-            [style.top.px]="template.qrCodes[1].y"
-            [style.width.px]="template.qrCodes[1].size"
-            [style.fontSize.px]="template.qrCodes[0].labelFontSize"
+            [style.left.px]="qrCode.x"
+            [style.top.px]="qrCode.y"
+            [style.width.px]="qrCode.size"
+            [style.fontSize.px]="qrCode.labelFontSize"
         >
             {{ qrCode2Label }}
         </div>
@@ -52,16 +52,38 @@
             [style.top.px]="fullNameField?.y"
             [style.fontSize.px]="fullNameField?.fontSize"
             [style.fontWeight]="fullNameField?.fontWeight"
+            [style.color]="fullNameField?.color"
+            [style.width]="fullNameField?.width"
+            [class.layout-preview__full-name--business-card-centered]="
+                layoutName === 'Визитки' && template.id === 4
+            "
         >
             <div
                 *ngFor="let name of formatFullName(fullName); let i = index"
-                [class.layout-preview__full-name-line--second]="i === 1"
+                [class.layout-preview__full-name-line--second]="
+                    i === 1 && !(layoutName === 'Визитки' && template.id === 4)
+                "
+
+                [class.layout-preview__full-name-line--business-card-first-centered]="
+                    i === 0 && layoutName === 'Визитки' && template.id === 4
+                "
                 [class.layout-preview__full-name-line--short]="
-                    i === 1 && isShortFullName(fullName)
+                    i === 1 &&
+                    isShortFullName(fullName) &&
+                    layoutName === 'Визитки' &&
+                    template.id === 4
                 "
                 [style.--full-name-continuation-offset.px]="template.fullNameContinuationOffset ?? 0"
+                
                 [class.layout-preview__full-name-line--centered]="
-                    i === 1 && template.id === 4
+                    i === 1 && layoutName === 'Визитки' && template.id === 4 && isShortFullName(fullName)
+                "
+                [class.layout-preview__full-name-line--badge-centered]="
+                    i === 1 && template.splitPatronymic === true
+                "
+
+                [class.layout-preview__full-name-line--business-card-centered]="
+                    i === 1 && layoutName === 'Визитки' && template.id === 4
                 "
             >
                 {{ name }}
@@ -70,13 +92,43 @@
 
         <div
             class="layout-preview__position"
+            [class.layout-preview__position--business-card-centered]="
+                layoutName === 'Визитки' && template.id === 4
+            "
             [style.left.px]="positionField?.x"
             [style.top.px]="positionField?.y"
             [style.fontSize.px]="positionField?.fontSize"
             [style.width.px]="positionField?.width"
             [style.fontWeight]="positionField?.fontWeight"
+            [style.color]="positionField?.color"
         >
             {{ position }}
+        </div>
+
+        <div *ngIf="cityField"
+            class="layout-preview__city"
+            [class.layout-preview__city--centered]="layoutName === 'Бейджи' && template.id === 3"
+            [style.left.px]="cityField.x"
+            [style.top.px]="cityField.y"
+            [style.width.px]="cityField.width"
+            [style.fontSize.px]="cityField.fontSize"
+            [style.fontWeight]="cityField.fontWeight"
+            [style.color]="cityField.color"
+        >
+            {{ city }}
+        </div>
+
+        <div *ngIf="dateField"
+            class="layout-preview__date"
+            [class.layout-preview__date--centered]="layoutName === 'Бейджи' && template.id === 3"
+            [style.left.px]="dateField.x"
+            [style.top.px]="dateField.y"
+            [style.width.px]="dateField.width"
+            [style.fontSize.px]="dateField.fontSize"
+            [style.fontWeight]="dateField.fontWeight"
+            [style.color]="dateField.color"
+        >
+            {{ date }}
         </div>
 
         <div

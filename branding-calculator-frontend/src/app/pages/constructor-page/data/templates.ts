@@ -31,8 +31,8 @@ export const layouts: Layout[] = [
       {
         id: 'phone',
         type: 'phone',
-        x: 140,
-        y: 357,
+        x: 135,
+        y: 349,
         width: 500,
         fontSize: 14,
         fontWeight: 400
@@ -40,8 +40,8 @@ export const layouts: Layout[] = [
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 174,
-        y: 386,
+        x: 173,
+        y: 377,
         width: 500,
         fontSize: 14,
         fontWeight: 400
@@ -49,8 +49,8 @@ export const layouts: Layout[] = [
       {
         id: 'email',
         type: 'email',
-        x: 155,
-        y: 415,
+        x: 153,
+        y: 404,
         width: 500,
         fontSize: 14,
         fontWeight: 400
@@ -58,8 +58,8 @@ export const layouts: Layout[] = [
       {
         id: 'address',
         type: 'address',
-        x: 500,
-        y: 359,
+        x: 485,
+        y: 350,
         width: 300,
         fontSize: 12,
         fontWeight: 400
@@ -68,13 +68,13 @@ export const layouts: Layout[] = [
       [{
         x: 750,
         y: 180,
-        size: 90,
+        size: 89,
         labelFontSize: 13,
       },
       {
         x: 750,
         y: 325,
-        size: 90,
+        size: 89,
         labelFontSize: 13,
       }],
       data: {
@@ -100,7 +100,7 @@ export const layouts: Layout[] = [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 369,
+        x: 359,
         y: 75,
         width: 500,
         fontSize: 22,
@@ -109,7 +109,7 @@ export const layouts: Layout[] = [
       {
         id: 'position',
         type: 'position',
-        x: 369,
+        x: 359,
         y: 150,
         width: 100,
         fontSize: 16,
@@ -118,8 +118,8 @@ export const layouts: Layout[] = [
       {
         id: 'phone',
         type: 'phone',
-        x: 408,
-        y: 276,
+        x: 400,
+        y: 270,
         width: 500,
         fontSize: 15,
         fontWeight: 400
@@ -127,8 +127,8 @@ export const layouts: Layout[] = [
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 449,
-        y: 299,
+        x: 440,
+        y: 293,
         width: 500,
         fontSize: 15,
         fontWeight: 400
@@ -136,8 +136,8 @@ export const layouts: Layout[] = [
       {
         id: 'email',
         type: 'email',
-        x: 426,
-        y: 321,
+        x: 415,
+        y: 315,
         width: 500,
         fontSize: 15,
         fontWeight: 400
@@ -145,7 +145,7 @@ export const layouts: Layout[] = [
       {
         id: 'address',
         type: 'address',
-        x: 369,
+        x: 359,
         y: 370,
         width: 300,
         fontSize: 11,
@@ -154,13 +154,13 @@ export const layouts: Layout[] = [
       qrCodes:
       [
         {
-          x: 750,
+          x: 725,
           y: 180,
           size: 93,
           labelFontSize: 12,
         },
         {
-          x: 750,
+          x: 725,
           y: 320,
           size: 93,
           labelFontSize: 12,
@@ -207,8 +207,8 @@ export const layouts: Layout[] = [
       {
         id: 'phone',
         type: 'phone',
-        x: 97,
-        y: 384,
+        x: 95,
+        y: 376,
         width: 500,
         fontSize: 13,
         fontWeight: 400
@@ -216,8 +216,8 @@ export const layouts: Layout[] = [
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 127,
-        y: 407,
+        x: 125,
+        y: 399,
         width: 500,
         fontSize: 13,
         fontWeight: 400
@@ -225,8 +225,8 @@ export const layouts: Layout[] = [
       {
         id: 'email',
         type: 'email',
-        x: 108,
-        y: 429,
+        x: 105,
+        y: 420,
         width: 500,
         fontSize: 13,
         fontWeight: 400
@@ -234,8 +234,8 @@ export const layouts: Layout[] = [
       {
         id: 'address',
         type: 'address',
-        x: 240,
-        y: 381,
+        x: 280,
+        y: 376,
         width: 300,
         fontSize: 13,
         fontWeight: 400
@@ -243,13 +243,13 @@ export const layouts: Layout[] = [
       qrCodes:[
         {
           x: 660,
-          y: 390,
+          y: 380,
           size: 75,
           labelFontSize: 9,
         },
         {
-          x: 785,
-          y: 390,
+          x: 765,
+          y: 380,
           size: 75,
           labelFontSize: 9,
         }
@@ -272,75 +272,74 @@ export const layouts: Layout[] = [
     {
       id: 4,
       preview: 'business_card_4.svg',
-      fullNameContinuationOffset: -30,
       filledPreview: 'filled_business_card_4.svg',
       textFields: [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 230,
+        x: 90,
         y: 55,
-        width: 500,
-        fontSize: 29,
+        width: 100,
+        fontSize: 14,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
-        x: 230,
-        y: 170,
+        x: 110,
+        y: 100,
         width: 60,
-        fontSize: 18,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'phone',
         type: 'phone',
-        x: 170,
-        y: 715,
+        x: 85,
+        y: 350,
         width: 500,
-        fontSize: 18,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 215,
-        y: 763,
+        x: 105,
+        y: 374,
         width: 500,
-        fontSize: 18,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
-        x: 190,
-        y: 810,
+        x: 90,
+        y: 397,
         width: 500,
-        fontSize: 18,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 120,
-        y: 855,
-        width: 400,
-        fontSize: 18,
+        x: 58,
+        y: 420,
+        width: 500,
+        fontSize: 9,
         fontWeight: 400
       },],
       qrCodes:[
       {
-        x: 150,
-        y: 420,
-        size: 113,
-        labelFontSize: 15,
+        x: 60,
+        y: 200,
+        size: 62,
+        labelFontSize: 8,
       },
       {
-        x: 300,
-        y: 420,
-        size: 113,
-        labelFontSize: 15,
+        x: 152,
+        y: 200,
+        size: 62,
+        labelFontSize: 8,
       }],
       data: {
         fullName: '',
@@ -1015,6 +1014,154 @@ export const layouts: Layout[] = [
             labelFontSize: 6,
           }
         ]
+      }
+    ]
+  },
+  {
+    name: 'Бейджи',
+    icon: 'badgeIcon.svg',
+    templates : [
+      {
+        id: 1,
+        preview: 'badge_1.svg',
+        filledPreview: 'filled_badge_1.svg',
+        splitPatronymic: true,
+        textFields: [
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: 40,
+            y: 300,
+            width: 80,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 130,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 500,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 70,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 170,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },],
+        },
+      {
+        id: 2,
+        preview: 'badge_2.svg',
+        filledPreview: 'filled_badge_2.svg',
+        splitPatronymic: true,
+        textFields: [
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: 40,
+            y: 300,
+            width: 80,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 130,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 500,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 70,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 170,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+        ]
+      },
+      {
+        id: 3,
+        preview: 'badge_3.svg',
+        filledPreview: 'filled_badge_3.svg',
+        textFields: [
+            {
+            id: 'fullName',
+            type: 'fullName',
+            x: 145,
+            y: 195,
+            width: 80,
+            fontSize: 15,
+            fontWeight: 400,
+            color: 'rgba(207, 19, 59, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 145,
+            y: 237,
+            color: 'rgba(207, 19, 59, 1)',
+            width: 500,
+            fontSize: 9,
+            fontWeight: 500
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 120,
+            y: 450,
+            width: 60,
+            fontSize: 10,
+            fontWeight: 500,
+            color: 'rgba(243, 242, 232, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 120,
+            y: 475,
+            width: 60,
+            fontSize: 10,
+            fontWeight: 500,
+            color: 'rgba(243, 242, 232, 1)',
+          },
+        ],
       }
     ]
   }

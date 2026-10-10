@@ -79,12 +79,15 @@
                 <app-layout-preview
                     #layoutPreview
                     [template]="selectedTemplate"
+                    [layoutName]="selectedLayout.name"
                     [fullName]="fullName"
                     [position]="position"
                     [phone]="phone"
                     [mobilePhone]="mobilePhone"
                     [email]="email"
                     [address]="address"
+                    [city]="city"
+                    [date]="date"
                     [qrCode1]="qrCode1"
                     [qrCode1Label]="qrCode1Label"
                     [qrCode2]="qrCode2"
@@ -96,12 +99,15 @@
 
                 <div class="constructor__form">
                     <app-data-tabs
+                        [layoutName]="selectedLayout.name"
                         (fullNameChange)="saveState(); fullName = $event; updateSelectedTemplateData()"
                         (positionChange)="saveState(); position = $event; updateSelectedTemplateData()"
                         (phoneChange)="saveState(); phone = $event; updateSelectedTemplateData()"
                         (mobilePhoneChange)="saveState(); mobilePhone = $event; updateSelectedTemplateData()"
                         (emailChange)="saveState(); email = $event; updateSelectedTemplateData()"
                         (addressChange)="saveState(); address = $event; updateSelectedTemplateData()"
+                        (cityChange)="saveState(); city = $event; updateSelectedTemplateData()"
+                        (dateChange)="saveState(); date = $event; updateSelectedTemplateData()"
                         (qrCode1Change)="saveState(); setQrCode1($event)"
                         (qrCode1LabelChange)="saveState(); setQrCode1Label($event)"
                         (qrCode2Change)="saveState(); setQrCode2($event)"

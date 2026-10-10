@@ -1,21 +1,22 @@
 import { ConstructorState } from "./constructor-state.model";
 
 export interface Template {
-    id: number;
-    preview: string;
-    filledPreview: string;
-    textFields: TextField[];
-    qrCodes: {
-      x: number;
-      y: number;
-      size: number;
-      labelFontSize: number;
-    }[];
-    addressContinuationOffset?: number;
-    fullNameContinuationOffset?: number;
-    data?: TemplateData;
-    undoStack?: ConstructorState[];
-    redoStack?: ConstructorState[];
+  id: number;
+  preview: string;
+  filledPreview: string;
+  textFields: TextField[];
+  qrCodes?: {
+    x: number;
+    y: number;
+    size: number;
+    labelFontSize: number;
+  }[];
+  addressContinuationOffset?: number;
+  fullNameContinuationOffset?: number;
+  splitPatronymic?: boolean;
+  data?: TemplateData;
+  undoStack?: ConstructorState[];
+  redoStack?: ConstructorState[];
 }
 
 export interface Layout {
@@ -26,25 +27,28 @@ export interface Layout {
 
 export interface TextField {
   id: string;
-  type: 'fullName' | 'position' | 'phone' | 'mobilePhone' | 'email' | 'address';
+  type: 'fullName' | 'position' | 'phone' | 'mobilePhone' | 'email' | 'address' | 'date' | 'city';
   x: number;
   y: number;
   width: number;
   fontSize: number;
   fontWeight: number;
+  color?: string;
 }
 
 export interface TemplateData {
     fullName: string;
     position: string;
-    phone: string;
-    mobilePhone: string;
-    email: string;
-    address: string;
-    qrCode1: string;
-    qrCode1Label: string;
-    qrCode2: string;
-    qrCode2Label: string;
-    qrCodesGenerated: boolean;
-    qrCode2Enabled: boolean;
+    phone?: string;
+    mobilePhone?: string;
+    email?: string;
+    address?: string;
+    qrCode1?: string;
+    qrCode1Label?: string;
+    qrCode2?: string;
+    qrCode2Label?: string;
+    qrCodesGenerated?: boolean;
+    qrCode2Enabled?: boolean;
+    date?: string;
+    city?: string;
 }
