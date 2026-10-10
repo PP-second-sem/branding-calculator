@@ -1030,9 +1030,9 @@ export const layouts: Layout[] = [
           {
             id: 'fullName',
             type: 'fullName',
-            x: 40,
+            x: -90,
             y: 300,
-            width: 80,
+            width: 500,
             fontSize: 23,
             fontWeight: 400,
             color: 'rgba(231, 75, 31, 1)',
@@ -1040,7 +1040,7 @@ export const layouts: Layout[] = [
           {
             id: 'position',
             type: 'position',
-            x: 130,
+            x: -90,
             y: 380,
             color: 'rgba(231, 75, 31, 1)',
             width: 500,
@@ -1077,9 +1077,9 @@ export const layouts: Layout[] = [
           {
             id: 'fullName',
             type: 'fullName',
-            x: 40,
+            x: -90,
             y: 300,
-            width: 80,
+            width: 500,
             fontSize: 23,
             fontWeight: 400,
             color: 'rgba(231, 75, 31, 1)',
@@ -1087,7 +1087,7 @@ export const layouts: Layout[] = [
           {
             id: 'position',
             type: 'position',
-            x: 130,
+            x: -90,
             y: 380,
             color: 'rgba(231, 75, 31, 1)',
             width: 500,
