@@ -58,7 +58,7 @@
                 layoutName === 'Визитки' && template.id === 4
             "
             [class.layout-preview__full-name--badge-centered]="
-                layoutName === 'Бейджи'
+                layoutName === 'Бейджи' && template.id !== 3
             "
         >
             <div
@@ -104,7 +104,7 @@
             [style.width.px]="positionField?.width"
             [style.fontWeight]="positionField?.fontWeight"
             [style.color]="positionField?.color"
-            [class.layout-preview__position--badge-centered]="layoutName === 'Бейджи'"
+            [class.layout-preview__position--badge-centered]="layoutName === 'Бейджи' && template.id !== 3"
         >
             {{ position }}
         </div>
