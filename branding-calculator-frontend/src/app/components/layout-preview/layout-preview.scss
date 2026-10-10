@@ -6,7 +6,7 @@
     &__image {
         display: block;
         max-width: auto;
-        height: auto;
+        height: 500px;
     }
 
     &__overlay {
@@ -20,7 +20,9 @@
     &__mobilePhone,
     &__email,
     &__address,
-    &__qr-code {
+    &__qr-code,
+    &__city,
+    &__date {
         position: absolute;
     }
 
@@ -51,7 +53,58 @@
     }
 
     &__full-name-line--centered {
-        transform: translateX(-55px);
+        // transform: translateX(-55px);
+        text-align: center;
+    }
+
+    &__full-name-line--badge-centered {
+        display: block;
+        width: 100%;
+        transform: none;
+        text-align: center;
+    }
+
+    &__full-name--centered {
+        text-align: center;
+    }
+
+    &__city--centered, &__date--centered {
+        transform: none;
+        text-align: center;
+    }
+
+    &__full-name--business-card-centered {
+        width: 100px;
+        white-space: nowrap;
+    }
+
+    &__full-name-line--business-card-centered {
+        display: block;
+        width: 100%;
+        text-align: center;
+        transform: none;
+    }
+
+    &__full-name-line--business-card-first-centered {
+        display: block;
+        width: 100%;
+        text-align: center;
+        transform: none;
+    }
+
+    &__position--business-card-centered {
+        text-align: center;
+    }
+
+    &__full-name--badge-centered {
+        > div {
+            width: 100%;
+            text-align: center;
+            transform: none;
+        }
+    }
+
+    &__position--badge-centered {
         text-align: center;
     }
 }

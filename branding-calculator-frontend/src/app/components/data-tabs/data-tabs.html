@@ -14,7 +14,7 @@
         [class.data-tabs__tab--active]="activeTab === 'contacts'"
         (click)="activeTab = 'contacts'"
     >
-        Контактные данные
+        {{ layoutName === 'Бейджи' ? 'Место и дата' : 'Контактные данные' }}
     </button>
 
     <button
@@ -27,6 +27,7 @@
     </button>
 
     <button
+        *ngIf="layoutName !== 'Бейджи'"
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'qr'"
@@ -45,6 +46,7 @@
                 [value]="fullName"
                 (valueChange)="setFullName($event)"
             ></app-placeholder>
+
             <app-placeholder
                 label="Должность"
                 placeholder="Должность"
@@ -54,33 +56,54 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="activeTab === 'contacts'">
+    <ng-container *ngIf="activeTab === 'contacts' && layoutName === 'Бейджи'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                label="Место"
+                placeholder="Салехард"
+                [value]="city"
+                (valueChange)="setCity($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Дата"
+                placeholder="24.09.2026"
+                [value]="date"
+                (valueChange)="setDate($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'contacts' && layoutName !== 'Бейджи'">
         <div class="data-tabs__container">
             <div>
-                <app-placeholder 
+                <app-placeholder
                     label="Тел:"
                     placeholder="+7 (000) 000 00 00"
                     [value]="phone"
                     (valueChange)="setPhone($event)"
                     [maxlength]="19"
                 ></app-placeholder>
+
                 <app-placeholder
                     label="Моб. тел:"
                     placeholder="+7 (000) 000 00 00"
                     [value]="mobilePhone"
                     (valueChange)="setMobilePhone($event)"
                     [maxlength]="19"
-                    ></app-placeholder>
+                ></app-placeholder>
             </div>
+
             <div>
                 <app-placeholder
                     label="E-mail:"
-                    placeholder="pochta@mail.ru" 
+                    placeholder="pochta@mail.ru"
                     [underlinePlaceholder]="true"
                     [value]="email"
                     (valueChange)="setEmail($event)"
                 ></app-placeholder>
-                <app-placeholder 
+
+                <app-placeholder
                     label="Адрес:"
                     placeholder="УЛ. ЛЕНИНА, ДОМ 1..."
                     [value]="address"
@@ -89,7 +112,8 @@
             </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="activeTab === 'qr'">
+
+    <ng-container *ngIf="activeTab === 'qr' && layoutName !== 'Бейджи'">
         <div class="data-tabs__qr">
             <div class="data-tabs__qr-header">
                 <p class="data-tabs__qr-header--left">Добавьте ссылку и подпись</p>
@@ -100,16 +124,21 @@
                 <div class="data-tabs__qr-block">
                     <div class="data-tabs__qr-block-header">
                         <h3>QR-code 1</h3>
+
                         <label class="data-tabs__switch">
-                            <input type="checkbox" [(ngModel)]="qrCode1Enabled" (ngModelChange)="setQrCode1Enabled($event)">
+                            <input
+                                type="checkbox"
+                                [(ngModel)]="qrCode1Enabled"
+                                (ngModelChange)="setQrCode1Enabled($event)"
+                            >
                             <span></span>
                         </label>
                     </div>
 
                     <app-placeholder
                         label="Подпись"
-                        (valueChange)="setQrCode1Label($event)"
                         [value]="qrCode1Label"
+                        (valueChange)="setQrCode1Label($event)"
                         placeholder="Правительство ЯНАО"
                     ></app-placeholder>
 
@@ -126,15 +155,19 @@
                         <h3>QR-code 2</h3>
 
                         <label class="data-tabs__switch">
-                            <input type="checkbox" [(ngModel)]="qrCode2Enabled" (ngModelChange)="setQrCode2Enabled($event)">
+                            <input
+                                type="checkbox"
+                                [(ngModel)]="qrCode2Enabled"
+                                (ngModelChange)="setQrCode2Enabled($event)"
+                            >
                             <span></span>
                         </label>
                     </div>
 
                     <app-placeholder
                         label="Подпись"
-                        (valueChange)="setQrCode2Label($event)"
                         [value]="qrCode2Label"
+                        (valueChange)="setQrCode2Label($event)"
                         placeholder="Ямал. Официально"
                     ></app-placeholder>
 
@@ -146,9 +179,12 @@
                     ></app-placeholder>
                 </div>
             </div>
+
             <div class="data-tabs__meta">
-                <p class="data-tabs__text">Второй QR-код можно отключить переключателем в его блоке</p>
-            
+                <p class="data-tabs__text">
+                    Второй QR-код можно отключить переключателем в его блоке
+                </p>
+
                 <button
                     type="button"
                     class="data-tabs__button"
@@ -159,5 +195,4 @@
             </div>
         </div>
     </ng-container>
-
 </div>

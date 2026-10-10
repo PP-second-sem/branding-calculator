@@ -26,6 +26,8 @@ export class ConstructorPage {
   public mobilePhone = '';
   public email = '';
   public address = '';
+  public city = '';
+  public date = '';
   public qrCode1 = '';
   public qrCode1Label = '';
   public qrCode2 = '';
@@ -71,16 +73,16 @@ export class ConstructorPage {
 
     this.fullName = data.fullName;
     this.position = data.position;
-    this.phone = data.phone;
-    this.mobilePhone = data.mobilePhone;
-    this.email = data.email;
-    this.address = data.address;
-    this.qrCode1 = data.qrCode1;
-    this.qrCode1Label = data.qrCode1Label;
-    this.qrCode2 = data.qrCode2;
-    this.qrCode2Label = data.qrCode2Label;
-    this.qrCodesGenerated = data.qrCodesGenerated;
-    this.qrCode2Enabled = data.qrCode2Enabled;
+    this.phone = data.phone ?? '';
+    this.mobilePhone = data.mobilePhone ?? '';
+    this.email = data.email ?? '';
+    this.address = data.address ?? '';
+    this.qrCode1 = data.qrCode1 ?? '';
+    this.qrCode1Label = data.qrCode1Label ?? '';
+    this.qrCode2 = data.qrCode2 ?? '';
+    this.qrCode2Label = data.qrCode2Label ?? '';
+    this.qrCodesGenerated = data.qrCodesGenerated ?? false;
+    this.qrCode2Enabled = data.qrCode2Enabled ?? false;
 
     this.syncDataTabs();
   }

@@ -15,12 +15,15 @@ export class LayoutPreview {
   public image!: ElementRef<HTMLImageElement>;
   @ViewChild('preview', { static: true })
   public preview!: ElementRef<HTMLElement>;
+  @Input() layoutName = '';
   @Input() fullName: string = '';
   @Input() position: string = ''; 
   @Input() phone: string = ''; 
   @Input() mobilePhone: string = ''; 
   @Input() email: string = '';
   @Input() address: string = '';  
+  @Input() city = '';
+  @Input() date = '';
   @Input() qrCode1 = '';
   @Input() qrCode1Label = '';
   @Input() qrCode2 = '';
@@ -95,6 +98,21 @@ export class LayoutPreview {
 
   public formatFullName(fullName: string): string[] {
     const words = fullName.trim().split(/\s+/);
+    if (this.layoutName === 'Бейджи' && this.template.splitPatronymic) {
+      if (words.length < 3) {
+          return [fullName];
+      }
+
+      return [
+          `${words[0]} ${words[1]}`,
+          words[2],
+      ];
+    }
+
+    if (this.layoutName === 'Бейджи' && this.template.id === 3) {
+      if (words.length < 3) return [fullName];
+      return [`${words[0]} ${words[1]}`, words[2]];
+    }
 
     if (words.length <= 1) {
         return words;
@@ -113,7 +131,7 @@ export class LayoutPreview {
 
     const secondLine = `${firstName} ${patronymic}`;
 
-    if (secondLine.length <= 25) {
+    if (secondLine.length <= 15) {
         return [
             lastName,
             secondLine,
@@ -144,5 +162,17 @@ export class LayoutPreview {
     }
 
     return `${words[1]} ${words[2]}`.length > 25;
+  }
+
+  public get cityField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'city'
+    );
+  }
+
+  public get dateField(): TextField | undefined {
+    return this.template.textFields.find(
+        field => field.type === 'date'
+    );
   }
 }
