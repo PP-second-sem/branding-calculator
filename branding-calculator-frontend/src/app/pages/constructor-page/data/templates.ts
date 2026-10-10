@@ -1126,7 +1126,7 @@ export const layouts: Layout[] = [
             type: 'fullName',
             x: 145,
             y: 195,
-            width: 80,
+            width: 180,
             fontSize: 15,
             fontWeight: 400,
             color: 'rgba(207, 19, 59, 1)',
