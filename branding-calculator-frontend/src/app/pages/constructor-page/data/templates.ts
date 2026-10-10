@@ -58,8 +58,8 @@ export const layouts: Layout[] = [
       {
         id: 'address',
         type: 'address',
-        x: 485,
-        y: 350,
+        x: 440,
+        y: 355,
         width: 300,
         fontSize: 12,
         fontWeight: 400
