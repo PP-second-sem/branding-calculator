@@ -1137,7 +1137,7 @@ export const layouts: Layout[] = [
             x: 145,
             y: 237,
             color: 'rgba(207, 19, 59, 1)',
-            width: 500,
+            width: 120,
             fontSize: 9,
             fontWeight: 500
           },
