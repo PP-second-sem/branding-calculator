@@ -20,6 +20,10 @@ export class TemplateList {
   public templateSelected = new EventEmitter<Template>();
 
   public selectTemplate(template: Template): void {
+    if (template === this.selectedTemplate) {
+      return;
+    }
+
     this.templateSelected.emit(template);
   }
 

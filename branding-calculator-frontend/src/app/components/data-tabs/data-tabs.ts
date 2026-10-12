@@ -54,6 +54,8 @@ export class DataTabs {
     this.mobilePhone = data.mobilePhone ?? '';
     this.email = data.email ?? '';
     this.address = data.address ?? '';
+    this.city = data.city ?? '';
+    this.date = data.date ?? '';
     this.qrCode1 = data.qrCode1 ?? '';
     this.qrCode1Label = data.qrCode1Label ?? '';
     this.qrCode2 = data.qrCode2 ?? '';

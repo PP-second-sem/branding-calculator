@@ -107,6 +107,13 @@
     &__position--badge-centered {
         text-align: center;
     }
+
+    &__city {
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: manual;
+    }
 }
 
 .layout-preview__qr-label {
