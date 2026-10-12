@@ -93,8 +93,11 @@ export class ConstructorPage {
   }
 
   public selectTemplate(template: Template): void {
-    this.selectedTemplate = template;
+    if (this.selectedTemplate) {
+      this.updateSelectedTemplateData();
+    }
 
+    this.selectedTemplate = template;
     this.loadTemplateData(template);
   }
 
