@@ -1050,9 +1050,9 @@ export const layouts: Layout[] = [
           {
             id: 'place',
             type: 'city',
-            x: 70,
+            x: 60,
             y: 440,
-            width: 500,
+            width: 100,
             fontSize: 12,
             fontWeight: 500,
             color: 'rgba(231, 75, 31, 1)',
@@ -1060,7 +1060,7 @@ export const layouts: Layout[] = [
           {
             id: 'date',
             type: 'date',
-            x: 170,
+            x: 175,
             y: 440,
             width: 500,
             fontSize: 12,
@@ -1097,9 +1097,9 @@ export const layouts: Layout[] = [
           {
             id: 'place',
             type: 'city',
-            x: 70,
+            x: 60,
             y: 440,
-            width: 500,
+            width: 100,
             fontSize: 12,
             fontWeight: 500,
             color: 'rgba(231, 75, 31, 1)',
@@ -1107,7 +1107,7 @@ export const layouts: Layout[] = [
           {
             id: 'date',
             type: 'date',
-            x: 170,
+            x: 175,
             y: 440,
             width: 500,
             fontSize: 12,
@@ -1137,7 +1137,7 @@ export const layouts: Layout[] = [
             x: 145,
             y: 237,
             color: 'rgba(207, 19, 59, 1)',
-            width: 500,
+            width: 120,
             fontSize: 9,
             fontWeight: 500
           },

@@ -119,7 +119,7 @@
             [style.fontWeight]="cityField.fontWeight"
             [style.color]="cityField.color"
         >
-            {{ city }}
+            {{ city.replace('г. ', 'г.\u00A0') }}
         </div>
 
         <div *ngIf="dateField"

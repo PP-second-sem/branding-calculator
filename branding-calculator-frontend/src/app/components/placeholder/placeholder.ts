@@ -18,3 +18,5 @@ export class Placeholder{
     this.valueChange.emit(input.value);
   }
 }
+
+export { Input };

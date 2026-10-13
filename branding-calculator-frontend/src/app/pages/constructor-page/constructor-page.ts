@@ -51,6 +51,8 @@ export class ConstructorPage {
       mobilePhone: '',
       email: '',
       address: '',
+      city: '',
+      date: '',
       qrCode1: '',
       qrCode1Label: '',
       qrCode2: '',
@@ -77,6 +79,8 @@ export class ConstructorPage {
     this.mobilePhone = data.mobilePhone ?? '';
     this.email = data.email ?? '';
     this.address = data.address ?? '';
+    this.city = data.city ?? '';
+    this.date = data.date ?? '';
     this.qrCode1 = data.qrCode1 ?? '';
     this.qrCode1Label = data.qrCode1Label ?? '';
     this.qrCode2 = data.qrCode2 ?? '';
@@ -93,8 +97,11 @@ export class ConstructorPage {
   }
 
   public selectTemplate(template: Template): void {
-    this.selectedTemplate = template;
+    if (this.selectedTemplate) {
+      this.updateSelectedTemplateData();
+    }
 
+    this.selectedTemplate = template;
     this.loadTemplateData(template);
   }
 
@@ -108,6 +115,8 @@ export class ConstructorPage {
       mobilePhone: this.mobilePhone,
       email: this.email,
       address: this.address,
+      city: this.city,
+      date: this.date,
       qrCode1: this.qrCode1,
       qrCode1Label: this.qrCode1Label,
       qrCode2: this.qrCode2,
@@ -230,6 +239,8 @@ export class ConstructorPage {
       mobilePhone: this.mobilePhone,
       email: this.email,
       address: this.address,
+      city: this.city,
+      date: this.date,
       qrCode1: this.qrCode1,
       qrCode1Label: this.qrCode1Label,
       qrCode2: this.qrCode2,
