@@ -11,4 +11,10 @@ export class MainPage {
   goToConstructor() {
     this.router.navigate(['/constructor']);
   };
+
+  public scrollToHowItWorks(): void {
+    document.getElementById('how-it-works')?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
 }

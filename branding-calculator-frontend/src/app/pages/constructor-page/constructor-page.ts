@@ -7,10 +7,11 @@ import { DataTabs } from '../../components/data-tabs/data-tabs';
 import { LayoutPreview } from '../../components/layout-preview/layout-preview';
 import { ConstructorState } from '../../models/constructor-state.model';
 import html2canvas from 'html2canvas';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-constructor-page',
-  imports: [CommonModule, TemplateList, DataTabs, LayoutPreview],
+  imports: [CommonModule, TemplateList, DataTabs, LayoutPreview, RouterLink],
   templateUrl: './constructor-page.html',
   styleUrl: './constructor-page.scss',
 })
@@ -25,16 +26,15 @@ export class ConstructorPage {
   public mobilePhone = '';
   public email = '';
   public address = '';
+  public city = '';
+  public date = '';
   public qrCode1 = '';
   public qrCode1Label = '';
   public qrCode2 = '';
   public qrCode2Label = '';
   public qrCodesGenerated = false;
+  public qrCode1Enabled = true;
   public qrCode2Enabled = false;
-
-  public undoStack: ConstructorState[] = [];
-  public redoStack: ConstructorState[] = [];
-
   public selectedLayout: Layout = this.layouts[0];
   public selectedTemplate: Template = this.selectedLayout.templates[0];
 
@@ -73,16 +73,16 @@ export class ConstructorPage {
 
     this.fullName = data.fullName;
     this.position = data.position;
-    this.phone = data.phone;
-    this.mobilePhone = data.mobilePhone;
-    this.email = data.email;
-    this.address = data.address;
-    this.qrCode1 = data.qrCode1;
-    this.qrCode1Label = data.qrCode1Label;
-    this.qrCode2 = data.qrCode2;
-    this.qrCode2Label = data.qrCode2Label;
-    this.qrCodesGenerated = data.qrCodesGenerated;
-    this.qrCode2Enabled = data.qrCode2Enabled;
+    this.phone = data.phone ?? '';
+    this.mobilePhone = data.mobilePhone ?? '';
+    this.email = data.email ?? '';
+    this.address = data.address ?? '';
+    this.qrCode1 = data.qrCode1 ?? '';
+    this.qrCode1Label = data.qrCode1Label ?? '';
+    this.qrCode2 = data.qrCode2 ?? '';
+    this.qrCode2Label = data.qrCode2Label ?? '';
+    this.qrCodesGenerated = data.qrCodesGenerated ?? false;
+    this.qrCode2Enabled = data.qrCode2Enabled ?? false;
 
     this.syncDataTabs();
   }
@@ -173,39 +173,48 @@ export class ConstructorPage {
   }
 
   public saveState(): void {
-    this.undoStack.push(this.getCurrentState());
-    this.redoStack = [];
+    this.selectedTemplate.undoStack ??= [];
+    this.selectedTemplate.redoStack ??= [];
+
+    this.selectedTemplate.undoStack.push(this.getCurrentState());
+    this.selectedTemplate.redoStack = [];
   }
 
   public undo(): void {
-    if (this.undoStack.length === 0) {
+    const undoStack = this.selectedTemplate.undoStack ??= [];
+    const redoStack = this.selectedTemplate.redoStack ??= [];
+
+    if (undoStack.length === 0) {
       return;
     }
 
     const currentState = this.getCurrentState();
-    const previousState = this.undoStack.pop();
+    const previousState = undoStack.pop();
 
     if (!previousState) {
       return;
     }
 
-    this.redoStack.push(currentState);
+    redoStack.push(currentState);
     this.restoreState(previousState);
   }
 
   public redo(): void {
-    if (this.redoStack.length === 0) {
+    const undoStack = this.selectedTemplate.undoStack ??= [];
+    const redoStack = this.selectedTemplate.redoStack ??= [];
+
+    if (redoStack.length === 0) {
       return;
     }
 
     const currentState = this.getCurrentState();
-    const nextState = this.redoStack.pop();
+    const nextState = redoStack.pop();
 
     if (!nextState) {
       return;
     }
 
-    this.undoStack.push(currentState);
+    undoStack.push(currentState);
     this.restoreState(nextState);
   }
 

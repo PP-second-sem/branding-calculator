@@ -1,7 +1,17 @@
 .layout-preview {
     position: relative;
+    width: fit-content;
+    margin: 0 auto;
+
     &__image {
-        width: 100%;
+        display: block;
+        max-width: auto;
+        height: 500px;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
     }
 
     &__full-name,
@@ -10,7 +20,9 @@
     &__mobilePhone,
     &__email,
     &__address,
-    &__qr-code {
+    &__qr-code,
+    &__city,
+    &__date {
         position: absolute;
     }
 
@@ -29,6 +41,71 @@
         &--continuation {
             transform: translateX(var(--address-continuation-offset));
         }
+    }
+
+    &__full-name-line--second {
+        transform: translateX(var(--full-name-continuation-offset));
+    }
+
+    &__full-name-line--short {
+        transform: none;
+        text-align: center;
+    }
+
+    &__full-name-line--centered {
+        // transform: translateX(-55px);
+        text-align: center;
+    }
+
+    &__full-name-line--badge-centered {
+        display: block;
+        width: 100%;
+        transform: none;
+        text-align: center;
+    }
+
+    &__full-name--centered {
+        text-align: center;
+    }
+
+    &__city--centered, &__date--centered {
+        transform: none;
+        text-align: center;
+    }
+
+    &__full-name--business-card-centered {
+        width: 100px;
+        white-space: nowrap;
+    }
+
+    &__full-name-line--business-card-centered {
+        display: block;
+        width: 100%;
+        text-align: center;
+        transform: none;
+    }
+
+    &__full-name-line--business-card-first-centered {
+        display: block;
+        width: 100%;
+        text-align: center;
+        transform: none;
+    }
+
+    &__position--business-card-centered {
+        text-align: center;
+    }
+
+    &__full-name--badge-centered {
+        > div {
+            width: 100%;
+            text-align: center;
+            transform: none;
+        }
+    }
+
+    &__position--badge-centered {
+        text-align: center;
     }
 }
 

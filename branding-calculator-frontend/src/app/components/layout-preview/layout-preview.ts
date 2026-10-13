@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Template, TextField } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
 import { QrCode } from '../qr-code/qr-code';
@@ -11,24 +11,31 @@ import { QrCode } from '../qr-code/qr-code';
 })
 export class LayoutPreview {
   @Input() template!: Template;
+  @ViewChild('image', { static: true })
+  public image!: ElementRef<HTMLImageElement>;
   @ViewChild('preview', { static: true })
   public preview!: ElementRef<HTMLElement>;
+  @Input() layoutName = '';
   @Input() fullName: string = '';
   @Input() position: string = ''; 
   @Input() phone: string = ''; 
   @Input() mobilePhone: string = ''; 
   @Input() email: string = '';
   @Input() address: string = '';  
+  @Input() city = '';
+  @Input() date = '';
   @Input() qrCode1 = '';
   @Input() qrCode1Label = '';
   @Input() qrCode2 = '';
   @Input() qrCode2Label = '';
   @Input() qrCodesGenerated = false;
   @Input() qrCode2Enabled = false;
+  @Input() qrCode1Enabled = true;
+
   public get fullNameField(): TextField | undefined {
-      return this.template.textFields.find(
-          field => field.type === 'fullName'
-      );
+    return this.template.textFields.find(
+        field => field.type === 'fullName'
+    );
   };
 
   public get positionField(): TextField | undefined {
@@ -91,14 +98,81 @@ export class LayoutPreview {
 
   public formatFullName(fullName: string): string[] {
     const words = fullName.trim().split(/\s+/);
+    if (this.layoutName === 'Бейджи' && this.template.splitPatronymic) {
+      if (words.length < 3) {
+          return [fullName];
+      }
+
+      return [
+          `${words[0]} ${words[1]}`,
+          words[2],
+      ];
+    }
+
+    if (this.layoutName === 'Бейджи' && this.template.id === 3) {
+      if (words.length < 3) return [fullName];
+      return [`${words[0]} ${words[1]}`, words[2]];
+    }
 
     if (words.length <= 1) {
         return words;
     }
 
+    const lastName = words[0];
+    const firstName = words[1];
+    const patronymic = words[2];
+
+    if (!patronymic) {
+        return [
+            lastName,
+            firstName,
+        ];
+    }
+
+    const secondLine = `${firstName} ${patronymic}`;
+
+    if (secondLine.length <= 15) {
+        return [
+            lastName,
+            secondLine,
+        ];
+    }
+
     return [
-        words[0],
-        words.slice(1).join(' '),
+        lastName,
+        `${firstName[0]}. ${patronymic[0]}.`,
     ];
+  }
+
+  public getShortFullNameLeft(): number {
+    const field = this.fullNameField;
+
+    if (!field) {
+        return 0;
+    }
+
+    return field.x + field.width / 2;
+  }
+
+  public isShortFullName(fullName: string): boolean {
+    const words = fullName.trim().split(/\s+/);
+
+    if (words.length < 3) {
+        return false;
+    }
+
+    return `${words[1]} ${words[2]}`.length > 25;
+  }
+
+  public get cityField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'city'
+    );
+  }
+
+  public get dateField(): TextField | undefined {
+    return this.template.textFields.find(
+        field => field.type === 'date'
+    );
   }
 }

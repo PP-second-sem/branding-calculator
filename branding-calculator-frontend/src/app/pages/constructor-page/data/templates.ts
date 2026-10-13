@@ -2,19 +2,19 @@ import { Layout } from "../../../models/layout.model";
 
 export const layouts: Layout[] = [
   {
-    name: 'Аншлаги',
-    icon: 'soldoutIcon.svg',
+    name: 'Визитки',
+    icon: 'businessCardIcon.svg',
     templates : [
     {
       id: 1,
       preview: 'business_card_1.svg',
-      addressContinuationOffset: -75,
+      filledPreview: 'filled_business_card_1.svg',
       textFields: [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 300,
-        y: 90,
+        x: 290,
+        y: 95,
         width: 500,
         fontSize: 26,
         fontWeight: 700
@@ -22,7 +22,7 @@ export const layouts: Layout[] = [
       {
         id: 'position',
         type: 'position',
-        x: 300,
+        x: 290,
         y: 180,
         width: 500,
         fontSize: 14,
@@ -31,7 +31,7 @@ export const layouts: Layout[] = [
       {
         id: 'phone',
         type: 'phone',
-        x: 140,
+        x: 135,
         y: 349,
         width: 500,
         fontSize: 14,
@@ -40,7 +40,7 @@ export const layouts: Layout[] = [
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 175,
+        x: 173,
         y: 377,
         width: 500,
         fontSize: 14,
@@ -49,8 +49,8 @@ export const layouts: Layout[] = [
       {
         id: 'email',
         type: 'email',
-        x: 150,
-        y: 405,
+        x: 153,
+        y: 404,
         width: 500,
         fontSize: 14,
         fontWeight: 400
@@ -58,24 +58,24 @@ export const layouts: Layout[] = [
       {
         id: 'address',
         type: 'address',
-        x: 490,
-        y: 350,
+        x: 440,
+        y: 355,
         width: 300,
         fontSize: 12,
         fontWeight: 400
       },],
       qrCodes:
       [{
-        x: 720,
-        y: 165,
-        size: 120,
-        labelFontSize: 12,
+        x: 750,
+        y: 180,
+        size: 89,
+        labelFontSize: 13,
       },
       {
-        x: 720,
-        y: 320,
-        size: 120,
-        labelFontSize: 12,
+        x: 750,
+        y: 325,
+        size: 89,
+        labelFontSize: 13,
       }],
       data: {
         fullName: '',
@@ -95,12 +95,13 @@ export const layouts: Layout[] = [
     {
       id: 2,
       preview: 'business_card_2.svg',
+      filledPreview: 'filled_business_card_2.svg',
       textFields: [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 360,
-        y: 70,
+        x: 359,
+        y: 75,
         width: 500,
         fontSize: 22,
         fontWeight: 700
@@ -108,9 +109,9 @@ export const layouts: Layout[] = [
       {
         id: 'position',
         type: 'position',
-        x: 360,
-        y: 140,
-        width: 500,
+        x: 359,
+        y: 150,
+        width: 100,
         fontSize: 16,
         fontWeight: 700
       },
@@ -118,51 +119,51 @@ export const layouts: Layout[] = [
         id: 'phone',
         type: 'phone',
         x: 400,
-        y: 271,
+        y: 270,
         width: 500,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
         x: 440,
-        y: 295,
+        y: 293,
         width: 500,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
         x: 415,
-        y: 317,
+        y: 315,
         width: 500,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 360,
-        y: 350,
+        x: 359,
+        y: 370,
         width: 300,
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: 400
       },],
       qrCodes:
       [
         {
-          x: 730,
-          y: 170,
-          size: 90,
-          labelFontSize: 11,
+          x: 725,
+          y: 180,
+          size: 93,
+          labelFontSize: 12,
         },
         {
-          x: 730,
-          y: 340,
-          size: 90,
-          labelFontSize: 11,
+          x: 725,
+          y: 320,
+          size: 93,
+          labelFontSize: 12,
         }
       ],
       data: {
@@ -183,21 +184,22 @@ export const layouts: Layout[] = [
     {
       id: 3,
       preview: 'business_card_3.svg',
+      filledPreview: 'filled_business_card_3.svg',
       textFields: [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 180,
+        x: 160,
         y: 60,
         width: 500,
-        fontSize: 32,
+        fontSize: 33,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
         x: 60,
-        y: 180,
+        y: 190,
         width: 500,
         fontSize: 16,
         fontWeight: 400
@@ -206,18 +208,18 @@ export const layouts: Layout[] = [
         id: 'phone',
         type: 'phone',
         x: 95,
-        y: 377,
+        y: 376,
         width: 500,
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
         x: 125,
-        y: 398,
+        y: 399,
         width: 500,
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: 400
       },
       {
@@ -226,29 +228,29 @@ export const layouts: Layout[] = [
         x: 105,
         y: 420,
         width: 500,
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 330,
-        y: 380,
+        x: 280,
+        y: 376,
         width: 300,
-        fontSize: 7,
+        fontSize: 13,
         fontWeight: 400
       },],
       qrCodes:[
         {
-          x: 560,
-          y: 370,
-          size: 70,
+          x: 660,
+          y: 380,
+          size: 75,
           labelFontSize: 9,
         },
         {
-          x: 730,
-          y: 370,
-          size: 70,
+          x: 765,
+          y: 380,
+          size: 75,
           labelFontSize: 9,
         }
       ],
@@ -270,72 +272,73 @@ export const layouts: Layout[] = [
     {
       id: 4,
       preview: 'business_card_4.svg',
+      filledPreview: 'filled_business_card_4.svg',
       textFields: [
       {
         id: 'fullName',
         type: 'fullName',
-        x: 180,
-        y: 60,
-        width: 500,
-        fontSize: 32,
+        x: 90,
+        y: 55,
+        width: 100,
+        fontSize: 14,
         fontWeight: 700
       },
       {
         id: 'position',
         type: 'position',
-        x: 60,
-        y: 180,
-        width: 500,
-        fontSize: 16,
+        x: 110,
+        y: 100,
+        width: 60,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'phone',
         type: 'phone',
-        x: 95,
-        y: 377,
+        x: 85,
+        y: 350,
         width: 500,
-        fontSize: 14,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'mobilePhone',
         type: 'mobilePhone',
-        x: 125,
-        y: 398,
+        x: 105,
+        y: 374,
         width: 500,
-        fontSize: 14,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'email',
         type: 'email',
-        x: 105,
-        y: 420,
+        x: 90,
+        y: 397,
         width: 500,
-        fontSize: 14,
+        fontSize: 9,
         fontWeight: 400
       },
       {
         id: 'address',
         type: 'address',
-        x: 360,
-        y: 380,
-        width: 300,
-        fontSize: 14,
+        x: 58,
+        y: 420,
+        width: 500,
+        fontSize: 9,
         fontWeight: 400
       },],
       qrCodes:[
       {
-        x: 640,
-        y: 370,
-        size: 80,
+        x: 60,
+        y: 200,
+        size: 62,
         labelFontSize: 8,
       },
       {
-        x: 763,
-        y: 370,
-        size: 80,
+        x: 152,
+        y: 200,
+        size: 62,
         labelFontSize: 8,
       }],
       data: {
@@ -361,6 +364,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -380,6 +384,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -399,6 +404,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -424,6 +430,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -443,6 +450,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -462,6 +470,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -481,12 +490,13 @@ export const layouts: Layout[] = [
     ]
   },
   {
-    name: 'Визитки',
-    icon: 'businessCardIcon.svg',
+    name: 'Аншлаги',
+    icon: 'soldoutIcon.svg',
     templates : [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -506,6 +516,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -525,6 +536,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -550,6 +562,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'diploma.svg',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -569,6 +582,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -588,6 +602,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -613,6 +628,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -632,6 +648,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -651,6 +668,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -676,6 +694,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -695,6 +714,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -714,6 +734,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -739,6 +760,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -758,6 +780,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -777,6 +800,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -802,6 +826,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -821,6 +846,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -840,6 +866,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -865,6 +892,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -884,6 +912,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -903,6 +932,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -928,6 +958,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -947,6 +978,7 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -966,6 +998,7 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
         textFields: [],
         qrCodes:[
           {
@@ -981,6 +1014,154 @@ export const layouts: Layout[] = [
             labelFontSize: 6,
           }
         ]
+      }
+    ]
+  },
+  {
+    name: 'Бейджи',
+    icon: 'badgeIcon.svg',
+    templates : [
+      {
+        id: 1,
+        preview: 'badge_1.svg',
+        filledPreview: 'filled_badge_1.svg',
+        splitPatronymic: true,
+        textFields: [
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: -90,
+            y: 300,
+            width: 500,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: -90,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 500,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 70,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 170,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },],
+        },
+      {
+        id: 2,
+        preview: 'badge_2.svg',
+        filledPreview: 'filled_badge_2.svg',
+        splitPatronymic: true,
+        textFields: [
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: -90,
+            y: 300,
+            width: 500,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: -90,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 500,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 70,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 170,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+        ]
+      },
+      {
+        id: 3,
+        preview: 'badge_3.svg',
+        filledPreview: 'filled_badge_3.svg',
+        textFields: [
+            {
+            id: 'fullName',
+            type: 'fullName',
+            x: 145,
+            y: 195,
+            width: 180,
+            fontSize: 15,
+            fontWeight: 400,
+            color: 'rgba(207, 19, 59, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 145,
+            y: 237,
+            color: 'rgba(207, 19, 59, 1)',
+            width: 500,
+            fontSize: 9,
+            fontWeight: 500
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 120,
+            y: 450,
+            width: 60,
+            fontSize: 10,
+            fontWeight: 500,
+            color: 'rgba(243, 242, 232, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 120,
+            y: 475,
+            width: 60,
+            fontSize: 10,
+            fontWeight: 500,
+            color: 'rgba(243, 242, 232, 1)',
+          },
+        ],
       }
     ]
   }

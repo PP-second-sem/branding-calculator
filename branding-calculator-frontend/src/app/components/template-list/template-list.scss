@@ -1,15 +1,19 @@
 .template-list-wrapper {
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .template-list__header {
-    position: absolute;
-    left: 0;
-    bottom: calc(100% + 38px);
+    display: flex;
+    align-items: center;
+    margin: 0;
 
     h2 {
         margin: 0;
         padding: 9px 20px;
+
+        background-color: #fcf9f7;
+
         font-size: 22px;
         font-weight: 600;
         white-space: nowrap;
@@ -17,8 +21,7 @@
 
     &::after {
         content: '';
-        display: block;
-        width: 100%;
+        flex: 1;
         height: 6px;
         background-color: rgba(208, 21, 58, 1);
     }
@@ -58,6 +61,7 @@
 
         &--down {
             margin-top: 15px;
+            margin-bottom: 30px;
         }
     }
 }

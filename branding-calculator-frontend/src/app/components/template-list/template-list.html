@@ -1,9 +1,4 @@
 <div class="template-list-wrapper">
-
-    <div class="template-list__header">
-        <h2>{{ categoryName }}</h2>
-    </div>
-
     <button
         type="button"
         class="template-list__scroll-button template-list__scroll-button--up"
@@ -20,7 +15,7 @@
             [class.template-list__item--active]="selectedTemplate === template"
             (click)="selectTemplate(template)"
         >
-            <img [src]="template.preview" alt="">
+            <img [src]="template.filledPreview" alt="">
         </button>
     </nav>
 
