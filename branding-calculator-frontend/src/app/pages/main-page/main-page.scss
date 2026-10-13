@@ -3,7 +3,6 @@
     color: #242321;
     overflow-x: clip;
 
-    // Первый экран
     &__first-screen {
         position: relative;
         min-height: 100vh;
@@ -13,7 +12,6 @@
         width: 100%;
     }
 
-    // Логотип в шапке
     &__header {
         display: flex;
         justify-content: flex-end;
@@ -30,7 +28,6 @@
         height: auto;
     }
 
-    // Главный блок: текст слева, изображение справа
     &__hero-section {
         display: flex;
         flex: 1 0 auto;
@@ -49,7 +46,6 @@
         z-index: 2;
     }
 
-    // Заголовок
     &__title {
         color: #D0153A;
         font-size: clamp(42px, 5.2vw, 74px);
@@ -65,7 +61,6 @@
         margin: 0 0 48px;
     }
 
-  // Описание
     &__slogan {
     display: flex;
     flex-direction: column;
@@ -80,7 +75,6 @@
     margin: 0;
     }
 
-    // Кнопки
     &__buttons {
     display: flex;
     align-items: center;
@@ -122,7 +116,6 @@
         object-fit: contain;
     }
 
-    // Иллюстрация справа
     &__images {
         position: static;
         flex: 1 1 0;
@@ -150,7 +143,6 @@
         bottom: 0;
     }
 
-    // Три преимущества внизу первого экрана
     &__cards {
         display: flex;
         align-items: flex-start;
@@ -206,7 +198,6 @@
         margin: 0;
     }
 
-    // Секция «Как это работает»
     &__info {
         width: 100%;
         box-sizing: border-box;
@@ -338,7 +329,6 @@
         padding: 80px 120px 0;
     }
 
-    // Верхняя плашка с призывом к действию
     &__container {
         display: flex;
         align-items: center;
@@ -395,7 +385,6 @@
         object-fit: contain;
     }
 
-    // Футер
     &__footer {
         display: flex;
         justify-content: flex-start;
@@ -461,3 +450,76 @@
         color: #D0153A;
     }
 }
+
+
+@media (max-width: 1440px) {
+    .main-page {
+        &__header {
+            padding: 24px 40px;
+        }
+
+        &__hero-section {
+            padding-left: 64px;
+            gap: 16px;
+        }
+
+        &__content {
+            width: 52%;
+        }
+
+        &__books {
+            width: 45vw;
+        }
+
+        &__cards {
+            padding-left: 64px;
+            padding-right: 64px;
+            gap: 24px;
+        }
+
+        &__card-title {
+            font-size: 17px;
+        }
+
+        &__info {
+            padding-left: 64px;
+            padding-right: 64px;
+        }
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1350px) {
+    .main-page {
+        &__books {
+            width: 42vw;
+        }
+
+        &__cards {
+            gap: 20px;
+            padding-left: 64px;
+            padding-right: 40px;
+        }
+
+        &__card {
+            gap: 12px;
+        }
+
+        &__card-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        &__card-title {
+            font-size: 16px;
+        }
+
+        &__card-caption {
+            font-size: 12px;
+        }
+
+        &__triangle {
+            width: min(55%, 480px);
+        }
+    }
+}
+
