@@ -1,11 +1,15 @@
 .input {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    min-width: 0;
 
     &__label {
         display: flex;
         flex-direction: column;
         gap: 8px;
+        width: 100%;
+        min-width: 0;
     }
 
     &__title {
@@ -16,6 +20,7 @@
 
     &__field {
         width: 100%;
+        min-width: 0;   
         box-sizing: border-box;
         padding: 10px 12px;
         border: 1px solid #E3DFDE;
@@ -24,10 +29,14 @@
         font-family: inherit;
         font-size: 16px;
         outline: none;
-        color: rgba(159, 159, 159, 1);
+        color: black;
 
         &--underline-placeholder::placeholder {
             text-decoration: underline;
+        }
+
+        &::placeholder {
+            color: rgba(159, 159, 159, 1);
         }
     }
 }
