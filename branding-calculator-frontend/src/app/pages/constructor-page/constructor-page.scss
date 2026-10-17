@@ -214,9 +214,9 @@
 
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 12px;
 
-        padding: 30px 20px 0 37px;
+        padding: 12px 20px 0 37px;
         border-left: 1px solid #e3dfde;
     }
 
@@ -241,4 +241,15 @@
     margin: 0;
     padding: 0;
     height: 31px;
+}
+
+@media (max-height: 749px) {
+    .constructor__workspace {
+        gap: 18px;
+        padding-top: 18px;
+    }
+
+    .constructor__form {
+        max-height: 280px;
+    }
 }
