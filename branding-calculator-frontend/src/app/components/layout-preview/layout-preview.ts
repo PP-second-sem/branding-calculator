@@ -74,33 +74,61 @@ export class LayoutPreview {
     let currentLine = '';
 
     for (const word of words) {
-        const nextLine = currentLine
-            ? `${currentLine} ${word}`
-            : word;
+      const nextLine = currentLine
+          ? `${currentLine} ${word}`
+          : word;
 
-        if (nextLine.length <= 34) {
-            currentLine = nextLine;
-        } else {
-            if (currentLine) {
-                lines.push(currentLine);
-            }
+      if (nextLine.length <= 34) {
+        currentLine = nextLine;
+      } else {
+          if (currentLine) {
+            lines.push(currentLine);
+          }
 
-            currentLine = word;
-        }
+          currentLine = word;
+      }
     }
 
     if (currentLine) {
-        lines.push(currentLine);
+      lines.push(currentLine);
+    }
+
+
+    if (lines.length > 1 && /^(д\.?|кв\.?)\s/i.test(lines[lines.length - 1])) {
+      const lastLine = lines[lines.length - 1];
+      const previousLine = lines[lines.length - 2];
+
+      if (`${previousLine} ${lastLine}`.length <= 42) {
+          lines[lines.length - 2] = `${previousLine} ${lastLine}`;
+          lines.pop();
+      }
     }
 
     return lines;
   }
 
+  
   public formatFullName(fullName: string): string[] {
     const words = fullName.trim().split(/\s+/);
+
+    if (this.layoutName === 'Бейджи' && this.template.id === 1) {
+        if (words.length < 3) {
+            return words.join(' ').length > 16 ? words : [fullName];
+        }
+
+        if (`${words[0]} ${words[1]}`.length > 16) {
+            return words;
+        }
+
+        return [
+            `${words[0]} ${words[1]}`,
+            words[2],
+        ];
+    }
+
     if (this.layoutName === 'Бейджи' && this.template.splitPatronymic) {
       if (words.length < 3) {
-          return [fullName];
+        return [fullName];
       }
 
       return [
@@ -109,13 +137,8 @@ export class LayoutPreview {
       ];
     }
 
-    if (this.layoutName === 'Бейджи' && this.template.id === 3) {
-      if (words.length < 3) return [fullName];
-      return [`${words[0]} ${words[1]}`, words[2]];
-    }
-
     if (words.length <= 1) {
-        return words;
+      return words;
     }
 
     const lastName = words[0];
@@ -123,26 +146,21 @@ export class LayoutPreview {
     const patronymic = words[2];
 
     if (!patronymic) {
-        return [
-            lastName,
-            firstName,
-        ];
+      return [lastName, firstName];
     }
 
     const secondLine = `${firstName} ${patronymic}`;
 
     if (secondLine.length <= 15) {
-        return [
-            lastName,
-            secondLine,
-        ];
+      return [lastName, secondLine];
     }
 
     return [
-        lastName,
-        `${firstName[0]}. ${patronymic[0]}.`,
+      lastName,
+      `${firstName[0]}. ${patronymic[0]}.`,
     ];
   }
+
 
   public getShortFullNameLeft(): number {
     const field = this.fullNameField;

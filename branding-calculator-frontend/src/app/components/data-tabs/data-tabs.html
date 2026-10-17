@@ -38,7 +38,7 @@
 </div>
 
 <div class="data-tabs__content">
-    <ng-container *ngIf="activeTab === 'personal'">
+    <ng-container *ngIf="activeTab === 'personal' && layoutName === 'Визитки'">
         <div class="data-tabs__fields">
             <app-placeholder
                 label="ФИО"
@@ -50,6 +50,23 @@
             <app-placeholder
                 label="Должность"
                 placeholder="Должность"
+                [value]="position"
+                (valueChange)="setPosition($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab === 'personal' && layoutName === 'Бейджи'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                label="ФИО"
+                placeholder="Иванов Иван Иванович"
+                [value]="fullName"
+                (valueChange)="setFullName($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Роль"
+                placeholder="Роль"
                 [value]="position"
                 (valueChange)="setPosition($event)"
             ></app-placeholder>
@@ -181,10 +198,6 @@
             </div>
 
             <div class="data-tabs__meta">
-                <p class="data-tabs__text">
-                    Второй QR-код можно отключить переключателем в его блоке
-                </p>
-
                 <button
                     type="button"
                     class="data-tabs__button"

@@ -58,7 +58,7 @@
                 layoutName === 'Визитки' && template.id === 4
             "
             [class.layout-preview__full-name--badge-centered]="
-                layoutName === 'Бейджи' && template.id !== 3
+                layoutName === 'Бейджи' && template.id !== 1
             "
         >
             <div
@@ -104,14 +104,19 @@
             [style.width.px]="positionField?.width"
             [style.fontWeight]="positionField?.fontWeight"
             [style.color]="positionField?.color"
-            [class.layout-preview__position--badge-centered]="layoutName === 'Бейджи' && template.id !== 3"
+            [class.layout-preview__position--badge-centered]="layoutName === 'Бейджи' && template.id !== 1"
+            [class.layout-preview__position--badge-long-name]="
+                layoutName === 'Бейджи' &&
+                template.id === 1 &&
+                formatFullName(fullName).length === 3
+            "
         >
             {{ position }}
         </div>
 
         <div *ngIf="cityField"
             class="layout-preview__city"
-            [class.layout-preview__city--centered]="layoutName === 'Бейджи' && template.id === 3"
+            [class.layout-preview__city--centered]="layoutName === 'Бейджи' && template.id === 1"
             [style.left.px]="cityField.x"
             [style.top.px]="cityField.y"
             [style.width.px]="cityField.width"
