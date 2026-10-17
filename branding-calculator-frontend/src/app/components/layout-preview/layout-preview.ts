@@ -74,23 +74,34 @@ export class LayoutPreview {
     let currentLine = '';
 
     for (const word of words) {
-        const nextLine = currentLine
-            ? `${currentLine} ${word}`
-            : word;
+      const nextLine = currentLine
+          ? `${currentLine} ${word}`
+          : word;
 
-        if (nextLine.length <= 34) {
-            currentLine = nextLine;
-        } else {
-            if (currentLine) {
-                lines.push(currentLine);
-            }
+      if (nextLine.length <= 34) {
+        currentLine = nextLine;
+      } else {
+          if (currentLine) {
+            lines.push(currentLine);
+          }
 
-            currentLine = word;
-        }
+          currentLine = word;
+      }
     }
 
     if (currentLine) {
-        lines.push(currentLine);
+      lines.push(currentLine);
+    }
+
+
+    if (lines.length > 1 && /^(д\.?|кв\.?)\s/i.test(lines[lines.length - 1])) {
+      const lastLine = lines[lines.length - 1];
+      const previousLine = lines[lines.length - 2];
+
+      if (`${previousLine} ${lastLine}`.length <= 42) {
+          lines[lines.length - 2] = `${previousLine} ${lastLine}`;
+          lines.pop();
+      }
     }
 
     return lines;
