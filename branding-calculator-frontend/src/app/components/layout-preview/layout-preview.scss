@@ -113,6 +113,9 @@
         word-break: normal;
         hyphens: manual;
     }
+    &__position--badge-long-name {
+        transform: translateY(15px);
+    }
 }
 
 .layout-preview__qr-label {

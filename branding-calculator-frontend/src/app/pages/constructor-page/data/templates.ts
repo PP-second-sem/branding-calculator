@@ -1023,101 +1023,6 @@ export const layouts: Layout[] = [
     templates : [
       {
         id: 1,
-        preview: 'badge_1.svg',
-        filledPreview: 'filled_badge_1.svg',
-        splitPatronymic: true,
-        textFields: [
-          {
-            id: 'fullName',
-            type: 'fullName',
-            x: -90,
-            y: 300,
-            width: 500,
-            fontSize: 23,
-            fontWeight: 400,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'position',
-            type: 'position',
-            x: -90,
-            y: 380,
-            color: 'rgba(231, 75, 31, 1)',
-            width: 500,
-            fontSize: 12,
-            fontWeight: 400
-          },
-          {
-            id: 'place',
-            type: 'city',
-            x: 60,
-            y: 440,
-            width: 100,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'date',
-            type: 'date',
-            x: 175,
-            y: 440,
-            width: 500,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },],
-        },
-      {
-        id: 2,
-        preview: 'badge_2.svg',
-        filledPreview: 'filled_badge_2.svg',
-        splitPatronymic: true,
-        textFields: [
-          {
-            id: 'fullName',
-            type: 'fullName',
-            x: -90,
-            y: 300,
-            width: 500,
-            fontSize: 23,
-            fontWeight: 400,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'position',
-            type: 'position',
-            x: -90,
-            y: 380,
-            color: 'rgba(231, 75, 31, 1)',
-            width: 500,
-            fontSize: 12,
-            fontWeight: 400
-          },
-          {
-            id: 'place',
-            type: 'city',
-            x: 60,
-            y: 440,
-            width: 100,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'date',
-            type: 'date',
-            x: 175,
-            y: 440,
-            width: 500,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-        ]
-      },
-      {
-        id: 3,
         preview: 'badge_3.svg',
         filledPreview: 'filled_badge_3.svg',
         textFields: [
@@ -1162,7 +1067,104 @@ export const layouts: Layout[] = [
             color: 'rgba(243, 242, 232, 1)',
           },
         ],
-      }
+      },
+      {
+        id: 2,
+        preview: 'badge_1.svg',
+        filledPreview: 'filled_badge_1.svg',
+        splitPatronymic: true,
+        textFields: [
+          
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: -90,
+            y: 300,
+            width: 500,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 8,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 300,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 60,
+            y: 440,
+            width: 100,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 175,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },],
+      },
+      {
+        id: 3,
+        preview: 'badge_2.svg',
+        filledPreview: 'filled_badge_2.svg',
+        splitPatronymic: true,
+        textFields: [
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: -90,
+            y: 300,
+            width: 500,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 8,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 300,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 60,
+            y: 440,
+            width: 100,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 175,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+        ]
+      },
+      
     ]
   }
 ];
