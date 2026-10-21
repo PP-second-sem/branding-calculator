@@ -1,21 +1,17 @@
-version: "3.8"
-
 services:
   backend:
     build:
       context: ./branding-calculator-backend
       dockerfile: Dockerfile
+      network: host
     container_name: branding-backend
-    user: root
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:8080
-      - ConnectionStrings__DefaultConnection=Data Source=/app/yamal.db;Foreign Keys=True;Mode=ReadWrite
+      - ConnectionStrings__DefaultConnection=Data Source=/app/Data/yamal.db;Foreign Keys=True;Mode=ReadWrite
     volumes:
-      - ./yamal.db:/app/yamal.db
+      - ./data:/app/Data
       - ./uploads:/app/uploads
-    ports:
-      - "5001:8080"
     networks:
       - app-network
     restart: unless-stopped
@@ -25,10 +21,22 @@ services:
       context: ./branding-calculator-frontend
       dockerfile: Dockerfile
     container_name: branding-frontend
+    # Внутри контейнера фронтенд (обычно Nginx или Node) слушает порт 80
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: branding-nginx
     ports:
-      - "8080:80"
+      - "80:80" # Единственный порт, открытый наружу (по IP)
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./uploads:/app/uploads:ro
     depends_on:
       - backend
+      - frontend
     networks:
       - app-network
     restart: unless-stopped
