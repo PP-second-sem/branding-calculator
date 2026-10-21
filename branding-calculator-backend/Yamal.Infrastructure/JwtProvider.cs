@@ -18,7 +18,6 @@ namespace YamalBrand.Infrastructure
                 [
                     new("userId", user.Id.ToString()),
                     new("email", user.Login),
-                    new(ClaimTypes.Role, user.Role.ToString())
                 ];
 
             var signingCredentials = new SigningCredentials(

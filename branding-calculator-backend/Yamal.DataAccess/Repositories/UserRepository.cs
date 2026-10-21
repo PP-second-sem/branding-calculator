@@ -19,7 +19,6 @@ namespace Yamal.DataAccess.Repositories
             var user = new UserEntity()
             {
                 PasswordHash = entity.Password,
-                Role = entity.Role.ToString(),
             };
 
             await _context.Users.AddAsync(user);
@@ -40,28 +39,25 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Users
                 .AsNoTracking()
-                .Select(u => User.Create(u.Id, u.Login, u.PasswordHash, 
-                    Enum.Parse<Role>(u.Role, true)).user)
+                .Select(u => new User(u.Id, u.Login, u.PasswordHash))
                 .ToListAsync();
         }
 
-        public async Task<User> GetByLogin(string login)
+        public async Task<User?> GetByLogin(string login)
         {
             return await _context.Users
                 .AsNoTracking()
                 .Where(u => u.Login == login)
-                .Select(u => User.Create(u.Id, u.Login, u.PasswordHash,
-                 Enum.Parse<Role>(u.Role, true)).user)
+                .Select(u => new User(u.Id, u.Login, u.PasswordHash))
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<User?> GetById(int id)
         {
             return await _context.Users
                .AsNoTracking()
                .Where(u => u.Id == id)
-               .Select(u => User.Create(u.Id, u.Login, u.PasswordHash, 
-                   Enum.Parse<Role>(u.Role, true)).user)
+               .Select(u => new User(u.Id, u.Login, u.PasswordHash))
                .FirstOrDefaultAsync();
         }
 
@@ -71,10 +67,11 @@ namespace Yamal.DataAccess.Repositories
                 .Where(x => x.Id == entity.Id)
                 .ExecuteUpdateAsync(e => e
                     .SetProperty(u => u.Id, entity.Id)
-                    .SetProperty(u => u.PasswordHash, entity.Password)
-                    .SetProperty(u => u.Role, entity.Role.ToString()));
+                    .SetProperty(u => u.Login, entity.Login)
+                    .SetProperty(u => u.PasswordHash, entity.Password));
             return entity.Id;
         }
+
 
     }
 }

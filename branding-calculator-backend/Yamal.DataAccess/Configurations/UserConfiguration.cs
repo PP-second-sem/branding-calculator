@@ -14,10 +14,6 @@ namespace Yamal.DataAccess.Configurations
                 .HasMaxLength(255)
                 .IsRequired();
             
-
-            builder.Property(x => x.Role)
-                .HasMaxLength(20)
-                .IsRequired();
         }
     }
 }

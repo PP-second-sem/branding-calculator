@@ -23,11 +23,10 @@ namespace Yamal.Application
         {
             var hashedPassword = _passwordHasher.Generate(user.Password);
 
-            var newUser = User.Create(
-                0, 
+            var newUser = new User(
+                0,
                 user.Login,
-                hashedPassword,
-                user.Role).user;
+                hashedPassword);
 
             return await _userRepository.Create(newUser);
         }
@@ -64,7 +63,7 @@ namespace Yamal.Application
         }
 
 
-        public async Task<User> GetUserById(int id)
+        public async Task<User?> GetUserById(int id)
         {
             return await _userRepository.GetById(id);
         }
