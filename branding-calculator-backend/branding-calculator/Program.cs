@@ -1,112 +1,61 @@
-using branding_calculator.Extintions;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.EntityFrameworkCore;
+using branding_calculator.Extensions;
+using Serilog;
 using SQLitePCL;
-using Yamal.Application;
-using Yamal.Core.Abstractions;
-using Yamal.Core.Models;
-using Yamal.DataAccess;
-using Yamal.DataAccess.Repositories;
-using YamalBrand.Infrastructure;
 
-namespace branding_calculator
+// 1. Глобальная инициализация (до создания билдера)
+Batteries.Init();
+System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+// 2. Bootstrap-логгер для перехвата ошибок на самом раннем этапе запуска
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
+try
 {
-    public class Program
+    var builder = WebApplication.CreateBuilder(args);
+
+    // 3. Настройка Serilog (читает из appsettings.json + добавляет файловый лог)
+    builder.Host.UseSerilog((context, services, configuration) =>
+        configuration
+            .ReadFrom.Configuration(context.Configuration)
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.File("logs/app-.txt", rollingInterval: RollingInterval.Day)
+    );
+
+    // 4. Вызов вынесенных методов расширения (Program.cs остается чистым!)
+    builder.ConfigureAppLimits();
+    builder.Services.ConfigureDatabase(builder.Configuration);
+    builder.Services.AddApplicationServices(builder.Configuration);
+
+    var app = builder.Build();
+
+    // 5. Конвейер обработки запросов (Middleware)
+    app.UseSerilogRequestLogging(); // 
+    app.UseStaticFiles();
+
+    if (app.Environment.IsDevelopment())
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-
-            Batteries.Init();
-            builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
-
-            var jwtOptions = builder.Configuration.GetSection(nameof(JwtOptions)).Get<JwtOptions>();
-
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-
-            builder.Services.AddApiAuthentication(jwtOptions);
-            builder.Services.AddAuthorization();
-            builder.Services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
-            });
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(c => c.UseInlineDefinitionsForEnums());
-
-            builder.Services.Configure<FormOptions>(options =>
-            {
-                options.ValueLengthLimit = int.MaxValue;
-                options.MultipartBodyLengthLimit = 500 * 1024 * 1024; // 500 MB
-                options.MemoryBufferThreshold = int.MaxValue;
-            });
-
-            builder.WebHost.ConfigureKestrel(serverOptions =>
-            {
-                serverOptions.Limits.MaxRequestBodySize = 500 * 1024 * 1024; // 500 MB
-                serverOptions.ListenAnyIP(8080);
-            });
-
-            builder.Services.AddDbContext<YamalDbContext>(options =>
-            {
-                var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-                if (!string.IsNullOrEmpty(connectionString) &&
-                    !connectionString.Contains("Data Source=", StringComparison.OrdinalIgnoreCase) &&
-                    !connectionString.Contains("DataSource=", StringComparison.OrdinalIgnoreCase))
-                {
-                    connectionString = $"Data Source={connectionString}";
-                }
-
-                options.UseSqlite(connectionString);
-            });
-
-            builder.Services.AddScoped<IServices<Material>, MaterialsServices>();
-            builder.Services.AddScoped<IRepository<Material>, MaterialRepository>();
-
-            builder.Services.AddScoped<IJwtProvider, JwtProvider>();
-            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-
-            builder.Services.AddScoped<IUsersServices, UsersServices>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-            builder.Services.AddScoped<IQuestionServices, QuestionServices>();
-            builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
-
-            builder.Services.AddScoped<IServices<LogoLibrary>, LogoLibraryService>();
-            builder.Services.AddScoped<IRepository<LogoLibrary>, LogoLibraryRepository>();
-
-            builder.Services.AddScoped<IRepository<MediaCategory>, MediaCategoryRepository>();
-            builder.Services.AddScoped<IServices<MediaCategory>, MediaCategoryService>();
-
-            builder.Services.AddScoped<IRepository<MediaType>, MediaTypeRepository>();
-            builder.Services.AddScoped<IServices<MediaType>, MediaTypeService>();
-            
-            builder.Services.AddScoped<ICarriersTypeLogoRepository, CarrierTypeLogoRepository>();
-            builder.Services.AddScoped<ICarrierTypeLogoService, CarrierTypeLogoService>();
-            
-            builder.Services.AddScoped<IFileService, FileService>();
-
-            var app = builder.Build();
-            
-            app.UseStaticFiles();
-
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.MapGet("/", () => Results.Redirect("swagger"));
-
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-
-            app.Run();
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
     }
+
+    app.MapGet("/", () => Results.Redirect("swagger"));
+
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+
+    Log.Information("Приложение успешно запущено и готово принимать запросы");
+    app.Run();
 }
-//branding-calculator-git\branding-calculator-backend\Data
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Критическая ошибка: приложение не смогло запуститься");
+}
+finally
+{
+    Log.CloseAndFlush(); // Гарантируем запись последних логов перед выходом
+}
