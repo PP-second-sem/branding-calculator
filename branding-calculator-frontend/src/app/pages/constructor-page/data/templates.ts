@@ -2,6 +2,354 @@ import { Layout } from "../../../models/layout.model";
 
 export const layouts: Layout[] = [
   {
+    name: 'Аншлаги',
+    icon: 'soldoutIcon.svg',
+    templates : [
+      {
+        id: 1,
+        preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      },
+      {
+        id: 2,
+        preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      },
+      {
+        id: 3,
+        preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'Афиши',
+    icon: 'posterIcon.svg',
+    templates : [
+      {
+        id: 1,
+        preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      },
+      {
+        id: 2,
+        preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      },
+      {
+        id: 3,
+        preview: 'bictor.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: 'Бейджи',
+    icon: 'badgeIcon.svg',
+    templates : [
+      {
+        id: 1,
+        preview: 'badge_3.svg',
+        filledPreview: 'filled_badge_3.svg',
+        textFields: [
+            {
+            id: 'fullName',
+            type: 'fullName',
+            x: 145,
+            y: 195,
+            width: 180,
+            fontSize: 15,
+            fontWeight: 400,
+            color: 'rgba(207, 19, 59, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 145,
+            y: 237,
+            color: 'rgba(207, 19, 59, 1)',
+            width: 120,
+            fontSize: 9,
+            fontWeight: 500
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 120,
+            y: 450,
+            width: 60,
+            fontSize: 10,
+            fontWeight: 500,
+            color: 'rgba(243, 242, 232, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 120,
+            y: 475,
+            width: 60,
+            fontSize: 10,
+            fontWeight: 500,
+            color: 'rgba(243, 242, 232, 1)',
+          },
+        ],
+      },
+      {
+        id: 2,
+        preview: 'badge_1.svg',
+        filledPreview: 'filled_badge_1.svg',
+        splitPatronymic: true,
+        textFields: [
+          
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: -90,
+            y: 300,
+            width: 500,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 8,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 300,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 60,
+            y: 440,
+            width: 100,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 175,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },],
+      },
+      {
+        id: 3,
+        preview: 'badge_2.svg',
+        filledPreview: 'filled_badge_2.svg',
+        splitPatronymic: true,
+        textFields: [
+          {
+            id: 'fullName',
+            type: 'fullName',
+            x: -90,
+            y: 300,
+            width: 500,
+            fontSize: 23,
+            fontWeight: 400,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'position',
+            type: 'position',
+            x: 8,
+            y: 380,
+            color: 'rgba(231, 75, 31, 1)',
+            width: 300,
+            fontSize: 12,
+            fontWeight: 400
+          },
+          {
+            id: 'place',
+            type: 'city',
+            x: 60,
+            y: 440,
+            width: 100,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+          {
+            id: 'date',
+            type: 'date',
+            x: 175,
+            y: 440,
+            width: 500,
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'rgba(231, 75, 31, 1)',
+          },
+        ]
+      },
+      
+    ]
+  },
+  {
+    name: 'Буклет',
+    icon: 'bookletIcon.svg',
+    templates : [
+      {
+        id: 1,
+        preview: 'templates/announcement-1.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      },
+      {
+        id: 2,
+        preview: 'templates/announcement-2.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      },
+      {
+        id: 3,
+        preview: 'templates/announcement-3.png',
+        filledPreview: 'filled_business_card_1.svg',
+        textFields: [],
+        qrCodes:[
+          {
+            x: 720,
+            y: 320,
+            size: 120,
+            labelFontSize: 6,
+          },
+          {
+            x: 720,
+            y: 150,
+            size: 120,
+            labelFontSize: 6,
+          }
+        ]
+      }
+    ]
+  },
+  {
     name: 'Визитки',
     icon: 'businessCardIcon.svg',
     templates : [
@@ -357,204 +705,6 @@ export const layouts: Layout[] = [
       }
     },
   ]},
-  {
-    name: 'Афиши',
-    icon: 'posterIcon.svg',
-    templates : [
-      {
-        id: 1,
-        preview: 'bictor.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      },
-      {
-        id: 2,
-        preview: 'bictor.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      },
-      {
-        id: 3,
-        preview: 'bictor.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      }
-    ]
-  },
-  {
-    name: 'Буклет',
-    icon: 'bookletIcon.svg',
-    templates : [
-      {
-        id: 1,
-        preview: 'templates/announcement-1.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      },
-      {
-        id: 2,
-        preview: 'templates/announcement-2.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      },
-      {
-        id: 3,
-        preview: 'templates/announcement-3.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      }
-    ]
-  },
-  {
-    name: 'Аншлаги',
-    icon: 'soldoutIcon.svg',
-    templates : [
-      {
-        id: 1,
-        preview: 'templates/announcement-1.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      },
-      {
-        id: 2,
-        preview: 'templates/announcement-2.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      },
-      {
-        id: 3,
-        preview: 'templates/announcement-3.png',
-        filledPreview: 'filled_business_card_1.svg',
-        textFields: [],
-        qrCodes:[
-          {
-            x: 720,
-            y: 320,
-            size: 120,
-            labelFontSize: 6,
-          },
-          {
-            x: 720,
-            y: 150,
-            size: 120,
-            labelFontSize: 6,
-          }
-        ]
-      }
-    ]
-  },
   {
     name: 'Дипломы',
     icon: 'diplomasIcon.svg',
@@ -1017,155 +1167,4 @@ export const layouts: Layout[] = [
       }
     ]
   },
-  {
-    name: 'Бейджи',
-    icon: 'badgeIcon.svg',
-    templates : [
-      {
-        id: 1,
-        preview: 'badge_3.svg',
-        filledPreview: 'filled_badge_3.svg',
-        textFields: [
-            {
-            id: 'fullName',
-            type: 'fullName',
-            x: 145,
-            y: 195,
-            width: 180,
-            fontSize: 15,
-            fontWeight: 400,
-            color: 'rgba(207, 19, 59, 1)',
-          },
-          {
-            id: 'position',
-            type: 'position',
-            x: 145,
-            y: 237,
-            color: 'rgba(207, 19, 59, 1)',
-            width: 120,
-            fontSize: 9,
-            fontWeight: 500
-          },
-          {
-            id: 'place',
-            type: 'city',
-            x: 120,
-            y: 450,
-            width: 60,
-            fontSize: 10,
-            fontWeight: 500,
-            color: 'rgba(243, 242, 232, 1)',
-          },
-          {
-            id: 'date',
-            type: 'date',
-            x: 120,
-            y: 475,
-            width: 60,
-            fontSize: 10,
-            fontWeight: 500,
-            color: 'rgba(243, 242, 232, 1)',
-          },
-        ],
-      },
-      {
-        id: 2,
-        preview: 'badge_1.svg',
-        filledPreview: 'filled_badge_1.svg',
-        splitPatronymic: true,
-        textFields: [
-          
-          {
-            id: 'fullName',
-            type: 'fullName',
-            x: -90,
-            y: 300,
-            width: 500,
-            fontSize: 23,
-            fontWeight: 400,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'position',
-            type: 'position',
-            x: 8,
-            y: 380,
-            color: 'rgba(231, 75, 31, 1)',
-            width: 300,
-            fontSize: 12,
-            fontWeight: 400
-          },
-          {
-            id: 'place',
-            type: 'city',
-            x: 60,
-            y: 440,
-            width: 100,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'date',
-            type: 'date',
-            x: 175,
-            y: 440,
-            width: 500,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },],
-      },
-      {
-        id: 3,
-        preview: 'badge_2.svg',
-        filledPreview: 'filled_badge_2.svg',
-        splitPatronymic: true,
-        textFields: [
-          {
-            id: 'fullName',
-            type: 'fullName',
-            x: -90,
-            y: 300,
-            width: 500,
-            fontSize: 23,
-            fontWeight: 400,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'position',
-            type: 'position',
-            x: 8,
-            y: 380,
-            color: 'rgba(231, 75, 31, 1)',
-            width: 300,
-            fontSize: 12,
-            fontWeight: 400
-          },
-          {
-            id: 'place',
-            type: 'city',
-            x: 60,
-            y: 440,
-            width: 100,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-          {
-            id: 'date',
-            type: 'date',
-            x: 175,
-            y: 440,
-            width: 500,
-            fontSize: 12,
-            fontWeight: 500,
-            color: 'rgba(231, 75, 31, 1)',
-          },
-        ]
-      },
-      
-    ]
-  }
 ];
-
