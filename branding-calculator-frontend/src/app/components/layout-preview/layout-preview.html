@@ -62,7 +62,7 @@
             "
         >
             <div
-                *ngFor="let name of formatFullName(fullName); let i = index"
+                *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [fullName] : formatFullName(fullName)); let i = index"
                 [class.layout-preview__full-name-line--second]="
                     i === 1 && !(layoutName === 'Визитки' && template.id === 4)
                 "
@@ -82,7 +82,7 @@
                     i === 1 && layoutName === 'Визитки' && template.id === 4 && isShortFullName(fullName)
                 "
                 [class.layout-preview__full-name-line--badge-centered]="
-                    template.splitPatronymic === true
+                    layoutName === 'Бейджи' && template.splitPatronymic === true
                 "
 
                 [class.layout-preview__full-name-line--business-card-centered]="
@@ -114,9 +114,56 @@
             {{ position }}
         </div>
 
+        <div *ngIf="recipientNameField"
+            class="layout-preview__recipient-name"
+            [class.layout-preview__recipient-name--centered]="
+                (layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3))
+                || layoutName === 'Дипломы'
+            "
+            [style.left.px]="recipientNameField.x"
+            [style.top.px]="recipientNameField.y"
+            [style.fontSize.px]="recipientNameField.fontSize"
+            [style.fontWeight]="recipientNameField.fontWeight"
+            [style.color]="recipientNameField.color"
+            [style.width.px]="recipientNameField.width"
+        >
+            <ng-container
+                *ngIf="layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3); else formattedName"
+            >
+                {{ recipientName }}
+            </ng-container>
+
+            <ng-template #formattedName>
+                <div
+                    *ngFor="let name of formatFullName(recipientName)"
+                    [class.layout-preview__full-name-line--badge-centered]="
+                        layoutName === 'Бейджи' && template.splitPatronymic === true
+                    "
+                >
+                    {{ name }}
+                </div>
+            </ng-template>
+        </div>
+
+        <div *ngIf="certificateTextField"
+            class="layout-preview__certificate-text"
+            [class.layout-preview__certificate-text--centered]="
+                layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3)
+            "
+            [class.layout-preview__certificate-text--centered]="layoutName === 'Дипломы'"
+            [style.left.px]="certificateTextField.x"
+            [style.top.px]="certificateTextField.y"
+            [style.fontSize.px]="certificateTextField.fontSize"
+            [style.fontWeight]="certificateTextField.fontWeight"
+            [style.color]="certificateTextField.color"
+            [style.width.px]="certificateTextField.width"
+        >
+            {{ certificateText }}
+        </div>
+
         <div *ngIf="cityField"
             class="layout-preview__city"
-            [class.layout-preview__city--centered]="layoutName === 'Бейджи' && template.id === 1"
+            [class.layout-preview__city--centered]="(layoutName === 'Бейджи' && template.id === 1) || (layoutName === 'Дипломы')"
             [style.left.px]="cityField.x"
             [style.top.px]="cityField.y"
             [style.width.px]="cityField.width"
@@ -141,6 +188,7 @@
         </div>
 
         <div
+            *ngIf="showPhone"
             class="layout-preview__phone"
             [style.left.px]="phoneField?.x"
             [style.top.px]="phoneField?.y"
@@ -171,6 +219,7 @@
         </div>
 
         <div
+            *ngIf="showAddress"
             class="layout-preview__address"
             [style.left.px]="addressField?.x"
             [style.top.px]="addressField?.y"
