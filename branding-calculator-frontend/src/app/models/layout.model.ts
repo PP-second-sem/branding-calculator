@@ -27,7 +27,7 @@ export interface Layout {
 
 export interface TextField {
   id: string;
-  type: 'fullName' | 'position' | 'phone' | 'mobilePhone' | 'email' | 'address' | 'date' | 'city';
+  type: 'fullName' | 'position' | 'phone' | 'mobilePhone' | 'email' | 'address' | 'date' | 'city' | 'recipientName' | 'certificateText';
   x: number;
   y: number;
   width: number;
@@ -43,6 +43,8 @@ export interface TemplateData {
     mobilePhone?: string;
     email?: string;
     address?: string;
+    recipientName?: string;
+    certificateText?: string;
     qrCode1?: string;
     qrCode1Label?: string;
     qrCode2?: string;

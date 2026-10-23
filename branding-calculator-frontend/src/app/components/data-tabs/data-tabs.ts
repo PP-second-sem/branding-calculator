@@ -28,6 +28,8 @@ export class DataTabs {
   public qrCode2Enabled = false;
   public city = '';
   public date = '';
+  public recipientName = '';
+  public certificateText = '';
 
   @Output() cityChange = new EventEmitter<string>();
   @Output() dateChange = new EventEmitter<string>();
@@ -35,6 +37,8 @@ export class DataTabs {
   @Input() layoutName = '';
   @Output() fullNameChange = new EventEmitter<string>();
   @Output() positionChange = new EventEmitter<string>();
+  @Output() recipientNameChange = new EventEmitter<string>();
+  @Output() certificateTextChange = new EventEmitter<string>();
   @Output() phoneChange = new EventEmitter<string>();
   @Output() mobilePhoneChange = new EventEmitter<string>();
   @Output() emailChange = new EventEmitter<string>();
@@ -62,6 +66,9 @@ export class DataTabs {
     this.qrCode2Label = data.qrCode2Label ?? '';
     this.qrCodesGenerated = data.qrCodesGenerated ?? false;
     this.qrCode2Enabled = data.qrCode2Enabled ?? false;
+    this.recipientName = data.recipientName ?? '';
+    this.certificateText = data.certificateText ?? '';  
+    
 
     if (this.fullNameInput) {
       this.fullNameInput.value = data.fullName;
@@ -141,5 +148,15 @@ export class DataTabs {
   public setDate(value: string): void {
     this.date = value;
     this.dateChange.emit(value);
+  }
+
+  public setRecipientName(value: string): void {
+    this.recipientName = value;
+    this.recipientNameChange.emit(value);
+  }
+
+  public setCertificateText(value: string): void {
+    this.certificateText = value;
+    this.certificateTextChange.emit(value);
   }
 }

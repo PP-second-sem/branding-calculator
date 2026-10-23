@@ -24,6 +24,8 @@ export class ConstructorPage {
   public position = '';
   public phone = '';
   public mobilePhone = '';
+  public recipientName = '';
+  public certificateText = '';
   public email = '';
   public address = '';
   public city = '';
@@ -53,6 +55,8 @@ export class ConstructorPage {
       address: '',
       city: '',
       date: '',
+      recipientName: '',
+      certificateText: '',
       qrCode1: '',
       qrCode1Label: '',
       qrCode2: '',
@@ -81,6 +85,8 @@ export class ConstructorPage {
     this.address = data.address ?? '';
     this.city = data.city ?? '';
     this.date = data.date ?? '';
+    this.recipientName = data.recipientName ?? '';
+    this.certificateText = data.certificateText ?? '';
     this.qrCode1 = data.qrCode1 ?? '';
     this.qrCode1Label = data.qrCode1Label ?? '';
     this.qrCode2 = data.qrCode2 ?? '';
@@ -117,6 +123,8 @@ export class ConstructorPage {
       address: this.address,
       city: this.city,
       date: this.date,
+      recipientName: this.recipientName,
+      certificateText: this.certificateText,  
       qrCode1: this.qrCode1,
       qrCode1Label: this.qrCode1Label,
       qrCode2: this.qrCode2,
@@ -241,6 +249,8 @@ export class ConstructorPage {
       address: this.address,
       city: this.city,
       date: this.date,
+      recipientName: this.recipientName,
+      certificateText: this.certificateText,
       qrCode1: this.qrCode1,
       qrCode1Label: this.qrCode1Label,
       qrCode2: this.qrCode2,

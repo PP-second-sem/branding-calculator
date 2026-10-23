@@ -9,12 +9,22 @@
     </button>
 
     <button
+        *ngIf="layoutName === 'Сертификаты' || layoutName === 'Дипломы'"
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'text'"
+        (click)="activeTab = 'text'"
+    >
+        Текст
+    </button>
+
+    <button
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'contacts'"
         (click)="activeTab = 'contacts'"
     >
-        {{ layoutName === 'Бейджи' ? 'Место и дата' : 'Контактные данные' }}
+        {{ layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? 'Место и дата' : 'Контактные данные' }}
     </button>
 
     <button
@@ -27,7 +37,7 @@
     </button>
 
     <button
-        *ngIf="layoutName !== 'Бейджи'"
+        *ngIf="layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы'"
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'qr'"
@@ -73,7 +83,7 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="activeTab === 'contacts' && layoutName === 'Бейджи'">
+    <ng-container *ngIf="activeTab === 'contacts' && (layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
         <div class="data-tabs__fields">
             <app-placeholder
                 label="Место"
@@ -83,6 +93,7 @@
             ></app-placeholder>
 
             <app-placeholder
+                *ngIf="layoutName === 'Бейджи'"
                 label="Дата"
                 placeholder="24.09.2026"
                 [value]="date"
@@ -91,7 +102,7 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="activeTab === 'contacts' && layoutName !== 'Бейджи'">
+    <ng-container *ngIf="activeTab === 'contacts' && layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы'">
         <div class="data-tabs__container">
             <div>
                 <app-placeholder
@@ -206,6 +217,41 @@
                     Сгенерировать
                 </button>
             </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab === 'personal' && (layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                label="ФИО вручающего"
+                placeholder="Иванов Иван Иванович"
+                [value]="fullName"
+                (valueChange)="setFullName($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Должность"
+                placeholder="Должность"
+                [value]="position"
+                (valueChange)="setPosition($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="ФИО награждаемого"
+                placeholder="Иванов Иван Иванович"
+                [value]="recipientName"
+                (valueChange)="setRecipientName($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab === 'text' && (layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                class="data-tabs__field--full-width"
+                label="Текст"
+                placeholder="За победу в номинации «Лучший проект года»"
+                [value]="certificateText"
+                (valueChange)="setCertificateText($event)"
+            ></app-placeholder>
         </div>
     </ng-container>
 </div>

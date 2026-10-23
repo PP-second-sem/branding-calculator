@@ -17,8 +17,10 @@ export class LayoutPreview {
   public preview!: ElementRef<HTMLElement>;
   @Input() layoutName = '';
   @Input() fullName: string = '';
+  @Input() recipientName: string = '';
   @Input() position: string = ''; 
   @Input() phone: string = ''; 
+  @Input() certificateText: string = '';
   @Input() mobilePhone: string = ''; 
   @Input() email: string = '';
   @Input() address: string = '';  
@@ -35,6 +37,18 @@ export class LayoutPreview {
   public get fullNameField(): TextField | undefined {
     return this.template.textFields.find(
         field => field.type === 'fullName'
+    );
+  };
+
+  public get certificateTextField(): TextField | undefined {
+    return this.template.textFields.find(
+        field => field.type === 'certificateText'
+    );
+  };
+
+  public get recipientNameField(): TextField | undefined {
+    return this.template.textFields.find(
+        field => field.type === 'recipientName'
     );
   };
 
@@ -126,7 +140,7 @@ export class LayoutPreview {
         ];
     }
 
-    if (this.layoutName === 'Бейджи' && this.template.splitPatronymic) {
+    if ((this.layoutName === 'Бейджи' || this.layoutName === 'Дипломы') && this.template.splitPatronymic) {
       if (words.length < 3) {
         return [fullName];
       }
@@ -139,6 +153,14 @@ export class LayoutPreview {
 
     if (words.length <= 1) {
       return words;
+    }
+
+    if (
+      this.layoutName === 'Сертификаты' &&
+      this.template.id !== 2 &&
+      this.template.id !== 3
+    ) {
+      return [fullName];
     }
 
     const lastName = words[0];

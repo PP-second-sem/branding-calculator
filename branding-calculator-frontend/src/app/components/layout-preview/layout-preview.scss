@@ -64,7 +64,15 @@
     }
 
     &__full-name--centered {
+        width: 100%;
         text-align: center;
+
+        > div {
+            display: block;
+            width: 100%;
+            text-align: center;
+            transform: none;
+        }
     }
 
     &__city--centered, &__date--centered {
@@ -130,3 +138,32 @@
     overflow-wrap: normal;
     word-break: normal;
 }
+
+.layout-preview__recipient-name {
+  position: absolute;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+
+.layout-preview__recipient-name--centered {
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+.layout-preview__certificate-text {
+    position: absolute;
+    box-sizing: border-box;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    padding: 0;
+    margin: 0;
+
+    &--centered {
+        text-align: center;
+    }
+}
+
