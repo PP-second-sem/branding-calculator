@@ -37,20 +37,22 @@ export interface TextField {
 }
 
 export interface TemplateData {
-    fullName: string;
-    position: string;
-    phone?: string;
-    mobilePhone?: string;
-    email?: string;
-    address?: string;
-    recipientName?: string;
-    certificateText?: string;
-    qrCode1?: string;
-    qrCode1Label?: string;
-    qrCode2?: string;
-    qrCode2Label?: string;
-    qrCodesGenerated?: boolean;
-    qrCode2Enabled?: boolean;
-    date?: string;
-    city?: string;
+  fullName: string;
+  position: string;
+  phone?: string;
+  mobilePhone?: string;
+  email?: string;
+  address?: string;
+  recipientName?: string;
+  certificateText?: string;
+  qrCode1?: string;
+  qrCode1Label?: string;
+  qrCode2?: string;
+  qrCode2Label?: string;
+  qrCodesGenerated?: boolean;
+  qrCode2Enabled?: boolean;
+  date?: string;
+  city?: string;
+  showAddress?: boolean;
+  showPhone?: boolean;
 }

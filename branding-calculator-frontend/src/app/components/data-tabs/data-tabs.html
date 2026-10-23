@@ -101,42 +101,64 @@
             ></app-placeholder>
         </div>
     </ng-container>
-
+    
     <ng-container *ngIf="activeTab === 'contacts' && layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы'">
         <div class="data-tabs__container">
             <div>
-                <app-placeholder
-                    label="Тел:"
-                    placeholder="+7 (000) 000 00 00"
-                    [value]="phone"
-                    (valueChange)="setPhone($event)"
-                    [maxlength]="19"
-                ></app-placeholder>
+            <div class="data-tabs__contact-label">
+                <span>Тел:</span>
+                <label *ngIf="layoutName === 'Визитки'" class="data-tabs__switch">
+                <input
+                    type="checkbox"
+                    [ngModel]="showPhone"
+                    (ngModelChange)="showPhoneChange.emit($event)"
+                >
+                <span></span>
+                </label>
+            </div>
+            <app-placeholder
+                label=""
+                placeholder="+7 (000) 000 00 00"
+                [value]="phone"
+                (valueChange)="setPhone($event)"
+                [maxlength]="19"
+            ></app-placeholder>
 
-                <app-placeholder
-                    label="Моб. тел:"
-                    placeholder="+7 (000) 000 00 00"
-                    [value]="mobilePhone"
-                    (valueChange)="setMobilePhone($event)"
-                    [maxlength]="19"
-                ></app-placeholder>
+            <app-placeholder
+                label="Моб. тел:"
+                placeholder="+7 (000) 000 00 00"
+                [value]="mobilePhone"
+                (valueChange)="setMobilePhone($event)"
+                [maxlength]="19"
+            ></app-placeholder>
             </div>
 
             <div>
-                <app-placeholder
-                    label="E-mail:"
-                    placeholder="pochta@mail.ru"
-                    [underlinePlaceholder]="true"
-                    [value]="email"
-                    (valueChange)="setEmail($event)"
-                ></app-placeholder>
+            <app-placeholder
+                label="E-mail:"
+                placeholder="pochta@mail.ru"
+                [underlinePlaceholder]="true"
+                [value]="email"
+                (valueChange)="setEmail($event)"
+            ></app-placeholder>
 
-                <app-placeholder
-                    label="Адрес:"
-                    placeholder="УЛ. ЛЕНИНА, ДОМ 1..."
-                    [value]="address"
-                    (valueChange)="setAddress($event)"
-                ></app-placeholder>
+            <div class="data-tabs__contact-label">
+                <span>Адрес:</span>
+                <label *ngIf="layoutName === 'Визитки'" class="data-tabs__switch">
+                <input
+                    type="checkbox"
+                    [ngModel]="showAddress"
+                    (ngModelChange)="showAddressChange.emit($event)"
+                >
+                <span></span>
+                </label>
+            </div>
+            <app-placeholder
+                label=""
+                placeholder="УЛ. ЛЕНИНА, ДОМ 1..."
+                [value]="address"
+                (valueChange)="setAddress($event)"
+            ></app-placeholder>
             </div>
         </div>
     </ng-container>

@@ -33,6 +33,8 @@ export class LayoutPreview {
   @Input() qrCodesGenerated = false;
   @Input() qrCode2Enabled = false;
   @Input() qrCode1Enabled = true;
+  @Input() showPhone = true;
+  @Input() showAddress = true;
 
   public get fullNameField(): TextField | undefined {
     return this.template.textFields.find(

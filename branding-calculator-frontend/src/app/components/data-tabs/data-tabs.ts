@@ -35,6 +35,11 @@ export class DataTabs {
   @Output() dateChange = new EventEmitter<string>();
   @ViewChild(Placeholder) fullNameInput!: Placeholder;
   @Input() layoutName = '';
+  @Input() showPhone = true;
+  @Input() showAddress = true;
+
+  @Output() showPhoneChange = new EventEmitter<boolean>();
+  @Output() showAddressChange = new EventEmitter<boolean>();
   @Output() fullNameChange = new EventEmitter<string>();
   @Output() positionChange = new EventEmitter<string>();
   @Output() recipientNameChange = new EventEmitter<string>();
@@ -68,6 +73,7 @@ export class DataTabs {
     this.qrCode2Enabled = data.qrCode2Enabled ?? false;
     this.recipientName = data.recipientName ?? '';
     this.certificateText = data.certificateText ?? '';  
+    
     
 
     if (this.fullNameInput) {

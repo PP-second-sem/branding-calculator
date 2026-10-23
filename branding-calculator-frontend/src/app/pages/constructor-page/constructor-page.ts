@@ -39,6 +39,8 @@ export class ConstructorPage {
   public qrCode2Enabled = false;
   public selectedLayout: Layout = this.layouts[0];
   public selectedTemplate: Template = this.selectedLayout.templates[0];
+  public showPhone = true;
+  public showAddress = true;
 
   constructor() {
     this.ensureTemplateData(this.selectedTemplate);
@@ -57,6 +59,8 @@ export class ConstructorPage {
       date: '',
       recipientName: '',
       certificateText: '',
+      showPhone: true,
+      showAddress: true,
       qrCode1: '',
       qrCode1Label: '',
       qrCode2: '',
@@ -87,6 +91,8 @@ export class ConstructorPage {
     this.date = data.date ?? '';
     this.recipientName = data.recipientName ?? '';
     this.certificateText = data.certificateText ?? '';
+    this.showPhone = data.showPhone ?? true;
+    this.showAddress = data.showAddress ?? true;
     this.qrCode1 = data.qrCode1 ?? '';
     this.qrCode1Label = data.qrCode1Label ?? '';
     this.qrCode2 = data.qrCode2 ?? '';
@@ -124,7 +130,9 @@ export class ConstructorPage {
       city: this.city,
       date: this.date,
       recipientName: this.recipientName,
-      certificateText: this.certificateText,  
+      certificateText: this.certificateText, 
+      showPhone: this.showPhone,
+      showAddress: this.showAddress,
       qrCode1: this.qrCode1,
       qrCode1Label: this.qrCode1Label,
       qrCode2: this.qrCode2,

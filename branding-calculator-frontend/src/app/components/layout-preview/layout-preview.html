@@ -188,6 +188,7 @@
         </div>
 
         <div
+            *ngIf="showPhone"
             class="layout-preview__phone"
             [style.left.px]="phoneField?.x"
             [style.top.px]="phoneField?.y"
@@ -218,6 +219,7 @@
         </div>
 
         <div
+            *ngIf="showAddress"
             class="layout-preview__address"
             [style.left.px]="addressField?.x"
             [style.top.px]="addressField?.y"

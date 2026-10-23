@@ -372,7 +372,7 @@ export const layouts: Layout[] = [
         type: 'position',
         x: 290,
         y: 180,
-        width: 500,
+        width: 400,
         fontSize: 14,
         fontWeight: 400
       },
@@ -407,7 +407,7 @@ export const layouts: Layout[] = [
         id: 'address',
         type: 'address',
         x: 440,
-        y: 355,
+        y: 349,
         width: 300,
         fontSize: 12,
         fontWeight: 400
