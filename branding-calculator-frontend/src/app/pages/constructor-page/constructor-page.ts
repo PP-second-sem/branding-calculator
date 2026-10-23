@@ -104,16 +104,51 @@ export class ConstructorPage {
   }
 
   public selectLayout(layout: Layout): void {
+    this.updateSelectedTemplateData();
+
     this.selectedLayout = layout;
-    this.selectTemplate(layout.templates[0]);
+    this.selectedTemplate = layout.templates[0];
+
+    this.ensureTemplateData(this.selectedTemplate);
+    this.loadTemplateData(this.selectedTemplate);
   }
 
   public selectTemplate(template: Template): void {
-    if (this.selectedTemplate) {
-      this.updateSelectedTemplateData();
-    }
+    this.updateSelectedTemplateData();
+    const currentData = {
+      fullName: this.fullName,
+      position: this.position,
+      phone: this.phone,
+      mobilePhone: this.mobilePhone,
+      email: this.email,
+      address: this.address,
+      city: this.city,
+      date: this.date,
+      recipientName: this.recipientName,
+      certificateText: this.certificateText,
+      showPhone: this.showPhone,
+      showAddress: this.showAddress,
+      qrCode1: this.qrCode1,
+      qrCode1Label: this.qrCode1Label,
+      qrCode2: this.qrCode2,
+      qrCode2Label: this.qrCode2Label,
+      qrCodesGenerated: this.qrCodesGenerated,
+      qrCode2Enabled: this.qrCode2Enabled,
+    };
 
     this.selectedTemplate = template;
+    if (
+      !template.data ||
+      !Object.values(template.data).some(
+        value => typeof value === 'string' && value.trim() !== ''
+      )
+    ) {
+      template.data = {
+        ...this.createTemplateData(),
+        ...currentData,
+      };
+    }
+
     this.loadTemplateData(template);
   }
 
