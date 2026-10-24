@@ -27,14 +27,14 @@
         {{ layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? 'Место и дата' : 'Контактные данные' }}
     </button>
 
-    <button
+    <!-- <button
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'logo'"
         (click)="activeTab = 'logo'"
     >
         Логотип
-    </button>
+    </button> -->
 
     <button
         *ngIf="layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы'"
