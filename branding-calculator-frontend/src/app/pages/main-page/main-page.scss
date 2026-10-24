@@ -392,8 +392,8 @@
 
     &__footer {
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: space-between;
+        align-items: center;
         box-sizing: border-box;
         gap: 48px;
         padding: 20px 120px 12px;
@@ -424,7 +424,8 @@
 
     &__footer-desc {
         margin-bottom: 12px;
-        font-weight: 600;
+        color: rgba(98, 98, 97, 1);
+        font-weight: 500;
     }
 
     &__footer-links {
