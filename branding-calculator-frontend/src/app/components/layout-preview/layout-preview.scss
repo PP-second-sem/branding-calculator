@@ -172,3 +172,13 @@
         text-align: center;
     }
 }
+
+.layout-preview__certificate-text--name-wrapped {
+    transform: translateY(40px);
+}
+
+.layout-preview__certificate-text {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+}

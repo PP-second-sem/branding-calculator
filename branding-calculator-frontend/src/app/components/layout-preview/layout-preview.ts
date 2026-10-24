@@ -124,7 +124,8 @@ export class LayoutPreview {
   }
 
   public formatFullName(fullName: string): string[] {
-    const words = fullName.trim().split(/\s+/).filter(Boolean);
+    const limitedName = this.limitFullNameParts(fullName);
+    const words = limitedName.split(/\s+/).filter(Boolean);
 
     if (words.length === 0) {
       return [];
@@ -207,12 +208,31 @@ export class LayoutPreview {
       return [surname];
     }
 
-    if (
-      this.layoutName === 'Сертификаты' &&
-      this.template.id !== 2 &&
-      this.template.id !== 3
-    ) {
-      return [fullName];
+    if (this.layoutName === 'Сертификаты' && this.template.id !== 2 && this.template.id !== 3) {
+      const lines: string[] = [];
+      let currentLine = '';
+
+      for (const word of words) {
+        const nextLine = currentLine
+          ? `${currentLine} ${word}`
+          : word;
+
+        if (nextLine.length <= 30) {
+          currentLine = nextLine;
+        } else {
+          if (currentLine) {
+            lines.push(currentLine);
+          }
+
+          currentLine = word;
+        }
+      }
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      return lines;
     }
 
     if (!patronymic) {
@@ -237,6 +257,14 @@ export class LayoutPreview {
     }
 
     return field.x + field.width / 2;
+  }
+
+  public formatPosition(position: string): string {
+    if (this.layoutName === 'Сертификаты') {
+      return position.slice(0, 35);
+    }
+
+    return position;
   }
 
   public isShortFullName(fullName: string): boolean {
@@ -268,4 +296,51 @@ export class LayoutPreview {
       && this.template.id === 1
       && surname.length > 16;
   }
+
+  public hasWrappedFullName(fullName: string): boolean {
+    return this.layoutName === 'Сертификаты'
+      && this.template.id !== 2
+      && this.template.id !== 3
+      && this.formatFullName(fullName).length > 1;
+  }
+
+  public hasWrappedPosition(position: string): boolean {
+    return this.layoutName === 'Сертификаты'
+      && position.trim().length > 0
+      && position.trim().length > 20;
+  }
+
+  public limitFullNameParts(fullName: string): string {
+    const [surname = '', firstName = '', patronymic = ''] =
+      fullName.trim().split(/\s+/);
+
+    return [
+      surname.slice(0, 20),
+      firstName.slice(0, 15),
+      patronymic.slice(0, 15)
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  public formatRecipientName(fullName: string): string {
+    const name = this.limitFullNameParts(fullName);
+
+    if (
+      (this.template.id === 2 || this.template.id === 3) &&
+      name.length > 21
+    ) {
+      const [surname = '', firstName = '', patronymic = ''] =
+        name.split(/\s+/);
+
+      return [
+        surname,
+        firstName ? `${firstName[0]}.` : '',
+        patronymic ? `${patronymic[0]}.` : ''
+      ].filter(Boolean).join(' ');
+    }
+
+    return name;
+  }
 }
+
