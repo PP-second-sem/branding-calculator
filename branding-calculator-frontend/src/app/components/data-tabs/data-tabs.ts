@@ -152,8 +152,19 @@ export class DataTabs {
   }
 
   public setDate(value: string): void {
-    this.date = value;
-    this.dateChange.emit(value);
+    const digits = value.replace(/\D/g, '').slice(0, 8);
+
+    let formattedDate = digits;
+
+    if (digits.length > 4) {
+      formattedDate =
+        `${digits.slice(0, 2)}.${digits.slice(2, 4)}.${digits.slice(4)}`;
+    } else if (digits.length > 2) {
+      formattedDate = `${digits.slice(0, 2)}.${digits.slice(2)}`;
+    }
+
+    this.date = formattedDate;
+    this.dateChange.emit(formattedDate);
   }
 
   public setRecipientName(value: string): void {

@@ -123,66 +123,129 @@ export class LayoutPreview {
     return lines;
   }
 
-  
   public formatFullName(fullName: string): string[] {
-    const words = fullName.trim().split(/\s+/);
+    const limitedName = this.limitFullNameParts(fullName);
+    const words = limitedName.split(/\s+/).filter(Boolean);
 
-    if (this.layoutName === 'Бейджи' && this.template.id === 1) {
-        if (words.length < 3) {
-            return words.join(' ').length > 16 ? words : [fullName];
-        }
-
-        if (`${words[0]} ${words[1]}`.length > 16) {
-            return words;
-        }
-
-        return [
-            `${words[0]} ${words[1]}`,
-            words[2],
-        ];
+    if (words.length === 0) {
+      return [];
     }
 
-    if ((this.layoutName === 'Бейджи' || this.layoutName === 'Дипломы') && this.template.splitPatronymic) {
+    if (this.layoutName === 'Бейджи' && (this.template.id === 2 || this.template.id === 3)) {
+      const surname = (words[0] ?? '').slice(0, 20);
+      const firstName = (words[1] ?? '').slice(0, 15);
+      const patronymic = (words[2] ?? '').slice(0, 15);
+
+      if (!firstName && !patronymic) {
+        return [surname].filter(Boolean);
+      }
+
+      if (`${surname} ${firstName}`.length > 23) {
+        return [surname, firstName, patronymic].filter(Boolean);
+      }
+
+      if (!patronymic) {
+        return [surname, firstName].filter(Boolean);
+      }
+
+      return [`${surname} ${firstName}`, patronymic];
+    }
+
+    const surname = words[0].slice(0, 20);
+    const firstName = (words[1] ?? '').slice(0, 15);
+    const patronymic = (words[2] ?? '').slice(0, 15);
+
+    if (this.layoutName === 'Визитки') {
+      if (!firstName) {
+        return [surname];
+      }
+
+      if (!patronymic) {
+        return [surname, firstName];
+      }
+
+      const secondLine = `${firstName} ${patronymic}`;
+
+      if (secondLine.length <= 23) {
+        return [surname, secondLine];
+      }
+
+      return [surname, `${firstName[0]}. ${patronymic[0]}.`];
+    }
+
+    if (this.layoutName === 'Бейджи' && this.template.id === 1) {
+      if (surname.length > 15) {
+        return [
+          surname.slice(0, 15),
+          surname.slice(15),
+          ...[firstName, patronymic].filter(Boolean)
+        ];
+      }
+
+      if (!firstName && !patronymic) {
+        return [surname];
+      }
+
+      if (!patronymic) {
+        return [surname, firstName].filter(Boolean);
+      }
+
+      return [`${surname} ${firstName}`.trim(), patronymic];
+    }
+
+    if (
+      (this.layoutName === 'Бейджи' || this.layoutName === 'Дипломы') &&
+      this.template.splitPatronymic
+    ) {
       if (words.length < 3) {
         return [fullName];
       }
 
-      return [
-          `${words[0]} ${words[1]}`,
-          words[2],
-      ];
+      return [`${surname} ${firstName}`, patronymic];
     }
 
     if (words.length <= 1) {
-      return words;
+      return [surname];
     }
 
-    if (
-      this.layoutName === 'Сертификаты' &&
-      this.template.id !== 2 &&
-      this.template.id !== 3
-    ) {
-      return [fullName];
-    }
+    if (this.layoutName === 'Сертификаты' && this.template.id !== 2 && this.template.id !== 3) {
+      const lines: string[] = [];
+      let currentLine = '';
 
-    const lastName = words[0];
-    const firstName = words[1];
-    const patronymic = words[2];
+      for (const word of words) {
+        const nextLine = currentLine
+          ? `${currentLine} ${word}`
+          : word;
+
+        if (nextLine.length <= 30) {
+          currentLine = nextLine;
+        } else {
+          if (currentLine) {
+            lines.push(currentLine);
+          }
+
+          currentLine = word;
+        }
+      }
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      return lines;
+    }
 
     if (!patronymic) {
-      return [lastName, firstName];
+      return [surname, firstName].filter(Boolean);
     }
 
     const secondLine = `${firstName} ${patronymic}`;
 
     if (secondLine.length <= 15) {
-      return [lastName, secondLine];
+      return [surname, secondLine];
     }
 
-    return [
-      lastName,
-      `${firstName[0]}. ${patronymic[0]}.`,
-    ];
+    return [surname, `${firstName[0]}. ${patronymic[0]}.`];
   }
 
 
@@ -194,6 +257,14 @@ export class LayoutPreview {
     }
 
     return field.x + field.width / 2;
+  }
+
+  public formatPosition(position: string): string {
+    if (this.layoutName === 'Сертификаты') {
+      return position.slice(0, 35);
+    }
+
+    return position;
   }
 
   public isShortFullName(fullName: string): boolean {
@@ -214,7 +285,62 @@ export class LayoutPreview {
 
   public get dateField(): TextField | undefined {
     return this.template.textFields.find(
-        field => field.type === 'date'
+      field => field.type === 'date'
     );
   }
+
+  public hasWrappedSurname(fullName: string): boolean {
+    const surname = fullName.trim().split(/\s+/)[0] ?? '';
+
+    return this.layoutName === 'Бейджи'
+      && this.template.id === 1
+      && surname.length > 16;
+  }
+
+  public hasWrappedFullName(fullName: string): boolean {
+    return this.layoutName === 'Сертификаты'
+      && this.template.id !== 2
+      && this.template.id !== 3
+      && this.formatFullName(fullName).length > 1;
+  }
+
+  public hasWrappedPosition(position: string): boolean {
+    return this.layoutName === 'Сертификаты'
+      && position.trim().length > 0
+      && position.trim().length > 20;
+  }
+
+  public limitFullNameParts(fullName: string): string {
+    const [surname = '', firstName = '', patronymic = ''] =
+      fullName.trim().split(/\s+/);
+
+    return [
+      surname.slice(0, 20),
+      firstName.slice(0, 15),
+      patronymic.slice(0, 15)
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  public formatRecipientName(fullName: string): string {
+    const name = this.limitFullNameParts(fullName);
+
+    if (
+      (this.template.id === 2 || this.template.id === 3) &&
+      name.length > 21
+    ) {
+      const [surname = '', firstName = '', patronymic = ''] =
+        name.split(/\s+/);
+
+      return [
+        surname,
+        firstName ? `${firstName[0]}.` : '',
+        patronymic ? `${patronymic[0]}.` : ''
+      ].filter(Boolean).join(' ');
+    }
+
+    return name;
+  }
 }
+

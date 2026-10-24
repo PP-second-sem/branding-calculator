@@ -49,7 +49,7 @@
         <div 
             class="layout-preview__full-name"
             [style.left.px]="fullNameField?.x"
-            [style.top.px]="fullNameField?.y"
+            [style.top.px]="(fullNameField?.y ?? 0) + (hasWrappedPosition(position) ? 15 : 0)"
             [style.fontSize.px]="fullNameField?.fontSize"
             [style.fontWeight]="fullNameField?.fontWeight"
             [style.color]="fullNameField?.color"
@@ -60,9 +60,10 @@
             [class.layout-preview__full-name--badge-centered]="
                 layoutName === 'Бейджи' && template.id !== 1
             "
+            [class.layout-preview__full-name--business-card]="layoutName === 'Визитки'"
         >
             <div
-                *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [fullName] : formatFullName(fullName)); let i = index"
+                *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [limitFullNameParts(fullName)] : formatFullName(fullName)); let i = index"
                 [class.layout-preview__full-name-line--second]="
                     i === 1 && !(layoutName === 'Визитки' && template.id === 4)
                 "
@@ -98,6 +99,7 @@
             [class.layout-preview__position--business-card-centered]="
                 layoutName === 'Визитки' && template.id === 4
             "
+            [class.layout-preview__position--badge-wrapped-surname]="hasWrappedSurname(fullName)"
             [style.left.px]="positionField?.x"
             [style.top.px]="positionField?.y"
             [style.fontSize.px]="positionField?.fontSize"
@@ -111,7 +113,7 @@
                 formatFullName(fullName).length === 3
             "
         >
-            {{ position }}
+            {{ formatPosition(position) }}
         </div>
 
         <div *ngIf="recipientNameField"
@@ -130,7 +132,7 @@
             <ng-container
                 *ngIf="layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3); else formattedName"
             >
-                {{ recipientName }}
+                {{ formatRecipientName(recipientName) }}
             </ng-container>
 
             <ng-template #formattedName>
@@ -148,9 +150,10 @@
         <div *ngIf="certificateTextField"
             class="layout-preview__certificate-text"
             [class.layout-preview__certificate-text--centered]="
-                layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3)
+                (layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3))
+                || layoutName === 'Дипломы'
             "
-            [class.layout-preview__certificate-text--centered]="layoutName === 'Дипломы'"
+            [class.layout-preview__certificate-text--name-wrapped]="hasWrappedFullName(recipientName)"
             [style.left.px]="certificateTextField.x"
             [style.top.px]="certificateTextField.y"
             [style.fontSize.px]="certificateTextField.fontSize"

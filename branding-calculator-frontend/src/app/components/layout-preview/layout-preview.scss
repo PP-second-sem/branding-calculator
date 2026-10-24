@@ -81,22 +81,24 @@
     }
 
     &__full-name--business-card-centered {
-        width: 100px;
         white-space: nowrap;
-    }
-
-    &__full-name-line--business-card-centered {
-        display: block;
-        width: 100%;
         text-align: center;
-        transform: none;
     }
 
+    &__full-name-line--business-card-centered,
     &__full-name-line--business-card-first-centered {
         display: block;
         width: 100%;
         text-align: center;
         transform: none;
+    }
+
+    &__position {
+        box-sizing: border-box;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: normal;
+        min-width: 0;
     }
 
     &__position--business-card-centered {
@@ -121,19 +123,23 @@
         word-break: normal;
         hyphens: manual;
     }
+
     &__position--badge-long-name {
         transform: translateY(15px);
     }
+
+    &__position--badge-wrapped-surname {
+        transform: translateY(30px);
+    }
+
 }
 
 .layout-preview__qr-label {
     position: absolute;
-    transform: translateY(calc(-100% - 5px));
-
+    transform: translateY(-20px);
     text-align: center;
     font-weight: 700;
     line-height: 1.2;
-
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
@@ -167,3 +173,12 @@
     }
 }
 
+.layout-preview__certificate-text--name-wrapped {
+    transform: translateY(40px);
+}
+
+.layout-preview__certificate-text {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+}

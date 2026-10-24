@@ -27,14 +27,14 @@
         {{ layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? 'Место и дата' : 'Контактные данные' }}
     </button>
 
-    <button
+    <!-- <button
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'logo'"
         (click)="activeTab = 'logo'"
     >
         Логотип
-    </button>
+    </button> -->
 
     <button
         *ngIf="layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы'"
@@ -86,7 +86,7 @@
     <ng-container *ngIf="activeTab === 'contacts' && (layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
         <div class="data-tabs__fields">
             <app-placeholder
-                label="Место"
+                label="Место и дата"
                 placeholder="Салехард"
                 [value]="city"
                 (valueChange)="setCity($event)"
@@ -259,7 +259,7 @@
 
             <app-placeholder
                 label="ФИО награждаемого"
-                placeholder="Иванов Иван Иванович"
+                placeholder="Иванову Ивану Ивановичу"
                 [value]="recipientName"
                 (valueChange)="setRecipientName($event)"
             ></app-placeholder>
