@@ -93,6 +93,14 @@
         transform: none;
     }
 
+    &__position {
+        box-sizing: border-box;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: normal;
+        min-width: 0;
+    }
+
     &__position--business-card-centered {
         text-align: center;
     }
@@ -115,9 +123,15 @@
         word-break: normal;
         hyphens: manual;
     }
+
     &__position--badge-long-name {
         transform: translateY(15px);
     }
+
+    &__position--badge-wrapped-surname {
+        transform: translateY(30px);
+    }
+
 }
 
 .layout-preview__qr-label {
