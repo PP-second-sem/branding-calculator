@@ -60,6 +60,7 @@
             [class.layout-preview__full-name--badge-centered]="
                 layoutName === 'Бейджи' && template.id !== 1
             "
+            [class.layout-preview__full-name--business-card]="layoutName === 'Визитки'"
         >
             <div
                 *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [fullName] : formatFullName(fullName)); let i = index"

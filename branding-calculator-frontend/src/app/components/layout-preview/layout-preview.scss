@@ -81,17 +81,11 @@
     }
 
     &__full-name--business-card-centered {
-        width: 100px;
         white-space: nowrap;
-    }
-
-    &__full-name-line--business-card-centered {
-        display: block;
-        width: 100%;
         text-align: center;
-        transform: none;
     }
 
+    &__full-name-line--business-card-centered,
     &__full-name-line--business-card-first-centered {
         display: block;
         width: 100%;
@@ -128,12 +122,10 @@
 
 .layout-preview__qr-label {
     position: absolute;
-    transform: translateY(calc(-100% - 5px));
-
+    transform: translateY(-20px);
     text-align: center;
     font-weight: 700;
     line-height: 1.2;
-
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
@@ -166,4 +158,3 @@
         text-align: center;
     }
 }
-

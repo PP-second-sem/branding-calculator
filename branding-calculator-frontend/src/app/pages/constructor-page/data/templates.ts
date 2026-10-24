@@ -263,7 +263,7 @@ export const layouts: Layout[] = [
           type: 'position',
           x: 359,
           y: 150,
-          width: 100,
+          width: 350,
           fontSize: 16,
           fontWeight: 700
         },
@@ -431,18 +431,18 @@ export const layouts: Layout[] = [
         {
           id: 'fullName',
           type: 'fullName',
-          x: 90,
+          x: 45,
           y: 55,
-          width: 100,
+          width: 190,
           fontSize: 14,
           fontWeight: 700
         },
         {
           id: 'position',
           type: 'position',
-          x: 110,
+          x: 75,
           y: 100,
-          width: 60,
+          width: 120,
           fontSize: 9,
           fontWeight: 400
         },
@@ -486,13 +486,13 @@ export const layouts: Layout[] = [
       qrCodes:[
         {
           x: 60,
-          y: 200,
+          y: 240,
           size: 62,
           labelFontSize: 8,
         },
         {
           x: 152,
-          y: 200,
+          y: 240,
           size: 62,
           labelFontSize: 8,
         }

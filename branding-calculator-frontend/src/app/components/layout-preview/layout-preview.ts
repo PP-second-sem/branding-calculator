@@ -125,6 +125,37 @@ export class LayoutPreview {
 
   
   public formatFullName(fullName: string): string[] {
+    if (this.layoutName === 'Визитки') {
+      const words = fullName.trim().split(/\s+/).filter(Boolean);
+
+      if (words.length === 0) {
+        return [];
+      }
+
+      const lastName = words[0].slice(0, 20);
+      const firstName = words[1];
+      const patronymic = words[2];
+
+      if (!firstName) {
+        return [lastName];
+      }
+
+      if (!patronymic) {
+        return [lastName, firstName];
+      }
+
+      const secondLine = `${firstName} ${patronymic}`;
+
+      if (secondLine.length <= 23) {
+        return [lastName, secondLine];
+      }
+
+      return [
+        lastName,
+        `${firstName[0]}. ${patronymic[0]}.`
+      ];
+    }
+    
     const words = fullName.trim().split(/\s+/);
 
     if (this.layoutName === 'Бейджи' && this.template.id === 1) {
