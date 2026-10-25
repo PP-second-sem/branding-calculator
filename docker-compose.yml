@@ -3,7 +3,6 @@ services:
     build:
       context: ./branding-calculator-backend
       dockerfile: Dockerfile
-      network: host
     container_name: branding-backend
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -30,10 +29,11 @@ services:
     image: nginx:alpine
     container_name: branding-nginx
     ports:
-      - "80:80" # Единственный порт, открытый наружу (по IP)
+      - "80:80"
+      - "443:443" # Единственный порт, открытый наружу (по IP)
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./uploads:/app/uploads:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - backend
       - frontend
