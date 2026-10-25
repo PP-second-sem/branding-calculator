@@ -19,27 +19,27 @@ export class QrCode implements AfterViewInit, OnChanges {
 
   public async generateQrCode(): Promise<void> {
     if (!this.value || !this.canvas) {
-        return;
+      return;
     }
 
     const canvas = this.canvas.nativeElement;
 
     await QRCode.toCanvas(canvas, this.value, {
-        width: 1000,
-        margin: 0,
-        color: {
-            dark: '#000000',
-            light: '#00000000',
-        },
+      width: this.size,
+      margin: 0,
+      color: {
+        dark: '#000000',
+        light: '#00000000',
+      },
     });
 
-    this.canvas.nativeElement.style.width = `${this.size}px`;
-    this.canvas.nativeElement.style.height = `${this.size}px`;
+    canvas.style.width = `${this.size}px`;
+    canvas.style.height = `${this.size}px`;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['value'] && this.canvas) {
-      this.generateQrCode();
+    if ((changes['value'] || changes['size']) && this.canvas) {
+      void this.generateQrCode();
     }
   }
 }
