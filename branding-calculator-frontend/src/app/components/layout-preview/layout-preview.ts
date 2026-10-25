@@ -342,5 +342,48 @@ export class LayoutPreview {
 
     return name;
   }
+
+  public formatDiplomaText(text: string, maxLineLength = 35): string[] {
+    const words = text.trim().split(/\s+/).filter(Boolean);
+    const lines: string[] = [];
+    const shortWords = new Set([
+      'в', 'во', 'на', 'к', 'ко', 'с', 'со', 'у', 'о', 'об',
+      'от', 'до', 'за', 'из', 'по', 'при', 'для', 'и', 'а',
+      'но', 'или', 'г.'
+    ]);
+
+    let currentLine = '';
+
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+      const nextLine = currentLine ? `${currentLine} ${word}` : word;
+
+      if (nextLine.length <= maxLineLength) {
+        currentLine = nextLine;
+        continue;
+      }
+
+      if (currentLine) {
+        const lastWord = currentLine.split(/\s+/).at(-1) ?? '';
+
+        if (shortWords.has(lastWord.toLowerCase())) {
+          currentLine = currentLine.slice(0, -(lastWord.length)).trimEnd();
+          lines.push(currentLine);
+          currentLine = `${lastWord} ${word}`;
+        } else {
+          lines.push(currentLine);
+          currentLine = word;
+        }
+      } else {
+        currentLine = word;
+      }
+    }
+
+    if (currentLine) {
+      lines.push(currentLine);
+    }
+
+    return lines;
+  }
 }
 

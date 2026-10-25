@@ -112,6 +112,7 @@
                 template.id === 1 &&
                 formatFullName(fullName).length === 3
             "
+            [class.layout-preview__position--badge-uppercase]="layoutName === 'Бейджи'"
         >
             {{ formatPosition(position) }}
         </div>
@@ -161,7 +162,15 @@
             [style.color]="certificateTextField.color"
             [style.width.px]="certificateTextField.width"
         >
-            {{ certificateText }}
+            <ng-container *ngIf="layoutName === 'Дипломы'; else regularText">
+                <div *ngFor="let line of formatDiplomaText(certificateText)">
+                    {{ line }}
+                </div>
+            </ng-container>
+
+            <ng-template #regularText>
+                {{ certificateText }}
+            </ng-template>
         </div>
 
         <div *ngIf="cityField"

@@ -136,13 +136,20 @@
 
 .layout-preview__qr-label {
     position: absolute;
-    transform: translateY(-20px);
+    box-sizing: border-box;
+
+    padding: 0 2px;
     text-align: center;
     font-weight: 700;
     line-height: 1.2;
+
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
+    hyphens: none;
+
+    transform: translateY(-100%);
+    margin-top: -6px;
 }
 
 .layout-preview__recipient-name {
@@ -181,4 +188,10 @@
     white-space: normal;
     overflow-wrap: break-word;
     word-break: normal;
+}
+
+.layout-preview {
+    &__position--badge-uppercase {
+        text-transform: uppercase;
+    }
 }

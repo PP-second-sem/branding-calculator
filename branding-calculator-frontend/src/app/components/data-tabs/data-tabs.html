@@ -86,7 +86,16 @@
     <ng-container *ngIf="activeTab === 'contacts' && (layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
         <div class="data-tabs__fields">
             <app-placeholder
+                *ngIf="layoutName !== 'Бейджи'"
                 label="Место и дата"
+                placeholder="Салехард"
+                [value]="city"
+                (valueChange)="setCity($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                *ngIf="layoutName === 'Бейджи'"
+                label="Место"
                 placeholder="Салехард"
                 [value]="city"
                 (valueChange)="setCity($event)"

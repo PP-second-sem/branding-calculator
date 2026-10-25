@@ -111,6 +111,13 @@ export class ConstructorPage {
 
     this.ensureTemplateData(this.selectedTemplate);
     this.loadTemplateData(this.selectedTemplate);
+
+    if (
+      ['Бейджи', 'Сертификаты', 'Дипломы'].includes(layout.name) &&
+      this.dataTabs
+    ) {
+      this.dataTabs.activeTab = 'personal';
+    }
   }
 
   public selectTemplate(template: Template): void {
@@ -318,4 +325,6 @@ export class ConstructorPage {
 
     link.click();
   }
+
+  
 }
