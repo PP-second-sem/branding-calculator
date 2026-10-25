@@ -49,7 +49,7 @@
         <div 
             class="layout-preview__full-name"
             [style.left.px]="fullNameField?.x"
-            [style.top.px]="(fullNameField?.y ?? 0) + (hasWrappedPosition(position) ? 15 : 0)"
+            [style.top.px]="(fullNameField?.y ?? 0) + (hasWrappedPosition(position) ? 15 : 0) + getDiplomaPositionOffset(position)"
             [style.fontSize.px]="fullNameField?.fontSize"
             [style.fontWeight]="fullNameField?.fontWeight"
             [style.color]="fullNameField?.color"
@@ -113,6 +113,7 @@
                 formatFullName(fullName).length === 3
             "
             [class.layout-preview__position--badge-uppercase]="layoutName === 'Бейджи'"
+            
         >
             {{ formatPosition(position) }}
         </div>
@@ -138,7 +139,7 @@
 
             <ng-template #formattedName>
                 <div
-                    *ngFor="let name of formatFullName(recipientName)"
+                    *ngFor="let name of getRecipientNameLines(recipientName)"
                     [class.layout-preview__full-name-line--badge-centered]="
                         layoutName === 'Бейджи' && template.splitPatronymic === true
                     "

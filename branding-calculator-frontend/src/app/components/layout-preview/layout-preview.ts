@@ -174,29 +174,44 @@ export class LayoutPreview {
     }
 
     if (this.layoutName === 'Бейджи' && this.template.id === 1) {
-      if (surname.length > 15) {
-        return [
-          surname.slice(0, 15),
-          surname.slice(15),
-          ...[firstName, patronymic].filter(Boolean)
-        ];
+      if (!firstName && !patronymic) {
+        return [surname];
       }
 
+      if (!firstName) {
+        return [surname, patronymic].filter(Boolean);
+      }
+
+      if (`${surname} ${firstName}`.length <= 15) {
+        if (!patronymic) {
+          return [`${surname} ${firstName}`];
+        }
+
+        return [`${surname} ${firstName}`, patronymic];
+      }
+      return [surname, firstName, patronymic].filter(Boolean);
+    }
+
+    if (this.layoutName === 'Дипломы') {
       if (!firstName && !patronymic) {
         return [surname];
       }
 
       if (!patronymic) {
-        return [surname, firstName].filter(Boolean);
+        return [`${surname} ${firstName}`.trim()];
       }
 
-      return [`${surname} ${firstName}`.trim(), patronymic];
+      const firstLine = `${surname} ${firstName}`;
+
+      if (firstLine.length > 15) {
+        return [surname, firstName, patronymic];
+      }
+
+      return [firstLine, patronymic];
     }
 
-    if (
-      (this.layoutName === 'Бейджи' || this.layoutName === 'Дипломы') &&
-      this.template.splitPatronymic
-    ) {
+
+    if ((this.layoutName === 'Бейджи' || this.layoutName === 'Дипломы') && this.template.splitPatronymic) {
       if (words.length < 3) {
         return [fullName];
       }
@@ -310,6 +325,23 @@ export class LayoutPreview {
       && position.trim().length > 20;
   }
 
+  public getDiplomaPositionOffset(position: string): number {
+    if (this.layoutName !== 'Дипломы') {
+      return 0;
+    }
+
+    const text = position.trim();
+
+    if (!text) {
+      return 0;
+    }
+
+    const maxCharsPerLine = 20;
+    const lines = Math.ceil(text.length / maxCharsPerLine);
+
+    return Math.max(0, lines - 1) * 15;
+  }
+
   public limitFullNameParts(fullName: string): string {
     const [surname = '', firstName = '', patronymic = ''] =
       fullName.trim().split(/\s+/);
@@ -375,6 +407,41 @@ export class LayoutPreview {
           currentLine = word;
         }
       } else {
+        currentLine = word;
+      }
+    }
+
+    if (currentLine) {
+      lines.push(currentLine);
+    }
+
+    return lines;
+  }
+
+  public getRecipientNameLines(fullName: string): string[] {
+    if (this.layoutName !== 'Дипломы') {
+      return this.formatFullName(fullName);
+    }
+
+    const words = this.limitFullNameParts(fullName)
+      .split(/\s+/)
+      .filter(Boolean);
+
+    const lines: string[] = [];
+    let currentLine = '';
+
+    for (const word of words) {
+      const candidate = currentLine
+        ? `${currentLine} ${word}`
+        : word;
+
+      if (candidate.length <= 15) {
+        currentLine = candidate;
+      } else {
+        if (currentLine) {
+          lines.push(currentLine);
+        }
+
         currentLine = word;
       }
     }
