@@ -320,7 +320,7 @@
                 label="Тип мероприятия"
                 placeholder="Концерт"
                 [value]="eventType"
-                [maxlength]="10"
+                [maxlength]="20"
                 (valueChange)="setEventType($event)"
             ></app-placeholder>
 
@@ -361,6 +361,7 @@
                 placeholder="24.09.2026"
                 [value]="eventDate"
                 (valueChange)="setEventDate($event)"
+                [maxlength]="14"
             ></app-placeholder>
 
             <app-placeholder
