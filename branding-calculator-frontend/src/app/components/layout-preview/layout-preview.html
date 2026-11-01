@@ -249,5 +249,113 @@
                 {{ line }}
             </div>
         </div>
+
+        <div
+            *ngIf="eventTypeField"
+            class="layout-preview__event-type"
+            [style.left.px]="eventTypeField.x"
+            [style.top.px]="eventTypeField.y"
+            [style.width.px]="eventTypeField.width"
+            [style.fontSize.px]="eventTypeField.fontSize"
+            [style.fontWeight]="eventTypeField.fontWeight"
+            [style.color]="eventTypeField.color"
+        >
+            {{ eventType }}
+        </div>
+
+        <div
+            *ngIf="eventShortDescriptionField"
+            class="layout-preview__event-short-description"
+            [style.left.px]="eventShortDescriptionField.x"
+            [style.top.px]="eventShortDescriptionField.y"
+            [style.width.px]="eventShortDescriptionField.width"
+            [style.fontSize.px]="eventShortDescriptionField.fontSize"
+            [style.fontWeight]="eventShortDescriptionField.fontWeight"
+            [style.color]="eventShortDescriptionField.color"
+        >
+            {{ eventShortDescription }}
+        </div>
+
+        <div
+            *ngIf="eventDescriptionField"
+            class="layout-preview__event-description"
+            [style.left.px]="eventDescriptionField.x"
+            [style.top.px]="eventDescriptionField.y"
+            [style.width.px]="eventDescriptionField.width"
+            [style.fontSize.px]="eventDescriptionField.fontSize"
+            [style.fontWeight]="eventDescriptionField.fontWeight"
+            [style.color]="eventDescriptionField.color"
+        >
+            {{ eventDescription }}
+        </div>
+
+        <div
+            *ngIf="eventPlaceField"
+            class="layout-preview__event-place"
+            [style.left.px]="eventPlaceField.x"
+            [style.top.px]="eventPlaceField.y"
+            [style.width.px]="eventPlaceField.width"
+            [style.fontSize.px]="eventPlaceField.fontSize"
+            [style.fontWeight]="eventPlaceField.fontWeight"
+            [style.color]="eventPlaceField.color"
+        >
+            {{ eventPlace }}
+        </div>
+
+        <div
+            *ngIf="eventDateField"
+            class="layout-preview__event-date"
+            [style.left.px]="eventDateField.x"
+            [style.top.px]="eventDateField.y"
+            [style.width.px]="eventDateField.width"
+            [style.fontSize.px]="eventDateField.fontSize"
+            [style.fontWeight]="eventDateField.fontWeight"
+            [style.color]="eventDateField.color"
+        >
+            {{ eventDate }}
+        </div>
+
+        <div
+            *ngIf="eventTimeField"
+            class="layout-preview__event-time"
+            [style.left.px]="eventTimeField.x"
+            [style.top.px]="eventTimeField.y"
+            [style.width.px]="eventTimeField.width"
+            [style.fontSize.px]="eventTimeField.fontSize"
+            [style.fontWeight]="eventTimeField.fontWeight"
+            [style.color]="eventTimeField.color"
+        >
+            {{ eventTime }}
+        </div>
+
+        <div
+            *ngIf="eventAgeLimitField"
+            class="layout-preview__event-age-limit"
+            [style.left.px]="eventAgeLimitField.x"
+            [style.top.px]="eventAgeLimitField.y"
+            [style.width.px]="eventAgeLimitField.width"
+            [style.fontSize.px]="eventAgeLimitField.fontSize"
+            [style.fontWeight]="eventAgeLimitField.fontWeight"
+            [style.color]="eventAgeLimitField.color"
+        >
+            {{ eventAgeLimit }}
+        </div>
+
+        <div
+            *ngIf="eventAdditionalInfoField"
+            class="layout-preview__event-additional-info"
+            [class.layout-preview__event-additional-info--right]="
+                layoutName === 'Афиши' &&
+                [1, 4, 5].includes(template.id)
+            "
+            [style.left.px]="eventAdditionalInfoField.x"
+            [style.top.px]="eventAdditionalInfoField.y"
+            [style.width.px]="eventAdditionalInfoField.width"
+            [style.fontSize.px]="eventAdditionalInfoField.fontSize"
+            [style.fontWeight]="eventAdditionalInfoField.fontWeight"
+            [style.color]="eventAdditionalInfoField.color"
+        >
+            {{ eventAdditionalInfo }}
+        </div>
     </div>
 </div>

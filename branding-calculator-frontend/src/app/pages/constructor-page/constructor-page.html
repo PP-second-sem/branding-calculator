@@ -99,11 +99,20 @@
                     [qrCodesGenerated]="qrCodesGenerated"
                     [qrCode1Enabled]="qrCode1Enabled"
                     [qrCode2Enabled]="qrCode2Enabled"
+                    [eventType]="eventType"
+                    [eventShortDescription]="eventShortDescription"
+                    [eventDescription]="eventDescription"
+                    [eventPlace]="eventPlace"
+                    [eventDate]="eventDate"
+                    [eventTime]="eventTime"
+                    [eventAgeLimit]="eventAgeLimit"
+                    [eventAdditionalInfo]="eventAdditionalInfo"
                 ></app-layout-preview>
 
                 <div class="constructor__form">
                     <app-data-tabs
                         [layoutName]="selectedLayout.name"
+                        [templateId]="selectedTemplate.id"
                         (fullNameChange)="saveState(); fullName = $event; updateSelectedTemplateData()"
                         (positionChange)="saveState(); position = $event; updateSelectedTemplateData()"
                         (phoneChange)="saveState(); phone = $event; updateSelectedTemplateData()"
@@ -125,6 +134,14 @@
                         (qrCodesGeneratedChange)="qrCodesGenerated = $event; updateSelectedTemplateData()"
                         (qrCode1EnabledChange)="saveState(); qrCode1Enabled = $event; updateSelectedTemplateData()"
                         (qrCode2EnabledChange)="saveState(); qrCode2Enabled = $event; updateSelectedTemplateData()"
+                        (eventTypeChange)="saveState(); eventType = $event; updateSelectedTemplateData()"
+                        (eventShortDescriptionChange)="saveState(); eventShortDescription = $event; updateSelectedTemplateData()"
+                        (eventDescriptionChange)="saveState(); eventDescription = $event; updateSelectedTemplateData()"
+                        (eventPlaceChange)="saveState(); eventPlace = $event; updateSelectedTemplateData()"
+                        (eventDateChange)="saveState(); eventDate = $event; updateSelectedTemplateData()"
+                        (eventTimeChange)="saveState(); eventTime = $event; updateSelectedTemplateData()"
+                        (eventAgeLimitChange)="saveState(); eventAgeLimit = $event; updateSelectedTemplateData()"
+                        (eventAdditionalInfoChange)="saveState(); eventAdditionalInfo = $event; updateSelectedTemplateData()"
                     ></app-data-tabs>
                 </div>
             </section>
