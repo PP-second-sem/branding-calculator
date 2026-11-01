@@ -305,6 +305,9 @@
         <div
             *ngIf="eventDateField"
             class="layout-preview__event-date"
+            [class.layout-preview__event-date--split]="
+                layoutName === 'Афиши' && [1, 4, 5].includes(template.id)
+            "
             [style.left.px]="eventDateField.x"
             [style.top.px]="eventDateField.y"
             [style.width.px]="eventDateField.width"
@@ -312,7 +315,7 @@
             [style.fontWeight]="eventDateField.fontWeight"
             [style.color]="eventDateField.color"
         >
-            {{ eventDate }}
+            {{ eventDate.replace(/\s+/, '\n') }}
         </div>
 
         <div

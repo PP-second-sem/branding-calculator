@@ -162,6 +162,10 @@
         word-break: normal;
     }
 
+    &__event-date--split {
+        white-space: pre-line;
+    }
+
 }
 
 .layout-preview__qr-label {
