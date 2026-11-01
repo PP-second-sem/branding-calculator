@@ -892,7 +892,7 @@ export const layouts: Layout[] = [
             type: 'eventTypeField',
             x: 200,
             y: 50,
-            width: 50,
+            width: 60,
             fontSize: 8,
             fontWeight: 400,
             color: 'rgba(241, 240, 225, 1)',
