@@ -41,6 +41,14 @@ export class ConstructorPage {
   public selectedTemplate: Template = this.selectedLayout.templates[0];
   public showPhone = true;
   public showAddress = true;
+  public eventType = '';
+  public eventShortDescription = '';
+  public eventDescription = '';
+  public eventPlace = '';
+  public eventDate = '';
+  public eventTime = '';
+  public eventAgeLimit = '';
+  public eventAdditionalInfo = '';
 
   constructor() {
     this.ensureTemplateData(this.selectedTemplate);
@@ -67,6 +75,14 @@ export class ConstructorPage {
       qrCode2Label: '',
       qrCodesGenerated: false,
       qrCode2Enabled: false,
+      eventType: '',
+      eventShortDescription: '',
+      eventDescription: '',
+      eventPlace: '',
+      eventDate: '',
+      eventTime: '',
+      eventAgeLimit: '',
+      eventAdditionalInfo: '',
     };
   }
 
@@ -99,6 +115,14 @@ export class ConstructorPage {
     this.qrCode2Label = data.qrCode2Label ?? '';
     this.qrCodesGenerated = data.qrCodesGenerated ?? false;
     this.qrCode2Enabled = data.qrCode2Enabled ?? false;
+    this.eventType = data.eventType ?? '';
+    this.eventShortDescription = data.eventShortDescription ?? '';
+    this.eventDescription = data.eventDescription ?? '';
+    this.eventPlace = data.eventPlace ?? '';
+    this.eventDate = data.eventDate ?? '';
+    this.eventTime = data.eventTime ?? '';
+    this.eventAgeLimit = data.eventAgeLimit ?? '';
+    this.eventAdditionalInfo = data.eventAdditionalInfo ?? '';
 
     this.syncDataTabs();
   }
@@ -141,6 +165,14 @@ export class ConstructorPage {
       qrCode2Label: this.qrCode2Label,
       qrCodesGenerated: this.qrCodesGenerated,
       qrCode2Enabled: this.qrCode2Enabled,
+      eventType: this.eventType,
+      eventShortDescription: this.eventShortDescription,
+      eventDescription: this.eventDescription,
+      eventPlace: this.eventPlace,
+      eventDate: this.eventDate,
+      eventTime: this.eventTime,
+      eventAgeLimit: this.eventAgeLimit,
+      eventAdditionalInfo: this.eventAdditionalInfo,
     };
 
     this.selectedTemplate = template;
@@ -181,6 +213,14 @@ export class ConstructorPage {
       qrCode2Label: this.qrCode2Label,
       qrCodesGenerated: this.qrCodesGenerated,
       qrCode2Enabled: this.qrCode2Enabled,
+      eventType: this.eventType,
+      eventShortDescription: this.eventShortDescription,
+      eventDescription: this.eventDescription,
+      eventPlace: this.eventPlace,
+      eventDate: this.eventDate,
+      eventTime: this.eventTime,
+      eventAgeLimit: this.eventAgeLimit,
+      eventAdditionalInfo: this.eventAdditionalInfo,
     };
   }
 
@@ -218,6 +258,14 @@ export class ConstructorPage {
       qrCode2Label: this.qrCode2Label,
       qrCodesGenerated: this.qrCodesGenerated,
       qrCode2Enabled: this.qrCode2Enabled,
+      eventType: this.eventType,
+      eventShortDescription: this.eventShortDescription,
+      eventDescription: this.eventDescription,
+      eventPlace: this.eventPlace,
+      eventDate: this.eventDate,
+      eventTime: this.eventTime,
+      eventAgeLimit: this.eventAgeLimit,
+      eventAdditionalInfo: this.eventAdditionalInfo,
     };
   }
 
@@ -234,6 +282,14 @@ export class ConstructorPage {
     this.qrCode2Label = state.qrCode2Label;
     this.qrCodesGenerated = state.qrCodesGenerated;
     this.qrCode2Enabled = state.qrCode2Enabled;
+    this.eventType = state.eventType;
+    this.eventShortDescription = state.eventShortDescription;
+    this.eventDescription = state.eventDescription;
+    this.eventPlace = state.eventPlace;
+    this.eventDate = state.eventDate;
+    this.eventTime = state.eventTime;
+    this.eventAgeLimit = state.eventAgeLimit;
+    this.eventAdditionalInfo = state.eventAdditionalInfo;
 
     this.updateSelectedTemplateData();
     this.syncDataTabs();
@@ -307,6 +363,14 @@ export class ConstructorPage {
       qrCode2Label: this.qrCode2Label,
       qrCodesGenerated: this.qrCodesGenerated,
       qrCode2Enabled: this.qrCode2Enabled,
+      eventType: this.eventType,
+      eventShortDescription: this.eventShortDescription,
+      eventDescription: this.eventDescription,
+      eventPlace: this.eventPlace,
+      eventDate: this.eventDate,
+      eventTime: this.eventTime,
+      eventAgeLimit: this.eventAgeLimit,
+      eventAdditionalInfo: this.eventAdditionalInfo,
     });
   }
 

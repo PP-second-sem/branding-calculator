@@ -22,7 +22,15 @@
     &__address,
     &__qr-code,
     &__city,
-    &__date {
+    &__date,
+    &__event-type,
+    &__event-short-description,
+    &__event-description,
+    &__event-place,
+    &__event-date,
+    &__event-time,
+    &__event-age-limit,
+    &__event-additional-info {
         position: absolute;
     }
 
@@ -132,6 +140,28 @@
         transform: translateY(30px);
     }
 
+    &__event-additional-info--right {
+        text-align: right;
+    }
+
+    &__event-type,
+    &__event-description,
+    &__event-place,
+    &__event-date,
+    &__event-time,
+    &__event-age-limit,
+    &__event-additional-info {
+        overflow-wrap: break-word;
+        word-break: normal;
+        box-sizing: border-box;
+    }
+
+    &__event-short-description {
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
 }
 
 .layout-preview__qr-label {
@@ -195,3 +225,4 @@
         text-transform: uppercase;
     }
 }
+

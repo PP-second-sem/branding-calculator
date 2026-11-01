@@ -35,6 +35,14 @@ export class LayoutPreview {
   @Input() qrCode1Enabled = true;
   @Input() showPhone = true;
   @Input() showAddress = true;
+  @Input() eventType = '';
+  @Input() eventShortDescription = '';
+  @Input() eventDescription = '';
+  @Input() eventPlace = '';
+  @Input() eventDate = '';
+  @Input() eventTime = '';
+  @Input() eventAgeLimit = '';
+  @Input() eventAdditionalInfo = '';
 
   public get fullNameField(): TextField | undefined {
     return this.template.textFields.find(
@@ -451,6 +459,54 @@ export class LayoutPreview {
     }
 
     return lines;
+  }
+
+  public get eventTypeField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventTypeField'
+    );
+  }
+
+  public get eventShortDescriptionField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventShortDescriptionField'
+    );
+  }
+
+  public get eventDescriptionField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventDescriptionField'
+    );
+  }
+
+  public get eventPlaceField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventPlaceField'
+    );
+  }
+
+  public get eventDateField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventDateField'
+    );
+  }
+
+  public get eventTimeField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventTimeField'
+    );
+  }
+
+  public get eventAgeLimitField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventAgeLimitField'
+    );
+  }
+
+  public get eventAdditionalInfoField(): TextField | undefined {
+    return this.template.textFields.find(
+      field => field.type === 'eventAdditionalInfoField'
+    );
   }
 }
 

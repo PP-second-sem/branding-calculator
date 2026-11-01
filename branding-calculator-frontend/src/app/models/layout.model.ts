@@ -27,7 +27,25 @@ export interface Layout {
 
 export interface TextField {
   id: string;
-  type: 'fullName' | 'position' | 'phone' | 'mobilePhone' | 'email' | 'address' | 'date' | 'city' | 'recipientName' | 'certificateText';
+  type:
+  | 'fullName'
+  | 'position'
+  | 'phone'
+  | 'mobilePhone'
+  | 'email'
+  | 'address'
+  | 'date'
+  | 'city'
+  | 'recipientName'
+  | 'certificateText'
+  | 'eventTypeField'
+  | 'eventShortDescriptionField'
+  | 'eventDescriptionField'
+  | 'eventPlaceField'
+  | 'eventDateField'
+  | 'eventTimeField'
+  | 'eventAgeLimitField'
+  | 'eventAdditionalInfoField';
   x: number;
   y: number;
   width: number;
@@ -55,4 +73,12 @@ export interface TemplateData {
   city?: string;
   showAddress?: boolean;
   showPhone?: boolean;
+  eventType?: string;
+  eventShortDescription?: string;
+  eventDescription?: string;
+  eventPlace?: string;
+  eventDate?: string;
+  eventTime?: string;
+  eventAgeLimit?: string;
+  eventAdditionalInfo?: string;
 }

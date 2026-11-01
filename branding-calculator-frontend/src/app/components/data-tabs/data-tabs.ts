@@ -30,6 +30,14 @@ export class DataTabs {
   public date = '';
   public recipientName = '';
   public certificateText = '';
+  public eventType = '';
+  public eventShortDescription = '';
+  public eventDescription = '';
+  public eventPlace = '';
+  public eventDate = '';
+  public eventTime = '';
+  public eventAgeLimit = '';
+  public eventAdditionalInfo = '';
 
   @Output() cityChange = new EventEmitter<string>();
   @Output() dateChange = new EventEmitter<string>();
@@ -37,6 +45,7 @@ export class DataTabs {
   @Input() layoutName = '';
   @Input() showPhone = true;
   @Input() showAddress = true;
+  @Input() templateId = 0;
 
   @Output() showPhoneChange = new EventEmitter<boolean>();
   @Output() showAddressChange = new EventEmitter<boolean>();
@@ -55,6 +64,14 @@ export class DataTabs {
   @Output() qrCodesGeneratedChange = new EventEmitter<boolean>();
   @Output() qrCode1EnabledChange = new EventEmitter<boolean>();
   @Output() qrCode2EnabledChange = new EventEmitter<boolean>();
+  @Output() eventTypeChange = new EventEmitter<string>();
+  @Output() eventShortDescriptionChange = new EventEmitter<string>();
+  @Output() eventDescriptionChange = new EventEmitter<string>();
+  @Output() eventPlaceChange = new EventEmitter<string>();
+  @Output() eventDateChange = new EventEmitter<string>();
+  @Output() eventTimeChange = new EventEmitter<string>();
+  @Output() eventAgeLimitChange = new EventEmitter<string>();
+  @Output() eventAdditionalInfoChange = new EventEmitter<string>();
 
   public syncData(data: TemplateData): void {
     this.fullName = data.fullName;
@@ -72,7 +89,15 @@ export class DataTabs {
     this.qrCodesGenerated = data.qrCodesGenerated ?? false;
     this.qrCode2Enabled = data.qrCode2Enabled ?? false;
     this.recipientName = data.recipientName ?? '';
-    this.certificateText = data.certificateText ?? '';  
+    this.certificateText = data.certificateText ?? ''; 
+    this.eventType = data.eventType ?? '';
+    this.eventShortDescription = data.eventShortDescription ?? '';
+    this.eventDescription = data.eventDescription ?? '';
+    this.eventPlace = data.eventPlace ?? '';
+    this.eventDate = data.eventDate ?? '';
+    this.eventTime = data.eventTime ?? '';
+    this.eventAgeLimit = data.eventAgeLimit ?? '';
+    this.eventAdditionalInfo = data.eventAdditionalInfo ?? ''; 
     
     
 
@@ -175,5 +200,45 @@ export class DataTabs {
   public setCertificateText(value: string): void {
     this.certificateText = value;
     this.certificateTextChange.emit(value);
+  }
+
+  public setEventType(value: string): void {
+    this.eventType = value;
+    this.eventTypeChange.emit(value);
+  }
+
+  public setEventShortDescription(value: string): void {
+    this.eventShortDescription = value;
+    this.eventShortDescriptionChange.emit(value);
+  }
+
+  public setEventDescription(value: string): void {
+    this.eventDescription = value;
+    this.eventDescriptionChange.emit(value);
+  }
+
+  public setEventPlace(value: string): void {
+    this.eventPlace = value;
+    this.eventPlaceChange.emit(value);
+  }
+
+  public setEventDate(value: string): void {
+    this.eventDate = value;
+    this.eventDateChange.emit(value);
+  }
+
+  public setEventTime(value: string): void {
+    this.eventTime = value;
+    this.eventTimeChange.emit(value);
+  }
+
+  public setEventAgeLimit(value: string): void {
+    this.eventAgeLimit = value;
+    this.eventAgeLimitChange.emit(value);
+  }
+
+  public setEventAdditionalInfo(value: string): void {
+    this.eventAdditionalInfo = value;
+    this.eventAdditionalInfoChange.emit(value);
   }
 }

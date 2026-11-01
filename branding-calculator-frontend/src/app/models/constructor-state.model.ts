@@ -11,4 +11,12 @@ export interface ConstructorState {
     qrCode2Label: string;
     qrCodesGenerated: boolean;
     qrCode2Enabled: boolean;
+    eventType: string;
+    eventShortDescription: string;
+    eventDescription: string;
+    eventPlace: string;
+    eventDate: string;
+    eventTime: string;
+    eventAgeLimit: string;
+    eventAdditionalInfo: string;
 }

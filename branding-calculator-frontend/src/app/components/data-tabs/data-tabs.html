@@ -1,6 +1,7 @@
 <div class="data-tabs">
     <button
         type="button"
+        *ngIf="layoutName !== 'Афиши'"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'personal'"
         (click)="activeTab = 'personal'"
@@ -19,6 +20,7 @@
     </button>
 
     <button
+        *ngIf="layoutName !== 'Афиши'"
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'contacts'"
@@ -27,23 +29,50 @@
         {{ layoutName === 'Бейджи' || layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? 'Место и дата' : 'Контактные данные' }}
     </button>
 
-    <!-- <button
-        type="button"
-        class="data-tabs__tab"
-        [class.data-tabs__tab--active]="activeTab === 'logo'"
-        (click)="activeTab = 'logo'"
-    >
-        Логотип
-    </button> -->
-
     <button
-        *ngIf="layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы'"
+        *ngIf="layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы' && layoutName !== 'Афиши'"
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'qr'"
         (click)="activeTab = 'qr'"
     >
         QR-коды
+    </button>
+    
+    <button
+        *ngIf="layoutName === 'Афиши'"
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'event'"
+        (click)="activeTab = 'event'">
+        Мероприятие
+    </button>
+
+    <button
+        *ngIf="layoutName === 'Афиши'"
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'desc'"
+        (click)="activeTab = 'desc'">
+        Описание
+    </button>
+
+    <button
+        *ngIf="layoutName === 'Афиши'"
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'place_and_time'"
+        (click)="activeTab = 'place_and_time'">
+        Место и время
+    </button>
+
+    <button
+        *ngIf="layoutName === 'Афиши'"
+        type="button"
+        class="data-tabs__tab"
+        [class.data-tabs__tab--active]="activeTab === 'add_info'"
+        (click)="activeTab = 'add_info'">
+        Дополнительная информация
     </button>
 </div>
 
@@ -285,4 +314,85 @@
             ></app-placeholder>
         </div>
     </ng-container>
+    <ng-container *ngIf="activeTab === 'event' && layoutName === 'Афиши'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                label="Тип мероприятия"
+                placeholder="Концерт"
+                [value]="eventType"
+                [maxlength]="10"
+                (valueChange)="setEventType($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Название"
+                placeholder="Название"
+                [maxlength]="24"
+                [value]="eventShortDescription"
+                (valueChange)="setEventShortDescription($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'desc' && layoutName === 'Афиши'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                class="data-tabs__field--full-width"
+                label="Описание"
+                placeholder="Краткое описание мероприятия"
+                [value]="eventDescription"
+                [maxlength]="119"
+                (valueChange)="setEventDescription($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'place_and_time' && layoutName === 'Афиши'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                label="Место"
+                placeholder="г. Салехард"
+                [value]="eventPlace"
+                (valueChange)="setEventPlace($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Дата"
+                placeholder="24.09.2026"
+                [value]="eventDate"
+                (valueChange)="setEventDate($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Время"
+                placeholder="18:00"
+                [value]="eventTime"
+                (valueChange)="setEventTime($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'add_info' && layoutName === 'Афиши'">
+        <div class="data-tabs__fields">
+            <app-placeholder
+                class="data-tabs__field--full-width"
+                *ngIf="[1, 4, 5].includes(templateId)"
+                label="Возрастное ограничение"
+                placeholder="18+"
+                [value]="eventAgeLimit"
+                [maxlength]="3"
+                (valueChange)="setEventAgeLimit($event)"
+            ></app-placeholder>
+
+            <app-placeholder
+                class="data-tabs__field--full-width"
+                label="Дополнительная информация"
+                placeholder="Дополнительная информация при необходимости"
+                [value]="eventAdditionalInfo"
+                [maxlength]="58"
+                (valueChange)="setEventAdditionalInfo($event)"
+            ></app-placeholder>
+        </div>
+    </ng-container>
+
 </div>
