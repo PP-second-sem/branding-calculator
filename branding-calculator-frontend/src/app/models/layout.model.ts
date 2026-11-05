@@ -17,6 +17,29 @@ export interface Template {
   data?: TemplateData;
   undoStack?: ConstructorState[];
   redoStack?: ConstructorState[];
+  icons?: {
+    phone?: {
+      src?: string;
+      x?: number;
+      y?: number;
+      width?: number;
+      height?: number;
+      label?: {
+        x: number;
+        y: number;
+        fontSize: number;
+        fontWeight: number;
+        color: string;
+      };
+    };
+    address?: {
+      src?: string;
+      x?: number;
+      y?: number;
+      width?: number;
+      height?: number;
+    };
+  };
 }
 
 export interface Layout {

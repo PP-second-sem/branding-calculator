@@ -166,6 +166,16 @@
         white-space: pre-line;
     }
 
+    &__icon {
+        position: absolute;
+        object-fit: contain;
+    }
+
+    &__phone-label {
+        position: absolute;
+        white-space: nowrap;
+    }
+
 }
 
 .layout-preview__qr-label {

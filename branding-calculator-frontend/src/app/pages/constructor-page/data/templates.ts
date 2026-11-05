@@ -110,6 +110,29 @@ export const layouts: Layout[] = [
         id: 1,
         preview: 'business_card_1.svg',
         filledPreview: 'filled_business_card_1.svg',
+        icons: {
+          phone: {
+            src: 'business_card_1_phone.svg',
+            x: 67,
+            y: 347,
+            width: 26,
+            height: 18,
+            label: {
+              x: 98,
+              y: 347,
+              fontSize: 15,
+              fontWeight: 400,
+              color:' rgba(34, 37, 47, 1)',
+            },
+          },
+          address: {
+            src: 'business_card_1_address.svg',
+            x: 415,
+            y: 347,
+            width: 17,
+            height: 18
+          },
+        },
         textFields: [
         {
           id: 'fullName',
@@ -200,6 +223,17 @@ export const layouts: Layout[] = [
       id: 2,
       preview: 'business_card_2.svg',
       filledPreview: 'filled_business_card_2.svg',
+      icons: {
+        phone: {
+          label: {
+            x: 357,
+            y: 267.5,
+            fontSize: 16,
+            fontWeight: 400,
+            color:' rgba(34, 37, 47, 1)',
+          },
+        },
+      },
       textFields: [
         {
           id: 'fullName',
@@ -290,6 +324,17 @@ export const layouts: Layout[] = [
       id: 3,
       preview: 'business_card_3.svg',
       filledPreview: 'filled_business_card_3.svg',
+      icons: {
+        phone: {
+          label: {
+            x: 60,
+            y: 375,
+            fontSize: 13,
+            fontWeight: 400,
+            color:' rgba(34, 37, 47, 1)',
+          },
+        },
+      },
       textFields: [
         {
           id: 'fullName',
@@ -379,6 +424,29 @@ export const layouts: Layout[] = [
       id: 4,
       preview: 'business_card_4.svg',
       filledPreview: 'filled_business_card_4.svg',
+      icons: {
+        phone: {
+          src: 'business_card_4_phone.svg',
+          x: 35,
+          y: 349,
+          width: 15,
+          height: 12,
+          label: {
+            x: 59,
+            y: 351,
+            fontSize: 9,
+            fontWeight: 400,
+            color: 'rgba(34, 37, 47, 1)',
+          },
+        },
+        address: {
+          src: 'business_card_4_address.svg',
+          x: 35,
+          y: 419,
+          width: 14,
+          height: 12.5
+        },
+      },
       textFields: [
         {
           id: 'fullName',
