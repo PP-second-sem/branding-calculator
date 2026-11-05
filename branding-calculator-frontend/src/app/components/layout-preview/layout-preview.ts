@@ -92,6 +92,18 @@ export class LayoutPreview {
     );
   };
 
+  public get phoneIconLabel() {
+    return this.template.icons?.phone?.label;
+  }
+
+  public get phoneIcon() {
+    return this.template.icons?.phone;
+  }
+
+  public get addressIcon() {
+    return this.template.icons?.address;
+  }
+
   public formatAddress(address: string): string[] {
     const words = address.trim().split(/\s+/);
     const lines: string[] = [];

@@ -94,6 +94,42 @@
             </div>
         </div>
 
+        <img
+            *ngIf="showPhone && phoneIcon"
+            class="layout-preview__icon"
+            [src]="phoneIcon.src"
+            [style.left.px]="phoneIcon.x"
+            [style.top.px]="phoneIcon.y"
+            [style.width.px]="phoneIcon.width"
+            [style.height.px]="phoneIcon.height"
+        />
+
+        <div
+            *ngIf="
+                showPhone &&
+                layoutName === 'Визитки' &&
+                [1, 2, 3, 4].includes(template.id)
+            "
+            class="layout-preview__phone-label"
+            [style.left.px]="phoneIconLabel?.x"
+            [style.top.px]="phoneIconLabel?.y"
+            [style.fontSize.px]="phoneIconLabel?.fontSize"
+            [style.fontWeight]="phoneIconLabel?.fontWeight"
+            [style.color]="phoneIconLabel?.color"
+        >
+            Тел.:
+        </div>
+
+        <img
+            *ngIf="showAddress && addressIcon"
+            class="layout-preview__icon"
+            [src]="addressIcon.src"
+            [style.left.px]="addressIcon.x"
+            [style.top.px]="addressIcon.y"
+            [style.width.px]="addressIcon.width"
+            [style.height.px]="addressIcon.height"
+        />
+
         <div
             class="layout-preview__position"
             [class.layout-preview__position--business-card-centered]="
