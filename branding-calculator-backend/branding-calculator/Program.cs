@@ -2,11 +2,9 @@ using branding_calculator.Extensions;
 using Serilog;
 using SQLitePCL;
 
-// 1. Глобальная инициализация (до создания билдера)
 Batteries.Init();
 System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-// 2. Bootstrap-логгер для перехвата ошибок на самом раннем этапе запуска
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateBootstrapLogger();
@@ -15,7 +13,6 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-    // 3. Настройка Serilog (читает из appsettings.json + добавляет файловый лог)
     builder.Host.UseSerilog((context, services, configuration) =>
         configuration
             .ReadFrom.Configuration(context.Configuration)
@@ -24,15 +21,13 @@ try
             .WriteTo.File("logs/app-.txt", rollingInterval: RollingInterval.Day)
     );
 
-    // 4. Вызов вынесенных методов расширения (Program.cs остается чистым!)
     builder.ConfigureAppLimits();
     builder.Services.ConfigureDatabase(builder.Configuration);
     builder.Services.AddApplicationServices(builder.Configuration);
 
     var app = builder.Build();
 
-    // 5. Конвейер обработки запросов (Middleware)
-    app.UseSerilogRequestLogging(); // 
+    app.UseSerilogRequestLogging();
     app.UseStaticFiles();
 
     if (app.Environment.IsDevelopment())
@@ -57,5 +52,5 @@ catch (Exception ex)
 }
 finally
 {
-    Log.CloseAndFlush(); // Гарантируем запись последних логов перед выходом
+    Log.CloseAndFlush();
 }

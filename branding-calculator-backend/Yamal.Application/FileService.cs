@@ -1,6 +1,6 @@
-﻿using Yamal.Core.Abstractions;
-using ExcelDataReader;
+﻿using ExcelDataReader;
 using System.Data;
+using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
 namespace Yamal.Application

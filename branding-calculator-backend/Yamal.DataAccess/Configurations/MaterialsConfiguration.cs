@@ -12,7 +12,7 @@ namespace Yamal.DataAccess.Configurations
 
 
             builder.HasKey(x => x.Id);
-            
+
 
             builder.Property(x => x.Name)
                 .HasMaxLength(Material.NAME_MAX_LENGTH)

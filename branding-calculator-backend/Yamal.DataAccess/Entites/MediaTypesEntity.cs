@@ -8,7 +8,7 @@ namespace Yamal.DataAccess.Entites
 
         public MediaTypesEntity(int id, int categoryId,
             string name, string templatesJson, string colorSchemesJson,
-            string parametersSchema,int sortOrder, bool isActive)
+            string parametersSchema, int sortOrder, bool isActive)
         {
             Id = id;
             CategoryId = categoryId;

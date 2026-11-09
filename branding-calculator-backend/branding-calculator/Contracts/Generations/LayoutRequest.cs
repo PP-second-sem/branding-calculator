@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace branding_calculator.Contracts.Generations
+﻿namespace branding_calculator.Contracts.Generations
 {
     public record LayoutRequest(int carriersTypeId, int templateId, string[] outputFormats, Parameters parameters);
 

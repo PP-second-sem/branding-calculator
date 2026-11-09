@@ -14,13 +14,13 @@ public class CarrierTypeLogoConfiguration : IEntityTypeConfiguration<CarrierType
 
         builder.Property(c => c.CarrierTypeId)
             .IsRequired();
-        
+
         builder.Property(c => c.LogoId)
             .IsRequired();
-        
+
         builder.Property(x => x.IsRecommended)
             .IsRequired();
-        
+
         builder.HasOne(t => t.MediaType)
             .WithMany(c => c.CarrierTypes)
             .HasForeignKey(t => t.CarrierTypeId)

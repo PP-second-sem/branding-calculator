@@ -23,6 +23,6 @@ namespace Yamal.DataAccess.Entites
         public string UserQuestion { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
-        
+
     }
 }

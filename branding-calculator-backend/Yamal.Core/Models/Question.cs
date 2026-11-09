@@ -10,7 +10,7 @@
                         DateTime createdAt)
         {
             Id = id;
-            UserEmail =  userEmail;
+            UserEmail = userEmail;
             Title = title;
             UserQuestion = userQuestion;
             CreatedAt = createdAt;
@@ -26,7 +26,7 @@
         public string Title { get; }
 
         public string UserQuestion { get; }
-        
+
         public DateTime CreatedAt { get; }
     }
 }

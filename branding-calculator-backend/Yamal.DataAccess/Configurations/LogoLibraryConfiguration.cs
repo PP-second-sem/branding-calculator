@@ -29,12 +29,12 @@ namespace Yamal.DataAccess.Configurations
 
             builder.Property(l => l.SortOrder)
                 .IsRequired();
-            
+
             builder.HasMany(l => l.CarrierTypeLogos)
                 .WithOne(c => c.LogoLibrary)
                 .HasForeignKey(c => c.LogoId)
                 .OnDelete(DeleteBehavior.Cascade);
-                
+
         }
     }
 }

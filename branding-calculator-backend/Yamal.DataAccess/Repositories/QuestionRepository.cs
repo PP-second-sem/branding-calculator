@@ -41,7 +41,7 @@ namespace Yamal.DataAccess.Repositories
         {
             return await _context.Questions
                 .AsNoTracking()
-                .Select(q => new Question(q.Id, 
+                .Select(q => new Question(q.Id,
                 q.UserEmail, q.Title,
                 q.UserQuestion, q.CreatedAt)).ToListAsync();
 

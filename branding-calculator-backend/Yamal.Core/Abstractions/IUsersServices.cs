@@ -10,6 +10,6 @@ namespace Yamal.Core.Abstractions
         Task<int> UpdateEntity(User user);
         Task<string> Auth(string login, string password);
         Task<User> GetUserById(int id);
-        
+
     }
 }

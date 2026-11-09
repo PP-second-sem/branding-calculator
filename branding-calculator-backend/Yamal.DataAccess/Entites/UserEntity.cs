@@ -17,6 +17,6 @@ namespace Yamal.DataAccess.Entites
         public string Login { get; set; }
         [Column("password_hash")]
         public string PasswordHash { get; set; } = string.Empty;
-        
+
     }
 }

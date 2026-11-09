@@ -1,6 +1,5 @@
 ﻿using branding_calculator.Contracts.Auth;
 using Microsoft.AspNetCore.Mvc;
-using Yamal.Application;
 using Yamal.Core.Abstractions;
 
 namespace branding_calculator.Controllers
@@ -34,12 +33,11 @@ namespace branding_calculator.Controllers
                 return Unauthorized("Invalid email or password");
             }
 
-            // 3. Запись токена в Cookie
-            // ИСПОЛЬЗУЕМ: HttpContext (свойство контроллера)
+
             var cookieOptions = new CookieOptions
             {
-                HttpOnly = true,      // Скрипты не могут прочитать куку (защита от XSS)
-                Secure = false,       // true только если у вас HTTPS (локально можно false)
+                HttpOnly = true,
+                Secure = true,
                 SameSite = SameSiteMode.Strict,
                 Expires = DateTime.UtcNow.AddHours(12)
             };

@@ -10,7 +10,7 @@ namespace Yamal.DataAccess.Configurations
         {
 
             builder.HasKey(q => q.Id);
-            
+
             // Свойства
             builder.Property(q => q.Title)
                    .IsRequired()
@@ -21,7 +21,7 @@ namespace Yamal.DataAccess.Configurations
 
             builder.Property(q => q.CreatedAt)
                    .IsRequired();
-            
+
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Yamal.Application
         {
             return await _userRepository.GetAll();
         }
-        
+
 
         public async Task<int> UpdateEntity(User user)
         {

@@ -17,7 +17,7 @@ namespace Yamal.DataAccess.Configurations
             builder.Property(x => x.Description)
                 .HasMaxLength(300);
 
-            
+
             builder.Property(x => x.SortOrder)
                 .IsRequired();
 

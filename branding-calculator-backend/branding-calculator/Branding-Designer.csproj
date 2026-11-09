@@ -6,7 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>branding_calculator</RootNamespace>
     <StartupObject></StartupObject>
+    <UserSecretsId>c184ad42-c4ee-4ecf-9ebc-8ac9ce640342</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Uploads\**" />
+    <Content Remove="Uploads\**" />
+    <EmbeddedResource Remove="Uploads\**" />
+    <None Remove="Uploads\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ExcelDataReader" Version="3.9.0" />
@@ -22,7 +30,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="10.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.12" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +37,6 @@
     <ProjectReference Include="..\Yamal.Core\Yamal.Core.csproj" />
     <ProjectReference Include="..\Yamal.DataAccess\Yamal.DataAccess.csproj" />
     <ProjectReference Include="..\Yamal.Infrastructure\YamalBrand.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Uploads\" />
   </ItemGroup>
 
 </Project>

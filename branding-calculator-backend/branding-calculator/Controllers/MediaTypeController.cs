@@ -1,6 +1,5 @@
 ﻿using branding_calculator.Contracts.Types;
 using Microsoft.AspNetCore.Mvc;
-using Yamal.Application;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 

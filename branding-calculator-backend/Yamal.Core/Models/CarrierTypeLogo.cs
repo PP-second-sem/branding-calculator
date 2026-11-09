@@ -9,7 +9,7 @@ public class CarrierTypeLogo
         LogoId = logoId;
         IsRecommended = isRecommended;
     }
-    
+
     public int Id { get; set; }
     public int CarrierTypeId { get; set; }
     public int LogoId { get; set; }

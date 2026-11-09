@@ -1,6 +1,4 @@
-﻿using Yamal.Core.Abstractions;
-
-namespace Yamal.Core.Models
+﻿namespace Yamal.Core.Models
 {
     public class User
     {
@@ -18,6 +16,6 @@ namespace Yamal.Core.Models
         //Все что заполняет пользователь
         public string Login { get; }
         public string Password { get; }
-        
+
     }
 }

@@ -26,7 +26,6 @@ namespace branding_calculator.Extensions
             services.AddApiAuthentication(jwtOptions);
             services.AddAuthorization();
 
-            // 2. Настройки контроллеров и Swagger
             services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());

@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileProviders;
-using System.Data;
-using System.Xml.Schema;
 using Yamal.Core.Abstractions;
 
 
@@ -28,7 +25,7 @@ namespace branding_calculator.Controllers
                 return BadRequest("No file uploaded.");
             }
 
-            var supportedExtensions = new HashSet<string>() {".xlsx", ".xlsb", ".xls", ".csv" };
+            var supportedExtensions = new HashSet<string>() { ".xlsx", ".xlsb", ".xls", ".csv" };
 
             if (!supportedExtensions.Contains(Path.GetExtension(file.FileName)))
             {
@@ -42,7 +39,7 @@ namespace branding_calculator.Controllers
                     return BadRequest("File stream is null.");
                 }
 
-                return Ok (await _fileService.ReadFileAsync(f));
+                return Ok(await _fileService.ReadFileAsync(f));
             }
 
         }

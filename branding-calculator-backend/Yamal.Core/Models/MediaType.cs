@@ -4,7 +4,7 @@
     {
 
         public MediaType(int id, int categoryId,
-            string name,  string templatesJson, string colorSchemesJson,
+            string name, string templatesJson, string colorSchemesJson,
             string parametersSchema, int sortOrder, bool isActive)
         {
             Id = id;
@@ -24,9 +24,9 @@
         public string Name { get; }
 
         public string TemplatesJson { get; }
-        
+
         public string ColorSchemesJson { get; }
-        
+
         public string ParametersSchema { get; }
 
         public int SortOrder { get; }

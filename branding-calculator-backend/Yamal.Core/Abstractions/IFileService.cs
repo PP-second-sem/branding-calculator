@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data;
-using Yamal.Core.Models;
+﻿using Yamal.Core.Models;
 namespace Yamal.Core.Abstractions
 {
     public interface IFileService

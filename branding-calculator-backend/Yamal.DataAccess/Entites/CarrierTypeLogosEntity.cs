@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Yamal.DataAccess.Entites;
 
 public class CarrierTypeLogosEntity
 {
-    public  CarrierTypeLogosEntity()
-    {}
+    public CarrierTypeLogosEntity()
+    { }
 
     public CarrierTypeLogosEntity(int id, int carrierTypeId,
         int logoId, bool isRecommended)
@@ -16,7 +16,7 @@ public class CarrierTypeLogosEntity
         LogoId = logoId;
         IsRecommended = isRecommended;
     }
-    
+
     public int Id { get; set; }
     [Column("carrier_type_id")]
     public int CarrierTypeId { get; set; }
@@ -24,9 +24,9 @@ public class CarrierTypeLogosEntity
     public int LogoId { get; set; }
     [Column("is_recommended")]
     public bool IsRecommended { get; set; }
-    
+
     public MediaTypesEntity MediaType { get; set; }
-    
+
     public LogoLibraryEntity LogoLibrary { get; set; }
-    
+
 }

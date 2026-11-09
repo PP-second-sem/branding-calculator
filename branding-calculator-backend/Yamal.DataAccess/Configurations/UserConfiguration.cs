@@ -13,7 +13,7 @@ namespace Yamal.DataAccess.Configurations
             builder.Property(x => x.PasswordHash)
                 .HasMaxLength(255)
                 .IsRequired();
-            
+
         }
     }
 }

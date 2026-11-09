@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using branding_calculator.Contracts.Tickets;
+﻿using branding_calculator.Contracts.Tickets;
+using Microsoft.AspNetCore.Mvc;
 using Yamal.Core.Abstractions;
 using Yamal.Core.Models;
 
@@ -43,7 +43,7 @@ namespace branding_calculator.Controllers
 
 
         [HttpGet("/admin/tickets/{id:int}")]
-        public async Task<ActionResult<QuestionResponse>> GetQuestion([FromQuery]int id)
+        public async Task<ActionResult<QuestionResponse>> GetQuestion([FromQuery] int id)
         {
             var question = await _services.GetByIdQuestion(id);
             if (question == null) return NotFound($"Question with ID {id} not found");
@@ -59,7 +59,7 @@ namespace branding_calculator.Controllers
         [HttpPatch("/admin/tickets/{id:int}/status")]
         public async Task<ActionResult<int>> ChangeStatus()
         {
-            return Ok("Return nothing"); 
+            return Ok("Return nothing");
         }
 
 
