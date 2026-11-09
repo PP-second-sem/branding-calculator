@@ -4,6 +4,7 @@
 *.db
 yamal.db
 
+
 # История сборки и кэш Visual Studio
 .vs/
 [Bb]in/
@@ -74,3 +75,4 @@ appsettings.Development.json
 appsettings.Production.json
 secrets.json
 *.secrets.json
+logs/
