@@ -15,6 +15,8 @@ export class Placeholder{
   @Output() valueChange = new EventEmitter<string>();
   @Input() phoneFormat = false;
   @Input() addressFormat = false;
+  @Input() posterDateFormat = false;
+  @Input() timeFormat = false;
 
   public onInput(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -74,6 +76,44 @@ export class Placeholder{
         (_, abbreviation, letter) =>
           abbreviation + ' ' + letter.toUpperCase()
       );
+    }
+
+    if (this.posterDateFormat) {
+      const match = value.match(/^(\d{1,2})\.(\d{1,2})$/);
+
+      if (match) {
+        const day = match[1];
+        const month = Number(match[2]);
+
+        const months = [
+          'января',
+          'февраля',
+          'марта',
+          'апреля',
+          'мая',
+          'июня',
+          'июля',
+          'августа',
+          'сентября',
+          'октября',
+          'ноября',
+          'декабря',
+        ];
+
+        if (month >= 1 && month <= 12) {
+          value = `${day} ${months[month - 1]}`;
+        }
+      }
+    }
+
+    if (this.timeFormat) {
+      const digits = value.replace(/\D/g, '').slice(0, 4);
+
+      if (digits.length > 2) {
+        value = digits.slice(0, 2) + ':' + digits.slice(2);
+      } else {
+        value = digits;
+      }
     }
 
     input.value = value;

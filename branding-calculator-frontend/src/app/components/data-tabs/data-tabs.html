@@ -360,8 +360,9 @@
             ></app-placeholder>
 
             <app-placeholder
-                label="Дата"
+                label="Дата"6
                 placeholder="24.09.2026"
+                [posterDateFormat]="layoutName === 'Афиши'"
                 [value]="eventDate"
                 (valueChange)="setEventDate($event)"
                 [maxlength]="14"
@@ -371,6 +372,7 @@
                 label="Время"
                 placeholder="18:00"
                 [value]="eventTime"
+                [timeFormat]="layoutName === 'Афиши'"
                 (valueChange)="setEventTime($event)"
             ></app-placeholder>
         </div>

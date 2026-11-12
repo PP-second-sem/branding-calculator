@@ -586,7 +586,7 @@ export const layouts: Layout[] = [
           {
             id: 'city',
             type: 'city',
-            x: 100,
+            x: 115,
             y: 472,
             width: 120,
             fontSize: 7,
@@ -644,7 +644,7 @@ export const layouts: Layout[] = [
           {
             id: 'city',
             type: 'city',
-            x: 100,
+            x: 115,
             y: 472,
             width: 120,
             fontSize: 7,
