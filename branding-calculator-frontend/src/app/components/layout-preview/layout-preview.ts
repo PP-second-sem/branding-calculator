@@ -310,7 +310,7 @@ export class LayoutPreview {
 
   public formatPosition(position: string): string {
     if (this.layoutName === 'Сертификаты') {
-      return position.slice(0, 35);
+      return position.slice(0, 55);
     }
 
     return position;
