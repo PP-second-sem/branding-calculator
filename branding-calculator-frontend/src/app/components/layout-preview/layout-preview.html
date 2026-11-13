@@ -63,7 +63,13 @@
             [class.layout-preview__full-name--business-card]="layoutName === 'Визитки'"
         >
             <div
-                *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [limitFullNameParts(fullName)] : formatFullName(fullName)); let i = index"
+                *ngFor="let name of (
+                    layoutName === 'Дипломы'
+                        ? [formatDiplomaRecipientName(fullName)]
+                        : layoutName === 'Сертификаты'
+                            ? [limitFullNameParts(fullName)]
+                            : formatFullName(fullName)
+                ); let i = index"
                 [class.layout-preview__full-name-line--second]="
                     i === 1 && !(layoutName === 'Визитки' && template.id === 4)
                 "

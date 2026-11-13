@@ -92,6 +92,20 @@ export class LayoutPreview {
     );
   };
 
+  public formatDiplomaRecipientName(name: string): string {
+    const parts = name.trim().split(/\s+/);
+
+    if (parts.length < 2) {
+      return name;
+    }
+
+    const surname = parts[0];
+    const firstName = parts[1];
+    const patronymic = parts[2];
+
+    return `${surname} ${firstName[0].toUpperCase()}.${patronymic ? ` ${patronymic[0].toUpperCase()}.` : ''}`;
+  }
+
   public get phoneIconLabel() {
     return this.template.icons?.phone?.label;
   }
