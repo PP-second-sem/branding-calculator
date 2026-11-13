@@ -258,11 +258,12 @@
         </div>
 
         <div
+            *ngIf="emailField"
             class="layout-preview__email"
-            [style.left.px]="emailField?.x"
-            [style.top.px]="emailField?.y"
-            [style.fontSize.px]="emailField?.fontSize"
-            [style.fontWeight]="emailField?.fontWeight"
+            [style.left.px]="emailField.x"
+            [style.top.px]="emailField.y"
+            [style.fontSize.px]="emailField.fontSize"
+            [style.fontWeight]="emailField.fontWeight"
         >
             {{ email }}
         </div>
