@@ -54,6 +54,9 @@
             [style.fontWeight]="fullNameField?.fontWeight"
             [style.color]="fullNameField?.color"
             [style.width.px]="fullNameField?.width"
+            [class.layout-preview__full-name--badge-id-1]="
+                layoutName === 'Бейджи' && template.id === 1
+            "
             [class.layout-preview__full-name--business-card-centered]="
                 layoutName === 'Визитки' && template.id === 4
             "
@@ -63,7 +66,13 @@
             [class.layout-preview__full-name--business-card]="layoutName === 'Визитки'"
         >
             <div
-                *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [limitFullNameParts(fullName)] : formatFullName(fullName)); let i = index"
+                *ngFor="let name of (
+                    layoutName === 'Дипломы'
+                        ? [formatDiplomaRecipientName(fullName)]
+                        : layoutName === 'Сертификаты'
+                            ? [limitFullNameParts(fullName)]
+                            : formatFullName(fullName)
+                ); let i = index"
                 [class.layout-preview__full-name-line--second]="
                     i === 1 && !(layoutName === 'Визитки' && template.id === 4)
                 "
@@ -212,7 +221,7 @@
 
         <div *ngIf="cityField"
             class="layout-preview__city"
-            [class.layout-preview__city--centered]="(layoutName === 'Бейджи' && template.id === 1) || (layoutName === 'Дипломы')"
+            [class.layout-preview__city--centered]="layoutName === 'Дипломы'"
             [style.left.px]="cityField.x"
             [style.top.px]="cityField.y"
             [style.width.px]="cityField.width"
@@ -220,13 +229,12 @@
             [style.fontWeight]="cityField.fontWeight"
             [style.color]="cityField.color"
         >
-            {{ city.replace('г. ', 'г.\u00A0') }}
+            <span #cityText>{{ city.replace('г. ', 'г.\u00A0') }}</span>
         </div>
 
         <div *ngIf="dateField"
             class="layout-preview__date"
-            [class.layout-preview__date--centered]="layoutName === 'Бейджи' && template.id === 1"
-            [style.left.px]="dateField.x"
+            [style.left.px]="getDateLeft()"
             [style.top.px]="dateField.y"
             [style.width.px]="dateField.width"
             [style.fontSize.px]="dateField.fontSize"
@@ -258,11 +266,12 @@
         </div>
 
         <div
+            *ngIf="emailField"
             class="layout-preview__email"
-            [style.left.px]="emailField?.x"
-            [style.top.px]="emailField?.y"
-            [style.fontSize.px]="emailField?.fontSize"
-            [style.fontWeight]="emailField?.fontWeight"
+            [style.left.px]="emailField.x"
+            [style.top.px]="emailField.y"
+            [style.fontSize.px]="emailField.fontSize"
+            [style.fontWeight]="emailField.fontWeight"
         >
             {{ email }}
         </div>

@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { Template, TextField } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
 import { QrCode } from '../qr-code/qr-code';
@@ -43,6 +43,26 @@ export class LayoutPreview {
   @Input() eventTime = '';
   @Input() eventAgeLimit = '';
   @Input() eventAdditionalInfo = '';
+  @ViewChild('cityText') cityText?: ElementRef<HTMLElement>;
+
+  public getDateLeft(): number {
+    if (
+      this.layoutName !== 'Бейджи' ||
+      this.template.id !== 1 ||
+      !this.cityField ||
+      !this.dateField
+    ) {
+      return this.dateField?.x ?? 0;
+    }
+
+    const cityWidth = this.cityText?.nativeElement.offsetWidth ?? 0;
+    const gap = 10;
+
+    return Math.max(
+      this.dateField.x,
+      this.cityField.x + cityWidth + gap
+    );
+  }
 
   public get fullNameField(): TextField | undefined {
     return this.template.textFields.find(
@@ -91,6 +111,20 @@ export class LayoutPreview {
       field => field.type === 'address'
     );
   };
+
+  public formatDiplomaRecipientName(name: string): string {
+    const parts = name.trim().split(/\s+/);
+
+    if (parts.length < 2) {
+      return name;
+    }
+
+    const surname = parts[0];
+    const firstName = parts[1];
+    const patronymic = parts[2];
+
+    return `${surname} ${firstName[0].toUpperCase()}.${patronymic ? ` ${patronymic[0].toUpperCase()}.` : ''}`;
+  }
 
   public get phoneIconLabel() {
     return this.template.icons?.phone?.label;
@@ -194,21 +228,6 @@ export class LayoutPreview {
     }
 
     if (this.layoutName === 'Бейджи' && this.template.id === 1) {
-      if (!firstName && !patronymic) {
-        return [surname];
-      }
-
-      if (!firstName) {
-        return [surname, patronymic].filter(Boolean);
-      }
-
-      if (`${surname} ${firstName}`.length <= 15) {
-        if (!patronymic) {
-          return [`${surname} ${firstName}`];
-        }
-
-        return [`${surname} ${firstName}`, patronymic];
-      }
       return [surname, firstName, patronymic].filter(Boolean);
     }
 
@@ -296,7 +315,7 @@ export class LayoutPreview {
 
   public formatPosition(position: string): string {
     if (this.layoutName === 'Сертификаты') {
-      return position.slice(0, 35);
+      return position.slice(0, 55);
     }
 
     return position;
