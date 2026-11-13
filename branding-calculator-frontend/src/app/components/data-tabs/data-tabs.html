@@ -126,6 +126,7 @@
                 *ngIf="layoutName === 'Бейджи'"
                 label="Место"
                 placeholder="Салехард"
+                [maxlength]="28"
                 [value]="city"
                 (valueChange)="setCity($event)"
             ></app-placeholder>

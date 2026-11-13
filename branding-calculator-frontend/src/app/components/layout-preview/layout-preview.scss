@@ -241,6 +241,19 @@
 }
 
 .layout-preview__event-type {
-  word-break: normal;
-  overflow-wrap: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+.layout-preview__city span {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.layout-preview__full-name {
+    &--badge-id-1 {
+        max-height: 3.6em;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
 }
