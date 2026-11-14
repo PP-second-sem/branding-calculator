@@ -18,5 +18,6 @@ export interface ConstructorState {
     eventDate: string;
     eventTime: string;
     eventAgeLimit: string;
+    eventEndDate: string;
     eventAdditionalInfo: string;
 }

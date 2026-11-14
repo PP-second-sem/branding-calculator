@@ -360,7 +360,9 @@
             [style.fontWeight]="eventDateField.fontWeight"
             [style.color]="eventDateField.color"
         >
-            {{ eventDate.replace(/\s+/, '\n') }}
+            {{ layoutName === 'Афиши'
+                ? formatPosterDateRange(eventDate, eventEndDate)
+                : eventDate.replace(/\s+/, '\n') }}
         </div>
 
         <div
