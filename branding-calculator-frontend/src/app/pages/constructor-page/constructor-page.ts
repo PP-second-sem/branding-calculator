@@ -49,6 +49,7 @@ export class ConstructorPage {
   public eventTime = '';
   public eventAgeLimit = '';
   public eventAdditionalInfo = '';
+  public eventEndDate = '';
 
   constructor() {
     this.ensureTemplateData(this.selectedTemplate);
@@ -83,6 +84,7 @@ export class ConstructorPage {
       eventTime: '',
       eventAgeLimit: '',
       eventAdditionalInfo: '',
+      eventEndDate: '',
     };
   }
 
@@ -123,6 +125,7 @@ export class ConstructorPage {
     this.eventTime = data.eventTime ?? '';
     this.eventAgeLimit = data.eventAgeLimit ?? '';
     this.eventAdditionalInfo = data.eventAdditionalInfo ?? '';
+    this.eventEndDate = data.eventEndDate ?? '';
 
     this.syncDataTabs();
   }
@@ -173,6 +176,7 @@ export class ConstructorPage {
       eventTime: this.eventTime,
       eventAgeLimit: this.eventAgeLimit,
       eventAdditionalInfo: this.eventAdditionalInfo,
+      eventEndDate: this.eventEndDate,
     };
 
     this.selectedTemplate = template;
@@ -221,6 +225,7 @@ export class ConstructorPage {
       eventTime: this.eventTime,
       eventAgeLimit: this.eventAgeLimit,
       eventAdditionalInfo: this.eventAdditionalInfo,
+      eventEndDate: this.eventEndDate,
     };
   }
 
@@ -266,6 +271,7 @@ export class ConstructorPage {
       eventTime: this.eventTime,
       eventAgeLimit: this.eventAgeLimit,
       eventAdditionalInfo: this.eventAdditionalInfo,
+      eventEndDate: this.eventEndDate,
     };
   }
 
@@ -290,6 +296,7 @@ export class ConstructorPage {
     this.eventTime = state.eventTime;
     this.eventAgeLimit = state.eventAgeLimit;
     this.eventAdditionalInfo = state.eventAdditionalInfo;
+    this.eventEndDate = state.eventEndDate;
 
     this.updateSelectedTemplateData();
     this.syncDataTabs();
@@ -371,6 +378,7 @@ export class ConstructorPage {
       eventTime: this.eventTime,
       eventAgeLimit: this.eventAgeLimit,
       eventAdditionalInfo: this.eventAdditionalInfo,
+      eventEndDate: this.eventEndDate,
     });
   }
 
@@ -390,5 +398,8 @@ export class ConstructorPage {
     link.click();
   }
 
-  
+  public setEventEndDate(value: string): void {
+    this.eventEndDate = value;
+    this.updateSelectedTemplateData();
+  }
 }

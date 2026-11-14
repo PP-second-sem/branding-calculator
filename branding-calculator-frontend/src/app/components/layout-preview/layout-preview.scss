@@ -251,9 +251,17 @@
 
 .layout-preview__full-name {
     &--badge-id-1 {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
         max-height: 3.6em;
         overflow: hidden;
-        overflow-wrap: anywhere;
+        overflow-wrap: break-word;
         word-break: normal;
+        white-space: normal;
     }
+}
+
+.layout-preview__event-date {
+    white-space: pre-line;
 }

@@ -26,6 +26,7 @@ export class LayoutPreview {
   @Input() address: string = '';  
   @Input() city = '';
   @Input() date = '';
+  @Input() eventEndDate = '';
   @Input() qrCode1 = '';
   @Input() qrCode1Label = '';
   @Input() qrCode2 = '';
@@ -228,7 +229,11 @@ export class LayoutPreview {
     }
 
     if (this.layoutName === 'Бейджи' && this.template.id === 1) {
-      return [surname, firstName, patronymic].filter(Boolean);
+      return [
+        surname.slice(0, 15),
+        firstName.slice(0, 15),
+        patronymic.slice(0, 15)
+      ].filter(Boolean);
     }
 
     if (this.layoutName === 'Дипломы') {
@@ -538,6 +543,51 @@ export class LayoutPreview {
     return this.template.textFields.find(
       field => field.type === 'eventAdditionalInfoField'
     );
+  }
+
+  public formatPosterDateRange(start: string, end: string): string {
+    const months = [
+      'января', 'февраля', 'марта', 'апреля',
+      'мая', 'июня', 'июля', 'августа',
+      'сентября', 'октября', 'ноября', 'декабря'
+    ];
+
+    const parseDate = (value: string) => {
+      const normalized = (value || '').trim().toLowerCase();
+
+      const match = normalized.match(/^(\d{1,2})\s+([а-яё]+)$/i);
+
+      if (!match) return null;
+
+      const monthIndex = months.indexOf(match[2]);
+
+      if (monthIndex === -1) return null;
+
+      return {
+        day: Number(match[1]),
+        month: monthIndex,
+        monthName: months[monthIndex]
+      };
+    };
+
+    const startDate = parseDate(start);
+    const endDate = parseDate(end);
+
+    if (!startDate && !endDate) return '';
+
+    if (!startDate) {
+      return `${endDate!.day} ${endDate!.monthName}`;
+    }
+
+    if (!endDate) {
+      return `${startDate.day} ${startDate.monthName}`;
+    }
+
+    if (startDate.month === endDate.month) {
+      return `${startDate.day}-${endDate.day}\n${startDate.monthName}`;
+    }
+
+    return `${startDate.day} ${startDate.monthName}\n${endDate.day} ${endDate.monthName}`;
   }
 }
 

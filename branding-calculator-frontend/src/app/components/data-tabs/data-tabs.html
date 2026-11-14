@@ -108,6 +108,7 @@
                 placeholder="Роль"
                 [value]="position"
                 (valueChange)="setPosition($event)"
+                [maxlength]="55"
             ></app-placeholder>
         </div>
     </ng-container>
@@ -361,11 +362,20 @@
             ></app-placeholder>
 
             <app-placeholder
-                label="Дата"6
-                placeholder="24.09.2026"
+                label="Дата начала"
+                placeholder="24.09"
                 [posterDateFormat]="layoutName === 'Афиши'"
                 [value]="eventDate"
                 (valueChange)="setEventDate($event)"
+                [maxlength]="14"
+            ></app-placeholder>
+
+            <app-placeholder
+                label="Дата окончания"
+                placeholder="27.09"
+                [posterDateFormat]="layoutName === 'Афиши'"
+                [value]="eventEndDate"
+                (valueChange)="setEventEndDate($event)"
                 [maxlength]="14"
             ></app-placeholder>
 

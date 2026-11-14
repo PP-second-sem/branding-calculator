@@ -107,6 +107,7 @@
                     [eventTime]="eventTime"
                     [eventAgeLimit]="eventAgeLimit"
                     [eventAdditionalInfo]="eventAdditionalInfo"
+                    [eventEndDate]="eventEndDate"
                 ></app-layout-preview>
 
                 <div class="constructor__form">
@@ -138,6 +139,7 @@
                         (eventShortDescriptionChange)="saveState(); eventShortDescription = $event; updateSelectedTemplateData()"
                         (eventDescriptionChange)="saveState(); eventDescription = $event; updateSelectedTemplateData()"
                         (eventPlaceChange)="saveState(); eventPlace = $event; updateSelectedTemplateData()"
+                        (eventEndDateChange)="saveState(); eventEndDate = $event; updateSelectedTemplateData()"
                         (eventDateChange)="saveState(); eventDate = $event; updateSelectedTemplateData()"
                         (eventTimeChange)="saveState(); eventTime = $event; updateSelectedTemplateData()"
                         (eventAgeLimitChange)="saveState(); eventAgeLimit = $event; updateSelectedTemplateData()"

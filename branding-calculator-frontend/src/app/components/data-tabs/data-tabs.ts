@@ -46,6 +46,7 @@ export class DataTabs {
   @Input() showPhone = true;
   @Input() showAddress = true;
   @Input() templateId = 0;
+  @Input() eventEndDate = '';
 
   @Output() showPhoneChange = new EventEmitter<boolean>();
   @Output() showAddressChange = new EventEmitter<boolean>();
@@ -72,6 +73,7 @@ export class DataTabs {
   @Output() eventTimeChange = new EventEmitter<string>();
   @Output() eventAgeLimitChange = new EventEmitter<string>();
   @Output() eventAdditionalInfoChange = new EventEmitter<string>();
+  @Output() eventEndDateChange = new EventEmitter<string>();
 
   public syncData(data: TemplateData): void {
     this.fullName = data.fullName;
@@ -240,5 +242,11 @@ export class DataTabs {
   public setEventAdditionalInfo(value: string): void {
     this.eventAdditionalInfo = value;
     this.eventAdditionalInfoChange.emit(value);
+  }
+
+  public setEventEndDate(value: string): void {
+    console.log('DataTabs получил дату окончания:', value)
+    this.eventEndDate = value;
+    this.eventEndDateChange.emit(value);
   }
 }

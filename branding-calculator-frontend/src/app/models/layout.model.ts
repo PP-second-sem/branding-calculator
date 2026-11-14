@@ -101,6 +101,7 @@ export interface TemplateData {
   eventDescription?: string;
   eventPlace?: string;
   eventDate?: string;
+  eventEndDate?: string;
   eventTime?: string;
   eventAgeLimit?: string;
   eventAdditionalInfo?: string;
