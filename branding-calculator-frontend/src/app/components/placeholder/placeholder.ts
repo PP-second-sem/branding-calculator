@@ -18,42 +18,65 @@ export class Placeholder{
   @Input() posterDateFormat = false;
   @Input() timeFormat = false;
 
+  public onBeforeInput(event: InputEvent): void {
+    if (!this.phoneFormat || event.inputType !== 'deleteContentBackward' || !event.cancelable) {
+      return;
+    }
+
+    const input = event.target as HTMLInputElement;
+    const end = input.value.length;
+
+    // Backspace over the closing parenthesis also removes the previous digit.
+    if (input.selectionStart === end && input.selectionEnd === end && /\d\)$/.test(input.value)) {
+      event.preventDefault();
+      input.setRangeText('', end - 2, end, 'end');
+      this.onInput(event);
+    }
+  }
+
   public onInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     let value = input.value;
 
-    if (this.phoneFormat) {
-      const digits = value.replace(/\D/g, '');
-      let phoneDigits = digits;
 
-      if (phoneDigits.startsWith('7') || phoneDigits.startsWith('8')) {
-        phoneDigits = phoneDigits.slice(1);
+    if (this.phoneFormat) {
+      let digits = value.replace(/\D/g, '');
+
+      if (digits.startsWith('7') || digits.startsWith('8')) {
+        digits = digits.slice(1);
       }
 
-      phoneDigits = phoneDigits.slice(0, 10);
+      digits = digits.slice(0, 10);
 
-      value = '';
+      if (digits.length === 0) {
+        value = '';
+      } else {
+        const parts = digits;
 
-      if (phoneDigits.length > 0) {
-        value = '+7 (' + phoneDigits.slice(0, 3);
+        value = '+7';
 
-        if (phoneDigits.length >= 3) {
+        if (parts.length > 0) {
+          value += ' (' + parts.slice(0, 3);
+        }
+
+        if (parts.length >= 3) {
           value += ')';
         }
 
-        if (phoneDigits.length > 3) {
-          value += ' ' + phoneDigits.slice(3, 6);
+        if (parts.length > 3) {
+          value += ' ' + parts.slice(3, 6);
         }
 
-        if (phoneDigits.length > 6) {
-          value += '-' + phoneDigits.slice(6, 8);
+        if (parts.length > 6) {
+          value += '-' + parts.slice(6, 8);
         }
 
-        if (phoneDigits.length > 8) {
-          value += '-' + phoneDigits.slice(8, 10);
+        if (parts.length > 8) {
+          value += '-' + parts.slice(8, 10);
         }
       }
     }
+
 
     if (this.addressFormat) {
       value = value.replace(
@@ -86,18 +109,9 @@ export class Placeholder{
         const month = Number(match[2]);
 
         const months = [
-          'января',
-          'февраля',
-          'марта',
-          'апреля',
-          'мая',
-          'июня',
-          'июля',
-          'августа',
-          'сентября',
-          'октября',
-          'ноября',
-          'декабря',
+          'января', 'февраля', 'марта', 'апреля',
+          'мая', 'июня', 'июля', 'августа',
+          'сентября', 'октября', 'ноября', 'декабря',
         ];
 
         if (month >= 1 && month <= 12) {
@@ -109,16 +123,15 @@ export class Placeholder{
     if (this.timeFormat) {
       const digits = value.replace(/\D/g, '').slice(0, 4);
 
-      if (digits.length > 2) {
-        value = digits.slice(0, 2) + ':' + digits.slice(2);
-      } else {
-        value = digits;
-      }
+      value = digits.length > 2
+        ? digits.slice(0, 2) + ':' + digits.slice(2)
+        : digits;
     }
 
     input.value = value;
     this.valueChange.emit(value);
   }
+
 }
 
 export { Input };
