@@ -289,24 +289,24 @@
     <ng-container *ngIf="activeTab === 'personal' && (layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
         <div class="data-tabs__fields">
             <app-placeholder
-                label="ФИО вручающего"
-                placeholder="Иванов Иван Иванович"
-                [value]="fullName"
-                (valueChange)="setFullName($event)"
+                label="ФИО награждаемого"
+                placeholder="Иванову Ивану Ивановичу"
+                [value]="recipientName"
+                (valueChange)="setRecipientName($event)"
             ></app-placeholder>
-
+            
             <app-placeholder
-                label="Должность"
-                placeholder="Должность"
+                label="Должность вручающего"
+                placeholder="Должность вручающего"
                 [value]="position"
                 (valueChange)="setPosition($event)"
             ></app-placeholder>
 
             <app-placeholder
-                label="ФИО награждаемого"
-                placeholder="Иванову Ивану Ивановичу"
-                [value]="recipientName"
-                (valueChange)="setRecipientName($event)"
+                label="ФИО вручающего"
+                placeholder="Иванов Иван Иванович"
+                [value]="fullName"
+                (valueChange)="setFullName($event)"
             ></app-placeholder>
         </div>
     </ng-container>
