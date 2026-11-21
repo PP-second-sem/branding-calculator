@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { formatAddress } from './address-format';
 
 @Component({
   selector: 'app-placeholder',
@@ -30,6 +31,19 @@ export class Placeholder{
       event.preventDefault();
       input.setRangeText('', end - 2, end, 'end');
       this.onInput(event);
+    }
+  }
+
+  public onBlur(event: FocusEvent): void {
+    if (!this.addressFormat) {
+      return;
+    }
+
+    const input = event.target as HTMLInputElement;
+    const formatted = formatAddress(input.value, true);
+    if (formatted !== input.value) {
+      input.value = formatted;
+      this.valueChange.emit(formatted);
     }
   }
 
@@ -78,26 +92,10 @@ export class Placeholder{
 
 
     if (this.addressFormat) {
-      value = value.replace(
-        /(^|[\s,;])(улица|проезд|город|дом|проспект)(?=$|[\s,.])/gi,
-        (_, prefix, word) => {
-          const abbreviations: Record<string, string> = {
-            улица: 'ул.',
-            проезд: 'пр',
-            город: 'г.',
-            дом: 'д.',
-            проспект: 'пр.',
-          };
-
-          return prefix + abbreviations[word.toLowerCase()];
-        }
-      );
-
-      value = value.replace(
-        /(ул\.|пр\.|г\.|д\.)\s*([а-яё])/gi,
-        (_, abbreviation, letter) =>
-          abbreviation + ' ' + letter.toUpperCase()
-      );
+      const inputType = (event as InputEvent).inputType;
+      const finishLastWord = inputType === 'insertFromPaste' || inputType === 'insertFromDrop'
+        || inputType === 'insertReplacementText';
+      value = formatAddress(value, finishLastWord);
     }
 
     if (this.posterDateFormat) {
