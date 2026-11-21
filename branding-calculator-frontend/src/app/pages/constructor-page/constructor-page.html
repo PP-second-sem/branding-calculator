@@ -20,18 +20,31 @@
                 </button>
             </div>
 
-            <button 
-                class="constructor__download-button"
-                type="button"
-                (click)="downloadLayout()">
-                <img
-                    class="constructor__download-icon"
-                    src="/white_download_icon.svg"
+            <div class="constructor__download-buttons">
+                <button
+                    class="constructor__download-button"
+                    type="button"
+                    [disabled]="isDownloading()"
+                    (click)="downloadLayout('png')"
                 >
-                Скачать
-            </button>
+                    <img class="constructor__download-icon" src="/white_download_icon.svg" alt="">
+                    Скачать PNG
+                </button>
+                <button
+                    class="constructor__download-button"
+                    type="button"
+                    [disabled]="isDownloading()"
+                    (click)="downloadLayout('pdf')"
+                >
+                    <img class="constructor__download-icon" src="/white_download_icon.svg" alt="">
+                    Скачать PDF
+                </button>
+            </div>
         </div>
     </header>
+    @if (downloadError()) {
+        <p class="constructor__download-error" role="alert">{{ downloadError() }}</p>
+    }
     <div class="constructor__body">
         <div class="constructor__section-header">
             <span class="constructor__section-title">

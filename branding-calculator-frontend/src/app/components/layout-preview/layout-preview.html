@@ -104,13 +104,13 @@
         </div>
 
         <img
-            *ngIf="showPhone && phone.trim() && phoneIcon?.src as phoneIconSrc"
+            *ngIf="showPhone && phone.trim() && phoneIcon?.src && phoneIcon as icon"
             class="layout-preview__icon"
-            [src]="phoneIconSrc"
-            [style.left.px]="phoneIcon?.x"
-            [style.top.px]="phoneIcon?.y"
-            [style.width.px]="phoneIcon?.width"
-            [style.height.px]="phoneIcon?.height"
+            [src]="icon.src"
+            [style.left.px]="icon.x"
+            [style.top.px]="icon.y"
+            [style.width.px]="icon.width"
+            [style.height.px]="icon.height"
         />
 
         <div

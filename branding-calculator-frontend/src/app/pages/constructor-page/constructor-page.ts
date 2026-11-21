@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { layouts } from './data/templates';
 import { Layout, Template, TemplateData } from '../../models/layout.model';
 import { TemplateList } from '../../components/template-list/template-list';
@@ -45,6 +45,8 @@ export class ConstructorPage {
   public eventAgeLimit = '';
   public eventAdditionalInfo = '';
   public eventEndDate = '';
+  public readonly isDownloading = signal(false);
+  public readonly downloadError = signal('');
 
   constructor() {
     this.ensureTemplateData(this.selectedTemplate);
@@ -324,20 +326,57 @@ export class ConstructorPage {
     });
   }
 
-  public async downloadLayout(): Promise<void> {
-    const element = this.layoutPreview.preview.nativeElement;
+  public async downloadLayout(format: 'png' | 'pdf' = 'png'): Promise<void> {
+    if (this.isDownloading()) {
+      return;
+    }
 
-    const canvas = await html2canvas(element, {
-      backgroundColor: null,
-      scale: 2,
-    });
+    this.isDownloading.set(true);
+    this.downloadError.set('');
+    try {
+      const element = this.layoutPreview.preview.nativeElement;
+      if (format === 'pdf') {
+        await this.downloadPdf(element);
+      } else {
+        const canvas = await html2canvas(element, { backgroundColor: null, scale: 2 });
+        const link = document.createElement('a');
+        link.download = 'layout.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+    } catch {
+      this.downloadError.set('Не удалось скачать макет в формате ' + format.toUpperCase() + '. Попробуйте ещё раз.');
+    } finally {
+      this.isDownloading.set(false);
+    }
+  }
 
-    const link = document.createElement('a');
+  private async downloadPdf(element: HTMLElement): Promise<void> {
+    const { width, height } = element.getBoundingClientRect();
+    const orientation = width > height ? 'landscape' : 'portrait';
+    const [pageWidth, pageHeight] = orientation === 'landscape' ? [297, 210] : [210, 297];
+    const millimetersPerPixel = Math.min(pageWidth / width, pageHeight / height);
+    const printDpi = 300;
+    const millimetersPerInch = 25.4;
+    const [canvas, { jsPDF }] = await Promise.all([
+      html2canvas(element, {
+        backgroundColor: '#ffffff',
+        scale: millimetersPerPixel * printDpi / millimetersPerInch,
+      }),
+      import('jspdf'),
+    ]);
 
-    link.download = 'layout.png';
-    link.href = canvas.toDataURL('image/png');
-
-    link.click();
+    const pdf = new jsPDF({ orientation, unit: 'mm', format: 'a4', compress: true });
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const scale = Math.min(pdfWidth / canvas.width, pdfHeight / canvas.height);
+    const imageWidth = canvas.width * scale;
+    const imageHeight = canvas.height * scale;
+    pdf.addImage(
+      canvas, 'PNG', (pdfWidth - imageWidth) / 2, (pdfHeight - imageHeight) / 2,
+      imageWidth, imageHeight, undefined, 'FAST',
+    );
+    pdf.save('layout.pdf');
   }
 
   public setEventEndDate(value: string): void {
