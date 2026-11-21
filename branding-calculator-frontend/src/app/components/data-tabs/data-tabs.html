@@ -135,7 +135,9 @@
             <app-placeholder
                 *ngIf="layoutName === 'Бейджи'"
                 label="Дата"
-                placeholder="24.09.2026"
+                placeholder="24.09"
+                [posterDateFormat]="true"
+                [maxlength]="11"
                 [value]="date"
                 (valueChange)="setDate($event)"
             ></app-placeholder>

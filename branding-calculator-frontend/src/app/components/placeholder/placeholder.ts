@@ -26,7 +26,6 @@ export class Placeholder{
     const input = event.target as HTMLInputElement;
     const end = input.value.length;
 
-    // Backspace over the closing parenthesis also removes the previous digit.
     if (input.selectionStart === end && input.selectionEnd === end && /\d\)$/.test(input.value)) {
       event.preventDefault();
       input.setRangeText('', end - 2, end, 'end');
@@ -38,7 +37,7 @@ export class Placeholder{
     const input = event.target as HTMLInputElement;
     let value = input.value;
 
-
+    
     if (this.phoneFormat) {
       let digits = value.replace(/\D/g, '');
 
@@ -102,22 +101,16 @@ export class Placeholder{
     }
 
     if (this.posterDateFormat) {
-      const match = value.match(/^(\d{1,2})\.(\d{1,2})$/);
+      const formattedDate = this.formatPosterDate(value);
+      const inputType = (event as InputEvent).inputType;
 
-      if (match) {
-        const day = match[1];
-        const month = Number(match[2]);
-
-        const months = [
-          'января', 'февраля', 'марта', 'апреля',
-          'мая', 'июня', 'июля', 'августа',
-          'сентября', 'октября', 'ноября', 'декабря',
-        ];
-
-        if (month >= 1 && month <= 12) {
-          value = `${day} ${months[month - 1]}`;
-        }
+      if (formattedDate === undefined && !inputType?.startsWith('delete')) {
+        input.value = this.value;
+        return;
       }
+
+      value = formattedDate ?? value;
+      this.value = value;
     }
 
     if (this.timeFormat) {
@@ -131,7 +124,29 @@ export class Placeholder{
     input.value = value;
     this.valueChange.emit(value);
   }
+  private formatPosterDate(value: string): string | undefined {
+    if (value === '') {
+      return value;
+    }
 
+    const match = value.match(/^(\d{1,2})(?:\.([01]?|0[1-9]|1[0-2])| ([а-яё]*))?$/i);
+    if (!match) {
+      return undefined;
+    }
+
+    const [, day, monthDigits, monthText] = match;
+    const months = [
+      'января', 'февраля', 'марта', 'апреля',
+      'мая', 'июня', 'июля', 'августа',
+      'сентября', 'октября', 'ноября', 'декабря',
+    ];
+
+    if (monthText !== undefined && !months.some(month => month.startsWith(monthText.toLowerCase()))) {
+      return undefined;
+    }
+
+    return monthDigits?.length === 2 ? `${day} ${months[Number(monthDigits) - 1]}` : value;
+  }
 }
 
 export { Input };
