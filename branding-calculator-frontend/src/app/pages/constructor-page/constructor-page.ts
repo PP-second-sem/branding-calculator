@@ -6,6 +6,7 @@ import { TemplateList } from '../../components/template-list/template-list';
 import { DataTabs } from '../../components/data-tabs/data-tabs';
 import { LayoutPreview } from '../../components/layout-preview/layout-preview';
 import { ConstructorState } from '../../models/constructor-state.model';
+import { readQrCodeEntries, type QrCodeEntry } from '../../models/qr-code.model';
 import html2canvas from 'html2canvas';
 import { RouterLink } from '@angular/router';
 
@@ -30,13 +31,7 @@ export class ConstructorPage {
   public address = '';
   public city = '';
   public date = '';
-  public qrCode1 = '';
-  public qrCode1Label = '';
-  public qrCode2 = '';
-  public qrCode2Label = '';
-  public qrCodesGenerated = false;
-  public qrCode1Enabled = true;
-  public qrCode2Enabled = false;
+  public qrCodeEntries: QrCodeEntry[] = [];
   public selectedLayout: Layout = this.layouts[0];
   public selectedTemplate: Template = this.selectedLayout.templates[0];
   public showPhone = true;
@@ -70,12 +65,7 @@ export class ConstructorPage {
       certificateText: '',
       showPhone: true,
       showAddress: true,
-      qrCode1: '',
-      qrCode1Label: '',
-      qrCode2: '',
-      qrCode2Label: '',
-      qrCodesGenerated: false,
-      qrCode2Enabled: false,
+      qrCodeEntries: [],
       eventType: '',
       eventShortDescription: '',
       eventDescription: '',
@@ -111,12 +101,7 @@ export class ConstructorPage {
     this.certificateText = data.certificateText ?? '';
     this.showPhone = data.showPhone ?? true;
     this.showAddress = data.showAddress ?? true;
-    this.qrCode1 = data.qrCode1 ?? '';
-    this.qrCode1Label = data.qrCode1Label ?? '';
-    this.qrCode2 = data.qrCode2 ?? '';
-    this.qrCode2Label = data.qrCode2Label ?? '';
-    this.qrCodesGenerated = data.qrCodesGenerated ?? false;
-    this.qrCode2Enabled = data.qrCode2Enabled ?? false;
+    this.qrCodeEntries = readQrCodeEntries(data);
     this.eventType = data.eventType ?? '';
     this.eventShortDescription = data.eventShortDescription ?? '';
     this.eventDescription = data.eventDescription ?? '';
@@ -162,12 +147,7 @@ export class ConstructorPage {
       certificateText: this.certificateText,
       showPhone: this.showPhone,
       showAddress: this.showAddress,
-      qrCode1: this.qrCode1,
-      qrCode1Label: this.qrCode1Label,
-      qrCode2: this.qrCode2,
-      qrCode2Label: this.qrCode2Label,
-      qrCodesGenerated: this.qrCodesGenerated,
-      qrCode2Enabled: this.qrCode2Enabled,
+      qrCodeEntries: this.qrCodeEntries,
       eventType: this.eventType,
       eventShortDescription: this.eventShortDescription,
       eventDescription: this.eventDescription,
@@ -180,11 +160,13 @@ export class ConstructorPage {
     };
 
     this.selectedTemplate = template;
+    const hasQrCodeEdits = [...(template.undoStack ?? []), ...(template.redoStack ?? [])]
+      .some(state => readQrCodeEntries(state).length > 0);
     if (
       !template.data ||
-      !Object.values(template.data).some(
+      (!hasQrCodeEdits && !readQrCodeEntries(template.data).length && !Object.values(template.data).some(
         value => typeof value === 'string' && value.trim() !== ''
-      )
+      ))
     ) {
       template.data = {
         ...this.createTemplateData(),
@@ -211,12 +193,7 @@ export class ConstructorPage {
       certificateText: this.certificateText, 
       showPhone: this.showPhone,
       showAddress: this.showAddress,
-      qrCode1: this.qrCode1,
-      qrCode1Label: this.qrCode1Label,
-      qrCode2: this.qrCode2,
-      qrCode2Label: this.qrCode2Label,
-      qrCodesGenerated: this.qrCodesGenerated,
-      qrCode2Enabled: this.qrCode2Enabled,
+      qrCodeEntries: this.qrCodeEntries,
       eventType: this.eventType,
       eventShortDescription: this.eventShortDescription,
       eventDescription: this.eventDescription,
@@ -229,26 +206,6 @@ export class ConstructorPage {
     };
   }
 
-  public setQrCode1(value: string): void {
-    this.qrCode1 = value;
-    this.updateSelectedTemplateData();
-  }
-
-  public setQrCode2(value: string): void {
-    this.qrCode2 = value;
-    this.updateSelectedTemplateData();
-  }
-
-  public setQrCode1Label(value: string): void {
-    this.qrCode1Label = value;
-    this.updateSelectedTemplateData();
-  }
-
-  public setQrCode2Label(value: string): void {
-    this.qrCode2Label = value;
-    this.updateSelectedTemplateData();
-  } 
-
   public getCurrentState(): ConstructorState {
     return {
       fullName: this.fullName,
@@ -257,12 +214,7 @@ export class ConstructorPage {
       mobilePhone: this.mobilePhone,
       email: this.email,
       address: this.address,
-      qrCode1: this.qrCode1,
-      qrCode1Label: this.qrCode1Label,
-      qrCode2: this.qrCode2,
-      qrCode2Label: this.qrCode2Label,
-      qrCodesGenerated: this.qrCodesGenerated,
-      qrCode2Enabled: this.qrCode2Enabled,
+      qrCodeEntries: this.qrCodeEntries,
       eventType: this.eventType,
       eventShortDescription: this.eventShortDescription,
       eventDescription: this.eventDescription,
@@ -282,12 +234,7 @@ export class ConstructorPage {
     this.mobilePhone = state.mobilePhone;
     this.email = state.email;
     this.address = state.address;
-    this.qrCode1 = state.qrCode1;
-    this.qrCode1Label = state.qrCode1Label;
-    this.qrCode2 = state.qrCode2;
-    this.qrCode2Label = state.qrCode2Label;
-    this.qrCodesGenerated = state.qrCodesGenerated;
-    this.qrCode2Enabled = state.qrCode2Enabled;
+    this.qrCodeEntries = readQrCodeEntries(state);
     this.eventType = state.eventType;
     this.eventShortDescription = state.eventShortDescription;
     this.eventDescription = state.eventDescription;
@@ -364,12 +311,7 @@ export class ConstructorPage {
       date: this.date,
       recipientName: this.recipientName,
       certificateText: this.certificateText,
-      qrCode1: this.qrCode1,
-      qrCode1Label: this.qrCode1Label,
-      qrCode2: this.qrCode2,
-      qrCode2Label: this.qrCode2Label,
-      qrCodesGenerated: this.qrCodesGenerated,
-      qrCode2Enabled: this.qrCode2Enabled,
+      qrCodeEntries: this.qrCodeEntries,
       eventType: this.eventType,
       eventShortDescription: this.eventShortDescription,
       eventDescription: this.eventDescription,

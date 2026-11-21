@@ -30,7 +30,7 @@
     </button>
 
     <button
-        *ngIf="layoutName !== 'Бейджи' && layoutName !== 'Сертификаты' && layoutName !== 'Дипломы' && layoutName !== 'Афиши'"
+        *ngIf="layoutName === 'Визитки'"
         type="button"
         class="data-tabs__tab"
         [class.data-tabs__tab--active]="activeTab === 'qr'"
@@ -82,6 +82,7 @@
             <app-placeholder
                 label="ФИО"
                 placeholder="Иванов Иван Иванович"
+                #fullNameInput
                 [value]="fullName"
                 (valueChange)="setFullName($event)"
             ></app-placeholder>
@@ -99,6 +100,7 @@
             <app-placeholder
                 label="ФИО"
                 placeholder="Иванов Иван Иванович"
+                #fullNameInput
                 [value]="fullName"
                 (valueChange)="setFullName($event)"
             ></app-placeholder>
@@ -208,84 +210,50 @@
         </div>
     </ng-container>
 
-    <ng-container *ngIf="activeTab === 'qr' && layoutName !== 'Бейджи'">
-        <div class="data-tabs__qr">
-            <div class="data-tabs__qr-header">
-                <p class="data-tabs__qr-header--left">Добавьте ссылку и подпись</p>
-                <p class="data-tabs__qr-header--right">Настройка QR-кодов</p>
-            </div>
-
+    <div *ngIf="activeTab === 'qr' && layoutName === 'Визитки'" class="data-tabs__qr">
+        @if (qrCodeEntries.length) {
+            <p class="data-tabs__qr-hint">QR-код появится на визитке после ввода ссылки.</p>
             <div class="data-tabs__qr-container">
-                <div class="data-tabs__qr-block">
-                    <div class="data-tabs__qr-block-header">
-                        <h3>QR-code 1</h3>
+                @for (entry of qrCodeEntries; track $index) {
+                    <div class="data-tabs__qr-block">
+                        <div class="data-tabs__qr-block-header">
+                            <h3>QR-код {{ $index + 1 }}</h3>
+                            <button
+                                type="button"
+                                class="data-tabs__qr-remove"
+                                [attr.aria-label]="'Удалить QR-код ' + ($index + 1)"
+                                (click)="removeQrCode($index)"
+                            >Удалить</button>
+                        </div>
 
-                        <label class="data-tabs__switch">
-                            <input
-                                type="checkbox"
-                                [(ngModel)]="qrCode1Enabled"
-                                (ngModelChange)="setQrCode1Enabled($event)"
-                            >
-                            <span></span>
+                        <app-placeholder
+                            label="Ссылка"
+                            placeholder="https://example.ru"
+                            [value]="entry.value"
+                            (valueChange)="setQrCodeLink($index, $event)"
+                        ></app-placeholder>
+
+                        <label class="data-tabs__qr-caption-label">
+                            <span>Подпись (до двух строк)</span>
+                            <textarea
+                                class="data-tabs__qr-caption"
+                                rows="2"
+                                [value]="entry.label"
+                                (input)="setQrCodeLabel($index, $event)"
+                            ></textarea>
                         </label>
                     </div>
-
-                    <app-placeholder
-                        label="Подпись"
-                        [value]="qrCode1Label"
-                        (valueChange)="setQrCode1Label($event)"
-                        placeholder="Правительство ЯНАО"
-                    ></app-placeholder>
-
-                    <app-placeholder
-                        label="Ссылка"
-                        placeholder="https://yanao.ru/"
-                        [value]="qrCode1"
-                        (valueChange)="setQrCode1($event)"
-                    ></app-placeholder>
-                </div>
-
-                <div class="data-tabs__qr-block">
-                    <div class="data-tabs__qr-block-header">
-                        <h3>QR-code 2</h3>
-
-                        <label class="data-tabs__switch">
-                            <input
-                                type="checkbox"
-                                [(ngModel)]="qrCode2Enabled"
-                                (ngModelChange)="setQrCode2Enabled($event)"
-                            >
-                            <span></span>
-                        </label>
-                    </div>
-
-                    <app-placeholder
-                        label="Подпись"
-                        [value]="qrCode2Label"
-                        (valueChange)="setQrCode2Label($event)"
-                        placeholder="Ямал. Официально"
-                    ></app-placeholder>
-
-                    <app-placeholder
-                        label="Ссылка"
-                        placeholder="https://max.ru/YANAO_official"
-                        [value]="qrCode2"
-                        (valueChange)="setQrCode2($event)"
-                    ></app-placeholder>
-                </div>
+                }
             </div>
+        }
 
-            <div class="data-tabs__meta">
-                <button
-                    type="button"
-                    class="data-tabs__button"
-                    (click)="generateQrCodes()"
-                >
-                    Сгенерировать
-                </button>
-            </div>
-        </div>
-    </ng-container>
+        @if (qrCodeEntries.length < 2) {
+            <button type="button" class="data-tabs__button" (click)="addQrCode()">
+                {{ qrCodeEntries.length ? 'Добавить второй QR-код' : 'Добавить QR-код' }}
+            </button>
+        }
+    </div>
+
     <ng-container *ngIf="activeTab === 'personal' && (layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
         <div class="data-tabs__fields">
             <app-placeholder
@@ -298,6 +266,7 @@
             <app-placeholder
                 label="Должность вручающего"
                 placeholder="Должность вручающего"
+                [maxlength]="layoutName === 'Дипломы' ? 136 : undefined"
                 [value]="position"
                 (valueChange)="setPosition($event)"
             ></app-placeholder>
@@ -305,6 +274,7 @@
             <app-placeholder
                 label="ФИО вручающего"
                 placeholder="Иванов Иван Иванович"
+                #fullNameInput
                 [value]="fullName"
                 (valueChange)="setFullName($event)"
             ></app-placeholder>

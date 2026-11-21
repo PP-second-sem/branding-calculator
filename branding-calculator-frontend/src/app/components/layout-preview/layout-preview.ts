@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { Template, TextField } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
 import { QrCode } from '../qr-code/qr-code';
+import type { QrCodeEntry } from '../../models/qr-code.model';
 
 @Component({
   selector: 'app-layout-preview',
@@ -27,13 +28,7 @@ export class LayoutPreview {
   @Input() city = '';
   @Input() date = '';
   @Input() eventEndDate = '';
-  @Input() qrCode1 = '';
-  @Input() qrCode1Label = '';
-  @Input() qrCode2 = '';
-  @Input() qrCode2Label = '';
-  @Input() qrCodesGenerated = false;
-  @Input() qrCode2Enabled = false;
-  @Input() qrCode1Enabled = true;
+  @Input() qrCodeEntries: QrCodeEntry[] = [];
   @Input() showPhone = true;
   @Input() showAddress = true;
   @Input() eventType = '';
@@ -45,6 +40,20 @@ export class LayoutPreview {
   @Input() eventAgeLimit = '';
   @Input() eventAdditionalInfo = '';
   @ViewChild('cityText') cityText?: ElementRef<HTMLElement>;
+
+  public get positionedQrCodes() {
+    const positions = this.template.qrCodes ?? [];
+    const entries = this.qrCodeEntries
+      .filter(entry => entry.value.trim())
+      .slice(0, positions.length);
+    const firstPosition = positions.length - entries.length;
+
+    return entries.map((entry, index) => ({
+      ...entry,
+      value: entry.value.trim(),
+      ...positions[firstPosition + index],
+    }));
+  }
 
   public getDateLeft(): number {
     if (
@@ -367,23 +376,6 @@ export class LayoutPreview {
     return this.layoutName === 'Сертификаты'
       && position.trim().length > 0
       && position.trim().length > 20;
-  }
-
-  public getDiplomaPositionOffset(position: string): number {
-    if (this.layoutName !== 'Дипломы') {
-      return 0;
-    }
-
-    const text = position.trim();
-
-    if (!text) {
-      return 0;
-    }
-
-    const maxCharsPerLine = 20;
-    const lines = Math.ceil(text.length / maxCharsPerLine);
-
-    return Math.max(0, lines - 1) * 15;
   }
 
   public limitFullNameParts(fullName: string): string {

@@ -5,53 +5,6 @@ export const layouts: Layout[] = [
     name: 'Бейджи',
     icon: 'badgeIcon.svg',
     templates : [
-      // {
-      //   id: 1,
-      //   preview: 'badge_3.svg',
-      //   filledPreview: 'filled_badge_3.svg',
-      //   textFields: [
-      //     {
-      //       id: 'fullName',
-      //       type: 'fullName',
-      //       x: 145,
-      //       y: 195,
-      //       width: 180,
-      //       fontSize: 15,
-      //       fontWeight: 400,
-      //       color: 'rgba(207, 19, 59, 1)',
-      //     },
-      //     {
-      //       id: 'position',
-      //       type: 'position',
-      //       x: 145,
-      //       y: 237,
-      //       color: 'rgba(207, 19, 59, 1)',
-      //       width: 120,
-      //       fontSize: 9,
-      //       fontWeight: 500
-      //     },
-      //     {
-      //       id: 'place',
-      //       type: 'city',
-      //       x: 120,
-      //       y: 450,
-      //       width: 60,
-      //       fontSize: 10,
-      //       fontWeight: 500,
-      //       color: 'rgba(243, 242, 232, 1)',
-      //     },
-      //     {
-      //       id: 'date',
-      //       type: 'date',
-      //       x: 120,
-      //       y: 475,
-      //       width: 60,
-      //       fontSize: 10,
-      //       fontWeight: 500,
-      //       color: 'rgba(243, 242, 232, 1)',
-      //     },
-      //   ],
-      // },
       {
         id: 1,
         preview: 'badge_2.svg',
@@ -258,12 +211,7 @@ export const layouts: Layout[] = [
         mobilePhone: '',
         email: '',
         address: '',
-        qrCode1: '',
-        qrCode1Label: '',
-        qrCode2: '',
-        qrCode2Label: '',
-        qrCodesGenerated: false,
-        qrCode2Enabled: false
+        qrCodeEntries: []
       }
     },
     {
@@ -359,12 +307,7 @@ export const layouts: Layout[] = [
         mobilePhone: '',
         email: '',
         address: '',
-        qrCode1: '',
-        qrCode1Label: '',
-        qrCode2: '',
-        qrCode2Label: '',
-        qrCodesGenerated: false,
-        qrCode2Enabled: false
+        qrCodeEntries: []
       }
     },
     {
@@ -440,13 +383,13 @@ export const layouts: Layout[] = [
       ],
       qrCodes:[
         {
-          x: 660,
-          y: 380,
+          x: 713,
+          y: 270,
           size: 75,
           labelFontSize: 9,
         },
         {
-          x: 765,
+          x: 713,
           y: 380,
           size: 75,
           labelFontSize: 9,
@@ -459,12 +402,7 @@ export const layouts: Layout[] = [
         mobilePhone: '',
         email: '',
         address: '',
-        qrCode1: '',
-        qrCode1Label: '',
-        qrCode2: '',
-        qrCode2Label: '',
-        qrCodesGenerated: false,
-        qrCode2Enabled: false
+        qrCodeEntries: []
       }
     },
     {
@@ -552,14 +490,14 @@ export const layouts: Layout[] = [
       ],
       qrCodes:[
         {
-          x: 60,
-          y: 240,
+          x: 107,
+          y: 174,
           size: 62,
           labelFontSize: 8,
         },
         {
-          x: 152,
-          y: 240,
+          x: 107,
+          y: 267,
           size: 62,
           labelFontSize: 8,
         }
@@ -571,12 +509,7 @@ export const layouts: Layout[] = [
         mobilePhone: '',
         email: '',
         address: '',
-        qrCode1: '',
-        qrCode1Label: '',
-        qrCode2: '',
-        qrCode2Label: '',
-        qrCodesGenerated: false,
-        qrCode2Enabled: false
+        qrCodeEntries: []
       }
     },
   ]},
@@ -605,7 +538,7 @@ export const layouts: Layout[] = [
             type: 'position',
             x: 80,
             y: 405,
-            width: 80,
+            width: 95,
             fontSize: 7,
             fontWeight: 400,
             color: 'rgba(231, 75, 31, 1)',

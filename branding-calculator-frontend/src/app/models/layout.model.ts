@@ -1,5 +1,7 @@
 import { ConstructorState } from "./constructor-state.model";
 
+import type { StoredQrCodes } from './qr-code.model';
+
 export interface Template {
   id: number;
   preview: string;
@@ -77,7 +79,7 @@ export interface TextField {
   color?: string;
 }
 
-export interface TemplateData {
+export interface TemplateData extends StoredQrCodes {
   fullName: string;
   position: string;
   phone?: string;
@@ -86,12 +88,6 @@ export interface TemplateData {
   address?: string;
   recipientName?: string;
   certificateText?: string;
-  qrCode1?: string;
-  qrCode1Label?: string;
-  qrCode2?: string;
-  qrCode2Label?: string;
-  qrCodesGenerated?: boolean;
-  qrCode2Enabled?: boolean;
   date?: string;
   city?: string;
   showAddress?: boolean;

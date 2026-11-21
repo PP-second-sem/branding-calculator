@@ -105,6 +105,23 @@
         min-width: 0;
     }
 
+    &__diploma-presenter {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        line-height: 1.2;
+
+        > .layout-preview__position,
+        > .layout-preview__full-name {
+            position: static;
+        }
+
+        > .layout-preview__position {
+            min-height: 1.2em;
+        }
+    }
+
     &__position--business-card-centered {
         text-align: center;
     }
@@ -176,20 +193,16 @@
 
 .layout-preview__qr-label {
     position: absolute;
-    box-sizing: border-box;
-
-    padding: 0 2px;
+    bottom: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    max-height: 2.4em;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
     text-align: center;
     font-weight: 700;
     line-height: 1.2;
-
-    white-space: normal;
-    overflow-wrap: normal;
-    word-break: normal;
-    hyphens: none;
-
-    transform: translateY(-100%);
-    margin-top: -6px;
 }
 
 .layout-preview__recipient-name {
