@@ -41,10 +41,6 @@
         color: rgba(34, 37, 47, 1);
     }
 
-    &__email {
-        text-decoration: underline;
-    }
-
     &__address-line {
         &--continuation {
             transform: translateX(var(--address-continuation-offset));
@@ -88,6 +84,10 @@
         text-align: center;
     }
 
+    &__full-name--certificate {
+        overflow-wrap: anywhere;
+    }
+
     &__full-name--business-card-centered {
         white-space: nowrap;
         text-align: center;
@@ -107,6 +107,23 @@
         overflow-wrap: break-word;
         word-break: normal;
         min-width: 0;
+    }
+
+    &__diploma-presenter {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        line-height: 1.2;
+
+        > .layout-preview__position,
+        > .layout-preview__full-name {
+            position: static;
+        }
+
+        > .layout-preview__position {
+            min-height: 1.2em;
+        }
     }
 
     &__position--business-card-centered {
@@ -180,20 +197,16 @@
 
 .layout-preview__qr-label {
     position: absolute;
-    box-sizing: border-box;
-
-    padding: 0 2px;
+    bottom: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    max-height: 2.4em;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
     text-align: center;
     font-weight: 700;
     line-height: 1.2;
-
-    white-space: normal;
-    overflow-wrap: normal;
-    word-break: normal;
-    hyphens: none;
-
-    transform: translateY(-100%);
-    margin-top: -6px;
 }
 
 .layout-preview__recipient-name {
@@ -224,8 +237,26 @@
     }
 }
 
-.layout-preview__certificate-text--name-wrapped {
-    transform: translateY(40px);
+.layout-preview__certificate-details {
+    position: absolute;
+    inset-inline: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(var(--name-space), auto) auto;
+    justify-items: start;
+
+    > .layout-preview__recipient-name {
+        position: static;
+        margin-left: var(--recipient-left);
+        max-width: calc(100% - var(--recipient-left) - 8px);
+        padding-bottom: 4px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    > .layout-preview__certificate-text {
+        position: static;
+    }
 }
 
 .layout-preview__certificate-text {

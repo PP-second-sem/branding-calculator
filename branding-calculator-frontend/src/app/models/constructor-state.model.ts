@@ -1,16 +1,12 @@
-export interface ConstructorState {
+import type { StoredQrCodes } from './qr-code.model';
+
+export interface ConstructorState extends StoredQrCodes {
     fullName: string;
     position: string;
     phone: string;
     mobilePhone: string;
     email: string;
     address: string;
-    qrCode1: string;
-    qrCode1Label: string;
-    qrCode2: string;
-    qrCode2Label: string;
-    qrCodesGenerated: boolean;
-    qrCode2Enabled: boolean;
     eventType: string;
     eventShortDescription: string;
     eventDescription: string;
