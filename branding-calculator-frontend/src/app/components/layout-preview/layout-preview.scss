@@ -84,6 +84,10 @@
         text-align: center;
     }
 
+    &__full-name--certificate {
+        overflow-wrap: anywhere;
+    }
+
     &__full-name--business-card-centered {
         white-space: nowrap;
         text-align: center;
@@ -233,8 +237,26 @@
     }
 }
 
-.layout-preview__certificate-text--name-wrapped {
-    transform: translateY(40px);
+.layout-preview__certificate-details {
+    position: absolute;
+    inset-inline: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(var(--name-space), auto) auto;
+    justify-items: start;
+
+    > .layout-preview__recipient-name {
+        position: static;
+        margin-left: var(--recipient-left);
+        max-width: calc(100% - var(--recipient-left) - 8px);
+        padding-bottom: 4px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    > .layout-preview__certificate-text {
+        position: static;
+    }
 }
 
 .layout-preview__certificate-text {

@@ -276,33 +276,6 @@ export class LayoutPreview {
       return [surname];
     }
 
-    if (this.layoutName === 'Сертификаты' && this.template.id !== 2 && this.template.id !== 3) {
-      const lines: string[] = [];
-      let currentLine = '';
-
-      for (const word of words) {
-        const nextLine = currentLine
-          ? `${currentLine} ${word}`
-          : word;
-
-        if (nextLine.length <= 30) {
-          currentLine = nextLine;
-        } else {
-          if (currentLine) {
-            lines.push(currentLine);
-          }
-
-          currentLine = word;
-        }
-      }
-
-      if (currentLine) {
-        lines.push(currentLine);
-      }
-
-      return lines;
-    }
-
     if (!patronymic) {
       return [surname, firstName].filter(Boolean);
     }
@@ -365,13 +338,6 @@ export class LayoutPreview {
       && surname.length > 16;
   }
 
-  public hasWrappedFullName(fullName: string): boolean {
-    return this.layoutName === 'Сертификаты'
-      && this.template.id !== 2
-      && this.template.id !== 3
-      && this.formatFullName(fullName).length > 1;
-  }
-
   public hasWrappedPosition(position: string): boolean {
     return this.layoutName === 'Сертификаты'
       && position.trim().length > 0
@@ -389,26 +355,6 @@ export class LayoutPreview {
     ]
       .filter(Boolean)
       .join(' ');
-  }
-
-  public formatRecipientName(fullName: string): string {
-    const name = this.limitFullNameParts(fullName);
-
-    if (
-      (this.template.id === 2 || this.template.id === 3) &&
-      name.length > 21
-    ) {
-      const [surname = '', firstName = '', patronymic = ''] =
-        name.split(/\s+/);
-
-      return [
-        surname,
-        firstName ? `${firstName[0]}.` : '',
-        patronymic ? `${patronymic[0]}.` : ''
-      ].filter(Boolean).join(' ');
-    }
-
-    return name;
   }
 
   public formatDiplomaText(text: string, maxLineLength = 35): string[] {

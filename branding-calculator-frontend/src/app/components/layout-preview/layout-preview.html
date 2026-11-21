@@ -66,11 +66,12 @@
                 layoutName === 'Бейджи' && template.id !== 1
             "
             [class.layout-preview__full-name--business-card]="layoutName === 'Визитки'"
+            [class.layout-preview__full-name--certificate]="layoutName === 'Сертификаты'"
         >
             <div
                 *ngFor="let name of (
                     layoutName === 'Сертификаты'
-                        ? [limitFullNameParts(fullName)]
+                        ? [fullName]
                         : formatFullName(fullName)
                 ); let i = index"
                 [class.layout-preview__full-name-line--second]="
@@ -160,12 +161,38 @@
             {{ formatPosition(position) }}
         </div>
 
-        <div *ngIf="recipientNameField"
+        @if (layoutName === 'Сертификаты' && recipientNameField; as recipient) {
+            <div
+                class="layout-preview__certificate-details"
+                [style.top.px]="recipient.y"
+                [style.--recipient-left.px]="recipient.x"
+                [style.--name-space.px]="(certificateTextField?.y ?? recipient.y) - recipient.y"
+            >
+                <div
+                    class="layout-preview__recipient-name"
+                    [class.layout-preview__recipient-name--centered]="template.id === 2 || template.id === 3"
+                    [style.width.px]="recipient.width"
+                    [style.fontSize.px]="recipient.fontSize"
+                    [style.fontWeight]="recipient.fontWeight"
+                    [style.color]="recipient.color"
+                >{{ recipientName }}</div>
+                @if (certificateTextField; as text) {
+                    <div
+                        class="layout-preview__certificate-text"
+                        [class.layout-preview__certificate-text--centered]="template.id === 2 || template.id === 3"
+                        [style.margin-left.px]="text.x"
+                        [style.width.px]="text.width"
+                        [style.fontSize.px]="text.fontSize"
+                        [style.fontWeight]="text.fontWeight"
+                        [style.color]="text.color"
+                    >{{ certificateText }}</div>
+                }
+            </div>
+        }
+
+        <div *ngIf="layoutName !== 'Сертификаты' && recipientNameField"
             class="layout-preview__recipient-name"
-            [class.layout-preview__recipient-name--centered]="
-                (layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3))
-                || layoutName === 'Дипломы'
-            "
+            [class.layout-preview__recipient-name--centered]="layoutName === 'Дипломы'"
             [style.left.px]="recipientNameField.x"
             [style.top.px]="recipientNameField.y"
             [style.fontSize.px]="recipientNameField.fontSize"
@@ -173,31 +200,19 @@
             [style.color]="recipientNameField.color"
             [style.width.px]="recipientNameField.width"
         >
-            <ng-container
-                *ngIf="layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3); else formattedName"
+            <div
+                *ngFor="let name of getRecipientNameLines(recipientName)"
+                [class.layout-preview__full-name-line--badge-centered]="
+                    layoutName === 'Бейджи' && template.splitPatronymic === true
+                "
             >
-                {{ formatRecipientName(recipientName) }}
-            </ng-container>
-
-            <ng-template #formattedName>
-                <div
-                    *ngFor="let name of getRecipientNameLines(recipientName)"
-                    [class.layout-preview__full-name-line--badge-centered]="
-                        layoutName === 'Бейджи' && template.splitPatronymic === true
-                    "
-                >
-                    {{ name }}
-                </div>
-            </ng-template>
+                {{ name }}
+            </div>
         </div>
 
-        <div *ngIf="certificateTextField"
+        <div *ngIf="layoutName !== 'Сертификаты' && certificateTextField"
             class="layout-preview__certificate-text"
-            [class.layout-preview__certificate-text--centered]="
-                (layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3))
-                || layoutName === 'Дипломы'
-            "
-            [class.layout-preview__certificate-text--name-wrapped]="hasWrappedFullName(recipientName)"
+            [class.layout-preview__certificate-text--centered]="layoutName === 'Дипломы'"
             [style.left.px]="certificateTextField.x"
             [style.top.px]="certificateTextField.y"
             [style.fontSize.px]="certificateTextField.fontSize"
