@@ -104,33 +104,29 @@
         </div>
 
         <img
-            *ngIf="showPhone && phoneIcon"
+            *ngIf="showPhone && phone.trim() && phoneIcon?.src as phoneIconSrc"
             class="layout-preview__icon"
-            [src]="phoneIcon.src"
-            [style.left.px]="phoneIcon.x"
-            [style.top.px]="phoneIcon.y"
-            [style.width.px]="phoneIcon.width"
-            [style.height.px]="phoneIcon.height"
+            [src]="phoneIconSrc"
+            [style.left.px]="phoneIcon?.x"
+            [style.top.px]="phoneIcon?.y"
+            [style.width.px]="phoneIcon?.width"
+            [style.height.px]="phoneIcon?.height"
         />
 
         <div
-            *ngIf="
-                showPhone &&
-                layoutName === 'Визитки' &&
-                [1, 2, 3, 4].includes(template.id)
-            "
+            *ngIf="showPhone && phone.trim() && phoneIconLabel as label"
             class="layout-preview__phone-label"
-            [style.left.px]="phoneIconLabel?.x"
-            [style.top.px]="phoneIconLabel?.y"
-            [style.fontSize.px]="phoneIconLabel?.fontSize"
-            [style.fontWeight]="phoneIconLabel?.fontWeight"
-            [style.color]="phoneIconLabel?.color"
+            [style.left.px]="label.x"
+            [style.top.px]="label.y"
+            [style.fontSize.px]="label.fontSize"
+            [style.fontWeight]="label.fontWeight"
+            [style.color]="label.color"
         >
             Тел.:
         </div>
 
         <img
-            *ngIf="showAddress && addressIcon"
+            *ngIf="showAddress && address.trim() && addressIcon"
             class="layout-preview__icon"
             [src]="addressIcon.src"
             [style.left.px]="addressIcon.x"
