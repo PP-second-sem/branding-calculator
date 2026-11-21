@@ -206,9 +206,9 @@ export class LayoutPreview {
       return [`${surname} ${firstName}`, patronymic];
     }
 
-    const surname = words[0].slice(0, 20);
-    const firstName = (words[1] ?? '').slice(0, 15);
-    const patronymic = (words[2] ?? '').slice(0, 15);
+    const surname = words[0].slice(0, 25);
+    const firstName = (words[1] ?? '').slice(0, 20);
+    const patronymic = (words[2] ?? '').slice(0, 20);
 
     if (this.layoutName === 'Визитки') {
       if (!firstName) {
