@@ -667,7 +667,7 @@ export const layouts: Layout[] = [
           {
             id: 'recipientName',
             type: 'recipientName',
-            x: 26,
+            x: 29,
             y: 220,
             width: 400,
             fontSize: 18,
@@ -677,7 +677,7 @@ export const layouts: Layout[] = [
           {
             id: 'certificateText',
             type: 'certificateText',
-            x: 32,
+            x: 30,
             y: 245,
             width: 190,
             fontSize: 8,
