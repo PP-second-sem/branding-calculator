@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal, ViewChild } from '@angular/core';
 import { layouts } from './data/templates';
-import { Layout, Template, TemplateData } from '../../models/layout.model';
+import type { CertificateWording, Layout, Template, TemplateData } from '../../models/layout.model';
 import { TemplateList } from '../../components/template-list/template-list';
 import { DataTabs } from '../../components/data-tabs/data-tabs';
 import { LayoutPreview } from '../../components/layout-preview/layout-preview';
@@ -47,6 +47,7 @@ export class ConstructorPage {
   public eventEndDate = '';
   public readonly isDownloading = signal(false);
   public readonly downloadError = signal('');
+  private readonly certificateWordings = new WeakMap<Template, CertificateWording>();
 
   constructor() {
     this.ensureTemplateData(this.selectedTemplate);
@@ -132,6 +133,22 @@ export class ConstructorPage {
     ) {
       this.dataTabs.activeTab = 'personal';
     }
+  }
+
+  public get certificateWording(): CertificateWording | undefined {
+    return this.certificateWordings.get(this.selectedTemplate)
+      ?? this.selectedTemplate.certificateVariant?.defaultWording;
+  }
+
+  public get previewSource(): string {
+    const { preview, certificateVariant } = this.selectedTemplate;
+    return certificateVariant && this.certificateWording !== certificateVariant.defaultWording
+      ? certificateVariant.alternatePreview
+      : preview;
+  }
+
+  public selectCertificateWording(wording: CertificateWording): void {
+    this.certificateWordings.set(this.selectedTemplate, wording);
   }
 
   public selectTemplate(template: Template): void {
