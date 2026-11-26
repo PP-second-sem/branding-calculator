@@ -92,6 +92,7 @@
                 <app-layout-preview
                     #layoutPreview
                     [template]="selectedTemplate"
+                    [previewSource]="previewSource"
                     [layoutName]="selectedLayout.name"
                     [fullName]="fullName"
                     [position]="position"
@@ -136,6 +137,8 @@
                         [qrCodeEntries]="qrCodeEntries"
                         (qrCodeEntriesChange)="saveState(); qrCodeEntries = $event; updateSelectedTemplateData()"
                         (recipientNameChange)="saveState(); recipientName = $event; updateSelectedTemplateData()"
+                        [certificateWording]="certificateWording"
+                        (certificateWordingChange)="selectCertificateWording($event)"
                         (certificateTextChange)="saveState(); certificateText = $event; updateSelectedTemplateData()"
                         (eventTypeChange)="saveState(); eventType = $event; updateSelectedTemplateData()"
                         (eventShortDescriptionChange)="saveState(); eventShortDescription = $event; updateSelectedTemplateData()"

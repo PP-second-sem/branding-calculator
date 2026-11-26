@@ -2,8 +2,14 @@ import { ConstructorState } from "./constructor-state.model";
 
 import type { StoredQrCodes } from './qr-code.model';
 
+export type CertificateWording = 'awarded' | 'confirms';
+
 export interface Template {
   id: number;
+  certificateVariant?: {
+    defaultWording: CertificateWording;
+    alternatePreview: string;
+  };
   preview: string;
   filledPreview: string;
   textFields: TextField[];

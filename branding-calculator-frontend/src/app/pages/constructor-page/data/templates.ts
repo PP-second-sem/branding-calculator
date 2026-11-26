@@ -596,7 +596,7 @@ export const layouts: Layout[] = [
             type: 'position',
             x: 80,
             y: 405,
-            width: 80,
+            width: 95,
             fontSize: 7,
             fontWeight: 400,
             color: 'rgba(231, 75, 31, 1)',
@@ -642,6 +642,10 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'certificate_1.svg',
+        certificateVariant: {
+          defaultWording: 'awarded',
+          alternatePreview: 'certificate_1_trusted.svg',
+        },
         filledPreview: 'filled_certificate_1.svg',
         textFields: [
           {
@@ -667,7 +671,7 @@ export const layouts: Layout[] = [
           {
             id: 'recipientName',
             type: 'recipientName',
-            x: 26,
+            x: 29,
             y: 220,
             width: 400,
             fontSize: 18,
@@ -677,7 +681,7 @@ export const layouts: Layout[] = [
           {
             id: 'certificateText',
             type: 'certificateText',
-            x: 32,
+            x: 30,
             y: 245,
             width: 190,
             fontSize: 8,
@@ -699,6 +703,10 @@ export const layouts: Layout[] = [
       {
         id: 2,
         preview: 'certificate_2.svg',
+        certificateVariant: {
+          defaultWording: 'confirms',
+          alternatePreview: 'certificate_2_awarded.svg',
+        },
         filledPreview: 'filled_certificate_2.svg',
         textFields: [
           {
@@ -756,6 +764,10 @@ export const layouts: Layout[] = [
       {
         id: 3,
         preview: 'certificate_3.svg',
+        certificateVariant: {
+          defaultWording: 'confirms',
+          alternatePreview: 'certificate_3_awarded.svg',
+        },
         filledPreview: 'filled_certificate_3.svg',
         textFields: [
           {
@@ -813,6 +825,10 @@ export const layouts: Layout[] = [
       {
         id: 4,
         preview: 'certificate_4.svg',
+        certificateVariant: {
+          defaultWording: 'awarded',
+          alternatePreview: 'certificate_4_trusted.svg',
+        },
         filledPreview: 'filled_certificate_4.svg',
         textFields: [
           {
@@ -870,6 +886,10 @@ export const layouts: Layout[] = [
       {
         id: 5,
         preview: 'certificate_5.svg',
+        certificateVariant: {
+          defaultWording: 'awarded',
+          alternatePreview: 'certificate_5_trusted.svg',
+        },
         filledPreview: 'filled_certificate_5.svg',
         textFields: [
           {

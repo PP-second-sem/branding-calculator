@@ -183,7 +183,6 @@
             <app-placeholder
                 label="E-mail:"
                 placeholder="pochta@mail.ru"
-                [underlinePlaceholder]="true"
                 [value]="email"
                 (valueChange)="setEmail($event)"
             ></app-placeholder>
@@ -281,6 +280,22 @@
         </div>
     </ng-container>
     <ng-container *ngIf="activeTab === 'text' && (layoutName === 'Сертификаты' || layoutName === 'Дипломы')">
+        @if (certificateWording) {
+            <div class="data-tabs__wording" role="group" aria-label="Вводная фраза сертификата">
+                <button
+                    type="button"
+                    class="data-tabs__wording-button"
+                    [attr.aria-pressed]="certificateWording === 'awarded'"
+                    (click)="certificateWordingChange.emit('awarded')"
+                >Вручается</button>
+                <button
+                    type="button"
+                    class="data-tabs__wording-button"
+                    [attr.aria-pressed]="certificateWording === 'confirms'"
+                    (click)="certificateWordingChange.emit('confirms')"
+                >Подтверждает, что</button>
+            </div>
+        }
         <div class="data-tabs__fields">
             <app-placeholder
                 class="data-tabs__field--full-width"

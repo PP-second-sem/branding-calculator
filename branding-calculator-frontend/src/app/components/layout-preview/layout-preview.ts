@@ -12,6 +12,7 @@ import type { QrCodeEntry } from '../../models/qr-code.model';
 })
 export class LayoutPreview {
   @Input() template!: Template;
+  @Input() previewSource?: string;
   @ViewChild('image', { static: true })
   public image!: ElementRef<HTMLImageElement>;
   @ViewChild('preview', { static: true })

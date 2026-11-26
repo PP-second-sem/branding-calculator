@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Placeholder } from '../placeholder/placeholder';
 import { FormsModule } from '@angular/forms';
 import { ViewChild } from '@angular/core';
-import { TemplateData } from '../../models/layout.model';
+import type { CertificateWording, TemplateData } from '../../models/layout.model';
 import type { QrCodeEntry } from '../../models/qr-code.model';
 
 @Component({
@@ -42,6 +42,8 @@ export class DataTabs {
   @Input() showPhone = true;
   @Input() showAddress = true;
   @Input() templateId = 0;
+  @Input() certificateWording?: CertificateWording;
+  @Output() certificateWordingChange = new EventEmitter<CertificateWording>();
   @Input() eventEndDate = '';
 
   @Output() showPhoneChange = new EventEmitter<boolean>();

@@ -23,6 +23,27 @@
         }
     }
 
+    &__wording {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    &__wording-button {
+        padding: 6px 12px;
+        border: 1px solid #e3dfde;
+        border-radius: 5px;
+        color: inherit;
+        font: inherit;
+
+        &[aria-pressed='true'] {
+            background-color: #D0153A;
+            border-color: #D0153A;
+            color: #fff;
+        }
+    }
+
     &__content {
         padding-left: 12px;
         padding-top: 10px;
