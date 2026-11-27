@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Placeholder } from '../placeholder/placeholder';
 import { FormsModule } from '@angular/forms';
 import { ViewChild } from '@angular/core';
-import { TemplateData } from '../../models/layout.model';
+import type { CertificateWording, TemplateData } from '../../models/layout.model';
+import type { QrCodeEntry } from '../../models/qr-code.model';
 
 @Component({
   selector: 'app-data-tabs',
@@ -18,14 +19,7 @@ export class DataTabs {
   public phone = '';
   public mobilePhone = '';
   public email = '';
-  public qrCode1 = '';
-  public qrCode1Label = '';
-  public qrCode2 = '';
-  public qrCode2Label = '';
   public address = '';
-  public qrCodesGenerated = false;
-  public qrCode1Enabled = true;
-  public qrCode2Enabled = false;
   public city = '';
   public date = '';
   public recipientName = '';
@@ -41,11 +35,16 @@ export class DataTabs {
 
   @Output() cityChange = new EventEmitter<string>();
   @Output() dateChange = new EventEmitter<string>();
-  @ViewChild(Placeholder) fullNameInput!: Placeholder;
+  @ViewChild('fullNameInput') fullNameInput?: Placeholder;
   @Input() layoutName = '';
+  @Input() qrCodeEntries: QrCodeEntry[] = [];
+  @Output() qrCodeEntriesChange = new EventEmitter<QrCodeEntry[]>();
   @Input() showPhone = true;
   @Input() showAddress = true;
   @Input() templateId = 0;
+  @Input() certificateWording?: CertificateWording;
+  @Output() certificateWordingChange = new EventEmitter<CertificateWording>();
+  @Input() eventEndDate = '';
 
   @Output() showPhoneChange = new EventEmitter<boolean>();
   @Output() showAddressChange = new EventEmitter<boolean>();
@@ -57,13 +56,6 @@ export class DataTabs {
   @Output() mobilePhoneChange = new EventEmitter<string>();
   @Output() emailChange = new EventEmitter<string>();
   @Output() addressChange = new EventEmitter<string>();
-  @Output() qrCode1Change = new EventEmitter<string>();
-  @Output() qrCode1LabelChange = new EventEmitter<string>();
-  @Output() qrCode2Change = new EventEmitter<string>();
-  @Output() qrCode2LabelChange = new EventEmitter<string>();
-  @Output() qrCodesGeneratedChange = new EventEmitter<boolean>();
-  @Output() qrCode1EnabledChange = new EventEmitter<boolean>();
-  @Output() qrCode2EnabledChange = new EventEmitter<boolean>();
   @Output() eventTypeChange = new EventEmitter<string>();
   @Output() eventShortDescriptionChange = new EventEmitter<string>();
   @Output() eventDescriptionChange = new EventEmitter<string>();
@@ -72,6 +64,7 @@ export class DataTabs {
   @Output() eventTimeChange = new EventEmitter<string>();
   @Output() eventAgeLimitChange = new EventEmitter<string>();
   @Output() eventAdditionalInfoChange = new EventEmitter<string>();
+  @Output() eventEndDateChange = new EventEmitter<string>();
 
   public syncData(data: TemplateData): void {
     this.fullName = data.fullName;
@@ -82,12 +75,6 @@ export class DataTabs {
     this.address = data.address ?? '';
     this.city = data.city ?? '';
     this.date = data.date ?? '';
-    this.qrCode1 = data.qrCode1 ?? '';
-    this.qrCode1Label = data.qrCode1Label ?? '';
-    this.qrCode2 = data.qrCode2 ?? '';
-    this.qrCode2Label = data.qrCode2Label ?? '';
-    this.qrCodesGenerated = data.qrCodesGenerated ?? false;
-    this.qrCode2Enabled = data.qrCode2Enabled ?? false;
     this.recipientName = data.recipientName ?? '';
     this.certificateText = data.certificateText ?? ''; 
     this.eventType = data.eventType ?? '';
@@ -136,39 +123,41 @@ export class DataTabs {
     this.addressChange.emit(value);
   }
 
-  public setQrCode1(value: string): void {
-    this.qrCode1 = value;
-    this.qrCode1Change.emit(value);
+  public addQrCode(): void {
+    if (this.qrCodeEntries.length < 2) {
+      this.qrCodeEntriesChange.emit([...this.qrCodeEntries, { value: '', label: '' }]);
+    }
   }
 
-  public setQrCode2(value: string): void {
-    this.qrCode2 = value;
-    this.qrCode2Change.emit(value);
+  public removeQrCode(index: number): void {
+    this.qrCodeEntriesChange.emit(this.qrCodeEntries.filter((_, entryIndex) => entryIndex !== index));
   }
 
-  public setQrCode1Label(value: string): void {
-    this.qrCode1Label = value;
-    this.qrCode1LabelChange.emit(value);
+  public setQrCodeLink(index: number, value: string): void {
+    this.updateQrCode(index, 'value', value);
   }
 
-  public setQrCode2Label(value: string): void {
-    this.qrCode2Label = value;
-    this.qrCode2LabelChange.emit(value);
+  public setQrCodeLabel(index: number, event: Event): void {
+    const input = event.target as HTMLTextAreaElement;
+    const lines = input.value.split('\n');
+    const label = lines.length > 2 && (event as InputEvent).inputType === 'insertLineBreak'
+      ? this.qrCodeEntries[index].label
+      : lines.slice(0, 2).join('\n');
+
+    if (input.value !== label) {
+      input.value = label;
+    }
+    this.updateQrCode(index, 'label', label);
   }
 
-  public generateQrCodes(): void {
-    this.qrCodesGenerated = true;
-    this.qrCodesGeneratedChange.emit(true);
-  }
+  private updateQrCode(index: number, field: keyof QrCodeEntry, value: string): void {
+    if (this.qrCodeEntries[index][field] === value) {
+      return;
+    }
 
-  public setQrCode1Enabled(value: boolean): void {
-    this.qrCode1Enabled = value;
-    this.qrCode1EnabledChange.emit(value);
-  }
-
-  public setQrCode2Enabled(value: boolean): void {
-    this.qrCode2Enabled = value;
-    this.qrCode2EnabledChange.emit(value);
+    this.qrCodeEntriesChange.emit(this.qrCodeEntries.map((entry, entryIndex) =>
+      entryIndex === index ? { ...entry, [field]: value } : entry,
+    ));
   }
 
   public setCity(value: string): void {
@@ -177,19 +166,8 @@ export class DataTabs {
   }
 
   public setDate(value: string): void {
-    const digits = value.replace(/\D/g, '').slice(0, 8);
-
-    let formattedDate = digits;
-
-    if (digits.length > 4) {
-      formattedDate =
-        `${digits.slice(0, 2)}.${digits.slice(2, 4)}.${digits.slice(4)}`;
-    } else if (digits.length > 2) {
-      formattedDate = `${digits.slice(0, 2)}.${digits.slice(2)}`;
-    }
-
-    this.date = formattedDate;
-    this.dateChange.emit(formattedDate);
+    this.date = value;
+    this.dateChange.emit(value);
   }
 
   public setRecipientName(value: string): void {
@@ -240,5 +218,11 @@ export class DataTabs {
   public setEventAdditionalInfo(value: string): void {
     this.eventAdditionalInfo = value;
     this.eventAdditionalInfoChange.emit(value);
+  }
+
+  public setEventEndDate(value: string): void {
+    console.log('DataTabs получил дату окончания:', value)
+    this.eventEndDate = value;
+    this.eventEndDateChange.emit(value);
   }
 }

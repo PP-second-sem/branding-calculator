@@ -1,7 +1,8 @@
-import { Component, Input, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { Template, TextField } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
 import { QrCode } from '../qr-code/qr-code';
+import type { QrCodeEntry } from '../../models/qr-code.model';
 
 @Component({
   selector: 'app-layout-preview',
@@ -11,6 +12,7 @@ import { QrCode } from '../qr-code/qr-code';
 })
 export class LayoutPreview {
   @Input() template!: Template;
+  @Input() previewSource?: string;
   @ViewChild('image', { static: true })
   public image!: ElementRef<HTMLImageElement>;
   @ViewChild('preview', { static: true })
@@ -26,13 +28,8 @@ export class LayoutPreview {
   @Input() address: string = '';  
   @Input() city = '';
   @Input() date = '';
-  @Input() qrCode1 = '';
-  @Input() qrCode1Label = '';
-  @Input() qrCode2 = '';
-  @Input() qrCode2Label = '';
-  @Input() qrCodesGenerated = false;
-  @Input() qrCode2Enabled = false;
-  @Input() qrCode1Enabled = true;
+  @Input() eventEndDate = '';
+  @Input() qrCodeEntries: QrCodeEntry[] = [];
   @Input() showPhone = true;
   @Input() showAddress = true;
   @Input() eventType = '';
@@ -43,6 +40,40 @@ export class LayoutPreview {
   @Input() eventTime = '';
   @Input() eventAgeLimit = '';
   @Input() eventAdditionalInfo = '';
+  @ViewChild('cityText') cityText?: ElementRef<HTMLElement>;
+
+  public get positionedQrCodes() {
+    const positions = this.template.qrCodes ?? [];
+    const entries = this.qrCodeEntries
+      .filter(entry => entry.value.trim())
+      .slice(0, positions.length);
+    const firstPosition = positions.length - entries.length;
+
+    return entries.map((entry, index) => ({
+      ...entry,
+      value: entry.value.trim(),
+      ...positions[firstPosition + index],
+    }));
+  }
+
+  public getDateLeft(): number {
+    if (
+      this.layoutName !== 'Бейджи' ||
+      this.template.id !== 1 ||
+      !this.cityField ||
+      !this.dateField
+    ) {
+      return this.dateField?.x ?? 0;
+    }
+
+    const cityWidth = this.cityText?.nativeElement.offsetWidth ?? 0;
+    const gap = 10;
+
+    return Math.max(
+      this.dateField.x,
+      this.cityField.x + cityWidth + gap
+    );
+  }
 
   public get fullNameField(): TextField | undefined {
     return this.template.textFields.find(
@@ -91,6 +122,20 @@ export class LayoutPreview {
       field => field.type === 'address'
     );
   };
+
+  public formatDiplomaRecipientName(name: string): string {
+    const parts = name.trim().split(/\s+/);
+
+    if (parts.length < 2) {
+      return name;
+    }
+
+    const surname = parts[0];
+    const firstName = parts[1];
+    const patronymic = parts[2];
+
+    return `${surname} ${firstName[0].toUpperCase()}.${patronymic ? ` ${patronymic[0].toUpperCase()}.` : ''}`;
+  }
 
   public get phoneIconLabel() {
     return this.template.icons?.phone?.label;
@@ -171,9 +216,9 @@ export class LayoutPreview {
       return [`${surname} ${firstName}`, patronymic];
     }
 
-    const surname = words[0].slice(0, 20);
-    const firstName = (words[1] ?? '').slice(0, 15);
-    const patronymic = (words[2] ?? '').slice(0, 15);
+    const surname = words[0].slice(0, 25);
+    const firstName = (words[1] ?? '').slice(0, 20);
+    const patronymic = (words[2] ?? '').slice(0, 20);
 
     if (this.layoutName === 'Визитки') {
       if (!firstName) {
@@ -194,22 +239,11 @@ export class LayoutPreview {
     }
 
     if (this.layoutName === 'Бейджи' && this.template.id === 1) {
-      if (!firstName && !patronymic) {
-        return [surname];
-      }
-
-      if (!firstName) {
-        return [surname, patronymic].filter(Boolean);
-      }
-
-      if (`${surname} ${firstName}`.length <= 15) {
-        if (!patronymic) {
-          return [`${surname} ${firstName}`];
-        }
-
-        return [`${surname} ${firstName}`, patronymic];
-      }
-      return [surname, firstName, patronymic].filter(Boolean);
+      return [
+        surname.slice(0, 15),
+        firstName.slice(0, 15),
+        patronymic.slice(0, 15)
+      ].filter(Boolean);
     }
 
     if (this.layoutName === 'Дипломы') {
@@ -243,33 +277,6 @@ export class LayoutPreview {
       return [surname];
     }
 
-    if (this.layoutName === 'Сертификаты' && this.template.id !== 2 && this.template.id !== 3) {
-      const lines: string[] = [];
-      let currentLine = '';
-
-      for (const word of words) {
-        const nextLine = currentLine
-          ? `${currentLine} ${word}`
-          : word;
-
-        if (nextLine.length <= 30) {
-          currentLine = nextLine;
-        } else {
-          if (currentLine) {
-            lines.push(currentLine);
-          }
-
-          currentLine = word;
-        }
-      }
-
-      if (currentLine) {
-        lines.push(currentLine);
-      }
-
-      return lines;
-    }
-
     if (!patronymic) {
       return [surname, firstName].filter(Boolean);
     }
@@ -296,7 +303,7 @@ export class LayoutPreview {
 
   public formatPosition(position: string): string {
     if (this.layoutName === 'Сертификаты') {
-      return position.slice(0, 35);
+      return position.slice(0, 55);
     }
 
     return position;
@@ -332,34 +339,10 @@ export class LayoutPreview {
       && surname.length > 16;
   }
 
-  public hasWrappedFullName(fullName: string): boolean {
-    return this.layoutName === 'Сертификаты'
-      && this.template.id !== 2
-      && this.template.id !== 3
-      && this.formatFullName(fullName).length > 1;
-  }
-
   public hasWrappedPosition(position: string): boolean {
     return this.layoutName === 'Сертификаты'
       && position.trim().length > 0
       && position.trim().length > 20;
-  }
-
-  public getDiplomaPositionOffset(position: string): number {
-    if (this.layoutName !== 'Дипломы') {
-      return 0;
-    }
-
-    const text = position.trim();
-
-    if (!text) {
-      return 0;
-    }
-
-    const maxCharsPerLine = 20;
-    const lines = Math.ceil(text.length / maxCharsPerLine);
-
-    return Math.max(0, lines - 1) * 15;
   }
 
   public limitFullNameParts(fullName: string): string {
@@ -373,26 +356,6 @@ export class LayoutPreview {
     ]
       .filter(Boolean)
       .join(' ');
-  }
-
-  public formatRecipientName(fullName: string): string {
-    const name = this.limitFullNameParts(fullName);
-
-    if (
-      (this.template.id === 2 || this.template.id === 3) &&
-      name.length > 21
-    ) {
-      const [surname = '', firstName = '', patronymic = ''] =
-        name.split(/\s+/);
-
-      return [
-        surname,
-        firstName ? `${firstName[0]}.` : '',
-        patronymic ? `${patronymic[0]}.` : ''
-      ].filter(Boolean).join(' ');
-    }
-
-    return name;
   }
 
   public formatDiplomaText(text: string, maxLineLength = 35): string[] {
@@ -519,6 +482,51 @@ export class LayoutPreview {
     return this.template.textFields.find(
       field => field.type === 'eventAdditionalInfoField'
     );
+  }
+
+  public formatPosterDateRange(start: string, end: string): string {
+    const months = [
+      'января', 'февраля', 'марта', 'апреля',
+      'мая', 'июня', 'июля', 'августа',
+      'сентября', 'октября', 'ноября', 'декабря'
+    ];
+
+    const parseDate = (value: string) => {
+      const normalized = (value || '').trim().toLowerCase();
+
+      const match = normalized.match(/^(\d{1,2})\s+([а-яё]+)$/i);
+
+      if (!match) return null;
+
+      const monthIndex = months.indexOf(match[2]);
+
+      if (monthIndex === -1) return null;
+
+      return {
+        day: Number(match[1]),
+        month: monthIndex,
+        monthName: months[monthIndex]
+      };
+    };
+
+    const startDate = parseDate(start);
+    const endDate = parseDate(end);
+
+    if (!startDate && !endDate) return '';
+
+    if (!startDate) {
+      return `${endDate!.day} ${endDate!.monthName}`;
+    }
+
+    if (!endDate) {
+      return `${startDate.day} ${startDate.monthName}`;
+    }
+
+    if (startDate.month === endDate.month) {
+      return `${startDate.day}-${endDate.day}\n${startDate.monthName}`;
+    }
+
+    return `${startDate.day} ${startDate.monthName}\n${endDate.day} ${endDate.monthName}`;
   }
 }
 

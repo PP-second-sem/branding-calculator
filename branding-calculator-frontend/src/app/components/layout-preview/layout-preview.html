@@ -5,55 +5,60 @@
     <img
         #image
         class="layout-preview__image"
-        [src]="template.preview"
+        [src]="previewSource ?? template.preview"
         alt=""
     >
     <div class="layout-preview__overlay"
     >
-        <app-qr-code
-            *ngIf="qrCodesGenerated && qrCode1Enabled && template.qrCodes?.[0] as qrCode"
-            class="layout-preview__qr-code"
-            [value]="qrCode1"
-            [size]="qrCode.size"
-            [style.left.px]="qrCode.x"
-            [style.top.px]="qrCode.y"
-        ></app-qr-code>
+        @for (qrCode of positionedQrCodes; track $index) {
+            <div
+                class="layout-preview__qr-code"
+                [style.left.px]="qrCode.x"
+                [style.top.px]="qrCode.y"
+                [style.width.px]="qrCode.size"
+            >
+                @if (qrCode.label.trim()) {
+                    <div class="layout-preview__qr-label" [style.fontSize.px]="qrCode.labelFontSize">{{ qrCode.label }}</div>
+                }
+                <app-qr-code [value]="qrCode.value" [size]="qrCode.size"></app-qr-code>
+            </div>
+        }
         <div
-            *ngIf="qrCodesGenerated && qrCode1Enabled && qrCode1Label && template.qrCodes?.[0] as qrCode"
-            class="layout-preview__qr-label"
-            [style.left.px]="qrCode.x"
-            [style.top.px]="qrCode.y"
-            [style.width.px]="qrCode.size"
-            [style.fontSize.px]="qrCode.labelFontSize"
+            *ngIf="layoutName === 'Дипломы' && positionField as role"
+            class="layout-preview__diploma-presenter"
+            [style.left.px]="role.x"
+            [style.top.px]="role.y"
         >
-            {{ qrCode1Label }}
+            <div
+                class="layout-preview__position"
+                [style.width.px]="role.width"
+                [style.fontSize.px]="role.fontSize"
+                [style.fontWeight]="role.fontWeight"
+                [style.color]="role.color"
+            >{{ position }}</div>
+            <div
+                *ngIf="fullNameField as name"
+                class="layout-preview__full-name"
+                [style.margin-left.px]="name.x - role.x"
+                [style.width.px]="name.width"
+                [style.fontSize.px]="name.fontSize"
+                [style.fontWeight]="name.fontWeight"
+                [style.color]="name.color"
+            >{{ formatDiplomaRecipientName(fullName) }}</div>
         </div>
-        <app-qr-code
-            *ngIf="qrCodesGenerated && qrCode2Enabled && template.qrCodes?.[1] as qrCode"
-            class="layout-preview__qr-code"
-            [value]="qrCode2"
-            [size]="qrCode.size"
-            [style.left.px]="qrCode.x"
-            [style.top.px]="qrCode.y"
-        ></app-qr-code>
+
         <div
-            *ngIf="qrCodesGenerated && qrCode2Enabled && qrCode2Label && template.qrCodes?.[1] as qrCode"
-            class="layout-preview__qr-label"
-            [style.left.px]="qrCode.x"
-            [style.top.px]="qrCode.y"
-            [style.width.px]="qrCode.size"
-            [style.fontSize.px]="qrCode.labelFontSize"
-        >
-            {{ qrCode2Label }}
-        </div>
-        <div 
+            *ngIf="layoutName !== 'Дипломы'"
             class="layout-preview__full-name"
             [style.left.px]="fullNameField?.x"
-            [style.top.px]="(fullNameField?.y ?? 0) + (hasWrappedPosition(position) ? 15 : 0) + getDiplomaPositionOffset(position)"
+            [style.top.px]="(fullNameField?.y ?? 0) + (hasWrappedPosition(position) ? 15 : 0)"
             [style.fontSize.px]="fullNameField?.fontSize"
             [style.fontWeight]="fullNameField?.fontWeight"
             [style.color]="fullNameField?.color"
             [style.width.px]="fullNameField?.width"
+            [class.layout-preview__full-name--badge-id-1]="
+                layoutName === 'Бейджи' && template.id === 1
+            "
             [class.layout-preview__full-name--business-card-centered]="
                 layoutName === 'Визитки' && template.id === 4
             "
@@ -61,9 +66,14 @@
                 layoutName === 'Бейджи' && template.id !== 1
             "
             [class.layout-preview__full-name--business-card]="layoutName === 'Визитки'"
+            [class.layout-preview__full-name--certificate]="layoutName === 'Сертификаты'"
         >
             <div
-                *ngFor="let name of (layoutName === 'Сертификаты' || layoutName === 'Дипломы' ? [limitFullNameParts(fullName)] : formatFullName(fullName)); let i = index"
+                *ngFor="let name of (
+                    layoutName === 'Сертификаты'
+                        ? [fullName]
+                        : formatFullName(fullName)
+                ); let i = index"
                 [class.layout-preview__full-name-line--second]="
                     i === 1 && !(layoutName === 'Визитки' && template.id === 4)
                 "
@@ -95,33 +105,29 @@
         </div>
 
         <img
-            *ngIf="showPhone && phoneIcon"
+            *ngIf="showPhone && phone.trim() && phoneIcon?.src && phoneIcon as icon"
             class="layout-preview__icon"
-            [src]="phoneIcon.src"
-            [style.left.px]="phoneIcon.x"
-            [style.top.px]="phoneIcon.y"
-            [style.width.px]="phoneIcon.width"
-            [style.height.px]="phoneIcon.height"
+            [src]="icon.src"
+            [style.left.px]="icon.x"
+            [style.top.px]="icon.y"
+            [style.width.px]="icon.width"
+            [style.height.px]="icon.height"
         />
 
         <div
-            *ngIf="
-                showPhone &&
-                layoutName === 'Визитки' &&
-                [1, 2, 3, 4].includes(template.id)
-            "
+            *ngIf="showPhone && phone.trim() && phoneIconLabel as label"
             class="layout-preview__phone-label"
-            [style.left.px]="phoneIconLabel?.x"
-            [style.top.px]="phoneIconLabel?.y"
-            [style.fontSize.px]="phoneIconLabel?.fontSize"
-            [style.fontWeight]="phoneIconLabel?.fontWeight"
-            [style.color]="phoneIconLabel?.color"
+            [style.left.px]="label.x"
+            [style.top.px]="label.y"
+            [style.fontSize.px]="label.fontSize"
+            [style.fontWeight]="label.fontWeight"
+            [style.color]="label.color"
         >
             Тел.:
         </div>
 
         <img
-            *ngIf="showAddress && addressIcon"
+            *ngIf="showAddress && address.trim() && addressIcon"
             class="layout-preview__icon"
             [src]="addressIcon.src"
             [style.left.px]="addressIcon.x"
@@ -131,6 +137,7 @@
         />
 
         <div
+            *ngIf="layoutName !== 'Дипломы'"
             class="layout-preview__position"
             [class.layout-preview__position--business-card-centered]="
                 layoutName === 'Визитки' && template.id === 4
@@ -154,12 +161,38 @@
             {{ formatPosition(position) }}
         </div>
 
-        <div *ngIf="recipientNameField"
+        @if (layoutName === 'Сертификаты' && recipientNameField; as recipient) {
+            <div
+                class="layout-preview__certificate-details"
+                [style.top.px]="recipient.y"
+                [style.--recipient-left.px]="recipient.x"
+                [style.--name-space.px]="(certificateTextField?.y ?? recipient.y) - recipient.y"
+            >
+                <div
+                    class="layout-preview__recipient-name"
+                    [class.layout-preview__recipient-name--centered]="template.id === 2 || template.id === 3"
+                    [style.width.px]="recipient.width"
+                    [style.fontSize.px]="recipient.fontSize"
+                    [style.fontWeight]="recipient.fontWeight"
+                    [style.color]="recipient.color"
+                >{{ recipientName }}</div>
+                @if (certificateTextField; as text) {
+                    <div
+                        class="layout-preview__certificate-text"
+                        [class.layout-preview__certificate-text--centered]="template.id === 2 || template.id === 3"
+                        [style.margin-left.px]="text.x"
+                        [style.width.px]="text.width"
+                        [style.fontSize.px]="text.fontSize"
+                        [style.fontWeight]="text.fontWeight"
+                        [style.color]="text.color"
+                    >{{ certificateText }}</div>
+                }
+            </div>
+        }
+
+        <div *ngIf="layoutName !== 'Сертификаты' && recipientNameField"
             class="layout-preview__recipient-name"
-            [class.layout-preview__recipient-name--centered]="
-                (layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3))
-                || layoutName === 'Дипломы'
-            "
+            [class.layout-preview__recipient-name--centered]="layoutName === 'Дипломы'"
             [style.left.px]="recipientNameField.x"
             [style.top.px]="recipientNameField.y"
             [style.fontSize.px]="recipientNameField.fontSize"
@@ -167,31 +200,19 @@
             [style.color]="recipientNameField.color"
             [style.width.px]="recipientNameField.width"
         >
-            <ng-container
-                *ngIf="layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3); else formattedName"
+            <div
+                *ngFor="let name of getRecipientNameLines(recipientName)"
+                [class.layout-preview__full-name-line--badge-centered]="
+                    layoutName === 'Бейджи' && template.splitPatronymic === true
+                "
             >
-                {{ formatRecipientName(recipientName) }}
-            </ng-container>
-
-            <ng-template #formattedName>
-                <div
-                    *ngFor="let name of getRecipientNameLines(recipientName)"
-                    [class.layout-preview__full-name-line--badge-centered]="
-                        layoutName === 'Бейджи' && template.splitPatronymic === true
-                    "
-                >
-                    {{ name }}
-                </div>
-            </ng-template>
+                {{ name }}
+            </div>
         </div>
 
-        <div *ngIf="certificateTextField"
+        <div *ngIf="layoutName !== 'Сертификаты' && certificateTextField"
             class="layout-preview__certificate-text"
-            [class.layout-preview__certificate-text--centered]="
-                (layoutName === 'Сертификаты' && (template.id === 2 || template.id === 3))
-                || layoutName === 'Дипломы'
-            "
-            [class.layout-preview__certificate-text--name-wrapped]="hasWrappedFullName(recipientName)"
+            [class.layout-preview__certificate-text--centered]="layoutName === 'Дипломы'"
             [style.left.px]="certificateTextField.x"
             [style.top.px]="certificateTextField.y"
             [style.fontSize.px]="certificateTextField.fontSize"
@@ -212,7 +233,7 @@
 
         <div *ngIf="cityField"
             class="layout-preview__city"
-            [class.layout-preview__city--centered]="(layoutName === 'Бейджи' && template.id === 1) || (layoutName === 'Дипломы')"
+            [class.layout-preview__city--centered]="layoutName === 'Дипломы'"
             [style.left.px]="cityField.x"
             [style.top.px]="cityField.y"
             [style.width.px]="cityField.width"
@@ -220,13 +241,12 @@
             [style.fontWeight]="cityField.fontWeight"
             [style.color]="cityField.color"
         >
-            {{ city.replace('г. ', 'г.\u00A0') }}
+            <span #cityText>{{ city.replace('г. ', 'г.\u00A0') }}</span>
         </div>
 
         <div *ngIf="dateField"
             class="layout-preview__date"
-            [class.layout-preview__date--centered]="layoutName === 'Бейджи' && template.id === 1"
-            [style.left.px]="dateField.x"
+            [style.left.px]="getDateLeft()"
             [style.top.px]="dateField.y"
             [style.width.px]="dateField.width"
             [style.fontSize.px]="dateField.fontSize"
@@ -258,11 +278,12 @@
         </div>
 
         <div
+            *ngIf="emailField"
             class="layout-preview__email"
-            [style.left.px]="emailField?.x"
-            [style.top.px]="emailField?.y"
-            [style.fontSize.px]="emailField?.fontSize"
-            [style.fontWeight]="emailField?.fontWeight"
+            [style.left.px]="emailField.x"
+            [style.top.px]="emailField.y"
+            [style.fontSize.px]="emailField.fontSize"
+            [style.fontWeight]="emailField.fontWeight"
         >
             {{ email }}
         </div>
@@ -351,7 +372,9 @@
             [style.fontWeight]="eventDateField.fontWeight"
             [style.color]="eventDateField.color"
         >
-            {{ eventDate.replace(/\s+/, '\n') }}
+            {{ layoutName === 'Афиши'
+                ? formatPosterDateRange(eventDate, eventEndDate)
+                : eventDate.replace(/\s+/, '\n') }}
         </div>
 
         <div

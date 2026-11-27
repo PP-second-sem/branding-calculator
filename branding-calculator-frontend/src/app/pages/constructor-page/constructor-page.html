@@ -4,7 +4,7 @@
             <a routerLink="/">
                 <img class="logo-img" src="/yamal_logo.svg">
             </a>
-            <p class="constructor__logo-text">Конструктор<br>Материалов</p>
+            <p class="constructor__logo-text">Конструктор Материалов</p>
         </div>
         <div class="constructor__buttons">
             <div class="constructor__action-buttons">
@@ -20,18 +20,31 @@
                 </button>
             </div>
 
-            <button 
-                class="constructor__download-button"
-                type="button"
-                (click)="downloadLayout()">
-                <img
-                    class="constructor__download-icon"
-                    src="/white_download_icon.svg"
+            <div class="constructor__download-buttons">
+                <button
+                    class="constructor__download-button"
+                    type="button"
+                    [disabled]="isDownloading()"
+                    (click)="downloadLayout('png')"
                 >
-                Скачать
-            </button>
+                    <img class="constructor__download-icon" src="/white_download_icon.svg" alt="">
+                    Скачать PNG
+                </button>
+                <button
+                    class="constructor__download-button"
+                    type="button"
+                    [disabled]="isDownloading()"
+                    (click)="downloadLayout('pdf')"
+                >
+                    <img class="constructor__download-icon" src="/white_download_icon.svg" alt="">
+                    Скачать PDF
+                </button>
+            </div>
         </div>
     </header>
+    @if (downloadError()) {
+        <p class="constructor__download-error" role="alert">{{ downloadError() }}</p>
+    }
     <div class="constructor__body">
         <div class="constructor__section-header">
             <span class="constructor__section-title">
@@ -79,6 +92,7 @@
                 <app-layout-preview
                     #layoutPreview
                     [template]="selectedTemplate"
+                    [previewSource]="previewSource"
                     [layoutName]="selectedLayout.name"
                     [fullName]="fullName"
                     [position]="position"
@@ -92,13 +106,7 @@
                     [date]="date"
                     [showPhone]="showPhone"
                     [showAddress]="showAddress"
-                    [qrCode1]="qrCode1"
-                    [qrCode1Label]="qrCode1Label"
-                    [qrCode2]="qrCode2"
-                    [qrCode2Label]="qrCode2Label"
-                    [qrCodesGenerated]="qrCodesGenerated"
-                    [qrCode1Enabled]="qrCode1Enabled"
-                    [qrCode2Enabled]="qrCode2Enabled"
+                    [qrCodeEntries]="qrCodeEntries"
                     [eventType]="eventType"
                     [eventShortDescription]="eventShortDescription"
                     [eventDescription]="eventDescription"
@@ -107,6 +115,7 @@
                     [eventTime]="eventTime"
                     [eventAgeLimit]="eventAgeLimit"
                     [eventAdditionalInfo]="eventAdditionalInfo"
+                    [eventEndDate]="eventEndDate"
                 ></app-layout-preview>
 
                 <div class="constructor__form">
@@ -125,19 +134,17 @@
                         [showAddress]="showAddress"
                         (showPhoneChange)="showPhone = $event; updateSelectedTemplateData()"
                         (showAddressChange)="showAddress = $event; updateSelectedTemplateData()"
-                        (qrCode1Change)="saveState(); setQrCode1($event)"
-                        (qrCode1LabelChange)="saveState(); setQrCode1Label($event)"
-                        (qrCode2Change)="saveState(); setQrCode2($event)"
-                        (qrCode2LabelChange)="saveState(); setQrCode2Label($event)"
+                        [qrCodeEntries]="qrCodeEntries"
+                        (qrCodeEntriesChange)="saveState(); qrCodeEntries = $event; updateSelectedTemplateData()"
                         (recipientNameChange)="saveState(); recipientName = $event; updateSelectedTemplateData()"
+                        [certificateWording]="certificateWording"
+                        (certificateWordingChange)="selectCertificateWording($event)"
                         (certificateTextChange)="saveState(); certificateText = $event; updateSelectedTemplateData()"
-                        (qrCodesGeneratedChange)="qrCodesGenerated = $event; updateSelectedTemplateData()"
-                        (qrCode1EnabledChange)="saveState(); qrCode1Enabled = $event; updateSelectedTemplateData()"
-                        (qrCode2EnabledChange)="saveState(); qrCode2Enabled = $event; updateSelectedTemplateData()"
                         (eventTypeChange)="saveState(); eventType = $event; updateSelectedTemplateData()"
                         (eventShortDescriptionChange)="saveState(); eventShortDescription = $event; updateSelectedTemplateData()"
                         (eventDescriptionChange)="saveState(); eventDescription = $event; updateSelectedTemplateData()"
                         (eventPlaceChange)="saveState(); eventPlace = $event; updateSelectedTemplateData()"
+                        (eventEndDateChange)="saveState(); eventEndDate = $event; updateSelectedTemplateData()"
                         (eventDateChange)="saveState(); eventDate = $event; updateSelectedTemplateData()"
                         (eventTimeChange)="saveState(); eventTime = $event; updateSelectedTemplateData()"
                         (eventAgeLimitChange)="saveState(); eventAgeLimit = $event; updateSelectedTemplateData()"
