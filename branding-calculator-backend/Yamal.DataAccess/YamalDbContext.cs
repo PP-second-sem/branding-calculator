@@ -6,38 +6,23 @@ namespace Yamal.DataAccess
 {
     public class YamalDbContext : DbContext
     {
-
         public YamalDbContext(DbContextOptions<YamalDbContext> options)
             : base(options)
         {
-
         }
 
         public DbSet<MaterialsEntity> Materials { get; set; }
-
         public DbSet<UserEntity> Users { get; set; }
-
         public DbSet<QuestionsEntity> Questions { get; set; }
-
         public DbSet<LogoLibraryEntity> LogoLibrary { get; set; }
-
         public DbSet<MediaCategoriesEntity> MediaCategories { get; set; }
-
         public DbSet<MediaTypesEntity> MediaTypes { get; set; }
-
         public DbSet<CarrierTypeLogosEntity> CarrierTypeLogos { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("DefaultConnection");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
-
-
     }
 }
