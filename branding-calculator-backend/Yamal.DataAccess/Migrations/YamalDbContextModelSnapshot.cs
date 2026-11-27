@@ -230,22 +230,12 @@ namespace Yamal.DataAccess.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("user_email");
 
-                    b.Property<int?>("UserEntityId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("user_name");
-
                     b.Property<string>("UserQuestion")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("user_question");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserEntityId");
 
                     b.ToTable("Questions");
                 });
@@ -265,11 +255,6 @@ namespace Yamal.DataAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("TEXT")
                         .HasColumnName("password_hash");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -306,13 +291,6 @@ namespace Yamal.DataAccess.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Yamal.DataAccess.Entites.QuestionsEntity", b =>
-                {
-                    b.HasOne("Yamal.DataAccess.Entites.UserEntity", null)
-                        .WithMany("Questions")
-                        .HasForeignKey("UserEntityId");
-                });
-
             modelBuilder.Entity("Yamal.DataAccess.Entites.LogoLibraryEntity", b =>
                 {
                     b.Navigation("CarrierTypeLogos");
@@ -326,11 +304,6 @@ namespace Yamal.DataAccess.Migrations
             modelBuilder.Entity("Yamal.DataAccess.Entites.MediaTypesEntity", b =>
                 {
                     b.Navigation("CarrierTypes");
-                });
-
-            modelBuilder.Entity("Yamal.DataAccess.Entites.UserEntity", b =>
-                {
-                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

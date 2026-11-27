@@ -26,6 +26,12 @@ namespace Yamal.DataAccess
         public DbSet<MediaTypesEntity> MediaTypes { get; set; }
 
         public DbSet<CarrierTypeLogosEntity> CarrierTypeLogos { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("DefaultConnection");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
