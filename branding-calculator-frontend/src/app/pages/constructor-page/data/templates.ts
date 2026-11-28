@@ -953,7 +953,7 @@ export const layouts: Layout[] = [
       {
         id: 1,
         preview: 'poster_1.svg',
-        filledPreview: 'filled_poster_1.svg',
+        filledPreview: 'filled_poster_1.webp',
         textFields: [
           {
             id: 'eventTypeField',
@@ -1196,7 +1196,7 @@ export const layouts: Layout[] = [
       {
         id: 4,
         preview: 'poster_4.svg',
-        filledPreview: 'filled_poster_4.svg',
+        filledPreview: 'filled_poster_4.webp',
         splitPatronymic: true,
         textFields: [
           {
@@ -1284,7 +1284,7 @@ export const layouts: Layout[] = [
       {
         id: 5,
         preview: 'poster_5.svg',
-        filledPreview: 'filled_poster_5.svg',
+        filledPreview: 'filled_poster_5.webp',
         splitPatronymic: true,
         textFields: [
           {
