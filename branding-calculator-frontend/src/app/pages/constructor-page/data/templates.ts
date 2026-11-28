@@ -834,8 +834,8 @@ export const layouts: Layout[] = [
           {
             id: 'fullName',
             type: 'fullName',
-            x: 20,
-            y: 446,
+            x: 22,
+            y: 450,
             width: 180,
             fontSize: 7,
             fontWeight: 600,
@@ -844,7 +844,7 @@ export const layouts: Layout[] = [
           {
             id: 'position',
             type: 'position',
-            x: 20,
+            x: 22,
             y: 440,
             width: 120,
             fontSize: 7,
@@ -854,7 +854,7 @@ export const layouts: Layout[] = [
           {
             id: 'recipientName',
             type: 'recipientName',
-            x: 14,
+            x: 20,
             y: 290,
             width: 400,
             fontSize: 18,
@@ -864,7 +864,7 @@ export const layouts: Layout[] = [
           {
             id: 'certificateText',
             type: 'certificateText',
-            x: 18,
+            x: 21,
             y: 315,
             width: 190,
             fontSize: 8,
@@ -895,8 +895,8 @@ export const layouts: Layout[] = [
           {
             id: 'fullName',
             type: 'fullName',
-            x: 20,
-            y: 446,
+            x: 22,
+            y: 450,
             width: 180,
             fontSize: 7,
             fontWeight: 600,
@@ -905,7 +905,7 @@ export const layouts: Layout[] = [
           {
             id: 'position',
             type: 'position',
-            x: 20,
+            x: 22,
             y: 440,
             width: 120,
             fontSize: 7,
@@ -915,7 +915,7 @@ export const layouts: Layout[] = [
           {
             id: 'recipientName',
             type: 'recipientName',
-            x: 14,
+            x: 20,
             y: 290,
             width: 400,
             fontSize: 18,
@@ -925,7 +925,7 @@ export const layouts: Layout[] = [
           {
             id: 'certificateText',
             type: 'certificateText',
-            x: 18,
+            x: 21,
             y: 315,
             width: 190,
             fontSize: 8,
